@@ -1,0 +1,13 @@
+Guida path:
+	In scene builder, quando dobbiamo ad esempio definire il controller di una scena, usiamo il path che parte
+	dal dominio ('it' nel nostro caso) fino al nome del file (senza estensione), ogni nome è separato da un punto.
+	Es:
+		it.ml.jpokebattle.MainMenuController
+
+	Per aggiungere un controller nel file fxml scriveremo invece:
+		fx:controller="it.ml.jpokebattle.controller.MainMenuController"
+
+	Per caricare all'interno di java un file aggiungiamo prima la sua estenzione su "resources.properties" assegnandogli un nome di risorsa.
+	Successivamente utilizziamo la classe FileLoader per caricare il file a partire dal nome della sua risorsa.
+
+	I file .properties ci consentono di manipolare agilmente stringhe testuali separando i dati dal codice.

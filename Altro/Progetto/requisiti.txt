@@ -1,0 +1,49 @@
+
+Requisiti
+    1. Pokemon
+        1.1. una decina di pokemon tra cui Bulbasaur, Charmender, Squirtle
+        1.2. Statistiche di base:
+            - PS
+            - Attacco
+            - Difesa
+            - Att. speciale
+            - Dif. speciale
+            - Velocità
+        1.3. Mosse (vedi livelli) 
+            1.3.1. Bulbasaur -> rugito, azione
+            1.3.2. Charmender -> rugito, graffio
+            1.3.3. Squirtle -> colpo coda, azione
+        1.4. Punti
+            1.4.1. Esperienza
+            1.4.2. Allenamento
+            1.4.3. Individuali
+        1.5. Livelli
+            1.5.1. Mosse livello (+ scelta)
+            1.5.2. Incremento Statistiche
+            1.5.3. Evoluzione
+
+    2. GUI
+        2.1. Menu principale
+            2.1.2. start
+                - Arcade (v. 3)
+                - PVP (v. 4)
+        2.2. Profili
+            - prof. attuali
+            - aggiungi profilo
+    
+    3. Arcade
+        3.1. Centro Pokemon
+            3.1.1. cura tutti i pokemon per 100₽
+            3.1.2. Accedibile fuori dalle battaglie
+        3.2. Store
+            3.2.1. Comprare/vendere oggetti
+            3.2.2. Accedibile fuori dalle battaglie
+        3.3. Erba alta
+            3.3.1. Oggetti randomici
+            3.3.2. Pokemon selvatici
+        3.4. Ricerca avversari
+            3.4.1. Battaglia contro giocatori randomici
+
+    4. PVP
+        4.1. Lotta tra due profili creati
+

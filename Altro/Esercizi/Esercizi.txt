@@ -1,0 +1,114 @@
+1. Fondamenti di Java
+	1.1. Primi Passi
+		1.1.1. Scrivi un programma che stampa "Ciao, Mondo!" a schermo.
+		1.1.2. Scrivi un programma che stampa il tuo nome, età e città di residenza.
+		1.1.3. Crea un programma che legge il nome dell'utente da input e lo saluta.
+		1.1.4. Scrivi un programma che legge due numeri da input e stampa la loro somma.
+		1.1.5. Scrivi un programma che calcola e stampa l'area di un rettangolo dati base e altezza.
+
+	1.2. Concetti di Base
+		1.2.1. Crea un programma che converte temperature da Celsius a Fahrenheit.
+		1.2.2. Scrivi un programma che calcola la radice quadrata di un numero dato.
+		1.2.3. Scrivi un programma che determina se un numero è pari o dispari.
+		1.2.4. Scrivi un programma che calcola la media di tre numeri dati.
+		1.2.5. Crea un programma che calcola il fattoriale di un numero dato.
+
+	1.3. Controllo del Flusso
+		1.3.1. Scrivi un programma che legge un numero da input e stampa "Positivo", "Negativo" o "Zero".
+		1.3.2. Scrivi un programma che legge un numero da input e stampa il suo giorno della settimana corrispondente (1 = Lunedì, 2 = Martedì, ecc.).
+		1.3.3. Crea un programma che stampa tutti i numeri da 1 a 100.
+		1.3.4. Scrivi un programma che stampa i numeri pari da 1 a 100.
+		1.3.5. Scrivi un programma che calcola la somma di tutti i numeri dispari da 1 a 100.
+
+	1.4. Funzioni e Metodi
+		1.4.1. Crea una funzione che prende due numeri come parametri e restituisce la loro somma.
+		1.4.2. Crea una funzione che determina se un numero è primo.
+		1.4.3. Crea una funzione che calcola il massimo comune divisore (MCD) di due numeri.
+		1.4.4. Crea una funzione che prende una stringa come parametro e restituisce il numero di caratteri.
+		1.4.5. Crea una funzione che inverte una stringa data.
+
+
+2. Programmazione Orientata agli Oggetti (OOP)
+	2.1. Classi e Oggetti
+		2.1.1. Crea una classe Persona con attributi nome, età, e un metodo per stampare i dettagli.
+		2.1.2. Crea una classe Libro con attributi titolo, autore, prezzo e un metodo per applicare uno sconto.
+		2.1.3. Crea una classe Cerchio con un attributo raggio e metodi per calcolare area e perimetro.
+		2.1.4. Crea una classe Rettangolo con attributi base e altezza e un metodo per calcolare l'area.
+		2.1.5. Crea una classe ContoBancario con attributi saldo e metodi per depositare e prelevare denaro.
+
+	2.2. Principi OOP
+		2.2.1. Estendi la classe Persona creando una classe Studente con un attributo matricola e un metodo per stampare i dettagli.
+		2.2.2. Crea una classe Animale con un metodo verso(), poi crea classi Cane e Gatto che estendono Animale e implementano verso().
+		2.2.3. Crea un'interfaccia Forma con metodi area() e perimetro(), poi implementa questa interfaccia nelle classi Cerchio e Rettangolo.
+		2.2.4. Crea una classe Veicolo con un metodo muovi(), poi crea classi Auto e Bicicletta che estendono Veicolo e sovrascrivono muovi().
+		2.2.5. Crea una classe astratta FiguraGeometrica con un metodo astratto disegna(), poi crea classi Triangolo e Quadrato che estendono 
+				FiguraGeometrica.
+
+	2.3. Gestione delle Eccezioni
+		2.3.1. Crea un programma che legge un numero da input e gestisce l'eccezione se l'input non è un numero.
+		2.3.2. Crea una funzione che divide due numeri e gestisce l'eccezione di divisione per zero.
+		2.3.3. Crea una classe ContoBancario con un metodo preleva() che lancia un'eccezione se il saldo è insufficiente.
+		2.3.4. Crea una classe FileHandler con un metodo per leggere un file e gestisce l'eccezione se il file non esiste.
+		2.3.5. Crea un programma che lancia un'eccezione personalizzata se un utente non ha l'età minima richiesta.
+
+
+3. Collezioni e Strutture Dati
+	3.1. Array
+		3.1.1. Crea un programma che legge 5 numeri da input e li memorizza in un array.
+		3.1.2. Scrivi un programma che trova il numero massimo in un array di interi.
+		3.1.3. Scrivi un programma che ordina un array di interi in ordine crescente.
+		3.1.4. Crea un programma che somma tutti gli elementi di un array di interi.
+		3.1.5. Crea un programma che inverte l'ordine degli elementi di un array.
+
+	3.2. Collezioni
+		3.2.1. Crea un programma che utilizza un ArrayList per memorizzare una lista di nomi e stampa la lista.
+		3.2.2. Crea un programma che utilizza un HashMap per memorizzare coppie chiave-valore (nome, età) e stampa tutte le coppie.
+		3.2.3. Crea un programma che utilizza un HashSet per memorizzare numeri unici e stampa il set.
+		3.2.4. Crea un programma che utilizza una LinkedList per memorizzare una lista di numeri e stampa la lista.
+		3.2.5. Crea un programma che rimuove tutti i duplicati da una lista di numeri utilizzando un HashSet.
+
+
+4. Input/Output e Persistenza dei Dati
+	4.1. Input/Output
+		4.1.1. Crea un programma che legge una stringa da input e la salva in un file.
+		4.1.2. Crea un programma che legge il contenuto di un file e lo stampa a schermo.
+		4.1.3. Crea un programma che legge un file riga per riga e conta il numero di righe.
+		4.1.4. Crea un programma che copia il contenuto di un file in un altro file.
+		4.1.5. Crea un programma che legge un elenco di nomi da un file e li ordina in ordine alfabetico.
+
+	4.2. Persistenza dei Dati
+		4.2.1. Crea una classe Studente e serializza un oggetto di questa classe su un file.
+		4.2.2. Crea un programma che deserializza un oggetto Studente da un file e stampa i suoi dettagli.
+		4.2.3. Crea una classe Libro con una lista di capitoli e serializza un oggetto di questa classe su un file.
+		4.2.4. Crea un programma che deserializza una lista di oggetti Libro da un file e stampa i dettagli di ogni libro.
+		4.2.5. Crea un programma che serializza una mappa di oggetti Persona su un file e poi la deserializza.
+
+
+5. Introduzione a JavaFX
+	5.1. Fondamenti di JavaFX
+		5.1.1. Crea una semplice applicazione JavaFX che apre una finestra con il titolo "Hello JavaFX".
+		5.1.2. Crea una finestra JavaFX con una scena che contiene un pulsante che stampa "Cliccato!" quando viene premuto.
+		5.1.3. Crea un'interfaccia JavaFX che contiene un campo di testo e un'etichetta. Quando l'utente inserisce testo nel campo e 
+				preme un pulsante, l'etichetta deve aggiornarsi con il testo inserito.
+		5.1.4. Crea una finestra JavaFX con layout VBox contenente due pulsanti. Quando un pulsante viene premuto, la finestra deve 
+				cambiare colore di sfondo.
+		5.1.5. Crea una semplice calcolatrice con JavaFX che esegue operazioni di base come somma, sottrazione, moltiplicazione e divisione.
+
+	5.2. Layouts
+		5.2.1. Crea un'interfaccia utente JavaFX utilizzando HBox che contiene tre pulsanti.
+		5.2.2. Crea un'interfaccia utente JavaFX utilizzando VBox che contiene un'etichetta e un campo di testo.
+		5.2.3. Crea un'interfaccia utente JavaFX utilizzando BorderPane che ha un'etichetta al centro e pulsanti nelle posizioni superiore, inferiore, 
+				sinistra e destra.
+		5.2.4. Crea un'interfaccia utente JavaFX utilizzando GridPane per creare una griglia 3x3 di pulsanti.
+		5.2.5. Crea un'interfaccia utente JavaFX utilizzando StackPane che mostra un'etichetta sovrapposta a un'immagine.
+
+	5.3. Controlli UI di Base
+		5.3.1. Crea un'interfaccia JavaFX con un'etichetta che cambia testo quando si preme un pulsante.
+		5.3.2. Crea un'interfaccia JavaFX con una CheckBox che mostra un messaggio quando viene selezionata o deselezionata.
+		5.3.3. Crea un'interfaccia JavaFX con un ComboBox che
+
+
+
+
+
+

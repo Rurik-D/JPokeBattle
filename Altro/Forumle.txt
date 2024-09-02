@@ -1,0 +1,42 @@
+
+Calcolo "colpo a segno"
+
+            Pmossa * Patt
+    Ptot =  --------------
+             100   * Edif
+
+
+    Pmossa = Precisione della mossa [1, 100] (generalmente > 50)
+    Patt =   Precisione pokemon attacante (100 di default, min 40 e max 160)
+    Edif =   Elusione del pokemon difensore (100 di default, min 40 e max 160)
+
+    Mossa va a segno = Ptot > randDouble(0, 1.1)
+
+    incremento/decremento di precisione è del 10% per un massimo di 5 volte
+
+
+    Esempio:
+
+                 95  *   90
+        Ptot =  --------------  > randDouble(0, 1.1)
+                 100   *  110
+
+
+
+        >>> (95 * 90) / (100 * 120)
+        0.7125
+        >>> (95 * 90) / (100 * 130)
+        0.6576923076923077
+        >>> (95 * 90) / (100 * 140)
+        0.6107142857142858
+        >>> (95 * 90) / (100 * 150)
+        0.57
+        >>> (100 * 100) / (100 * 150)
+        0.6666666666666666
+        >>> (100 * 100) / (100 * 160)
+        0.625
+        >>> (100 * 40) / (100 * 160)
+        0.25
+        >>> (80 * 40) / (100 * 160)
+        0.2
+

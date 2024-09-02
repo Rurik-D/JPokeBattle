@@ -1,0 +1,15 @@
+Java course: (fino a 5:17:00)
+	https://www.youtube.com/watch?v=xk4_1vDrzzo
+
+JavaFX course:
+	https://www.youtube.com/watch?v=9XJicRt_FaI
+
+JavaFX Tutorial
+	https://docs.oracle.com/javase/8/javase-clienttechnologies.htm
+
+JavaFX Documentazione
+	https://fxdocs.github.io/docs/html5/
+
+Pokemon info:
+	https://wiki.pokemoncentral.it/Bulbasaur
+

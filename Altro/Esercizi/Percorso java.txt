@@ -1,0 +1,120 @@
+Fase 1: Fondamenti di Java
+	Concetti di Base
+		Variabili e tipi di dati (int, double, char, String, boolean)
+		Operatori (aritmetici, logici, di confronto)
+	
+	Controllo del Flusso
+		Condizioni (if, else, switch)
+		Cicli (for, while, do-while)
+
+	Funzioni e Metodi
+		Dichiarazione e chiamata di metodi
+		Parametri e valori di ritorno
+		Overloading dei metodi
+
+
+Fase 2: Programmazione Orientata agli Oggetti (OOP)
+	Classi e Oggetti
+		Dichiarazione di classi e creazione di oggetti
+		Attributi e metodi di una classe
+		Costruttori
+
+	Principi OOP
+		Incapsulamento
+			modificatori di accesso
+			getter e setter
+			
+		Ereditarietà (extends, super)
+		Polimorfismo (overriding dei metodi)
+		Interfacce (implements)
+
+	Enumerazioni e interfacce
+
+	Gestione delle Eccezioni
+		Try-catch-finally
+		Creazione di eccezioni personalizzate
+
+
+Fase 3: Collezioni e Strutture Dati
+	Array
+		Dichiarazione, inizializzazione e utilizzo di array
+		Array multidimensionali
+
+	Collezioni
+		ArrayList, LinkedList, HashMap, HashSet
+		Iterazione su collezioni (for-each loop, Iterator)
+
+
+Fase 4: Input/Output e Persistenza dei Dati
+	Input/Output
+		Lettura e scrittura di file
+		Uso di BufferedReader, FileReader, FileWriter
+
+	Persistenza dei Dati
+		Serializzazione degli oggetti
+
+
+Fase 5: Introduzione a JavaFX
+	Architettura di JavaFX
+		Capire la struttura di base di un'applicazione JavaFX (Stage, Scene, Node)
+		Differenze tra Swing/AWT e JavaFX
+
+
+Fase 6: Elementi di Base
+	Stage e Scene
+		Creare e configurare una finestra principale (Stage)
+		Creare e impostare una scena (Scene)
+
+	Layouts
+		Panoramica sui layout di JavaFX
+		Utilizzare Pane, HBox, VBox, BorderPane, GridPane, StackPane
+		Annidare layout per creare interfacce complesse
+
+	Controlli UI di Base
+		Button, Label, TextField, TextArea
+		Checkbox, RadioButton
+		Combobox, ChoiceBox
+		ListView, TableView
+
+
+Fase 7: Gestione degli Eventi
+	Event Handling
+		Gestione degli eventi di base (click, key press)
+		EventHandler e lambda expressions
+		Eventi personalizzati
+
+	Binding
+		Concetto di binding delle proprietà
+		Binding bidirezionale e unidirezionale
+
+Fase 8: CSS e Stili
+	Stili con CSS
+		Introduzione ai fogli di stile CSS in JavaFX
+		Applicare stili CSS a componenti JavaFX
+		Temi e skin personalizzati
+
+Fase 9: Grafica e Animazioni
+	Grafica 2D
+		Disegnare forme (Line, Rectangle, Circle, etc.)
+		Immagini e sfondi
+		Canvas per disegni personalizzati
+
+	Animazioni
+		Utilizzare Timeline per animazioni semplici
+		AnimationTimer per animazioni continue
+		Transizioni (TranslateTransition, RotateTransition, etc.)
+
+Fase 10: Multimedia
+	Audio e Video
+		Riprodurre file audio (Media, MediaPlayer)
+		Riprodurre file video
+		Gestire il volume, play, pausa, stop
+
+Fase 11: Input/Output e Persistenza
+	File I/O
+		Apertura e salvataggio di file
+		FileChooser dialog
+
+	Persistenza dei Dati
+		Serializzare oggetti in JavaFX
+		Gestire configurazioni dell'applicazione
