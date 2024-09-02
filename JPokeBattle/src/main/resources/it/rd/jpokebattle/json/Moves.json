@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Azione",
+    "type": "NORMAL",
+    "description": "Azione è una delle mosse più comuni e basilari che un Pokémon impara. Infligge danni senza effetti aggiuntivi.",
+    "power": 40,
+    "precision": 100,
+    "ppDefault": 35,
+    "isSpecial": false
+  }
+]
+
