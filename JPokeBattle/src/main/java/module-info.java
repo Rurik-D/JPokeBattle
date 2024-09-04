@@ -48,4 +48,8 @@ module it.rd.jpokebattle {
 
     exports it.rd.jpokebattle.model.area;
     opens it.rd.jpokebattle.model.area;
+    exports it.rd.jpokebattle.view.menu;
+    opens it.rd.jpokebattle.view.menu;
+    exports it.rd.jpokebattle.view.arcade;
+    opens it.rd.jpokebattle.view.arcade;
 }

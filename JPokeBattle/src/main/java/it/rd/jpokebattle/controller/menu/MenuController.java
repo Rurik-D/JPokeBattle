@@ -9,9 +9,9 @@ import it.rd.jpokebattle.model.profile.ProfileManager;
 import it.rd.jpokebattle.util.audio.SoundManager;
 import it.rd.jpokebattle.util.file.ResourceLoader;
 import it.rd.jpokebattle.view.AlertMessage;
-import it.rd.jpokebattle.view.ProfileBox;
-import it.rd.jpokebattle.view.ProfileBoxFunction;
-import it.rd.jpokebattle.view.ProfilesContainer;
+import it.rd.jpokebattle.view.menu.ProfileBox;
+import it.rd.jpokebattle.view.menu.ProfileBoxFunction;
+import it.rd.jpokebattle.view.menu.ProfilesContainer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -98,7 +98,7 @@ public class MenuController {
 
         ArcadeNodeManager arcNodeMan = ArcadeNodeManager.getIstance();
 
-        ArcadeController.setProfile(selectedProfile);
+        ArcadeController.setPlayer(selectedProfile);
         arcNodeMan.initialize(loader.getController(), selectedProfile);
     }
 

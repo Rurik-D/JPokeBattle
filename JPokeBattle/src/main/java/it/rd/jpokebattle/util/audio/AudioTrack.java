@@ -62,6 +62,7 @@ public enum AudioTrack {
 
         newMP.setVolume(0); // Imposta il volume iniziale della nuova traccia a 0
         newMP.play();
+        newMP.setCycleCount(MediaPlayer.INDEFINITE);
 
         // Timeline per il crossfade
         Timeline fadeOutIn = new Timeline(

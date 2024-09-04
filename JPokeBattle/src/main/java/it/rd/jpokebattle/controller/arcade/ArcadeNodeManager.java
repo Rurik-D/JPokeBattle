@@ -2,14 +2,18 @@ package it.rd.jpokebattle.controller.arcade;
 
 import it.rd.jpokebattle.controller.NodeManager;
 import it.rd.jpokebattle.model.area.Area;
+import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
+import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import it.rd.jpokebattle.model.profile.Profile;
 import it.rd.jpokebattle.util.file.ResourceLoader;
+import it.rd.jpokebattle.view.arcade.PokemonCard;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Classe singleton per la gestione delle componenti nella scena dell'arcade. Lavora a
@@ -105,8 +109,16 @@ public class ArcadeNodeManager extends NodeManager {
     /**
      * TODO:DA IMPLEMENTARE
      */
-    public void showOwnedPokemon() {
+    public void showOwnedPokemon(Profile player) {
         ctrl.pokemonPane.setVisible(true);
+        int teamCounter = 0;
+
+        for (int pkmnID : player.getOwnedPokemons()) {
+            if (teamCounter >= 6) break;
+            OwnedPokemon pkmn = PokemonManager.fromID(pkmnID);
+            ctrl.teamPane.getChildren().add(new PokemonCard(pkmn));
+            teamCounter++;
+        }
     }
 
     /**
@@ -118,14 +130,14 @@ public class ArcadeNodeManager extends NodeManager {
 
 
 
-    public void initialize(ArcadeController controller, Profile profile) {
+    public void initialize(ArcadeController controller, Profile player) {
         setController(controller);
-        setNarratorLbl(profile.getNarratorTextHistory());
-        updateChoiceButtons(profile.getCurrentArea());
-        ctrl.profileNameLbl.setText(profile.getName());
-        ctrl.avatarImageView.setImage(ResourceLoader.loadImage(profile.getAvatarSrcName()));
+        setNarratorLbl(player.getNarratorTextHistory());
+        updateChoiceButtons(player.getCurrentArea());
+        ctrl.profileNameLbl.setText(player.getName());
+        ctrl.avatarImageView.setImage(ResourceLoader.loadImage(player.getAvatarSrcName()));
         startClock();
-        ctrl.locationLbl.setText(profile.getCurrentArea().getTitle());
+        ctrl.locationLbl.setText(player.getCurrentArea().getTitle());
     }
 
     private void startClock() {
@@ -150,6 +162,8 @@ public class ArcadeNodeManager extends NodeManager {
         ctrl.invenctoryPane.setVisible(false);
         ctrl.starterSelectionPane.setVisible(false);
         ctrl.pokeMartPane.setVisible(false);
+        ctrl.selectionPreviewPane.setVisible(false);
 
+        ctrl.teamPane.getChildren().clear();
     }
 }

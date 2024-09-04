@@ -4,59 +4,60 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class OwnedPokemon extends Pokemon implements Serializable {
-    private final int ID;
-    private String nickname;
-    private int exp = 0;
-    private int nextLvExpTresh;
-    protected HashMap<Stats, Integer> ivMap;
+    private int ID;
+    private int xp;
+    private int nextLvXPTresh;
 
+    protected OwnedPokemon() {
+        super();
+    };
 
     /**
 
      */
-    public OwnedPokemon(int id, String breedName, String nickname) {
-        super(Breed.fromName(breedName), 5);
+    public OwnedPokemon(int id, String breedName, int lv) {
+        super(Breed.fromName(breedName), lv);
         this.ID = id;
-//        this.nickname = nickname;  // setNickname(name); TODO qui va bene il setNickname? a pokemon catturato serve messaggio GUI per fare setNickname
-//        this.expForNextLevel = calculateRequiredExpForNextLevel(this.level);
-//        save();               // aggiunge il pokemon alla mappa e la salva nel file ser
+        xp = getXPTreshold(currLevel);
+        nextLvXPTresh = getXPTreshold(currLevel + 1);
     }
+
+    public OwnedPokemon(int id, Pokemon pkmn) {
+        super(pkmn);
+        this.ID = id;
+        xp = getXPTreshold(currLevel);
+    }
+
 
     public int getID() {
         return ID;
     }
 
-    //    @Override
-//    public String getName() {
-//        return (nickname != null && !nickname.isEmpty()) ? nickname : super.getName();
-//    }
+    private int getXPTreshold(int lv) {
+        return (int) Math.pow(lv, 3.0);
+    }
 
-//    public void setNickname(String nickname) {
-//        this.nickname = nickname;
-//    }
+    public void increaseXP(int addedXP) {
+        xp += addedXP;
 
-//    public int getExp() {return this.exp;}
+        if (xp >= nextLvXPTresh) {
+            currLevel++;
+            updateStats();
 
-//    public int getExpForNextLevel() {return expForNextLevel;}
+            if (canEvolve()) {
+                // TODO: E qua se divertimo.....
+            }
+        }
+    }
 
-//    public int getIV(String statName) {return ivMap.get(statName);}
+    private boolean canEvolve() {
+        return currLevel >= breed.getNextEvoThresh();
+    }
+}
 
-//    public void setExp(int exp) {this.exp = exp;}
 
-//    private void setExpForNextLevel(int expForNextLevel) {this.expForNextLevel = expForNextLevel;}
 
-//    public void addExp(int expGuadaganti) {
-//        if (this.getLevel() < 100)
-//            this.exp += expGuadaganti;
-//    }
 
-//    private void setRandomIVs() {
-//        Random random = new Random();
-//
-//        for (Stats stat : ivMap.keySet()) {
-//            ivMap.replace(stat, random.nextInt(0, 16));
-//        }
-//    }
 
 //    private void increaseLevelByOne() {this.level++;}
 
@@ -165,4 +166,3 @@ public class OwnedPokemon extends Pokemon implements Serializable {
 //            this.moves.put(move, move.getPPDefault());
 //        }
 //    }
-}

@@ -29,7 +29,7 @@ public class SerManager extends FileManager{
      *
      * @param serSrcName    nome di risorsa del file
      * @return              hashmap caricata
-     * @see it.ml.jpokebattle.properties
+     * @see it.rd.jpokebattle.properties
      * */
     public static <V> HashMap<Integer, V> loadSER(String serSrcName) {
         String path = src.getString(serSrcName);
@@ -57,7 +57,7 @@ public class SerManager extends FileManager{
      *
      * @param map           hashmap da scrivere
      * @param serSrcName    nome di risorsa del file
-     * @see it.ml.jpokebattle.properties
+     * @see it.rd.jpokebattle.properties
      * */
     public static <V> void writeSER(HashMap<Integer, V> map, String serSrcName) {
         String path = src.getString(serSrcName);

@@ -7,9 +7,11 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -38,6 +40,54 @@
     </rowConstraints>
 
    <children>
+
+                  <GridPane fx:id="card_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="240.0" style="-fx-background-color: #D0D0D0;" visible="false">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="118.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="121.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints />
+          <RowConstraints />
+          <RowConstraints vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="107.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="-20.0" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../images/pokemon/pokedex/charmander/charmander.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </ImageView>
+            <Label prefHeight="29.0" prefWidth="73.0" text="Charmander" translateY="-5.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <ImageView fitHeight="14.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../images/1.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </ImageView>
+            <Label text="Lv. 15" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="37 / 58" translateY="15.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </GridPane>
       <ImageView fx:id="background" fitHeight="756.0" fitWidth="1244.0" nodeOrientation="RIGHT_TO_LEFT" preserveRatio="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="TOP">
          <image>
             <Image url="@../images/background/Bark Town.jpg" />
@@ -207,7 +257,7 @@
          </children>
       </GridPane>
 
-      <GridPane fx:id="pokemonPane" opacity="0.85" style="-fx-background-color: BLACK;" visible="false" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
+      <GridPane fx:id="pokemonPane" style="-fx-background-color: #000000E0;" visible="false" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="100.0" />
@@ -229,11 +279,23 @@
             <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" onAction="#backToGame" prefHeight="25.0" prefWidth="180.0" text="Torna al gioco" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Button maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" onAction="#backToGame" prefHeight="25.0" prefWidth="180.0" text="Indietro" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+
+            <FlowPane fx:id="teamPane" hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="540.0" vgap="20.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.valignment="CENTER">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets bottom="20.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets left="20.0" top="30.0" />
+               </padding>
+            </FlowPane>
          </children>
       </GridPane>
 
@@ -267,7 +329,7 @@
          </children>
       </GridPane>
 
-      <GridPane fx:id="starterSelectionPane" opacity="0.85" style="-fx-background-color: BLACK;" visible="false" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
+      <GridPane fx:id="starterSelectionPane" style="-fx-background-color: #000000E0;" visible="false" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="100.0" />
@@ -289,35 +351,76 @@
             <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button maxWidth="240.0" minWidth="240.0" mnemonicParsing="false" onAction="#confirmSelection" prefHeight="25.0" prefWidth="240.0" text="Conferma la scelta" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <ImageView fx:id="bulbasaur" fitHeight="101.0" fitWidth="96.0" onMouseClicked="#selectStarterPokemon" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-               <image>
-                  <Image url="@../images/pokeball_3.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="charmander" fitHeight="101.0" fitWidth="96.0" onMouseClicked="#selectStarterPokemon" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-               <image>
-                  <Image url="@../images/pokeball_3.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="squirtle" fitHeight="101.0" fitWidth="96.0" onMouseClicked="#selectStarterPokemon" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-               <image>
-                  <Image url="@../images/pokeball_3.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
+         <ImageView fx:id="bulbasaur" fitHeight="101.0" fitWidth="96.0" onMouseClicked="#selectStarterPokemon" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <image>
+               <Image url="@../images/pokeball_3.png" />
+            </image>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </ImageView>
+         <ImageView fx:id="charmander" fitHeight="101.0" fitWidth="96.0" onMouseClicked="#selectStarterPokemon" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <image>
+               <Image url="@../images/pokeball_3.png" />
+            </image>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </ImageView>
+         <ImageView fx:id="squirtle" fitHeight="101.0" fitWidth="96.0" onMouseClicked="#selectStarterPokemon" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <image>
+               <Image url="@../images/pokeball_3.png" />
+            </image>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </ImageView>
+
+         <GridPane fx:id="selectionPreviewPane" style="-fx-background-color: #000000D0;" visible="false" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="183.0" prefWidth="189.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="200.0" prefWidth="211.0" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+               <ImageView fx:id="selectPrevImgView" fitHeight="307.0" fitWidth="483.0" onMouseClicked="#selectStarterPokemon" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.valignment="CENTER">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                     <image>
+                        <Image url="@../images/pokemon/starter/bulbasaur.png" />
+                     </image>
+                     <effect>
+                        <Reflection fraction="0.44" topOpacity="0.2" />
+                     </effect>
+               </ImageView>
+               <Button maxWidth="240.0" minWidth="240.0" mnemonicParsing="false" onAction="#confirmSelection" prefHeight="25.0" prefWidth="240.0" text="Conferma la scelta" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </Button>
+               <Button maxWidth="240.0" minWidth="240.0" mnemonicParsing="false" onAction="#cancelSelection" prefHeight="25.0" prefWidth="240.0" text="Ho cambiato idea" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </Button>
+            </children>
+         </GridPane>
          </children>
       </GridPane>
 

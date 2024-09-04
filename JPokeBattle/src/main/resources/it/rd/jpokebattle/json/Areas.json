@@ -79,7 +79,7 @@
   },
   "starter_selection_1": {
     "title": "Laboratorio",
-    "description": "Alle spalle del professore, su un tavolo di metallo, sono poggiate 3 pokeball. Il professore ti incita, facendoti cenno con la mano, a sceglierne una.\nHai aspettato questo momento per una vita, ma adesso sei qui con il cuore in gola, pronto per ciò che ti attende.\n\nQuale pokeball scegli?\n",
+    "description": "Alle spalle del professore, su un tavolo di metallo, sono poggiate 3 pokeball. Il professore ti incita, facendoti cenno con la mano, a sceglierne una.\nHai aspettato questo momento per una vita, ma adesso sei qui con il cuore in gola, pronto per ciò che ti attende.\n\nQuale pokéball scegli?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
     "nextAreaName": "starter_selection_2",

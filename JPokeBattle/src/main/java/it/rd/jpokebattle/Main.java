@@ -2,6 +2,7 @@ package it.rd.jpokebattle;
 
 import it.rd.jpokebattle.controller.NodeManager;
 import it.rd.jpokebattle.controller.menu.MenuNodeManager;
+import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import it.rd.jpokebattle.util.audio.SoundManager;
 import it.rd.jpokebattle.util.file.ResourceLoader;
 import javafx.application.Application;
@@ -42,6 +43,7 @@ public class Main extends Application {
 
         SoundManager.getInstance();
 
+        PokemonManager.updatePkmnMap();
     }
 
 

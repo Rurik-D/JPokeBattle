@@ -88,3 +88,34 @@
 
 
 
+#teamPane {
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+
+    -fx-border-color: #C62828;
+    -fx-border-width: 4px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+}
+
+#teamPane .label{
+    -fx-font-size: 15;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C1C1C1;
+    -fx-font-weight: bold
+}
+
+#teamPane .image-view {
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+}
+
+
+#teamPane .grid-pane {
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+}
+
+
+
+

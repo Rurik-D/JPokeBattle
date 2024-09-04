@@ -5,9 +5,12 @@ import it.rd.jpokebattle.controller.SceneManager;
 import it.rd.jpokebattle.controller.menu.MenuNodeManager;
 import it.rd.jpokebattle.model.area.Area;
 import it.rd.jpokebattle.model.pokemon.Breed;
+import it.rd.jpokebattle.model.pokemon.Pokemon;
+import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import it.rd.jpokebattle.model.profile.Profile;
 import it.rd.jpokebattle.model.profile.ProfileManager;
 import it.rd.jpokebattle.util.audio.SoundManager;
+import it.rd.jpokebattle.util.file.ResourceLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,12 +20,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
 public class ArcadeController {
-    private static Profile profile;
+    private static Profile player;
     private ArcadeNodeManager nodeMan = ArcadeNodeManager.getIstance();
     private SoundManager soundMan = SoundManager.getInstance();
     private Breed selectedBreed;
@@ -32,21 +36,28 @@ public class ArcadeController {
     @FXML
     protected Label narratorLbl, profileNameLbl, clockLbl, locationLbl;
     @FXML
-    protected ImageView avatarImageView;
+    protected ImageView avatarImageView, selectPrevImgView;
     @FXML
     protected GridPane
             gameSettingsPane,
             pokemonPane,
             invenctoryPane,
             starterSelectionPane,
-            pokeMartPane;
+            pokeMartPane,
+            selectionPreviewPane;
     @FXML
     protected ScrollPane narratorScrlPane;
 
+    @FXML
+    protected FlowPane teamPane;
 
 
-    public static void setProfile(Profile lastPickedProfile) {
-        profile = lastPickedProfile;
+    public static Profile getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Profile lastPickedProfile) {
+        player = lastPickedProfile;
 
     }
 
@@ -67,7 +78,7 @@ public class ArcadeController {
     @FXML
     public void ownedPokemon(MouseEvent e) {
         soundMan.buttonClick();
-        nodeMan.showOwnedPokemon();
+        nodeMan.showOwnedPokemon(player);
 
     }
 
@@ -93,8 +104,9 @@ public class ArcadeController {
         FXMLLoader loader = SceneManager.switchScene(e, "fxml.menu", "css.menu");
         NodeManager.setRoot(loader.getRoot());
         MenuNodeManager.setController(loader.getController());
-        profile.setNarratorTextHistory(narratorLbl.getText());
-        ProfileManager.save(profile);
+        player.setNarratorTextHistory(narratorLbl.getText());
+        ProfileManager.save(player);
+        PokemonManager.save();
     }
 
     /**
@@ -114,7 +126,10 @@ public class ArcadeController {
     public void selectStarterPokemon (MouseEvent e) {
         soundMan.buttonClick();
         Node node = (Node) e.getSource();
-        selectedBreed = Breed.fromName(node.getId());
+        String breedName = node.getId();
+        selectedBreed = Breed.fromName(breedName);
+        selectionPreviewPane.setVisible(true);
+        selectPrevImgView.setImage(ResourceLoader.loadImage("img." + breedName));
     }
 
     /**
@@ -123,9 +138,20 @@ public class ArcadeController {
     @FXML
     public void confirmSelection(ActionEvent e) {
         soundMan.buttonClick();
-
+        nodeMan.hideAllPane();
+        nextArea(e);
+        Pokemon pkmn = PokemonManager.generatePokemon(selectedBreed, 5);
+        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
     }
 
+    /**
+     *
+     */
+    @FXML
+    public void cancelSelection(ActionEvent e) {
+        soundMan.buttonClick();
+        selectionPreviewPane.setVisible(false);
+    }
 
     /**
      *
@@ -136,19 +162,17 @@ public class ArcadeController {
         checkSpecialArea();
     }
 
-
     /**
      *
      */
     @FXML
     public void nextArea(ActionEvent e) {
         soundMan.buttonClick();
-        profile.goToNextArea();
+        player.goToNextArea();
         updateNarrator();
         nodeMan.updateNarratorScrollbarPosition();
         nodeMan.hideAllPane();
     }
-
 
     /**
      *
@@ -156,7 +180,7 @@ public class ArcadeController {
     @FXML
     public void prevArea(ActionEvent e) {
         soundMan.buttonClick();
-        profile.goToPrevArea();
+        player.goToPrevArea();
         updateNarrator();
         nodeMan.updateNarratorScrollbarPosition();
     }
@@ -167,7 +191,7 @@ public class ArcadeController {
     @FXML
     public void specialArea(ActionEvent e) {
         soundMan.buttonClick();
-        profile.goToSpecialArea();
+        player.goToSpecialArea();
         updateNarrator();
         nodeMan.updateNarratorScrollbarPosition();
     }
@@ -177,9 +201,9 @@ public class ArcadeController {
      * il giocatore si trova.
      */
     private void checkSpecialArea() {
-        switch (profile.getCurrentArea().getAreaType()) {
+        switch (player.getCurrentArea().getAreaType()) {
             case DEFAULT:
-                profile.goToNextArea();
+                player.goToNextArea();
                 updateNarrator();
                 nodeMan.updateNarratorScrollbarPosition();
                 break;
@@ -203,10 +227,10 @@ public class ArcadeController {
      * il giocatore si trova.
      */
     private void updateNarrator() {
-        Area area = profile.getCurrentArea();
+        Area area = player.getCurrentArea();
         nodeMan.updateNarratorLbl(area.getDescription());
-        nodeMan.updateChoiceButtons(profile.getCurrentArea());
-        locationLbl.setText(profile.getCurrentArea().getTitle());
+        nodeMan.updateChoiceButtons(player.getCurrentArea());
+        locationLbl.setText(player.getCurrentArea().getTitle());
     }
 
     /**

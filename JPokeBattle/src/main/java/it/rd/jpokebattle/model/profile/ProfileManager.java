@@ -1,19 +1,28 @@
 package it.rd.jpokebattle.model.profile;
 
 import it.rd.jpokebattle.model.SerializableHandler;
+import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
+import it.rd.jpokebattle.model.pokemon.PokemonManager;
+import it.rd.jpokebattle.view.arcade.PokemonCard;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
 
 
 public class ProfileManager implements SerializableHandler {
     private static final String SER_SRC_NAME = "ser.prof";
-    private static int maxID = SerializableHandler.getMaxID(SER_SRC_NAME);
+    private static int maxID = SerializableHandler.calcMaxID(SER_SRC_NAME);
+
+
+    public static int getNextID() {
+        return ++maxID;
+    }
 
     /**
      *
      */
     public static void newProfile(String name, Image avatar) {
-        Profile profile = new Profile(maxID++, name, avatar);
+        Profile profile = new Profile(getNextID(), name, avatar);
         save(profile);
     }
 
@@ -35,7 +44,7 @@ public class ProfileManager implements SerializableHandler {
      *
      */
     public static void save(Profile p) {
-        SerializableHandler.save(p, p.ID, SER_SRC_NAME);
+        SerializableHandler.save(p, p.getID(), SER_SRC_NAME);
     }
 
 
@@ -43,6 +52,16 @@ public class ProfileManager implements SerializableHandler {
      *
      */
     public static void delete(Profile p) {
-        SerializableHandler.delete(p.ID, SER_SRC_NAME);
+        SerializableHandler.delete(p.getID(), SER_SRC_NAME);
+
+        int teamCounter = 0;
+
+        for (int pkmnID : p.getOwnedPokemons()) {
+            if (teamCounter >= 6) break;
+            OwnedPokemon pkmn = PokemonManager.fromID(pkmnID);
+            PokemonManager.delete(pkmn, false);
+            teamCounter++;
+        }
+        PokemonManager.save();
     }
 }

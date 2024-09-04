@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Line?>
 
 <?import javafx.scene.control.ScrollPane?>
-<?import it.rd.jpokebattle.view.ProfilesContainer?>
+<?import it.rd.jpokebattle.view.menu.ProfilesContainer?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.rd.jpokebattle.controller.menu.MenuController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
