@@ -14,6 +14,7 @@ public class Breed implements Serializable {
     private String secondTypeName;
     private String predBreedName;
     private String succBreedName;
+    private String avatarSrcName;
     private String frontGifSrcName;
     private String backGifSrcName;
     private int nextEvoThreshold;
@@ -46,6 +47,10 @@ public class Breed implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public Image getAvatar() {
+        return ResourceLoader.loadImage(avatarSrcName);
     }
 
     public Image getFrontGif() {

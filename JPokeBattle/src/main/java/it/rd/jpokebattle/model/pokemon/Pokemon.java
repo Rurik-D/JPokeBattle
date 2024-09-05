@@ -2,13 +2,12 @@ package it.rd.jpokebattle.model.pokemon;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Random;
 
 import static it.rd.jpokebattle.model.pokemon.Stats.*;
 
 public class Pokemon implements Serializable {
     protected HashMap<String, Integer> moveSet = new HashMap<>();
-    protected HashMap<Stats, Integer> ivMap = PokemonManager.getVoidStatsMap();
+    protected HashMap<Stats, Integer> ivMap = PokemonManager.getRandomIVsMap();
     protected HashMap<Stats, Integer> evMap = PokemonManager.getVoidStatsMap();
     protected HashMap<Stats, Integer> statsMap = PokemonManager.getVoidStatsMap();
     protected Breed breed;
@@ -16,14 +15,10 @@ public class Pokemon implements Serializable {
     protected int currLevel;
     protected int currHP;
 
-    protected Pokemon() {}
-
     public Pokemon(Breed breed, int lv) {
         this.breed = breed;
         this.name = breed.getName();
         this.currLevel = lv;
-
-        generateRandomIVs();
         updateStats();
         currHP = getStat(HP);
     }
@@ -38,6 +33,8 @@ public class Pokemon implements Serializable {
         this.currLevel = pkmn.getLevel();
         this.currHP = pkmn.getStat(HP);
     }
+
+    protected Pokemon() {}
 
 
     public Breed getBreed() {
@@ -75,14 +72,6 @@ public class Pokemon implements Serializable {
     }
 
 
-    private void generateRandomIVs() {
-        Random rand = new Random();
-
-        for (Stats stat : ivMap.keySet()) {
-            ivMap.replace(stat, rand.nextInt(0, 15));
-        }
-    }
-
     protected void updateStats(){
         int newValue;
         int baseStat;
@@ -96,8 +85,10 @@ public class Pokemon implements Serializable {
 
             newValue = (int) ((baseStat + iv) * 2 +  Math.sqrt(ev) / 4 ) * currLevel / 100 + 5;
 
-            if (stat.equals(HP))
+            if (stat.equals(HP)) {
                 newValue += currLevel + 5;
+                currHP += newValue - getStat(HP);
+            }
 
             statsMap.replace(stat, newValue);
 
@@ -114,7 +105,6 @@ public class Pokemon implements Serializable {
             evMap.replace(stat, value);
         }
     }
-
 
     public void takeDamage(int dmg) {
         currHP = Math.max(currHP - dmg, 0);

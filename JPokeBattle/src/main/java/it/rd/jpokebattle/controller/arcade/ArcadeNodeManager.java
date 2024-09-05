@@ -13,7 +13,9 @@ import javafx.util.Duration;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+
+
+import static it.rd.jpokebattle.model.pokemon.Stats.*;
 
 /**
  * Classe singleton per la gestione delle componenti nella scena dell'arcade. Lavora a
@@ -109,16 +111,44 @@ public class ArcadeNodeManager extends NodeManager {
     /**
      * TODO:DA IMPLEMENTARE
      */
-    public void showOwnedPokemon(Profile player) {
-        ctrl.pokemonPane.setVisible(true);
+    public void showOwnedTeam(Profile player) {
+        ctrl.teamPane.setVisible(true);
         int teamCounter = 0;
 
         for (int pkmnID : player.getOwnedPokemons()) {
             if (teamCounter >= 6) break;
             OwnedPokemon pkmn = PokemonManager.fromID(pkmnID);
-            ctrl.teamPane.getChildren().add(new PokemonCard(pkmn));
+            PokemonCard card = new PokemonCard(pkmn);
+            card.setOnMouseClicked(e -> ctrl.pokemonDetails(e, pkmn));
+            ctrl.teamCardsPane.getChildren().add(card);
             teamCounter++;
         }
+    }
+
+
+
+    public void showOwnedTeam() {
+        ctrl.pokemonInfoPane.setVisible(false);
+        ctrl.pokemonInfoPaneBackBtn.setVisible(false);
+        ctrl.teamCardsPane.setVisible(true);
+        ctrl.teamPaneBackBtn.setVisible(true);
+    }
+
+    public void showPokemonDetails(OwnedPokemon pkmn) {
+        ctrl.teamCardsPane.setVisible(false);
+        ctrl.teamPaneBackBtn.setVisible(false);
+        ctrl.pokemonInfoPane.setVisible(true);
+        ctrl.pokemonInfoPaneBackBtn.setVisible(true);
+        ctrl.info_avatarImgView.setImage(pkmn.getBreed().getAvatar());
+        ctrl.info_nameLbl.setText("Nome: " + pkmn.getName());
+        ctrl.info_lvLbl.setText("Livello: " + pkmn.getLevel());
+        ctrl.info_xpLbl.setText("Esperienza: " + pkmn.getXp());
+        ctrl.info_hpLbl.setText("Punti Salute: " + pkmn.getStat(HP));
+        ctrl.info_attLbl.setText("Attacco: " + pkmn.getStat(ATK));
+        ctrl.info_difLbl.setText("Difesa: " + pkmn.getStat(DEF));
+        ctrl.info_sAttLbl.setText("Att. Speciale: " + pkmn.getStat(SPEC_ATK));
+        ctrl.info_sDifLbl.setText("Dif. Speciale: " + pkmn.getStat(SPEC_DEF));
+        ctrl.info_velLbl.setText("Velocità: " + pkmn.getStat(SPEED));
     }
 
     /**
@@ -158,12 +188,12 @@ public class ArcadeNodeManager extends NodeManager {
      */
     public void hideAllPane() {
         ctrl.gameSettingsPane.setVisible(false);
-        ctrl.pokemonPane.setVisible(false);
+        ctrl.teamPane.setVisible(false);
         ctrl.invenctoryPane.setVisible(false);
         ctrl.starterSelectionPane.setVisible(false);
         ctrl.pokeMartPane.setVisible(false);
         ctrl.selectionPreviewPane.setVisible(false);
 
-        ctrl.teamPane.getChildren().clear();
+        ctrl.teamCardsPane.getChildren().clear();
     }
 }

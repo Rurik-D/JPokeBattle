@@ -5,6 +5,7 @@ import it.rd.jpokebattle.controller.SceneManager;
 import it.rd.jpokebattle.controller.menu.MenuNodeManager;
 import it.rd.jpokebattle.model.area.Area;
 import it.rd.jpokebattle.model.pokemon.Breed;
+import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import it.rd.jpokebattle.model.pokemon.Pokemon;
 import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import it.rd.jpokebattle.model.profile.Profile;
@@ -31,25 +32,31 @@ public class ArcadeController {
     private SoundManager soundMan = SoundManager.getInstance();
     private Breed selectedBreed;
 
+    private OwnedPokemon POKEMON_PROVA;
+
     @FXML
-    protected Button nextAreaBtn, prevAreaBtn, specialAreaBtn;
+    protected Button nextAreaBtn, prevAreaBtn, specialAreaBtn, teamPaneBackBtn, pokemonInfoPaneBackBtn;
     @FXML
-    protected Label narratorLbl, profileNameLbl, clockLbl, locationLbl;
+    protected Label
+            narratorLbl, profileNameLbl, clockLbl, locationLbl,
+            info_nameLbl, info_lvLbl, info_xpLbl, info_hpLbl, info_attLbl, info_difLbl, info_sAttLbl, info_sDifLbl, info_velLbl;
     @FXML
-    protected ImageView avatarImageView, selectPrevImgView;
+    protected ImageView avatarImageView, selectPrevImgView, info_avatarImgView;
     @FXML
     protected GridPane
             gameSettingsPane,
-            pokemonPane,
+            teamPane,
             invenctoryPane,
             starterSelectionPane,
             pokeMartPane,
-            selectionPreviewPane;
+            selectionPreviewPane,
+            pokemonInfoPane;
+
     @FXML
     protected ScrollPane narratorScrlPane;
 
     @FXML
-    protected FlowPane teamPane;
+    protected FlowPane teamCardsPane;
 
 
     public static Profile getPlayer() {
@@ -76,11 +83,21 @@ public class ArcadeController {
      * Mostra la schermata di visualizzazione dei pokemon.
      */
     @FXML
-    public void ownedPokemon(MouseEvent e) {
+    public void ownedTeam(MouseEvent e) {
         soundMan.buttonClick();
-        nodeMan.showOwnedPokemon(player);
-
+        nodeMan.showOwnedTeam(player);
     }
+
+    /**
+     * TODO:DA IMPLEMENTARE
+     * Mostra la schermata di visualizzazione dei pokemon.
+     */
+    @FXML
+    public void backToOwnedTeam(ActionEvent e) {
+        soundMan.buttonClick();
+        nodeMan.showOwnedTeam();
+    }
+
 
     /**
      * TODO:DA IMPLEMENTARE
@@ -142,7 +159,34 @@ public class ArcadeController {
         nextArea(e);
         Pokemon pkmn = PokemonManager.generatePokemon(selectedBreed, 5);
         player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
+
+        // TODO SEZIONE DI PROVA
+        pkmn = PokemonManager.generatePokemon(Breed.fromName("charizard"), 80);
+        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
+
+        pkmn = PokemonManager.generatePokemon(Breed.fromName("venusaur"), 80);
+        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
+
+        POKEMON_PROVA = PokemonManager.toOwnedPokemon(PokemonManager.generatePokemon(Breed.fromName("blastoise"), 50));
+        player.addToOwned(POKEMON_PROVA);
+        // TODO SEZIONE DI PROVA
+
     }
+
+    // TODO SEZIONE DI PROVA
+    @FXML
+    public void xp(ActionEvent e) {
+        soundMan.buttonClick();
+        POKEMON_PROVA.increaseXP(750);
+    }
+
+    @FXML
+    public void dmg(ActionEvent e) {
+        soundMan.buttonClick();
+        POKEMON_PROVA.takeDamage(30);
+    }
+    // TODO SEZIONE DI PROVA
+
 
     /**
      *
@@ -152,6 +196,16 @@ public class ArcadeController {
         soundMan.buttonClick();
         selectionPreviewPane.setVisible(false);
     }
+
+    /**
+     *
+     */
+    @FXML
+    public void pokemonDetails(MouseEvent e, OwnedPokemon pkmn) {
+        soundMan.buttonClick();
+        nodeMan.showPokemonDetails(pkmn);
+    }
+
 
     /**
      *

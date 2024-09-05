@@ -5,6 +5,7 @@ import it.rd.jpokebattle.util.file.SerManager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class PokemonManager implements SerializableHandler {
     private static final String SER_SRC_NAME = "ser.pkmn";
@@ -27,6 +28,13 @@ public class PokemonManager implements SerializableHandler {
     public static Pokemon generatePokemon(Breed breed, int lv) {
         return new Pokemon(breed, lv);
     }
+
+
+
+    public static int getXPTreshold(int lv) {
+        return (int) Math.pow(lv, 3.0);
+    }
+
 
     /**
      *
@@ -52,6 +60,17 @@ public class PokemonManager implements SerializableHandler {
                 )
         );
         return map;
+    }
+
+    public static HashMap<Stats, Integer> getRandomIVsMap() {
+        Random rand = new Random();
+        HashMap<Stats, Integer> ivMap = getVoidStatsMap();
+
+        for (Stats stat : ivMap.keySet()) {
+            ivMap.replace(stat, rand.nextInt(0, 15));
+        }
+
+        return ivMap;
     }
 
 

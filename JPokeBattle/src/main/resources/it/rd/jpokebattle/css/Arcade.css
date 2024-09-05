@@ -55,7 +55,7 @@
 }
 
 #gameSettingsPane .button,
-#pokemonPane .button,
+#teamPane .button,
 #invenctoryPane .button,
 #starterSelectionPane .button,
 #pokeMartPane .button{
@@ -88,34 +88,54 @@
 
 
 
-#teamPane {
+#teamCardsPane {
     -fx-control-inner-background: transparent;
     -fx-background-color: transparent;
 
     -fx-border-color: #C62828;
-    -fx-border-width: 4px;
+    -fx-border-width: 2px;
     -fx-border-radius: 30px;
     -fx-background-radius: 30px;
 }
 
-#teamPane .label{
-    -fx-font-size: 15;
+#teamCardsPane .label{
+    -fx-font-size: 16;
     -fx-font-family: "OCR A Extended";
     -fx-text-fill: #C1C1C1;
     -fx-font-weight: bold
 }
 
-#teamPane .image-view {
-    -fx-control-inner-background: transparent;
-    -fx-background-color: transparent;
+
+#pokemonInfoPane .label {
+    -fx-font-size: 25;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C1C1C1;
+    -fx-font-weight: bold
 }
 
-
-#teamPane .grid-pane {
+#pokemonInfoVBox {
     -fx-control-inner-background: transparent;
     -fx-background-color: transparent;
+
+    -fx-border-color: #55550A;
+    -fx-border-width: 3px;
+    -fx-border-radius: 15px 0px 15px 0px;
 }
 
+#pokemonInfoVBox .label{
+    -fx-font-size: 20;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C1C1C1;
+    -fx-font-weight: bold
+}
 
+#pokemonInfoPane {
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+
+    -fx-border-color: #C62828;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
+}
 
 
