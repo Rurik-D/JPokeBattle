@@ -161,13 +161,19 @@ public class ArcadeController {
         player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
 
         // TODO SEZIONE DI PROVA
-        pkmn = PokemonManager.generatePokemon(Breed.fromName("charizard"), 80);
+        pkmn = PokemonManager.generatePokemon(Breed.fromName("butterfree"), 80);
         player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
 
-        pkmn = PokemonManager.generatePokemon(Breed.fromName("venusaur"), 80);
+        pkmn = PokemonManager.generatePokemon(Breed.fromName("weedle"), 80);
         player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
 
-        POKEMON_PROVA = PokemonManager.toOwnedPokemon(PokemonManager.generatePokemon(Breed.fromName("blastoise"), 50));
+        pkmn = PokemonManager.generatePokemon(Breed.fromName("kakuna"), 80);
+        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
+
+        pkmn = PokemonManager.generatePokemon(Breed.fromName("beedrill"), 80);
+        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
+
+        POKEMON_PROVA = PokemonManager.toOwnedPokemon(PokemonManager.generatePokemon(Breed.fromName("pidgey"), 50));
         player.addToOwned(POKEMON_PROVA);
         // TODO SEZIONE DI PROVA
 
