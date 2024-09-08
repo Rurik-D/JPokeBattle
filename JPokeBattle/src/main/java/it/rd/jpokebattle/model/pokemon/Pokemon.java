@@ -1,7 +1,11 @@
 package it.rd.jpokebattle.model.pokemon;
 
+import it.rd.jpokebattle.model.move.Move;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static it.rd.jpokebattle.model.pokemon.Stats.*;
 
@@ -10,6 +14,8 @@ public class Pokemon implements Serializable {
     protected HashMap<Stats, Integer> ivMap = PokemonManager.getRandomIVsMap();
     protected HashMap<Stats, Integer> evMap = PokemonManager.getVoidStatsMap();
     protected HashMap<Stats, Integer> statsMap = PokemonManager.getVoidStatsMap();
+    protected ArrayList<Move> moves = new ArrayList<>(4);
+    protected ArrayList<Integer> PPs = new ArrayList<>(4);
     protected Breed breed;
     protected String name;
     protected int currLevel;
@@ -32,7 +38,10 @@ public class Pokemon implements Serializable {
         this.statsMap = pkmn.getStatsMap();
         this.currLevel = pkmn.getLevel();
         this.currHP = pkmn.getStat(HP);
+        this.moves = pkmn.getMoves();
+        this.PPs = pkmn.getPPs();
     }
+
 
     protected Pokemon() {}
 
@@ -71,6 +80,42 @@ public class Pokemon implements Serializable {
         return statsMap;
     }
 
+    public ArrayList<Integer> getPPs() {
+        return PPs;
+    }
+
+    public ArrayList<Move> getMoves() {
+        return moves;
+    }
+
+    public Move getMove(int index) {
+        return moves.get(index);
+    }
+
+    public int getPP(int index) {
+        return PPs.get(index);
+    }
+
+
+
+    public void setMove(Move move, int index) {
+        assert index < 4;
+
+        if (moves.size() > index) {
+            moves.set(index, move);
+            PPs.set(index, move.getPP());
+        } else {
+            moves.addFirst(move);
+            PPs.addFirst(move.getPP());
+        }
+    }
+
+    public void setMoves(ArrayList<Move> moves) {
+        int size = Math.min(moves.size(), 4);
+        for (int i=0; i<size; i++) {
+            setMove(moves.get(i), i);
+        }
+    }
 
     protected void updateStats(){
         int newValue;
@@ -87,12 +132,11 @@ public class Pokemon implements Serializable {
 
             if (stat.equals(HP)) {
                 newValue += currLevel + 5;
-                currHP += newValue - getStat(HP);
+                if (currHP > 0)
+                    currHP += newValue - getStat(HP);
             }
 
             statsMap.replace(stat, newValue);
-
-            System.out.println(newValue);
         }
     }
 

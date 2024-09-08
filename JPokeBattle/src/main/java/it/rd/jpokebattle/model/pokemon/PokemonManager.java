@@ -1,8 +1,10 @@
 package it.rd.jpokebattle.model.pokemon;
 
 import it.rd.jpokebattle.model.SerializableHandler;
+import it.rd.jpokebattle.model.move.Move;
 import it.rd.jpokebattle.util.file.SerManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -11,33 +13,42 @@ public class PokemonManager implements SerializableHandler {
     private static final String SER_SRC_NAME = "ser.pkmn";
     private static HashMap<Integer, OwnedPokemon> pkmnMap;
     private static int maxID = SerializableHandler.calcMaxID(SER_SRC_NAME);
+    private static Random rand = new Random();
 
-    public static void updatePkmnMap() {
-        pkmnMap = SerManager.loadSER(SER_SRC_NAME);
-        if (pkmnMap == null)
-            pkmnMap = new HashMap<Integer, OwnedPokemon>();
+    /**
+     * A partire da una razza e da un livello viene generato casualmente un pokemon di
+     * quella razza e quel livello.
+     *
+     * @param breed  Razza del pokemon da generare
+     * @param lv     Livello del pokemon da generare
+     */
+    public static Pokemon generatePokemon(Breed breed, int lv) {
+        Pokemon pkmn =  new Pokemon(breed, lv);
+        ArrayList<Move> moves = pkmn.getBreed().getMovesBelowLevel(lv);
+
+        while (moves.size() > 4) {
+            moves.remove(rand.nextInt(0, moves.size()));
+        }
+
+        pkmn.setMoves(moves);
+
+        return pkmn;
     }
 
-    public static OwnedPokemon fromID(int id) {
+    /**
+     * Restituisce dalla mappa (se presente) un oggetto OwnedPokemon a partire dal suo ID.
+     *
+     * @param id  Codice intero identificativo del pokemon che si vuole caricare
+     */
+    public static OwnedPokemon getPokemonFromID(int id) {
         return pkmnMap.get(id);
     }
 
     /**
+     * A partire da un'istanza della classe Pokemon, viene generata e restituita un'istanza
+     * della classe OwnedPokemon che sia coerente con l'istanza passata in input.
      *
-     */
-    public static Pokemon generatePokemon(Breed breed, int lv) {
-        return new Pokemon(breed, lv);
-    }
-
-
-
-    public static int getXPTreshold(int lv) {
-        return (int) Math.pow(lv, 3.0);
-    }
-
-
-    /**
-     *
+     * @param pkmn   Istanza della classe Pokemon che si vuole convertire
      */
     public static OwnedPokemon toOwnedPokemon(Pokemon pkmn) {
         OwnedPokemon ownPkmn =  new OwnedPokemon(getNextID(), pkmn);
@@ -46,7 +57,14 @@ public class PokemonManager implements SerializableHandler {
     }
 
     /**
-     *
+     * Dato un livello calcola la soglia xp per passare al livello successivo.
+     */
+    public static int getXPTreshold(int lv) {
+        return (int) Math.pow(lv, 3.0);
+    }
+
+    /**
+     * Genera una mappa delle statistiche con tutti i valori impostati a 0.
      */
     public static HashMap<Stats, Integer> getVoidStatsMap() {
         HashMap<Stats, Integer> map = new HashMap<>(
@@ -62,46 +80,60 @@ public class PokemonManager implements SerializableHandler {
         return map;
     }
 
+    /**
+     * Genera una mappa casuale degli IV.
+     * Per ogni pokemon tale mappa viene calcolata una volta sola al momento della creazione.
+     */
     public static HashMap<Stats, Integer> getRandomIVsMap() {
         Random rand = new Random();
         HashMap<Stats, Integer> ivMap = getVoidStatsMap();
 
-        for (Stats stat : ivMap.keySet()) {
+        for (Stats stat : ivMap.keySet())
             ivMap.replace(stat, rand.nextInt(0, 15));
-        }
 
         return ivMap;
     }
 
-
+    /**
+     * Incrementa e ritorna il valore dell'attuale ID più grande generato.
+     */
     public static int getNextID() {
         return ++maxID;
     }
 
+    /**
+     * Aggiorna la mappa dei pokemon caricando i valori dal relativo file ser.
+     * Se il file è vuoto genera una nuova HashMap vuota.
+     */
+    public static void updatePkmnMap() {
+        pkmnMap = SerManager.loadSER(SER_SRC_NAME);
+        if (pkmnMap == null)
+            pkmnMap = new HashMap<Integer, OwnedPokemon>();
+    }
 
     /**
-     *
+     * Salva sul relativo file ser la mappa attuale dei pokemon.
      */
     public static void save() {
         SerializableHandler.save(pkmnMap, SER_SRC_NAME);
     }
 
-
     /**
-     *
+     * Aggiunge o aggiorna un pokemon nella mappa, dopodiché salva sul relativo file ser
+     * la mappa attuale dei pokemon.
      */
     public static void save(OwnedPokemon p) {
         pkmnMap.put(p.getID(), p);
-        SerializableHandler.save(p, p.getID(), SER_SRC_NAME);
+        save();
     }
 
     /**
-     *
+     * Elimina un pokemon dalla mappa
      */
     public static void delete(OwnedPokemon p, boolean save) {
+        pkmnMap.remove(p.getID());
+
         if (save)
             SerializableHandler.delete(p.getID(), SER_SRC_NAME);
-        else
-            pkmnMap.remove(p.getID());
     }
 }

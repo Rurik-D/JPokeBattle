@@ -8,8 +8,7 @@ import java.util.HashMap;
 
 public interface SerializableHandler {
     /**
-
-
+     * Calcola e ritorna l'ID più grande generato per una certa mappa.
      */
     static int calcMaxID(String serSrcName){
         HashMap<Integer, Profile> map = SerManager.loadSER(serSrcName);
@@ -21,8 +20,7 @@ public interface SerializableHandler {
     }
 
     /**
-
-
+     *
      */
     static <V> void save(HashMap<Integer, V> map, String serSrcName) {
         if (map == null)
@@ -31,10 +29,8 @@ public interface SerializableHandler {
         SerManager.writeSER(map, serSrcName);
     }
 
-
     /**
-
-
+     *
      */
     static <V> void save(V istance, int id, String serSrcName) {
         HashMap<Integer, V> map = SerManager.loadSER(serSrcName);
@@ -47,12 +43,10 @@ public interface SerializableHandler {
         SerManager.writeSER(map, serSrcName);
     }
 
-
     /**
-
-
+     *
      */
-    static void delete(Integer id, String serSrcName) {
+    static void delete(int id, String serSrcName) {
         HashMap<Integer, Profile> map = SerManager.loadSER(serSrcName);
         map.remove(id);
 

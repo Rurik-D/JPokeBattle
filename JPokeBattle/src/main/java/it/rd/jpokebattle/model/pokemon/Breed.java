@@ -1,10 +1,12 @@
 package it.rd.jpokebattle.model.pokemon;
 
+import it.rd.jpokebattle.model.move.Move;
 import it.rd.jpokebattle.util.file.DataMapLoader;
 import it.rd.jpokebattle.util.file.ResourceLoader;
 import javafx.scene.image.Image;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Breed implements Serializable {
@@ -24,6 +26,7 @@ public class Breed implements Serializable {
     private int baseSpecAtk;
     private int baseSpecDef;
     private int baseSpeed;
+    private HashMap<String, Integer> movesPerLevel;
 
 
     public int baseValueOf(Stats stat) {
@@ -61,25 +64,32 @@ public class Breed implements Serializable {
         return ResourceLoader.loadImage(backGifSrcName);
     }
 
+    public HashMap<String, Integer> getMovesPerLevel() {
+        return movesPerLevel;
+    }
+
+    public String getMoveFromLevel(int level) {
+        for (String move : movesPerLevel.keySet()) {
+            if (movesPerLevel.get(move) == level)
+                return move;
+        }
+        return null;
+    }
+
+    public ArrayList<Move> getMovesBelowLevel(int level) {
+        ArrayList<Move> moves = new ArrayList<>();
+
+        for (String move : movesPerLevel.keySet()) {
+            if (movesPerLevel.get(move) <= level)
+                moves.add(Move.fromName(move));
+        }
+
+        return moves;
+    }
+
     public static Breed fromName(String breedName) {
         return AREA_MAP.getOrDefault(breedName, null);
     }
 
 
 }
-
-
-//@Override
-//public String toString() {
-//    return  "\nfirstType: " + firstTypeName +
-//            "\nsecondType: " + secondTypeName +
-//            "\npredBreedName: " + predBreedName +
-//            "\nsuccBreedName: " + succBreedName +
-//            "\nnextEvoThreshold: " + nextEvoThreshold +
-//            "\nbaseHP: " + baseHP +
-//            "\nbaseAtk: " + baseAtk +
-//            "\nbaseDef: " + baseDef +
-//            "\nbaseSpecAtk: " + baseSpecAtk +
-//            "\nbaseSpecDef: " + baseSpecDef +
-//            "\nbaseSpeed: " + baseSpeed;
-//}

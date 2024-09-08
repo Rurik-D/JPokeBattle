@@ -1,366 +1,317 @@
 {
   "start": {
     "title": "Inizio",
-    "description": "Benvenuto in JPokeBattle Arcade!!\n\nAllena i tuoi Pokémon, scofinggi allenatori e prosegui nella trama principale prendendo le tue scelte.\n\nE non dimenticare mai:\n\n      Gotta Catch'em all!\n",
+    "description": "Benvenuto in JPokeBattle Arcade!\n\nAllena i tuoi Pokémon, scofinggi allenatori e prosegui nella trama principale prendendo le tue scelte.\n\nE non dimenticare mai:\n\n      Gotta Catch'em all!\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "home_bedroom_1",
-    "nextAreaButtonName": "Inizia la tua avventura!",
-    "prevAreaName": "",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "home_bedroom_1", "type": "default", "btnText": "Inizia la tua avventura!"}
+    ],
+    "specialArea": ""
   },
   "home_bedroom_1": {
     "title": "Camera tua",
     "description": "\t  ‘YOU WIN!’\n\nI colori sgargianti dello schermo illuminano la penombra della tua stanza. Dalle tende pentrano alcuni flebili raggi di un tiepido sole primaverile.\nIl cinguettio di alcuni pidgey accompagna l'allegra musichetta di vittoria del videogame, ci hai messo quasi due ore per completare questo livello ma alla fine ci sei riuscito e adesso ti godi questo piccolo momento di gloria.\n\nDal piano di sotto senti la voce di tua madre che ti chiama.\n\nDi cosa avrà bisogno?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "home_living_room_1",
-    "nextAreaButtonName": "Vai al piano di sotto",
-    "prevAreaName": "",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "home_living_room_1", "type": "default", "btnText": "Vai al piano di sotto"}
+    ],
+    "specialArea": ""
   },
   "home_living_room_1": {
     "title": "Soggiorno",
     "description": "\nPosi sulla scrivania il tuo joystick, spegnendo poi monitor e console.\nEsci dalla stanza e scendi le scale andando al piano inferiore.\n\n - Il professor Elm vuole parlarti!\n\nEsordisce tua madre visibilmente entusiasmata.\n\n - Credo proprio che abbia qualcosa di speciale per te, sbrigati e vai a trovarlo al laboratorio!\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "bark_town_1",
-    "nextAreaButtonName": "Esci di casa",
-    "prevAreaName": "home_bedroom",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "bark_town_1", "type": "default", "btnText": "Esci di casa"}
+    ],
+    "specialArea": ""
   },
   "bark_town_1": {
     "title": "Bark Town",
     "description": "\nTi sbrighi ad uscire di casa, venendo per un istante abbagliato dal sole. Oggi è una bellissima giornata nella piccola cittadina di Bark Town, il sole splende alto e fiori primaverli adornano gli ampi spazi verdi.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "laboratory_1",
-    "nextAreaButtonName": "Vai a trovare il professore",
-    "prevAreaName": "route1_1",
-    "prevAreaButtonName": "Ti dirigi verso la Route 1",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "laboratory_1", "type": "default", "btnText": "Vai a trovare il professore"},
+      {"name":  "route1_1", "type": "default", "btnText": "Ti dirigi verso la Route 1"}
+    ],
+    "specialArea": ""
   },
   "route1_1": {
     "title": "Bark Town",
     "description": "Non puoi proseguire senza pokémon, è pericoloso! Torni alla centro di Bark Town: devi prima andare dal professore!\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "laboratory_1",
-    "nextAreaButtonName": "Vai a trovare il professore",
-    "prevAreaName": "",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "laboratory_1", "type": "default", "btnText": "Vai a trovare il professore"}
+    ],
+    "specialArea": ""
   },
   "laboratory_1": {
     "title": "Laboratorio",
     "description": "Il prof ti saluta: prendi un pokemon bastardo!\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "starter_selection_1",
-    "nextAreaButtonName": "Ti dirigi verso il bancone per scegliere il tuo primo pokémon\n",
-    "prevAreaName": "",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "starter_selection_1", "type": "default", "btnText": "Ti dirigi verso il bancone per scegliere il tuo primo pokémon"}
+    ],
+    "specialArea": ""
   },
   "starter_selection_1": {
     "title": "Laboratorio",
     "description": "Alle spalle del professore, su un tavolo di metallo, sono poggiate 3 pokeball. Il professore ti incita, facendoti cenno con la mano, a sceglierne una.\nHai aspettato questo momento per una vita, ma adesso sei qui con il cuore in gola, pronto per ciò che ti attende.\n\nQuale pokéball scegli?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "starter_selection_2",
-    "nextAreaButtonName": "Scegli il tuo primo pokémon!",
-    "prevAreaName": "",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "starterSelect"
+    "nextAreas": [
+      {"name":  "starter_selection_2", "type": "starter_select", "btnText": "Scegli il tuo primo pokémon!"}
+    ],
+    "specialArea": ""
   },
   "starter_selection_2": {
     "title": "Laboratorio",
     "description": "Hai appena ricevuto il tuo primo pokémon, stenti ancora a crederci. Ti domandi quante avventure ti attendono insieme al tuo nuovo amico...\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "laboratory_2",
-    "nextAreaButtonName": "Torna dal professore",
-    "prevAreaName": "",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "laboratory_2", "type": "default", "btnText": "Torna dal professore"}
+    ],
+    "specialArea": ""
   },
   "laboratory_2": {
     "title": "Laboratorio",
     "description": "Ti avvicini nuovamente al professore mentre metti la tua prima pokeball (insieme al suo ospite) nello zaino. Il professore ti guarda soddisfatto e si congratula per la scelta presa.\n\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "bark_town",
-    "nextAreaButtonName": "Esci dal laboratorio",
-    "prevAreaName": "",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "bark_town", "type": "default", "btnText": "Esci dal laboratorio"}
+    ],
+    "specialArea": ""
   },
   "bark_town": {
     "title": "Bark Town",
     "description": "Sempre la solita città di merda, niente di nuovo qui a Bark Town.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "route1_start",
-    "nextAreaButtonName": "Ti dirigi verso la Route 1",
-    "prevAreaName": "home_living_room",
-    "prevAreaButtonName": "Torna a casa",
-    "specialAreaName": "laboratory",
-    "specialAreaButtonName": "Vai al laboratorio del prof. Elm",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "route1_start", "type": "default", "btnText": "Ti dirigi verso la Route 1"},
+      {"name":  "home_living_room", "type": "default", "btnText": "Torna a casa"},
+      {"name":  "laboratory", "type": "default", "btnText": "Vai al laboratorio del prof. Elm"}
+    ],
+    "specialArea": ""
   },
   "laboratory": {
     "title": "Laboratorio",
     "description": "Il professore ti guarda stranito: che fai ancora qui stupida troia?\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "bark_town",
-    "nextAreaButtonName": "Esci dal laboratorio",
-    "prevAreaName": "",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "area1Name": "bark_town",
+    "nextAreas": [
+      {"name":  "bark_town", "type": "default", "btnText": "Esci dal laboratorio"}
+    ],
+    "specialArea": ""
   },
   "home_living_room": {
     "title": "Soggiorno",
     "description": "Tua madre ti saluta.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "bark_town",
-    "nextAreaButtonName": "Esci di casa",
-    "prevAreaName": "home_bedroom",
-    "prevAreaButtonName": "Vai in camera tua",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "", "type": "heal", "btnText": "Cura la tua squadra"},
+      {"name":  "bark_town", "type": "default", "btnText": "Esci di casa"},
+      {"name":  "home_bedroom", "type": "default", "btnText": "Vai in camera tua"}
+    ],
+    "specialArea": ""
   },
   "home_bedroom": {
     "title": "Camera tua",
     "description": "Salendo le scale trovi subito sulla destra la tua camera da letto. Ogni cosa è come l'hai lasciata.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "home_living_room",
-    "nextAreaButtonName": "Vai al piano di sotto",
-    "prevAreaName": "",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "home_living_room", "type": "default", "btnText": "Vai al piano di sotto"}
+    ],
+    "specialArea": ""
   },
   "route1_start": {
     "title": "Route 1",
     "description": "La rotta 1 ti sorride avventuriero!\nPer procedere devi entrare nell'erba alta.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "r1_tall_grass",
-    "nextAreaButtonName": "Procedi nell'erba alta",
-    "prevAreaName": "bark_town",
-    "prevAreaButtonName": "Torna a Bark Town",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "r1_tall_grass", "type": "tall_grass", "btnText": "Procedi nell'erba alta"},
+      {"name":  "bark_town", "type": "default", "btnText": "Torna a Bark Town"}
+    ],
+    "specialArea": "pokemon_found_r1"
   },
   "r1_tall_grass": {
     "title": "Route 1",
     "description": "Sei nell'erba alta della Route 1.\nAl momento non vedi nessun pokémon nelle vicinanze...\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "route1_end",
-    "nextAreaButtonName": "Prosegui nella Route 1",
-    "prevAreaName": "route1_start",
-    "prevAreaButtonName": "Torna indietro verso Bark Town",
-    "specialAreaName": "r1_tall_grass",
-    "specialAreaButtonName": "Cerca pokémon nell'erba alta",
-    "areaType": "tallGrass"
+    "nextAreas": [
+      {"name":  "route1_end", "type": "default", "btnText": "Prosegui nella Route 1"},
+      {"name":  "r1_tall_grass", "type": "tall_grass", "btnText": "Cerca pokémon nell'erba alta"},
+      {"name":  "route1_start", "type": "default", "btnText": "Torna indietro verso Bark Town"}
+    ],
+    "specialArea": "pokemon_found_r1"
+  },
+  "pokemon_found_r1": {
+    "title": "Route 1",
+    "description": "Camminando nell'erba alta senti un rumore alle tue spalle...\nUn pokemon è nelle vicinanze, combatti o tenti la fuga?\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "battle", "btnText": "Combatto!"},
+      {"name":  "r1_tall_grass", "type": "try_escape", "btnText": "Tento la fuga"}
+    ],
+    "specialArea": ""
   },
   "route1_end": {
     "title": "Route 1",
     "description": "Sei arrivato alla fine della Route 1, davanti a te c'è l'entrata di Cherrygrove.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "cherrygrove_est",
-    "nextAreaButtonName": "Procedi verso Cherrygrove Est",
-    "prevAreaName": "r1_tall_grass",
-    "prevAreaButtonName": "Torna indietro nell'erba alta",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "cherrygrove_est", "type": "default", "btnText": "Procedi verso Cherrygrove Est!"},
+      {"name":  "r1_tall_grass", "type": "default", "btnText": "Torna indietro nell'erba alta"}
+    ],
+    "specialArea": "pokemon_found_r1"
   },
   "cherrygrove_est": {
     "title": "Cherrygrove Est",
     "description": "Sei a Cherrygrove est.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "cherrygrove_ovest",
-    "nextAreaButtonName": "Procedi verso Cherrygrove Ovest",
-    "prevAreaName": "route1_end",
-    "prevAreaButtonName": "Torna indietro verso la Route 1",
-    "specialAreaName": "cherrygrove_pokecenter",
-    "specialAreaButtonName": "Vai al centro pokémon",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "cherrygrove_ovest", "type": "default", "btnText": "Procedi verso Cherrygrove Ovest"},
+      {"name":  "route1_end", "type": "default", "btnText": "Torna indietro verso la Route 1"},
+      {"name":  "cherrygrove_pokecenter", "type": "default", "btnText": "Vai al centro pokémon"}
+    ],
+    "specialArea": ""
   },
   "cherrygrove_ovest": {
     "title": "Cherrygrove Ovest",
     "description": "Sei a Cherrygrove ovest.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "route2_start",
-    "nextAreaButtonName": "Procedi verso la Route 2",
-    "prevAreaName": "cherrygrove_est",
-    "prevAreaButtonName": "Torna a Cherrygrove Est",
-    "specialAreaName": "cherrygrove_pokemart",
-    "specialAreaButtonName": "Vai al Poké-Mart",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "route2_start", "type": "default", "btnText": "Procedi verso la Route 2"},
+      {"name":  "rcherrygrove_est", "type": "default", "btnText": "Torna a Cherrygrove Est"},
+      {"name":  "cherrygrove_pokemart", "type": "default", "btnText": "Vai al Poké-Mart"}
+    ],
+    "specialArea": ""
   },
   "cherrygrove_pokecenter": {
     "title": "Centro Pokémon",
     "description": "Sei al centro pokémon di Cherrygrove.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "",
-    "nextAreaButtonName": "Cura la tua squadra",
-    "prevAreaName": "cherrygrove_est",
-    "prevAreaButtonName": "Esci dal centro pokémon",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "pokeCenter"
+    "nextAreas": [
+      {"name":  "", "type": "heal", "btnText": "Cura la tua squadra"},
+      {"name":  "rcherrygrove_est", "type": "default", "btnText": "Esci dal centro pokémon"}
+    ],
+    "specialArea": ""
   },
   "cherrygrove_pokemart": {
     "title": "Poke-Mart",
     "description": "Sei al Poké-Mart di Cherrygrove.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "",
-    "nextAreaButtonName": "Commercia",
-    "prevAreaName": "cherrygrove_ovest",
-    "prevAreaButtonName": "Esci dal Poké-Mart",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "pokeMart"
+    "nextAreas": [
+      {"name":  "", "type": "trade", "btnText": "Commercia"},
+      {"name":  "cherrygrove_ovest", "type": "default", "btnText": "Esci dal Poké-Mart"}
+    ],
+    "specialArea": ""
   },
   "route2_start": {
     "title": "Route 2",
     "description": "La rotta 2 ti sorride avventuriero!\nPer procedere devi entrare nell'erba alta.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "r2_tall_grass",
-    "nextAreaButtonName": "Prosegui nell'erba alta",
-    "prevAreaName": "cherrygrove_ovest",
-    "prevAreaButtonName": "Torna a Cherrygrove",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "r2_tall_grass", "type": "tall_grass", "btnText": "Prosegui nell'erba alta"},
+      {"name":  "cherrygrove_ovest", "type": "default", "btnText": "Torna a Cherrygrove"}
+    ],
+    "specialArea": ""
   },
   "r2_tall_grass": {
     "title": "Route 2",
     "description": "Sei nell'erba alta della Route 2.\nAl momento non vedi nessun pokémon nelle vicinanze...\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "route2_end",
-    "nextAreaButtonName": "Prosegui nella Route 2 in direzione Violet",
-    "prevAreaName": "route2_start",
-    "prevAreaButtonName": "Torna all'inizio della Route 2 in direzione Cherrygrove",
-    "specialAreaName": "r2_tall_grass",
-    "specialAreaButtonName": "Cerca pokémon nell'erba alta",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "route2_end", "type": "default", "btnText": "Prosegui nella Route 2 verso Violet"},
+      {"name":  "r2_tall_grass", "type": "tall_grass", "btnText": "Cerca pokémon nell'erba alta"},
+      {"name":  "route2_start", "type": "default", "btnText": "Torna indietro verso Cherrygrove"}
+    ],
+    "specialArea": ""
   },
   "route2_end": {
     "title": "Route 2",
     "description": "Sei alla fine della Route 2, davanti a te c'è la città di Violet.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "violet_sud",
-    "nextAreaButtonName": "Entra nella città di Violet",
-    "prevAreaName": "r2_tall_grass",
-    "prevAreaButtonName": "Torna indietro nell'erba alta",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "violet_sud", "type": "default", "btnText": "Entra nella città di Violet"},
+      {"name":  "r2_tall_grass", "type": "tall_grass", "btnText": "Torna indietro nell'erba alta"}
+    ],
+    "specialArea": ""
   },
   "violet_sud": {
     "title": "Violet Sud",
     "description": "Sei a Violet Sud\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "violet_nord",
-    "nextAreaButtonName": "Prosegui verso Violet Nord",
-    "prevAreaName": "route2_end",
-    "prevAreaButtonName": "Torna indietro sulla Route 2",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "violet_nord", "type": "default", "btnText": "Prosegui verso Violet Nord"},
+      {"name":  "route2_end", "type": "default", "btnText": "Torna sulla Route 2"}
+    ],
+    "specialArea": ""
   },
   "violet_nord": {
     "title": "Violet Nord",
     "description": "Sei a Violet Nord\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "end",
-    "nextAreaButtonName": "Prosegui verso la Route 3",
-    "prevAreaName": "violet_sud",
-    "prevAreaButtonName": "Torna a Violet Sud",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "end", "type": "default", "btnText": "Prosegui verso la Route 3"},
+      {"name":  "violet_sud", "type": "default", "btnText": "Torna a Violet Sud"}
+    ],
+    "specialArea": ""
   },
   "violet_pokemart": {
     "title": "Poke-Mart",
     "description": "Sei al Poké-Mart di Violet.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "",
-    "nextAreaButtonName": "Commercia",
-    "prevAreaName": "violet_sud",
-    "prevAreaButtonName": "Esci dal Poké-Mart di Violet",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "pokeMart"
+    "nextAreas": [
+      {"name":  "", "type": "trade", "btnText": "Commercia"},
+      {"name":  "violet_sud", "type": "default", "btnText": "Esci dal Poké-Mart di Violet"}
+    ],
+    "specialArea": ""
   },
   "violet_pokecenter": {
     "title": "Centro Pokémon",
     "description": "Sei al centro pokémon di Violet.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "",
-    "nextAreaButtonName": "Cura la tua squadra",
-    "prevAreaName": "violet_nord",
-    "prevAreaButtonName": "Esci dal centro pokémon di Violet",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "pokeCenter"
+    "nextAreas": [
+      {"name":  "", "type": "heal", "btnText": "Cura la tua squadra"},
+      {"name":  "violet_nord", "type": "default", "btnText": "Esci dal centro pokémon di Violet"}
+    ],
+    "specialArea": ""
   },
   "end": {
     "title": "Violet Nord",
     "description": "Sei arrivato alla fine del tuo percorso... per ora...\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
-    "nextAreaName": "violet_nord",
-    "nextAreaButtonName": "Torna a Violet Nord",
-    "prevAreaName": "",
-    "prevAreaButtonName": "",
-    "specialAreaName": "",
-    "specialAreaButtonName": "",
-    "areaType": "default"
+    "nextAreas": [
+      {"name":  "violet_nord", "type": "default", "btnText": "Torna a Violet Nord"}
+    ],
+    "specialArea": ""
   }
 }

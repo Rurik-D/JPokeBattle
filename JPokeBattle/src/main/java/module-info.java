@@ -37,6 +37,9 @@ module it.rd.jpokebattle {
     exports it.rd.jpokebattle.util.file;
     opens it.rd.jpokebattle.util.file;
 
+    exports it.rd.jpokebattle.controller.battle;
+    opens it.rd.jpokebattle.controller.battle;
+
     exports it.rd.jpokebattle.controller.arcade;
     opens it.rd.jpokebattle.controller.arcade;
 
@@ -52,4 +55,6 @@ module it.rd.jpokebattle {
     opens it.rd.jpokebattle.view.menu;
     exports it.rd.jpokebattle.view.arcade;
     opens it.rd.jpokebattle.view.arcade;
+    exports it.rd.jpokebattle.model.move;
+    opens it.rd.jpokebattle.model.move;
 }

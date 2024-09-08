@@ -4,12 +4,11 @@ import java.io.*;
 import java.util.HashMap;
 
 public class SerManager extends FileManager{
-    // accesso al file resources.properties contenente i path a tutti i file
 
     /**
-     * Svuota il contenuto di un file.
+     * Svuota il contenuto di un file ser.
      *
-     * @param serSrcName
+     * @param serSrcName nome di risorsa del file da pulire
      */
     public static void clearSER(String serSrcName) {
         String path = src.getString(serSrcName);
@@ -22,10 +21,9 @@ public class SerManager extends FileManager{
         }
     }
 
-
     /**
      * Restituisce una hashmap a partire da un file ser.
-     * Ogni hashmap è composta da stringhe e oggetti.
+     * Ogni hashmap è composta da interi (identificatori) e oggetti.
      *
      * @param serSrcName    nome di risorsa del file
      * @return              hashmap caricata

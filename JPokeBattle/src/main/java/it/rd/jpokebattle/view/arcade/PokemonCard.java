@@ -46,9 +46,10 @@ public class PokemonCard extends GridPane {
         this.setVisible(true);
 
         BackgroundFill bg = new BackgroundFill(
-        Color.rgb(40,40,40),
-        new CornerRadii(18),
-        Insets.EMPTY);
+                Color.rgb(40,40,40),
+                new CornerRadii(18, 1, 18, 1, false),
+                Insets.EMPTY
+        );
 
         BorderStroke bs = new BorderStroke(
                 Color.rgb(85, 85, 10),
@@ -126,9 +127,10 @@ public class PokemonCard extends GridPane {
             lineColor = Color.rgb(30, 230, 30);
         else if (hp > maxHP/4)
             lineColor = Color.rgb(230, 220, 30);
-        else
+        else if (hp > 0)
             lineColor = Color.rgb(230, 30, 30);
-
+        else
+            lineColor = Color.rgb(0, 0, 0, 0);
         lifeLine.setStartX(0);
         lifeLine.setEndX(length);
         lifeLine.setStroke(lineColor);
@@ -151,7 +153,6 @@ public class PokemonCard extends GridPane {
         // length : maxL = (xr - xtnl) : xr
         // length = ((xr - xtnl) * maxL) / xr
         double length = ((xpRange - xpToNxtLv) * maxL) / xpRange;
-        System.out.println(length);
 
         xpLine.setStartX(0);
         xpLine.setEndX(length);

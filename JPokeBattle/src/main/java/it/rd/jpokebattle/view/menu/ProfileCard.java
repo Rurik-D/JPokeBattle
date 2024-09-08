@@ -19,12 +19,12 @@ import javafx.stage.Stage;
  * Classe che definisce le schede profilo contenute nello ScrollPane nel
  * menù di visualizzazione profili.
  */
-public class ProfileBox extends HBox {
+public class ProfileCard extends HBox {
     private Profile profile;
     private Label nickname;
     private ImageView avatar;
 
-    public ProfileBox(Profile profile) {
+    public ProfileCard(Profile profile) {
         this.profile = profile;
         setNickname();
         setAvatar();
@@ -39,13 +39,13 @@ public class ProfileBox extends HBox {
         this.setMinWidth(275);
         this.setCursor(Cursor.HAND);
         this.setAlignment(Pos.CENTER_LEFT);
-        this.setOnMouseClicked(e -> getController(e).profileModifyPreview(profile));
+        this.setOnMouseClicked(e -> getController(e).profilePreview(profile));
         this.getChildren().addAll(avatar, nickname);
     }
 
     private void setNickname() {
         this.nickname = new Label(profile.getName());
-        this.nickname.setStyle("-fx-font-family: \"Lucida Console\"; -fx-font-size: 22px; -fx-text-fill: #D1D1D1;");
+        this.nickname.setStyle("-fx-font-family: \"OCR A Extended\"; -fx-font-size: 22px; -fx-text-fill: #D1D1D1;");
     }
 
     private void setAvatar() {

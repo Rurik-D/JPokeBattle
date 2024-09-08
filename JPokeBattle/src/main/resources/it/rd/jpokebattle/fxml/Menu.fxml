@@ -55,22 +55,17 @@
       </ImageView>
 
 
-      <Button fx:id="selectGameProfileBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#selectGameProfile" prefHeight="40.0" prefWidth="150.0" text="Inizio" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+      <Button fx:id="selectGameProfileBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#selectGameProfile" prefHeight="40.0" prefWidth="150.0" text="Profili" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="profileBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#profiles" prefHeight="40.0" prefWidth="150.0" text="Profili" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+      <Button fx:id="settingsBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#settings" prefHeight="40.0" prefWidth="150.0" text="Impostazioni" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="2" GridPane.valignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="settingsBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#settings" prefHeight="40.0" prefWidth="150.0" text="Impostazioni" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="exitBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#quit" prefHeight="40.0" prefWidth="150.0" text="Esci" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+      <Button fx:id="exitBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#quit" prefHeight="40.0" prefWidth="150.0" text="Esci" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.rowSpan="2" GridPane.valignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -108,13 +103,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="mainMenuBtn" alignment="CENTER" minHeight="40.0" minWidth="180.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="40.0" prefWidth="180.0" text="Menù principale" textAlignment="CENTER" textOverrun="CLIP" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+      <Button fx:id="titleMenuBtn" alignment="CENTER" minHeight="40.0" minWidth="180.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="40.0" prefWidth="200.0" text="Schermata titolo" textAlignment="CENTER" textOverrun="CLIP" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
 
-      <Button fx:id="addProfBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#addProf" prefHeight="40.0" prefWidth="150.0" text="Aggiungi" textAlignment="CENTER" textOverrun="CLIP" visible="false" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="9" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+      <Button fx:id="addProfBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#addProf" prefHeight="40.0" prefWidth="150.0" text="Aggiungi" textAlignment="CENTER" textOverrun="CLIP" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.rowSpan="2" GridPane.valignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -127,7 +122,7 @@
             <Insets right="90.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="displayProfInfoBtn" alignment="CENTER" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#displayProfileInfo" prefHeight="40.0" prefWidth="130.0" text="Informazioni" textAlignment="CENTER" textOverrun="CLIP" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+      <Button fx:id="displayProfInfoBtn" alignment="CENTER" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#displayProfileInfo" prefHeight="40.0" prefWidth="130.0" text="Info" textAlignment="CENTER" textOverrun="CLIP" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -172,13 +167,10 @@
          </cursor>
       </Button>
 
-      <Button fx:id="selectGameModeBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="40.0" prefWidth="150.0" text="Continua"  textAlignment="CENTER" textOverrun="CLIP" visible="false" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.rowSpan="2"  GridPane.valignment="CENTER">
+      <Button fx:id="mainMenuBtn" alignment="CENTER" minHeight="40.0" minWidth="160.0" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="40.0" prefWidth="150.0" text="Continua" textAlignment="CENTER" textOverrun="CLIP" visible="false" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="9" GridPane.rowSpan="2"  GridPane.valignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-         <GridPane.margin>
-            <Insets left="140.0" />
-         </GridPane.margin>
       </Button>
 
 
@@ -211,17 +203,12 @@
       <Line fx:id="rightSeparatorLn" endX="280.0" startX="-100.0" stroke="#d1d1d1" strokeLineCap="ROUND" strokeWidth="4.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.rowSpan="2" />
 
 
-      <Label fx:id="mainMenuLbl" alignment="CENTER" text="Menù principale" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+      <Label fx:id="titleMenuLbl" alignment="CENTER" text="Schermata titolo" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets right="130.0" top="20.0" />
          </GridPane.margin>
       </Label>
-      <Label fx:id="gameProfileLbl" alignment="CENTER" text="Inizio: profilo" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-         <GridPane.margin>
-            <Insets right="130.0" top="20.0" />
-         </GridPane.margin>
-      </Label>
-      <Label fx:id="gameModeLbl" alignment="CENTER" text="Inizio: modalità" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+      <Label fx:id="mainMenuLbl" alignment="CENTER" text="Menu principale" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets right="130.0" top="20.0" />
          </GridPane.margin>
@@ -263,12 +250,12 @@
       </Label>
 
 
-      <ImageView fitHeight="63.0" fitWidth="57.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+      <ImageView fitHeight="63.0" fitWidth="63.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
          <image>
             <Image url="@../images/pokeball_2.gif" />
          </image>
          <GridPane.margin>
-            <Insets right="20.0" top="8.0" />
+            <Insets right="40.0" top="8.0" />
          </GridPane.margin>
       </ImageView>
       <ImageView fitHeight="73.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="10">

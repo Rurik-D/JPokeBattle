@@ -24,10 +24,10 @@ public class ProfilesContainer extends VBox {
 
     /**
      * Carica il file dei profili in una hashmap, svuota il vecchio contenuto
-     * del contenitore, dopodiché per ogni profilo aggiunge una HBox (ProfileBox)
+     * del contenitore, dopodiché per ogni profilo aggiunge una HBox (ProfileCard)
      * e ne definisce la funzione in base al tipo di funzione selezionato.
      */
-    public void updateProfileContainer(ProfileBoxFunction functionType) {
+    public void updateProfileContainer() {
         profMap = SerManager.loadSER("ser.prof");
         ArrayList<Profile> profiles;
 
@@ -40,14 +40,9 @@ public class ProfilesContainer extends VBox {
 
         for (int i = profiles.size()-1; i >= 0; i--) {
             Profile prof = profiles.get(i);
-            ProfileBox profBox = new ProfileBox(prof);
+            ProfileCard profBox = new ProfileCard(prof);
+            profBox.setOnMouseClicked(e -> getController(e).profilePreview(prof));
 
-            switch (functionType) {
-                case ProfileBoxFunction.SHOW_PROFILES ->
-                        profBox.setOnMouseClicked(e -> getController(e).profileModifyPreview(prof));
-                case ProfileBoxFunction.START ->
-                        profBox.setOnMouseClicked(e -> getController(e).startPreview(prof));
-            }
 
             this.getChildren().add(profBox);
         }

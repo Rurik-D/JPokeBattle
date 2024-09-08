@@ -75,16 +75,16 @@ public class MenuNodeManager extends NodeManager {
      *
      * @see MenuController
      */
-    public void switchToMainMenu(){
+    public void switchToTitleMenu(){
         hideAll();
         lengthensSeparators();
         ctrl.selectGameProfileBtn.setVisible(true);
-        ctrl.profileBtn.setVisible(true);
         ctrl.settingsBtn.setVisible(true);
         ctrl.exitBtn.setVisible(true);
-        ctrl.mainMenuLbl.setVisible(true);
+        ctrl.titleMenuLbl.setVisible(true);
         ctrl.gengarGif.setVisible(true);
         ctrl.snorlaxGif.setVisible(true);
+
     }
 
     /**
@@ -148,19 +148,19 @@ public class MenuNodeManager extends NodeManager {
     }
 
     /**
-     * Nasconde tutte le componenti della scena e mostra solo quelle del menù di
-     * selezione della modalità di gioco.
+     * Nasconde tutte le componenti della scena e mostra solo quelle del menù
+     * principale.
      *
      * @see MenuController
      */
-    public void switchToSelectGameMode(){
+    public void switchToMainMenu(){
         hideAll();
         lengthensSeparators();
         ctrl.arcadeBtn.setVisible(true);
         ctrl.pvpBtn.setVisible(true);
-        ctrl.mainMenuBtn.setVisible(true);
+        ctrl.titleMenuBtn.setVisible(true);
         ctrl.changeProfileBtn.setVisible(true);
-        ctrl.gameModeLbl.setVisible(true);
+        ctrl.mainMenuLbl.setVisible(true);
         ctrl.profileCardGrid.setVisible(true);
     }
 
@@ -172,11 +172,8 @@ public class MenuNodeManager extends NodeManager {
      */
     public void switchToSelectGameProfile() {
         switchToProfilesMenu();
-        ctrl.addProfBtn.setVisible(false);
-        ctrl.profileLbl.setVisible(false);
 
         ctrl.backToMainBtn3.setVisible(true);
-        ctrl.gameProfileLbl.setVisible(true);
     }
 
     /**
@@ -201,10 +198,11 @@ public class MenuNodeManager extends NodeManager {
      * @param pickedProf Profilo da cui prendere avatar e nome
      * @see MenuController
      */
-    public void showModifyProfPreview(Profile pickedProf) {
+    public void showProfPreview(Profile pickedProf) {
         showProfileCard(pickedProf);
         ctrl.modifyProfBtn.setVisible(true);
         ctrl.displayProfInfoBtn.setVisible(true);
+        ctrl.mainMenuBtn.setVisible(true);
     }
 
     /**
@@ -215,7 +213,7 @@ public class MenuNodeManager extends NodeManager {
      */
     public void showStartPreview(Profile pickedProf) {
         showProfileCard(pickedProf);
-        ctrl.selectGameModeBtn.setVisible(true);
+        ctrl.mainMenuBtn.setVisible(true);
     }
 
     /**
@@ -269,9 +267,8 @@ public class MenuNodeManager extends NodeManager {
      * @see MenuController
      */
     private void hideAllLabels(){
+        ctrl.titleMenuLbl.setVisible(false);
         ctrl.mainMenuLbl.setVisible(false);
-        ctrl.gameProfileLbl.setVisible(false);
-        ctrl.gameModeLbl.setVisible(false);
         ctrl.profileLbl.setVisible(false);
         ctrl.settingsLbl.setVisible(false);
         ctrl.addProfLbl.setVisible(false);

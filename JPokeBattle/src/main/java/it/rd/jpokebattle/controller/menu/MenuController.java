@@ -9,8 +9,7 @@ import it.rd.jpokebattle.model.profile.ProfileManager;
 import it.rd.jpokebattle.util.audio.SoundManager;
 import it.rd.jpokebattle.util.file.ResourceLoader;
 import it.rd.jpokebattle.view.AlertMessage;
-import it.rd.jpokebattle.view.menu.ProfileBox;
-import it.rd.jpokebattle.view.menu.ProfileBoxFunction;
+import it.rd.jpokebattle.view.menu.ProfileCard;
 import it.rd.jpokebattle.view.menu.ProfilesContainer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,11 +40,11 @@ public class MenuController {
     @FXML
     protected Button
             // Menu principale
-            selectGameProfileBtn, profileBtn, settingsBtn, exitBtn,
+            selectGameProfileBtn, settingsBtn, exitBtn,
             // Impostazioni
             volumeBtn, creditBtn, languageBtn,
             // Menu di selezione del profilo di gioco
-            selectGameModeBtn,
+            mainMenuBtn,
             // Menu di selezione modalità
             arcadeBtn, pvpBtn, changeProfileBtn,
             // Visualizzazione profili
@@ -53,10 +52,10 @@ public class MenuController {
             // Aggiungi/modifica profilo
             confirmCreationBtn, confirmChangesBtn, deleteProfBtn,
             // Ritorno
-            mainMenuBtn, backToMainBtn2, backToMainBtn3, backToProfilesCancelBtn, backToProfilesBtn;
+            titleMenuBtn, backToMainBtn2, backToMainBtn3, backToProfilesCancelBtn, backToProfilesBtn;
     @FXML
     protected Label
-            titleLbl, mainMenuLbl, gameProfileLbl, gameModeLbl, profileLbl, settingsLbl,
+            titleLbl, mainMenuLbl, profileLbl, settingsLbl, titleMenuLbl,
             addProfLbl, nicknameLbl, nicknameProfCardLbl, avatarLbl, modifyProfLbl, displayProfInfoLbl;
     @FXML
     protected Line leftSeparatorLn, rightSeparatorLn;
@@ -110,7 +109,7 @@ public class MenuController {
      * finestra di errore.
      *
      * @see ProfilesContainer
-     * @see ProfileBox
+     * @see ProfileCard
      * @see AlertMessage
      */
     @FXML
@@ -118,7 +117,7 @@ public class MenuController {
         soundMan.buttonClick();
         if (!nicknameTxtFd.getText().isBlank() && avatarViewImg.getImage() != null) {
             ProfileManager.updateProfileInfo(selectedProfile, nicknameTxtFd.getText(), avatarViewImg.getImage().getUrl());
-            profContBox.updateProfileContainer(ProfileBoxFunction.SHOW_PROFILES);
+            profContBox.updateProfileContainer();
             nodeMan.switchToProfilesMenu();
         } else {
             alert.notExhaustiveProfileCompilation();
@@ -133,7 +132,7 @@ public class MenuController {
      * finestra di errore.
      *
      * @see ProfilesContainer
-     * @see ProfileBox
+     * @see ProfileCard
      * @see AlertMessage
      */
     @FXML
@@ -141,7 +140,7 @@ public class MenuController {
         soundMan.buttonClick();
         if (!nicknameTxtFd.getText().isBlank() && avatarViewImg.getImage() != null) {
             ProfileManager.newProfile(nicknameTxtFd.getText(), avatarViewImg.getImage());
-            profContBox.updateProfileContainer(ProfileBoxFunction.SHOW_PROFILES);
+            profContBox.updateProfileContainer();
             nodeMan.switchToProfilesMenu();
         } else {
             alert.notExhaustiveProfileCompilation();
@@ -168,7 +167,7 @@ public class MenuController {
 
         if (alert.confirmDeleteProfile()) {
             ProfileManager.delete(selectedProfile);
-            profContBox.updateProfileContainer(ProfileBoxFunction.SHOW_PROFILES);
+            profContBox.updateProfileContainer();
             nodeMan.switchToProfilesMenu();
         }
     }
@@ -195,12 +194,12 @@ public class MenuController {
     }
 
     /**
-     * Visualizza il menù principale.
+     * Visualizza la schermata del titolo.
      * */
     @FXML
     public void mainMenu(ActionEvent e){
         soundMan.buttonClick();
-        nodeMan.switchToMainMenu();
+        nodeMan.switchToTitleMenu();
     }
 
     /**
@@ -220,9 +219,9 @@ public class MenuController {
      *
      * @param prof Profilo da cui prendere avatar e nome
      */
-    public void profileModifyPreview(Profile prof) {
+    public void profilePreview(Profile prof) {
         soundMan.buttonClick();
-        nodeMan.showModifyProfPreview(prof);
+        nodeMan.showProfPreview(prof);
         selectedProfile = prof;
     }
 
@@ -233,7 +232,7 @@ public class MenuController {
     @FXML
     public void profiles(ActionEvent e){
         soundMan.buttonClick();
-        profContBox.updateProfileContainer(ProfileBoxFunction.SHOW_PROFILES);
+        profContBox.updateProfileContainer();
         nodeMan.switchToProfilesMenu();
     }
 
@@ -263,8 +262,8 @@ public class MenuController {
     @FXML
     public void selectGameMode(ActionEvent e){
         soundMan.buttonClick();
-        profContBox.updateProfileContainer(ProfileBoxFunction.START);
-        nodeMan.switchToSelectGameMode();
+        profContBox.updateProfileContainer();
+        nodeMan.switchToMainMenu();
     }
 
     /**
@@ -274,7 +273,7 @@ public class MenuController {
     @FXML
     public void selectGameProfile(ActionEvent e){
         soundMan.buttonClick();
-        profContBox.updateProfileContainer(ProfileBoxFunction.START);
+        profContBox.updateProfileContainer();
         nodeMan.switchToSelectGameProfile();
     }
 
@@ -300,11 +299,6 @@ public class MenuController {
         nodeMan.switchToSettsMenu();
     }
 
-    public void startPreview(Profile prof) {
-        soundMan.buttonClick();
-        nodeMan.showStartPreview(prof);
-        selectedProfile = prof;
-    }
 
     /**
      *  Inverte il valore della variabile booleana associata all'immagine

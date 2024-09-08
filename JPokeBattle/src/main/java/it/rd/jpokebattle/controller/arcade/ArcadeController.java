@@ -2,6 +2,7 @@ package it.rd.jpokebattle.controller.arcade;
 
 import it.rd.jpokebattle.controller.NodeManager;
 import it.rd.jpokebattle.controller.SceneManager;
+import it.rd.jpokebattle.controller.battle.BattleNodeManager;
 import it.rd.jpokebattle.controller.menu.MenuNodeManager;
 import it.rd.jpokebattle.model.area.Area;
 import it.rd.jpokebattle.model.pokemon.Breed;
@@ -23,19 +24,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class ArcadeController {
     private static Profile player;
     private ArcadeNodeManager nodeMan = ArcadeNodeManager.getIstance();
     private SoundManager soundMan = SoundManager.getInstance();
     private Breed selectedBreed;
+    private Random rand = new Random();
 
-    private OwnedPokemon POKEMON_PROVA;
 
     @FXML
-    protected Button nextAreaBtn, prevAreaBtn, specialAreaBtn, teamPaneBackBtn, pokemonInfoPaneBackBtn;
+    protected Button area0Btn, area1Btn, area2Btn, teamPaneBackBtn, pokemonInfoPaneBackBtn;
     @FXML
     protected Label
             narratorLbl, profileNameLbl, clockLbl, locationLbl,
@@ -58,6 +61,12 @@ public class ArcadeController {
     @FXML
     protected FlowPane teamCardsPane;
 
+    @FXML
+    protected VBox pokemonMovesVBox;
+
+
+    // private OwnedPokemon POKEMON_PROVA;
+
 
     public static Profile getPlayer() {
         return player;
@@ -79,8 +88,7 @@ public class ArcadeController {
     }
 
     /**
-     * TODO:DA IMPLEMENTARE
-     * Mostra la schermata di visualizzazione dei pokemon.
+     * Mostra la schermata di visualizzazione dei pokemon in squadra.
      */
     @FXML
     public void ownedTeam(MouseEvent e) {
@@ -89,13 +97,12 @@ public class ArcadeController {
     }
 
     /**
-     * TODO:DA IMPLEMENTARE
-     * Mostra la schermata di visualizzazione dei pokemon.
+     * Torna alla schermata di visualizzazione dei pokemon.
      */
     @FXML
     public void backToOwnedTeam(ActionEvent e) {
         soundMan.buttonClick();
-        nodeMan.showOwnedTeam();
+        nodeMan.backToShowTeam();
     }
 
 
@@ -155,43 +162,12 @@ public class ArcadeController {
     @FXML
     public void confirmSelection(ActionEvent e) {
         soundMan.buttonClick();
+        Pokemon pkmn = PokemonManager.generatePokemon(selectedBreed, 8);
+        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
         nodeMan.hideAllPane();
-        nextArea(e);
-        Pokemon pkmn = PokemonManager.generatePokemon(selectedBreed, 5);
-        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
-
-        // TODO SEZIONE DI PROVA
-        pkmn = PokemonManager.generatePokemon(Breed.fromName("butterfree"), 80);
-        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
-
-        pkmn = PokemonManager.generatePokemon(Breed.fromName("weedle"), 80);
-        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
-
-        pkmn = PokemonManager.generatePokemon(Breed.fromName("kakuna"), 80);
-        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
-
-        pkmn = PokemonManager.generatePokemon(Breed.fromName("beedrill"), 80);
-        player.addToOwned(PokemonManager.toOwnedPokemon(pkmn));
-
-        POKEMON_PROVA = PokemonManager.toOwnedPokemon(PokemonManager.generatePokemon(Breed.fromName("pidgey"), 50));
-        player.addToOwned(POKEMON_PROVA);
-        // TODO SEZIONE DI PROVA
-
+        nextArea(0);
     }
 
-    // TODO SEZIONE DI PROVA
-    @FXML
-    public void xp(ActionEvent e) {
-        soundMan.buttonClick();
-        POKEMON_PROVA.increaseXP(750);
-    }
-
-    @FXML
-    public void dmg(ActionEvent e) {
-        soundMan.buttonClick();
-        POKEMON_PROVA.takeDamage(30);
-    }
-    // TODO SEZIONE DI PROVA
 
 
     /**
@@ -212,73 +188,100 @@ public class ArcadeController {
         nodeMan.showPokemonDetails(pkmn);
     }
 
-
     /**
      *
      */
     @FXML
-    public void checkAndGoToNextArea(ActionEvent e) {
+    public void nextAreaWithTypeCheck(ActionEvent e) {
         soundMan.buttonClick();
-        checkSpecialArea();
+        int areaIndex = getNextAreaBtnID(e);
+        checkSpecialArea(e, areaIndex);
     }
 
     /**
      *
      */
-    @FXML
-    public void nextArea(ActionEvent e) {
+    public void nextArea(int areaIndex) {
         soundMan.buttonClick();
-        player.goToNextArea();
+        player.goToNextArea(areaIndex);
         updateNarrator();
-        nodeMan.updateNarratorScrollbarPosition();
-        nodeMan.hideAllPane();
     }
 
     /**
      *
      */
-    @FXML
-    public void prevArea(ActionEvent e) {
-        soundMan.buttonClick();
-        player.goToPrevArea();
-        updateNarrator();
-        nodeMan.updateNarratorScrollbarPosition();
-    }
-
-    /**
-     *
-     */
-    @FXML
-    public void specialArea(ActionEvent e) {
+    public void specialArea() {
         soundMan.buttonClick();
         player.goToSpecialArea();
         updateNarrator();
-        nodeMan.updateNarratorScrollbarPosition();
     }
+
+
+    private int getNextAreaBtnID(ActionEvent e) {
+        Node n = (Node) e.getSource();
+        String btnID = n.getId();
+        if (!(btnID == null))
+            return Integer.parseInt("" + btnID.charAt(4)); // in posizione 4 nell'id del bottone c'è il suo numero di indice
+        else
+            return 1;
+    }
+
 
     /**
      * Aggiorna il testo del narratore con la descrizione dell'area corrente in cui
      * il giocatore si trova.
      */
-    private void checkSpecialArea() {
-        switch (player.getCurrentArea().getAreaType()) {
+    private void checkSpecialArea(ActionEvent e, int areaIndex) {
+        switch (player.getCurrentArea().getNextAreaType(areaIndex)) {
             case DEFAULT:
-                player.goToNextArea();
-                updateNarrator();
-                nodeMan.updateNarratorScrollbarPosition();
+                nextArea(areaIndex);
                 break;
             case TALL_GRASS:
-                System.out.println("Erba alta!"); // TODO
+                int foundValue = rand.nextInt(0, 2);
+                if (foundValue == 0) {
+                    nextArea(areaIndex);
+                } else {
+                    specialArea();
+                }
                 break;
-            case POKE_CENTER:
-                System.out.println("Pokemon curati!"); // TODO
+            case HEAL:
+                player.healTeam();
+                nodeMan.updateNarratorLbl("La tua squadra adesso è in perfette condizioni!");
                 break;
-            case POKE_MART:
+            case TRADE:
                 pokeMartPane.setVisible(true); // TODO
+                break;
+            case BATTLE:
+                startBattle(e);
+                break;
+            case TRY_ESCAPE:
+                int succesValue = rand.nextInt(0, 2);
+                if (succesValue == 0) {
+                    nodeMan.updateNarratorLbl("Non sei riuscito a seminare il pokémon, ora sei costretto a combattere!");
+                    area1Btn.setVisible(false);
+                } else {
+                    nodeMan.updateNarratorLbl("Sei riuscito a seminare il pokémon!");
+                    nextArea(areaIndex);
+                }
+
+
                 break;
             case STARTER_SELECT:
                 starterSelectionPane.setVisible(true);
                 break;
+        }
+    }
+
+    private void startBattle(ActionEvent e) {
+        try {
+            FXMLLoader loader = SceneManager.switchScene(e, "fxml.battle", "css.battle");
+            NodeManager.setRoot(loader.getRoot());
+            BattleNodeManager.setController(loader.getController());
+            player.setNarratorTextHistory(narratorLbl.getText());
+            ProfileManager.save(player);
+            PokemonManager.save();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
         }
     }
 
@@ -289,8 +292,9 @@ public class ArcadeController {
     private void updateNarrator() {
         Area area = player.getCurrentArea();
         nodeMan.updateNarratorLbl(area.getDescription());
-        nodeMan.updateChoiceButtons(player.getCurrentArea());
+        nodeMan.updateNextAreaButtons(player.getCurrentArea());
         locationLbl.setText(player.getCurrentArea().getTitle());
+        nodeMan.updateNarratorScrollbarPosition();
     }
 
     /**

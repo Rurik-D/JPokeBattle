@@ -1,0 +1,40 @@
+Per creare un file JAR eseguibile di un progetto Java su IntelliJ IDEA, puoi seguire questi passaggi:
+
+1. Configura l'entry point (main class)
+Prima di tutto, assicurati che il tuo progetto abbia una classe con il metodo main corretto, e questa classe sia impostata come entry point.
+
+Se il progetto è un'applicazione JavaFX, la classe principale sarà quella che estende Application e contiene il metodo start(Stage primaryStage).
+2. Compila il progetto
+Se non l'hai già fatto, compila il progetto. Puoi farlo cliccando su Build > Build Project nel menu superiore di IntelliJ IDEA o usando la scorciatoia Ctrl+F9 (Windows/Linux) o Cmd+F9 (Mac).
+
+3. Crea un'artifact JAR eseguibile
+Vai su File > Project Structure.
+Nel pannello a sinistra, clicca su Artifacts.
+Clicca il simbolo + in alto e seleziona JAR > From modules with dependencies....
+Scegli il modulo principale del tuo progetto e seleziona la classe principale che contiene il metodo main.
+Nella finestra di dialogo successiva, seleziona l'opzione Extract to the target JAR per includere tutte le librerie richieste nel JAR.
+Clicca OK.
+4. Build del JAR
+Dopo aver configurato l'artifact:
+
+Vai su Build > Build Artifacts.
+Trova l'artifact che hai appena creato (di solito sarà chiamato qualcosa come your_project_name:jar).
+Seleziona Build.
+IntelliJ creerà il file .jar eseguibile e lo metterà nella cartella out/artifacts/ del progetto.
+
+5. Esegui il JAR
+Puoi eseguire il file JAR da terminale con il comando:
+
+bash
+Copia codice
+java -jar path/to/your_project.jar
+Se l'applicazione utilizza JavaFX, assicurati di aver configurato correttamente il JDK e le dipendenze necessarie per JavaFX nel progetto e di includerle nel JAR eseguibile.
+
+Opzione 6: Configurare il manifest manualmente (opzionale)
+Se vuoi specificare manualmente il file MANIFEST.MF, puoi farlo seguendo questi passaggi:
+
+Vai su File > Project Structure > Artifacts.
+Clicca su Output Layout nella sezione Artifact.
+Espandi il JAR e seleziona la sezione del file MANIFEST.MF.
+Specifica la classe principale sotto la chiave Main-Class.
+Con questo approccio, puoi creare un file JAR eseguibile direttamente da IntelliJ IDEA senza dover configurare ulteriori strumenti esterni.

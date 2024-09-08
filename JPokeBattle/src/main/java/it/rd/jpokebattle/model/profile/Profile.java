@@ -2,7 +2,7 @@ package it.rd.jpokebattle.model.profile;
 
 import it.rd.jpokebattle.model.area.Area;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
-import it.rd.jpokebattle.model.pokemon.Pokemon;
+import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import javafx.scene.image.Image;
 
 import java.io.Serializable;
@@ -18,29 +18,21 @@ public class Profile implements Serializable {
     private final int ID;
     private String name;
     private String avatarSrcName;
-    private String currentArea;
+    private String currentAreaName;
     private String narratorTextHistory;
-    private ArrayList<Integer> ownedPkmns = new ArrayList<>();
+    private ArrayList<Integer> ownedPkmnIDs = new ArrayList<>();
     private HashMap<String, Integer> itemsMap;
 
 
     protected Profile(int id, String name, Image avatar) {
         this.ID = id;
         this.name = name;
-        this.currentArea = "start";
+        this.currentAreaName = "start";
         this.narratorTextHistory = getCurrentArea().getDescription();
 //        setItemsMap();
         setAvatarSrcName(avatar.getUrl());
     }
 
-
-    public String getAvatarSrcName() {
-        return avatarSrcName;
-    }
-
-    public Area getCurrentArea() {
-        return Area.fromName(currentArea);
-    }
 
     public int getID() {
         return ID;
@@ -50,12 +42,20 @@ public class Profile implements Serializable {
         return name;
     }
 
-    public String getNarratorTextHistory() {
-        return narratorTextHistory;
+    public String getAvatarSrcName() {
+        return avatarSrcName;
     }
 
-    public ArrayList<Integer> getOwnedPokemons() {
-        return ownedPkmns;
+    public ArrayList<Integer> getOwnedPokemonIDs() {
+        return ownedPkmnIDs;
+    }
+
+    public Area getCurrentArea() {
+        return Area.fromName(currentAreaName);
+    }
+
+    public String getNarratorTextHistory() {
+        return narratorTextHistory;
     }
 
     public void setAvatarSrcName(String avatarPath) {
@@ -63,48 +63,44 @@ public class Profile implements Serializable {
         this.avatarSrcName = path[1];
     }
 
-    public void setCurrentArea(String areaName) {
-        this.currentArea = areaName;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
+    public void setCurrentArea(String areaName) {
+        this.currentAreaName = areaName;
+    }
+
+    /**
+     * Viene impostata l'area corrente al nome dell'area successiva.
+     *
+     * @see Area
+     */
+    public void goToNextArea(int areaIndex) {
+        Area currArea = Area.fromName(this.currentAreaName);
+        setCurrentArea(currArea.getNextAreaName(areaIndex));
+    }
+
+    public void goToSpecialArea() {
+        Area currArea = Area.fromName(this.currentAreaName);
+        setCurrentArea(currArea.getSpecialAreaName());
+    }
+
     public void setNarratorTextHistory(String narratorTextHistory) {
-        this.narratorTextHistory = narratorTextHistory;
+        int length = narratorTextHistory.length();
+        this.narratorTextHistory = narratorTextHistory.substring(Math.max(0, length - 2000));
     }
 
     public void addToOwned(OwnedPokemon pkmn) {
-        ownedPkmns.add(pkmn.getID());
+        ownedPkmnIDs.add(pkmn.getID());
     }
 
-    /**
-     * Viene impostata l'area corrente al nome dell'area successiva.
-     *
-     * @see Area
-     */
-    public void goToNextArea() {
-        setCurrentArea(Area.fromName(this.currentArea).getNextAreaName());
+    public void healTeam() {
+        for (int id : ownedPkmnIDs) {
+            PokemonManager.getPokemonFromID(id).heal();
+        }
     }
 
-    /**
-     * Viene impostata l'area corrente al nome dell'area successiva.
-     *
-     * @see Area
-     */
-    public void goToPrevArea() {
-        setCurrentArea(Area.fromName(this.currentArea).getPrevAreaName());
-    }
-
-    /**
-     * Viene impostata l'area corrente al nome dell'area successiva.
-     *
-     * @see Area
-     */
-    public void goToSpecialArea() {
-        setCurrentArea(Area.fromName(this.currentArea).getSpecialAreaName());
-    }
 }
 
 
@@ -113,7 +109,7 @@ public class Profile implements Serializable {
         return itemsMap.getOrDefault(itemName, 0);
     }
 
- */
+*/
 
 
 

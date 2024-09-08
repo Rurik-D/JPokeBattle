@@ -3,10 +3,7 @@ package it.rd.jpokebattle.model.profile;
 import it.rd.jpokebattle.model.SerializableHandler;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import it.rd.jpokebattle.model.pokemon.PokemonManager;
-import it.rd.jpokebattle.view.arcade.PokemonCard;
 import javafx.scene.image.Image;
-
-import java.util.ArrayList;
 
 
 public class ProfileManager implements SerializableHandler {
@@ -56,9 +53,9 @@ public class ProfileManager implements SerializableHandler {
 
         int teamCounter = 0;
 
-        for (int pkmnID : p.getOwnedPokemons()) {
+        for (int pkmnID : p.getOwnedPokemonIDs()) {
             if (teamCounter >= 6) break;
-            OwnedPokemon pkmn = PokemonManager.fromID(pkmnID);
+            OwnedPokemon pkmn = PokemonManager.getPokemonFromID(pkmnID);
             PokemonManager.delete(pkmn, false);
             teamCounter++;
         }

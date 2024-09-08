@@ -3,25 +3,24 @@
 }
 
 .label{
-    -fx-font-size: 20;
-    -fx-font-family: "Lucida Console";
+    -fx-font-size: 21;
+    -fx-font-family: "OCR A Extended";
     -fx-text-fill: #C62828;
-
 }
 
 .text-field {
     -fx-background-color: transparent;
     -fx-border-radius: 5px;
     -fx-border-color: #818181;
-    -fx-font-family: "Lucida Console";
-    -fx-font-size: 16px;
+    -fx-font-family: "OCR A Extended";
+    -fx-font-size: 17px;
     -fx-text-fill: #D1D1D1;
 }
 
 
 .button{
-    -fx-font-size: 17;
-    -fx-font-family: "Lucida Console";
+    -fx-font-size: 18;
+    -fx-font-family: "OCR A Extended";
     -fx-background-color: transparent;
     -fx-text-fill: #D1D1D1;
 }
@@ -32,8 +31,8 @@
      -fx-border-radius: 5px;
      -fx-border-color: #D1D1D1;
      -fx-border-width: 2;
-     -fx-font-family: "Lucida Console";
-     -fx-font-size: 16px;
+     -fx-font-family: "OCR A Extended";
+     -fx-font-size: 17px;
      -fx-text-fill: #D1D1D1;
  }
 
@@ -54,20 +53,18 @@
 .scroll-bar:vertical .thumb {
     -fx-background-color: #606060;  /* colore della scrollbar */
     -fx-background-radius: 10px;
-
 }
 
 
 
 #nicknameProfCardLbl {
-    -fx-font-size: 25;
-    -fx-font-family: "Lucida Console";
+    -fx-font-size: 26;
+    -fx-font-family: "OCR A Extended";
     -fx-text-fill: #D1D1D1;
 }
 
 #titleLbl{
-    -fx-font-size: 60;
+    -fx-font-size: 65;
     -fx-alignment: center;
-
 }
 

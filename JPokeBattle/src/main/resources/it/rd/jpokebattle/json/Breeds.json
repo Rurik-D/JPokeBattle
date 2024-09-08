@@ -8,13 +8,20 @@
         "avatarSrcName": "png.charmander",
         "frontGifSrcName": "gif.charmander_f",
         "backGifSrcName": "gif.charmander_b",
-        "nextEvoThreshold": "16",
-        "baseHP": "39",
-        "baseAtk": "52",
-        "baseDef": "43",
-        "baseSpecAtk": "60",
-        "baseSpecDef": "50",
-        "baseSpeed": "65"
+        "nextEvoThreshold": 16,
+        "baseHP": 39,
+        "baseAtk": 52,
+        "baseDef": 43,
+        "baseSpecAtk": 60,
+        "baseSpecDef": 50,
+        "baseSpeed": 65,
+        "movesPerLevel" : {
+            "graffio": 0,
+            "ruggito": 0,
+            "braciere": 4,
+            "muro_di_fumo": 8,
+            "drago_spiro": 12
+        }
     },
     "charmeleon": {
         "name" : "Charmeleon",
@@ -25,13 +32,23 @@
         "avatarSrcName": "png.charmeleon",
         "frontGifSrcName": "gif.charmeleon_f",
         "backGifSrcName": "gif.charmeleon_b",
-        "nextEvoThreshold": "36",
-        "baseHP": "58",
-        "baseAtk": "64",
-        "baseDef": "58",
-        "baseSpecAtk": "80",
-        "baseSpecDef": "65",
-        "baseSpeed": "80"
+        "nextEvoThreshold": 36,
+        "baseHP": 58,
+        "baseAtk": 64,
+        "baseDef": 58,
+        "baseSpecAtk": 80,
+        "baseSpecDef": 65,
+        "baseSpeed": 80,
+        "movesPerLevel" : {
+            "graffio": 0,
+            "ruggito": 0,
+            "braciere": 0,
+            "muro_di_fumo": 0,
+            "drago_spiro": 12,
+            "rogodenti": 19,
+            "lacerazione": 24,
+            "lanciafiamme": 30
+        }
     },
     "charizard": {
         "name" : "Charizard",
@@ -42,13 +59,27 @@
         "avatarSrcName": "png.charizard",
         "frontGifSrcName": "gif.charizard_f",
         "backGifSrcName": "gif.charizard_b",
-        "nextEvoThreshold": "0",
-        "baseHP": "78",
-        "baseAtk": "84",
-        "baseDef": "78",
-        "baseSpecAtk": "109",
-        "baseSpecDef": "85",
-        "baseSpeed": "100"
+        "nextEvoThreshold": 0,
+        "baseHP": 78,
+        "baseAtk": 84,
+        "baseDef": 78,
+        "baseSpecAtk": 109,
+        "baseSpecDef": 85,
+        "baseSpeed": 100,
+        "movesPerLevel" : {
+            "graffio": 0,
+            "ruggito": 0,
+            "braciere": 0,
+            "muro_di_fumo": 0,
+            "drago_spiro": 12,
+            "rogodenti": 19,
+            "lacerazione": 24,
+            "lanciafiamme": 30,
+            "visotruce": 37,
+            "turbofuoco": 40,
+            "marchiatura": 48,
+            "fuococarica": 54
+        }
     },
 
 
@@ -61,13 +92,21 @@
         "avatarSrcName": "png.bulbasaur",
         "frontGifSrcName": "gif.bulbasaur_f",
         "backGifSrcName": "gif.bulbasaur_b",
-        "nextEvoThreshold": "16",
-        "baseHP": "45",
-        "baseAtk": "49",
-        "baseDef": "49",
-        "baseSpecAtk": "65",
-        "baseSpecDef": "65",
-        "baseSpeed": "45"
+        "nextEvoThreshold": 16,
+        "baseHP": 45,
+        "baseAtk": 49,
+        "baseDef": 49,
+        "baseSpecAtk": 65,
+        "baseSpecDef": 65,
+        "baseSpeed": 45,
+        "movesPerLevel" : {
+            "azione": 0,
+            "ruggito": 0,
+            "frustata": 3,
+            "crescita": 7,
+            "parassiseme": 9,
+            "foglielama": 12
+        }
     },
     "ivysaur": {
         "name" : "Ivysaur",
@@ -78,13 +117,25 @@
         "avatarSrcName": "png.ivysaur",
         "frontGifSrcName": "gif.ivysaur_f",
         "backGifSrcName": "gif.ivysaur_b",
-        "nextEvoThreshold": "32",
-        "baseHP": "60",
-        "baseAtk": "62",
-        "baseDef": "63",
-        "baseSpecAtk": "80",
-        "baseSpecDef": "80",
-        "baseSpeed": "60"
+        "nextEvoThreshold": 32,
+        "baseHP": 60,
+        "baseAtk": 62,
+        "baseDef": 63,
+        "baseSpecAtk": 80,
+        "baseSpecDef": 80,
+        "baseSpeed": 60,
+        "movesPerLevel" : {
+            "azione": 0,
+            "ruggito": 0,
+            "frustata": 0,
+            "crescita": 0,
+            "parassiseme": 9,
+            "foglielama": 12,
+            "semebomba": 20,
+            "riduttore": 25,
+            "profumino": 30,
+            "sintesi": 35
+        }
     },
     "venusaur": {
         "name" : "Venusaur",
@@ -95,13 +146,27 @@
         "avatarSrcName": "png.venusaur",
         "frontGifSrcName": "gif.venusaur_f",
         "backGifSrcName": "gif.venusaur_b",
-        "nextEvoThreshold": "0",
-        "baseHP": "80",
-        "baseAtk": "82",
-        "baseDef": "83",
-        "baseSpecAtk": "100",
-        "baseSpecDef": "100",
-        "baseSpeed": "80"
+        "nextEvoThreshold": 0,
+        "baseHP": 80,
+        "baseAtk": 82,
+        "baseDef": 83,
+        "baseSpecAtk": 100,
+        "baseSpecDef": 100,
+        "baseSpeed": 80,
+        "movesPerLevel" : {
+            "azione": 0,
+            "ruggito": 0,
+            "frustata": 0,
+            "crescita": 0,
+            "parassiseme": 9,
+            "foglielama": 12,
+            "semebomba": 20,
+            "riduttore": 25,
+            "profumino": 30,
+            "sintesi": 35,
+            "sdoppiatore": 40,
+            "solarraggio": 51
+        }
     },
 
 
@@ -114,13 +179,22 @@
         "avatarSrcName": "png.squirtle",
         "frontGifSrcName": "gif.squirtle_f",
         "backGifSrcName": "gif.squirtle_b",
-        "nextEvoThreshold": "16",
-        "baseHP": "44",
-        "baseAtk": "48",
-        "baseDef": "65",
-        "baseSpecAtk": "50",
-        "baseSpecDef": "64",
-        "baseSpeed": "43"
+        "nextEvoThreshold": 16,
+        "baseHP": 44,
+        "baseAtk": 48,
+        "baseDef": 65,
+        "baseSpecAtk": 50,
+        "baseSpecDef": 64,
+        "baseSpeed": 43,
+        "movesPerLevel" : {
+            "Azione": 0,
+            "Colpocoda": 0,
+            "Pistolacqua": 3,
+            "Ritirata": 6,
+            "Rapigiro": 9,
+            "Morso": 12,
+            "Idropulsar": 15
+        }
     },
     "wartortle": {
         "name" : "Wartortle",
@@ -131,13 +205,26 @@
         "avatarSrcName": "png.wartortle",
         "frontGifSrcName": "gif.wartortle_f",
         "backGifSrcName": "gif.wartortle_b",
-        "nextEvoThreshold": "36",
-        "baseHP": "59",
-        "baseAtk": "63",
-        "baseDef": "80",
-        "baseSpecAtk": "65",
-        "baseSpecDef": "80",
-        "baseSpeed": "58"
+        "nextEvoThreshold": 36,
+        "baseHP": 59,
+        "baseAtk": 63,
+        "baseDef": 80,
+        "baseSpecAtk": 65,
+        "baseSpecDef": 80,
+        "baseSpeed": 58,
+        "movesPerLevel" : {
+            "Azione": 0,
+            "Colpocoda": 0,
+            "Pistolacqua": 0,
+            "Ritirata": 0,
+            "Rapigiro": 9,
+            "Morso": 12,
+            "Idropulsar": 15,
+            "protezione": 20,
+            "pioggiadanza": 25,
+            "idrondata": 30,
+            "gettaguscio": 35
+        }
     },
     "blastoise": {
         "name" : "Blastoise",
@@ -148,13 +235,18 @@
         "avatarSrcName": "png.blastoise",
         "frontGifSrcName": "gif.blastoise_f",
         "backGifSrcName": "gif.blastoise_b",
-        "nextEvoThreshold": "0",
-        "baseHP": "79",
-        "baseAtk": "83",
-        "baseDef": "100",
-        "baseSpecAtk": "85",
-        "baseSpecDef": "105",
-        "baseSpeed": "78"
+        "nextEvoThreshold": 0,
+        "baseHP": 79,
+        "baseAtk": 83,
+        "baseDef": 100,
+        "baseSpecAtk": 85,
+        "baseSpecDef": 105,
+        "baseSpeed": 78,
+        "movesPerLevel" : {
+            "ferroscudo": 40,
+            "idropompa": 44,
+            "ondaschianto": 51
+        }
     },
 
 
@@ -167,13 +259,18 @@
         "avatarSrcName": "png.caterpie",
         "frontGifSrcName": "gif.caterpie_f",
         "backGifSrcName": "gif.caterpie_b",
-        "nextEvoThreshold": "7",
-        "baseHP": "45",
-        "baseAtk": "30",
-        "baseDef": "35",
-        "baseSpecAtk": "20",
-        "baseSpecDef": "20",
-        "baseSpeed": "45"
+        "nextEvoThreshold": 7,
+        "baseHP": 45,
+        "baseAtk": 30,
+        "baseDef": 35,
+        "baseSpecAtk": 20,
+        "baseSpecDef": 20,
+        "baseSpeed": 45,
+        "movesPerLevel" : {
+            "azione": 0,
+            "millebave": 0,
+            "coleomorso": 9
+        }
     },
     "metapod": {
         "name" : "Metapod",
@@ -184,13 +281,16 @@
         "avatarSrcName": "png.metapod",
         "frontGifSrcName": "gif.metapod_f",
         "backGifSrcName": "gif.metapod_b",
-        "nextEvoThreshold": "10",
-        "baseHP": "50",
-        "baseAtk": "20",
-        "baseDef": "55",
-        "baseSpecAtk": "25",
-        "baseSpecDef": "25",
-        "baseSpeed": "30"
+        "nextEvoThreshold": 10,
+        "baseHP": 50,
+        "baseAtk": 20,
+        "baseDef": 55,
+        "baseSpecAtk": 25,
+        "baseSpecDef": 25,
+        "baseSpeed": 30,
+        "movesPerLevel" : {
+            "rafforzatore": 0
+        }
     },
     "butterfree": {
         "name" : "Butterfree",
@@ -201,13 +301,24 @@
         "avatarSrcName": "png.butterfree",
         "frontGifSrcName": "gif.butterfree_f",
         "backGifSrcName": "gif.butterfree_b",
-        "nextEvoThreshold": "0",
-        "baseHP": "60",
-        "baseAtk": "45",
-        "baseDef": "50",
-        "baseSpecAtk": "90",
-        "baseSpecDef": "80",
-        "baseSpeed": "70"
+        "nextEvoThreshold": 0,
+        "baseHP": 60,
+        "baseAtk": 45,
+        "baseDef": 50,
+        "baseSpecAtk": 90,
+        "baseSpecDef": 80,
+        "baseSpeed": 70,
+        "movesPerLevel" : {
+            "azione": 0,
+            "millebave": 0,
+            "coleomorso": 0,
+            "rafforzatore": 0,
+            "raffica": 16,
+            "turbine": 20,
+            "eterelama": 24,
+            "ronzio": 32,
+            "eledanza": 44
+        }
     },
 
 
@@ -220,13 +331,18 @@
         "avatarSrcName": "png.weedle",
         "frontGifSrcName": "gif.weedle_f",
         "backGifSrcName": "gif.weedle_b",
-        "nextEvoThreshold": "7",
-        "baseHP": "40",
-        "baseAtk": "35",
-        "baseDef": "30",
-        "baseSpecAtk": "20",
-        "baseSpecDef": "20",
-        "baseSpeed": "50"
+        "nextEvoThreshold": 7,
+        "baseHP": 40,
+        "baseAtk": 35,
+        "baseDef": 30,
+        "baseSpecAtk": 20,
+        "baseSpecDef": 20,
+        "baseSpeed": 50,
+        "movesPerLevel" : {
+            "millebave": 0,
+            "velenospina": 0,
+            "coleomorso": 9
+        }
     },
     "kakuna": {
         "name" : "Kakuna",
@@ -237,13 +353,16 @@
         "avatarSrcName": "png.kakuna",
         "frontGifSrcName": "gif.kakuna_f",
         "backGifSrcName": "gif.kakuna_b",
-        "nextEvoThreshold": "10",
-        "baseHP": "45",
-        "baseAtk": "25",
-        "baseDef": "50",
-        "baseSpecAtk": "25",
-        "baseSpecDef": "25",
-        "baseSpeed": "35"
+        "nextEvoThreshold": 10,
+        "baseHP": 45,
+        "baseAtk": 25,
+        "baseDef": 50,
+        "baseSpecAtk": 25,
+        "baseSpecDef": 25,
+        "baseSpeed": 35,
+        "movesPerLevel" : {
+            "rafforzatore": 0
+        }
     },
     "beedrill": {
         "name" : "Beedrill",
@@ -254,13 +373,25 @@
         "avatarSrcName": "png.beedrill",
         "frontGifSrcName": "gif.beedrill_f",
         "backGifSrcName": "gif.beedrill_b",
-        "nextEvoThreshold": "0",
-        "baseHP": "65",
-        "baseAtk": "90",
-        "baseDef": "40",
-        "baseSpecAtk": "45",
-        "baseSpecDef": "80",
-        "baseSpeed": "75"
+        "nextEvoThreshold": 0,
+        "baseHP": 65,
+        "baseAtk": 90,
+        "baseDef": 40,
+        "baseSpecAtk": 45,
+        "baseSpecDef": 80,
+        "baseSpeed": 75,
+        "movesPerLevel" : {
+            "millebave": 0,
+            "velenospina": 0,
+            "coleomorso": 0,
+            "rafforzatore": 0,
+            "concentrazione": 14,
+            "furia": 17,
+            "focalenergia": 20,
+            "garanzia": 26,
+            "missilspillo": 32,
+            "agilita": 38
+        }
     },
 
 
@@ -273,13 +404,15 @@
         "avatarSrcName": "png.pidgey",
         "frontGifSrcName": "gif.pidgey_f",
         "backGifSrcName": "gif.pidgey_b",
-        "nextEvoThreshold": "18",
-        "baseHP": "40",
-        "baseAtk": "45",
-        "baseDef": "40",
-        "baseSpecAtk": "35",
-        "baseSpecDef": "35",
-        "baseSpeed": "56"
+        "nextEvoThreshold": 18,
+        "baseHP": 40,
+        "baseAtk": 45,
+        "baseDef": 40,
+        "baseSpecAtk": 35,
+        "baseSpecDef": 35,
+        "baseSpeed": 56,
+        "movesPerLevel" : {
+        }
     },
     "pidgeotto": {
         "name" : "Pidgeotto",
@@ -290,13 +423,17 @@
         "avatarSrcName": "png.pidgeotto",
         "frontGifSrcName": "gif.pidgeotto_f",
         "backGifSrcName": "gif.pidgeotto_b",
-        "nextEvoThreshold": "36",
-        "baseHP": "63",
-        "baseAtk": "60",
-        "baseDef": "55",
-        "baseSpecAtk": "50",
-        "baseSpecDef": "50",
-        "baseSpeed": "71"
+        "nextEvoThreshold": 36,
+        "baseHP": 63,
+        "baseAtk": 60,
+        "baseDef": 55,
+        "baseSpecAtk": 50,
+        "baseSpecDef": 50,
+        "baseSpeed": 71,
+        "movesPerLevel" : {
+
+
+        }
     },
     "pidgeot": {
         "name" : "Pidgeot",
@@ -307,13 +444,17 @@
         "avatarSrcName": "png.pidgeot",
         "frontGifSrcName": "gif.pidgeot_f",
         "backGifSrcName": "gif.pidgeot_b",
-        "nextEvoThreshold": "0",
-        "baseHP": "83",
-        "baseAtk": "80",
-        "baseDef": "75",
-        "baseSpecAtk": "70",
-        "baseSpecDef": "70",
-        "baseSpeed": "101"
+        "nextEvoThreshold": 0,
+        "baseHP": 83,
+        "baseAtk": 80,
+        "baseDef": 75,
+        "baseSpecAtk": 70,
+        "baseSpecDef": 70,
+        "baseSpeed": 101,
+        "movesPerLevel" : {
+
+
+        }
     },
 
 
@@ -326,13 +467,17 @@
         "avatarSrcName": "png.rattata",
         "frontGifSrcName": "gif.rattata_f",
         "backGifSrcName": "gif.rattata_b",
-        "nextEvoThreshold": "20",
-        "baseHP": "30",
-        "baseAtk": "56",
-        "baseDef": "35",
-        "baseSpecAtk": "25",
-        "baseSpecDef": "35",
-        "baseSpeed": "72"
+        "nextEvoThreshold": 20,
+        "baseHP": 30,
+        "baseAtk": 56,
+        "baseDef": 35,
+        "baseSpecAtk": 25,
+        "baseSpecDef": 35,
+        "baseSpeed": 72,
+        "movesPerLevel" : {
+
+
+        }
     },
     "raticate": {
         "name" : "Raticate",
@@ -343,13 +488,17 @@
         "avatarSrcName": "png.raticate",
         "frontGifSrcName": "gif.raticate_f",
         "backGifSrcName": "gif.raticate_b",
-        "nextEvoThreshold": "0",
-        "baseHP": "55",
-        "baseAtk": "81",
-        "baseDef": "60",
-        "baseSpecAtk": "50",
-        "baseSpecDef": "70",
-        "baseSpeed": "97"
+        "nextEvoThreshold": 0,
+        "baseHP": 55,
+        "baseAtk": 81,
+        "baseDef": 60,
+        "baseSpecAtk": 50,
+        "baseSpecDef": 70,
+        "baseSpeed": 97,
+        "movesPerLevel" : {
+
+
+        }
     },
 
 
@@ -363,13 +512,17 @@
         "avatarSrcName": "png.spearow",
         "frontGifSrcName": "gif.spearow_f",
         "backGifSrcName": "gif.spearow_b",
-        "nextEvoThreshold": "20",
-        "baseHP": "40",
-        "baseAtk": "60",
-        "baseDef": "30",
-        "baseSpecAtk": "31",
-        "baseSpecDef": "31",
-        "baseSpeed": "70"
+        "nextEvoThreshold": 20,
+        "baseHP": 40,
+        "baseAtk": 60,
+        "baseDef": 30,
+        "baseSpecAtk": 31,
+        "baseSpecDef": 31,
+        "baseSpeed": 70,
+        "movesPerLevel" : {
+
+
+        }
     },
     "fearow": {
         "name" : "Fearow",
@@ -380,13 +533,17 @@
         "avatarSrcName": "png.fearow",
         "frontGifSrcName": "gif.fearow_f",
         "backGifSrcName": "gif.fearow_b",
-        "nextEvoThreshold": "0",
-        "baseHP": "65",
-        "baseAtk": "90",
-        "baseDef": "65",
-        "baseSpecAtk": "61",
-        "baseSpecDef": "61",
-        "baseSpeed": "100"
+        "nextEvoThreshold": 0,
+        "baseHP": 65,
+        "baseAtk": 90,
+        "baseDef": 65,
+        "baseSpecAtk": 61,
+        "baseSpecDef": 61,
+        "baseSpeed": 100,
+        "movesPerLevel" : {
+
+
+        }
     },
 
 
@@ -399,13 +556,17 @@
         "avatarSrcName": "png.ekans",
         "frontGifSrcName": "gif.ekans_f",
         "backGifSrcName": "gif.ekans_b",
-        "nextEvoThreshold": "22",
-        "baseHP": "35",
-        "baseAtk": "60",
-        "baseDef": "44",
-        "baseSpecAtk": "40",
-        "baseSpecDef": "54",
-        "baseSpeed": "55"
+        "nextEvoThreshold": 22,
+        "baseHP": 35,
+        "baseAtk": 60,
+        "baseDef": 44,
+        "baseSpecAtk": 40,
+        "baseSpecDef": 54,
+        "baseSpeed": 55,
+        "movesPerLevel" : {
+
+
+        }
     },
     "arbok": {
         "name" : "Arbok",
@@ -416,31 +577,39 @@
         "avatarSrcName": "png.arbok",
         "frontGifSrcName": "gif.arbok_f",
         "backGifSrcName": "gif.arbok_b",
-        "nextEvoThreshold": "0",
-        "baseHP": "60",
-        "baseAtk": "95",
-        "baseDef": "69",
-        "baseSpecAtk": "65",
-        "baseSpecDef": "79",
-        "baseSpeed": "80"
+        "nextEvoThreshold": 0,
+        "baseHP": 60,
+        "baseAtk": 95,
+        "baseDef": 69,
+        "baseSpecAtk": 65,
+        "baseSpecDef": 79,
+        "baseSpeed": 80,
+        "movesPerLevel" : {
+
+
+        }
     },
 
 
     "pikachu": {
         "name" : "Pikachu",
-        "firstTypeName": "",
+        "firstTypeName": "electric",
         "secondTypeName": "",
         "predBreedName": "",
         "succBreedName": "",
         "avatarSrcName": "png.pikachu",
         "frontGifSrcName": "gif.pikachu_f",
         "backGifSrcName": "gif.pikachu_b",
-        "nextEvoThreshold": "0",
-        "baseHP": "35",
-        "baseAtk": "55",
-        "baseDef": "40",
-        "baseSpecAtk": "50",
-        "baseSpecDef": "50",
-        "baseSpeed": "90"
+        "nextEvoThreshold": 0,
+        "baseHP": 35,
+        "baseAtk": 55,
+        "baseDef": 40,
+        "baseSpecAtk": 50,
+        "baseSpecDef": 50,
+        "baseSpeed": 90,
+        "movesPerLevel" : {
+
+
+        }
     }
 }

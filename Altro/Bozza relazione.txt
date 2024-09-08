@@ -1,0 +1,12 @@
+Sezioni:
+	1. Menu
+		1.1. Gestione dei file
+		1.2. Gestione dei profili
+	2. Arcade
+		2.1. Gestione delle aree
+		2.2. Gestione dei pokemon
+			2.2.1. Gestione delle razze
+			2.2.2. Gestione dei tipi
+			2.2.3. Gestione delle statistiche
+			2.2.4. Gestione delle mosse
+	3. Lotta
