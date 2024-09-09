@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.Map;
 
 public class DataMapLoader extends FileManager{
     private static Gson gson = new Gson();
@@ -27,7 +28,6 @@ public class DataMapLoader extends FileManager{
         try (FileReader reader = new FileReader(path)){
             Type dataType = TypeToken.getParameterized(HashMap.class, String.class, tClass).getType();
             map = gson.fromJson(reader, dataType);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,13 +42,24 @@ public class DataMapLoader extends FileManager{
     private static HashMap<String, HashMap<String, String>> loadMap(String serSrcName) {
         HashMap<String, HashMap<String, String>> map = new HashMap<>();
         String path = getAbsPath(serSrcName);
-        Type dataType = new TypeToken<HashMap<String, HashMap<String, String>>>() {}.getType();
 
-        try {
-            FileReader reader = new FileReader(path);
+        try (FileReader reader = new FileReader(path)){
+            Type dataType = new TypeToken<HashMap<String, HashMap<String, String>>>() {}.getType();
             map = gson.fromJson(reader, dataType);
-            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        return map;
+    }
+
+    public static Map<String, Map<String, Integer[]>> loadSpawnMap() {
+        Map<String, Map<String, Integer[]>> map = new HashMap<>();
+        String path = getAbsPath("json.spawn");
+
+        try (FileReader reader = new FileReader(path)) {
+            Type dataType = new TypeToken<Map<String, Map<String, Integer[]>>>() {}.getType();
+            map = gson.fromJson(reader, dataType);
         } catch (IOException e) {
             e.printStackTrace();
         }

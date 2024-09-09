@@ -1,8 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Line?>
 
-
-<GridPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.rd.jpokebattle.controller.battle.BattleController">
-
+<GridPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.rd.jpokebattle.controller.battle.BattleController">
+   <children>
+      <ImageView fitHeight="803.0" fitWidth="1116.0" pickOnBounds="true" preserveRatio="true" translateX="-110.0" translateY="-45.0" GridPane.columnSpan="5" GridPane.rowSpan="5" GridPane.valignment="CENTER">
+         <image>
+            <Image url="@../images/background/battle_bg.jpg" />
+         </image>
+         <effect>
+            <Lighting bumpInput="$null" diffuseConstant="1.33" specularConstant="0.0" specularExponent="22.99" surfaceScale="0.0">
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.9692129492759705" green="0.9675925970077515" blue="1.0" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </ImageView>
+      <Ellipse fill="#8f8f8f53" radiusX="154.0" radiusY="66.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="-15.0" translateY="-20.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+      <Ellipse fill="#8f8f8f53" radiusX="154.0" radiusY="66.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="15.0" translateY="-30.0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+      <ImageView fx:id="playerPkmnGif" fitHeight="280.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.rowSpan="3" />
+      <ImageView fx:id="opponentPkmnGif" fitHeight="221.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" translateX="30.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowSpan="2" GridPane.valignment="BOTTOM" />
+      <ImageView fx:id="transitionGif" fitHeight="700.0" fitWidth="1000.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">
+         <image>
+            <Image url="@../images/battle_transition_2.gif" />
+         </image>
+      </ImageView>
+      <GridPane fx:id="labelsPane" prefHeight="700.0" prefWidth="1000.0" GridPane.columnSpan="5" GridPane.rowSpan="5">
+         <columnConstraints>
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+         </rowConstraints>
+         <children>
+            <ImageView fitWidth="400.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="30.0" GridPane.columnSpan="2">
+               <image>
+                  <Image url="@../images/battle_life_bar.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </ImageView>
+            <Line endX="184.0" stroke="#0efa0c" strokeWidth="9.0" translateX="22.0" translateY="26.5" GridPane.columnSpan="2" GridPane.halignment="CENTER" />
+            <ImageView fitWidth="400.0" pickOnBounds="true" preserveRatio="true" translateY="30.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../images/battle_life_bar.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <Line endX="184.0" stroke="#0efa0c" strokeWidth="9.0" translateX="106.5" translateY="26.5" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+            <HBox fx:id="pokeCounterBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" spacing="5.0" translateX="25.0" translateY="-2.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </HBox>
+            <Label fx:id="opponentPkmnNameLbl" translateX="40.0" translateY="-5.0" GridPane.columnSpan="2" GridPane.valignment="CENTER" />
+            <Label fx:id="currHPLbl" translateX="-30.0" translateY="-30.0" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <Label fx:id="playerPkmnNameLbl" translateX="20.0" translateY="-5.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+            <Label fx:id="playerPkmnLvLbl" translateX="30.0" translateY="-5.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Label fx:id="opponentPkmnLvLbl" translateX="50.0" translateY="-5.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+         </children>
+      </GridPane>
+      <GridPane fx:id="buttonsPane" prefHeight="700.0" prefWidth="1000.0" visible="false" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
+         <columnConstraints>
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+         </rowConstraints>
+         <children>
+            <ImageView fitHeight="88.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="20.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <image>
+                  <Image url="@../images/pokeball.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="17.0" radius="6.75" spread="0.2" width="12.0" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <image>
+                  <Image url="@../images/backpack.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="21.98" radius="7.925000000000001" spread="0.47" width="11.72" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="46.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="20.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <image>
+                  <Image url="@../images/pngwing.com.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="22.0" radius="8.0" spread="0.2" width="12.0" />
+               </effect>
+            </ImageView>
+            <ScrollPane fx:id="logScrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="420.0" translateX="-50.0" translateY="-30.0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="BOTTOM">
+               <content>
+                  <Label fx:id="logLbl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="410.0" wrapText="true">
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+               </content>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ScrollPane>
+            <FlowPane fx:id="movesPane" hgap="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="350.0" translateY="10.0" vgap="15.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </FlowPane>
+            <AnchorPane fx:id="escapeBtnPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="280.0" translateY="20.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/escape_battle_btn_bg.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="120.0" layoutY="8.0" text="Fuga" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+   <rowConstraints>
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+   </rowConstraints>
+   <columnConstraints>
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+   </columnConstraints>
 </GridPane>

@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Area {
     private static HashMap<String, Area> AREA_MAP = DataMapLoader.loadMap("json.area", Area.class);
+    private String nameID;
     private String title;
     private String description;
     private String musicSrcName;
@@ -15,6 +16,10 @@ public class Area {
     private ArrayList<Map<String, String>> nextAreas;
     private String specialArea;
 
+
+    public String getNameID() {
+        return nameID;
+    }
 
     public String getTitle() {
         return title;

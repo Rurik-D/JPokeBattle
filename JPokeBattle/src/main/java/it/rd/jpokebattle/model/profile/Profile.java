@@ -50,8 +50,17 @@ public class Profile implements Serializable {
         return ownedPkmnIDs;
     }
 
+    public String getCurrentAreaName() {
+        return currentAreaName;
+    }
+
     public Area getCurrentArea() {
         return Area.fromName(currentAreaName);
+    }
+
+    public OwnedPokemon getFirstPokemon() {
+        int id = ownedPkmnIDs.getFirst();
+        return PokemonManager.getPokemonFromID(id);
     }
 
     public String getNarratorTextHistory() {

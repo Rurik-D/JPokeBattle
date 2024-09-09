@@ -1,0 +1,20 @@
+{
+  "spawn_r1": {
+    "caterpie": [4, 6],
+    "weedle": [4, 6],
+    "pidgey": [5, 7],
+    "rattata": [4, 7]
+  },
+  "spawn_r2": {
+    "metapod": [7, 9],
+    "kakuna": [7, 9],
+    "spearow": [8, 11],
+    "ekans": [8, 11]
+  },
+  "spawn_r3": {
+    "butterfree": [12, 15],
+    "beedrill": [12, 15],
+    "pidgey": [12, 15],
+    "rattata": [12, 15]
+  }
+}

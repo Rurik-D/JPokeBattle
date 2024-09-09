@@ -412,6 +412,11 @@
         "baseSpecDef": 35,
         "baseSpeed": 56,
         "movesPerLevel" : {
+            "azione": 0,
+            "turbosabbia": 5,
+            "raffica": 9,
+            "attacco_rapido": 13,
+            "turbine": 17
         }
     },
     "pidgeotto": {
@@ -431,8 +436,14 @@
         "baseSpecDef": 50,
         "baseSpeed": 71,
         "movesPerLevel" : {
-
-
+            "azione": 0,
+            "turbosabbia": 5,
+            "raffica": 9,
+            "attacco_rapido": 13,
+            "turbine": 17,
+            "tornado": 22,
+            "danzadipiume": 27,
+            "agilita": 32
         }
     },
     "pidgeot": {
@@ -452,8 +463,19 @@
         "baseSpecDef": 70,
         "baseSpeed": 101,
         "movesPerLevel" : {
-
-
+            "azione": 0,
+            "turbosabbia": 5,
+            "raffica": 9,
+            "attacco_rapido": 13,
+            "turbine": 17,
+            "tornado": 22,
+            "danzadipiume": 27,
+            "agilita": 32,
+            "attacco_d_ala": 38,
+            "trespolo": 45,
+            "aeroassalto": 50,
+            "eterelama": 58,
+            "tifone": 65
         }
     },
 
@@ -475,8 +497,13 @@
         "baseSpecDef": 35,
         "baseSpeed": 72,
         "movesPerLevel" : {
-
-
+            "azione" : 0,
+            "colpocoda": 0,
+            "attacco_rapido" : 4,
+            "focalenergia": 7,
+            "morso": 10,
+            "concentrazione": 13,
+            "riduttore": 16
         }
     },
     "raticate": {
@@ -496,12 +523,19 @@
         "baseSpecDef": 70,
         "baseSpeed": 97,
         "movesPerLevel" : {
-
-
+            "azione" : 0,
+            "colpocoda": 0,
+            "attacco_rapido" : 4,
+            "focalenergia": 7,
+            "morso": 10,
+            "concentrazione": 13,
+            "riduttore": 16,
+            "garanzia" : 19,
+            "sgranocchio": 24,
+            "sbigoattacco" : 29,
+            "superzanna": 34
         }
     },
-
-
 
     "spearow": {
         "name" : "Spearow",

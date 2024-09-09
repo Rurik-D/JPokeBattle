@@ -2,16 +2,15 @@ package it.rd.jpokebattle.model.pokemon;
 
 import it.rd.jpokebattle.model.SerializableHandler;
 import it.rd.jpokebattle.model.move.Move;
+import it.rd.jpokebattle.util.file.DataMapLoader;
 import it.rd.jpokebattle.util.file.SerManager;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class PokemonManager implements SerializableHandler {
-    private static final String SER_SRC_NAME = "ser.pkmn";
+    private static Map<String, Map<String, Integer[]>> pkmnSpawnMap = DataMapLoader.loadSpawnMap();
     private static HashMap<Integer, OwnedPokemon> pkmnMap;
+    private static final String SER_SRC_NAME = "ser.pkmn";
     private static int maxID = SerializableHandler.calcMaxID(SER_SRC_NAME);
     private static Random rand = new Random();
 
@@ -54,6 +53,23 @@ public class PokemonManager implements SerializableHandler {
         OwnedPokemon ownPkmn =  new OwnedPokemon(getNextID(), pkmn);
         pkmnMap.put(maxID, ownPkmn);
         return ownPkmn;
+    }
+
+    public static Pokemon spawnPokemon(SpawnZone spawn) {
+        Map<String, Integer[]> pkmnAreaMap = pkmnSpawnMap.get(spawn.getNameID());
+        List<String> breeds = new ArrayList<>(pkmnAreaMap.keySet());
+
+        while (breeds.size() > 1) {
+            breeds.remove(rand.nextInt(0, breeds.size()));
+        }
+
+        String breedName = breeds.getFirst();
+        Integer[] lvRange = pkmnAreaMap.get(breedName);
+
+        Breed breed = Breed.fromName(breedName);
+        int lv = rand.nextInt(lvRange[0], lvRange[1]);
+
+        return generatePokemon(breed, lv);
     }
 
     /**

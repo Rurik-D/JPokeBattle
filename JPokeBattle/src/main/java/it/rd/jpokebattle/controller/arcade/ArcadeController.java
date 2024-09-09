@@ -1,18 +1,19 @@
 package it.rd.jpokebattle.controller.arcade;
 
+import com.almasb.fxgl.scene.Scene;
 import it.rd.jpokebattle.controller.NodeManager;
 import it.rd.jpokebattle.controller.SceneManager;
+import it.rd.jpokebattle.controller.battle.BattleController;
 import it.rd.jpokebattle.controller.battle.BattleNodeManager;
 import it.rd.jpokebattle.controller.menu.MenuNodeManager;
 import it.rd.jpokebattle.model.area.Area;
-import it.rd.jpokebattle.model.pokemon.Breed;
-import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
-import it.rd.jpokebattle.model.pokemon.Pokemon;
-import it.rd.jpokebattle.model.pokemon.PokemonManager;
+import it.rd.jpokebattle.model.pokemon.*;
 import it.rd.jpokebattle.model.profile.Profile;
 import it.rd.jpokebattle.model.profile.ProfileManager;
 import it.rd.jpokebattle.util.audio.SoundManager;
 import it.rd.jpokebattle.util.file.ResourceLoader;
+import it.rd.jpokebattle.view.arcade.BattleTransition;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,12 +26,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Random;
 
 public class ArcadeController {
     private static Profile player;
+    private static SpawnZone currSpawnZone;
     private ArcadeNodeManager nodeMan = ArcadeNodeManager.getIstance();
     private SoundManager soundMan = SoundManager.getInstance();
     private Breed selectedBreed;
@@ -238,11 +241,10 @@ public class ArcadeController {
                 break;
             case TALL_GRASS:
                 int foundValue = rand.nextInt(0, 2);
-                if (foundValue == 0) {
+                if (foundValue == 0)
                     nextArea(areaIndex);
-                } else {
+                else
                     specialArea();
-                }
                 break;
             case HEAL:
                 player.healTeam();
@@ -252,6 +254,8 @@ public class ArcadeController {
                 pokeMartPane.setVisible(true); // TODO
                 break;
             case BATTLE:
+                area0Btn.setDisable(true);
+                currSpawnZone = SpawnZone.fromName(player.getCurrentArea().getNameID());
                 startBattle(e);
                 break;
             case TRY_ESCAPE:
@@ -263,8 +267,6 @@ public class ArcadeController {
                     nodeMan.updateNarratorLbl("Sei riuscito a seminare il pokémon!");
                     nextArea(areaIndex);
                 }
-
-
                 break;
             case STARTER_SELECT:
                 starterSelectionPane.setVisible(true);
@@ -273,16 +275,41 @@ public class ArcadeController {
     }
 
     private void startBattle(ActionEvent e) {
-        try {
-            FXMLLoader loader = SceneManager.switchScene(e, "fxml.battle", "css.battle");
-            NodeManager.setRoot(loader.getRoot());
-            BattleNodeManager.setController(loader.getController());
-            player.setNarratorTextHistory(narratorLbl.getText());
-            ProfileManager.save(player);
-            PokemonManager.save();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
+        // Genero il pokemon avversario e preparo le variabili statiche nel nuovo controller
+        Pokemon wildPokemon = PokemonManager.spawnPokemon(currSpawnZone);
+        BattleController.setWildBattle(player, wildPokemon);
+
+        // Salvo tutto
+        player.setNarratorTextHistory(narratorLbl.getText());
+        ProfileManager.save(player);
+        PokemonManager.save();
+
+        // Prendo il rootpane ed eseguo la transizione grafica della scena
+        GridPane rootPane = (GridPane) SceneManager.getRootFromEvent(e);
+        BattleTransition.getIstance().startCloseTrans(rootPane);
+
+        // Prima di passare alla scena successiva attendo che la transizione sia terminata
+        PauseTransition pause = new PauseTransition(Duration.seconds(1.4));
+        pause.setOnFinished(ev -> {
+                try {
+                    FXMLLoader loader = SceneManager.switchScene(e, "fxml.battle", "css.battle");
+                    BattleController contoller = loader.getController();
+                    NodeManager.setRoot(loader.getRoot());
+                    BattleNodeManager.setController(loader.getController());
+
+                    contoller.initializeWildBattleScene();
+
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+
+        );
+        pause.play();
+
+
+
+
     }
 
     /**

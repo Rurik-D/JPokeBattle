@@ -15,6 +15,7 @@ module it.rd.jpokebattle {
     requires transitive com.google.gson;
     requires transitive java.desktop;
     requires annotations;
+    requires java.sql;
 
     exports it.rd.jpokebattle;
     opens it.rd.jpokebattle;

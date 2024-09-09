@@ -101,7 +101,7 @@ public class PokemonCard extends GridPane {
     }
 
     private void setLifeBar() {
-        String src = "img.lifeBarE";
+        String src = "img.lifeBar";
         Image img = ResourceLoader.loadImage(src);
         lifeBar = new ImageView(img);
         lifeBar.setPreserveRatio(true);

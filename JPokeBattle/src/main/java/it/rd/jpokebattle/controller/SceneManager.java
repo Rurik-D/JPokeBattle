@@ -4,6 +4,7 @@ import it.rd.jpokebattle.util.file.ResourceLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -28,5 +29,11 @@ public class SceneManager {
         stage.show();
 
         return loader;
+    }
+
+
+    public static Parent getRootFromEvent(ActionEvent e) {
+        Node node = (Node) e.getSource();
+        return node.getScene().getRoot();
     }
 }
