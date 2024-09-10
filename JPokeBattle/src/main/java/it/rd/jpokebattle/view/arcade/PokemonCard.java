@@ -2,9 +2,11 @@ package it.rd.jpokebattle.view.arcade;
 
 
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
+import it.rd.jpokebattle.model.pokemon.Pokemon;
 import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import it.rd.jpokebattle.model.pokemon.Stats;
 import it.rd.jpokebattle.util.file.ResourceLoader;
+import it.rd.jpokebattle.view.LifeBar;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -20,8 +22,8 @@ import javafx.scene.text.Font;
 public class PokemonCard extends GridPane {
     private OwnedPokemon pkmn;
     private ImageView pkmnImg;
-    private ImageView lifeBar = new ImageView();
-    private Line lifeLine = new Line();
+    private ImageView lifeCard = new ImageView();
+    private Line lifeBar;
     private Line xpLine = new Line();
     private Label nameLbl = new Label();
     private Label levelLbl = new Label();
@@ -33,8 +35,8 @@ public class PokemonCard extends GridPane {
         setNameLbl();
         setPkmnImage();
         setLevelLbl();
+        setLifeCard();
         setLifeBar();
-        setLifeLine();
         setXpLine();
         setLifeLbl();
     }
@@ -100,47 +102,29 @@ public class PokemonCard extends GridPane {
         setValignment(pkmnImg, VPos.BOTTOM);
     }
 
-    private void setLifeBar() {
+    private void setLifeCard() {
         String src = "img.lifeBar";
         Image img = ResourceLoader.loadImage(src);
-        lifeBar = new ImageView(img);
-        lifeBar.setPreserveRatio(true);
-        lifeBar.setFitWidth(140);
-        lifeBar.setTranslateX(5);
-        lifeBar.setTranslateY(-20);
-        this.add(lifeBar, 1, 1);
+        lifeCard = new ImageView(img);
+        lifeCard.setPreserveRatio(true);
+        lifeCard.setFitWidth(140);
+        lifeCard.setTranslateX(5);
+        lifeCard.setTranslateY(-20);
+        this.add(lifeCard, 1, 1);
+        setColumnSpan(lifeCard, 2);
+        setRowSpan(lifeCard, 2);
+        setValignment(lifeCard, VPos.BOTTOM);
+        setHalignment(lifeCard, HPos.CENTER);
+    }
+
+    private void setLifeBar() {
+        lifeBar = new LifeBar(pkmn, 105.0, 6.7);
+        lifeBar.setTranslateX(29.5);
+        lifeBar.setTranslateY(-6.7);
+        this.add(lifeBar, 1, 0);
         setColumnSpan(lifeBar, 2);
         setRowSpan(lifeBar, 2);
         setValignment(lifeBar, VPos.BOTTOM);
-        setHalignment(lifeBar, HPos.CENTER);
-    }
-
-    private void setLifeLine() {
-        double maxL = 105;
-        double maxHP = pkmn.getStat(Stats.HP);
-        double hp = pkmn.getCurrHP();
-        // length : maxL = hp : maxHP
-        double length = (hp * maxL) / maxHP;
-
-        Color lineColor;
-        if (hp > maxHP/2)
-            lineColor = Color.rgb(30, 230, 30);
-        else if (hp > maxHP/4)
-            lineColor = Color.rgb(230, 220, 30);
-        else if (hp > 0)
-            lineColor = Color.rgb(230, 30, 30);
-        else
-            lineColor = Color.rgb(0, 0, 0, 0);
-        lifeLine.setStartX(0);
-        lifeLine.setEndX(length);
-        lifeLine.setStroke(lineColor);
-        lifeLine.setStrokeWidth(6.7);
-        lifeLine.setTranslateX(29.5);
-        lifeLine.setTranslateY(-6.7);
-        this.add(lifeLine, 1, 0);
-        setColumnSpan(lifeLine, 2);
-        setRowSpan(lifeLine, 2);
-        setValignment(lifeLine, VPos.BOTTOM);
     }
 
 

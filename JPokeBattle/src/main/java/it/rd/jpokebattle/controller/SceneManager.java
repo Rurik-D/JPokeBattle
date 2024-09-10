@@ -2,6 +2,7 @@ package it.rd.jpokebattle.controller;
 
 import it.rd.jpokebattle.util.file.ResourceLoader;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -18,7 +19,7 @@ public class SceneManager {
      * @see it.rd.jpokebattle.properties
      * @return Il loader del nuovo file FXML
      * */
-    public static FXMLLoader switchScene(ActionEvent e, String fxmlSrcName, String cssSrcName) throws IOException {
+    public static FXMLLoader switchScene(Event e, String fxmlSrcName, String cssSrcName) throws IOException {
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         FXMLLoader loader = ResourceLoader.loadFXML(fxmlSrcName);
         Scene scene = new Scene(loader.load());
@@ -32,7 +33,7 @@ public class SceneManager {
     }
 
 
-    public static Parent getRootFromEvent(ActionEvent e) {
+    public static Parent getRootFromEvent(Event e) {
         Node node = (Node) e.getSource();
         return node.getScene().getRoot();
     }

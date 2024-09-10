@@ -5,8 +5,17 @@ import it.rd.jpokebattle.model.move.Move;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import it.rd.jpokebattle.model.pokemon.Pokemon;
 import it.rd.jpokebattle.model.pokemon.Stats;
+import it.rd.jpokebattle.model.profile.Profile;
+import it.rd.jpokebattle.util.file.ResourceLoader;
+import it.rd.jpokebattle.view.LifeBar;
 import it.rd.jpokebattle.view.battle.BattleMoveCard;
 import javafx.animation.PauseTransition;
+import javafx.beans.binding.Bindings;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -14,6 +23,15 @@ import java.util.ArrayList;
 public class BattleNodeManager extends NodeManager {
     private static BattleNodeManager istance;
     private static BattleController ctrl;
+    private final String SEPARATOR = "\n———————————————————————————————\n\n";
+
+    private LifeBar oppLB = new LifeBar(184, 9);
+    private LifeBar plrLB = new LifeBar(184, 9);
+    private Label currHPLbl = new Label();
+    private Label plrLvLbl = new Label();
+    private Label oppLvLbl = new Label();
+
+
 
     private BattleNodeManager() { }
 
@@ -28,26 +46,78 @@ public class BattleNodeManager extends NodeManager {
     }
 
     public void initializeNodes(OwnedPokemon playerPkmn, Pokemon opponentPkmn) {
+        setLabels(playerPkmn, opponentPkmn);
+        setMovesPane(playerPkmn);
+        updateLogLbl("È apparso un " + opponentPkmn.getName() + " selvatico!");
+        startOpeningAnimation();
+    }
 
+    private void setLabels(OwnedPokemon playerPkmn, Pokemon opponentPkmn) {
         ctrl.playerPkmnGif.setImage(playerPkmn.getBreed().getBackGif());
         ctrl.opponentPkmnGif.setImage(opponentPkmn.getBreed().getFrontGif());
         ctrl.playerPkmnNameLbl.setText(playerPkmn.getName());
         ctrl.opponentPkmnNameLbl.setText(opponentPkmn.getName());
-        ctrl.playerPkmnLvLbl.setText("Lv " + playerPkmn.getLevel());
-        ctrl.opponentPkmnLvLbl.setText("Lv " + opponentPkmn.getLevel());
-        ctrl.currHPLbl.setText(playerPkmn.getCurrHP() + "/" + playerPkmn.getStat(Stats.HP));
 
-        ctrl.logLbl.setText("È apparso un " + opponentPkmn.getName() + " selvatico!");
+        ///////////////////////////////////////////////////////////////
+        oppLB.setListener(opponentPkmn);
+        plrLB.setListener(playerPkmn);
 
+        ctrl.labelsPane.add(oppLB, 0, 0, 2, 1);
+        ctrl.labelsPane.add(plrLB, 3, 2, 1, 1);
 
-        ArrayList<Move> moves = playerPkmn.getMoves();
-        ArrayList<Integer> PPs = playerPkmn.getPPs();
+        oppLB.setTranslateX(125.5);
+        oppLB.setTranslateY(26.5);
+        plrLB.setTranslateX(106.5);
+        plrLB.setTranslateY(26.5);
+
+        ///////////////////////////////////////////////////////////////
+
+        currHPLbl.textProperty().bind(Bindings.format("%d/%d",
+                playerPkmn.currHPProperty(),
+                playerPkmn.maxHPProperty()
+        ));
+
+        ctrl.labelsPane.add(currHPLbl, 4, 2, 1, 1);
+        GridPane.setValignment(currHPLbl, VPos.BOTTOM);
+        currHPLbl.setTranslateX(-30);
+        currHPLbl.setTranslateY(-30);
+
+        ///////////////////////////////////////////////////////////////
+
+        plrLvLbl.textProperty().bind(Bindings.format("Lv %d",
+                playerPkmn.currLevelProperty()
+        ));
+
+        ctrl.labelsPane.add(plrLvLbl, 4, 2, 1, 1);
+        GridPane.setHalignment(plrLvLbl, HPos.CENTER);
+        plrLvLbl.setTranslateX(30);
+        plrLvLbl.setTranslateY(-5);
+
+        ///////////////////////////////////////////////////////////////
+
+        oppLvLbl.textProperty().bind(Bindings.format("Lv %d",
+                opponentPkmn.currLevelProperty()
+        ));
+
+        ctrl.labelsPane.add(oppLvLbl, 1, 0, 1, 1);
+        GridPane.setHalignment(oppLvLbl, HPos.CENTER);
+        oppLvLbl.setTranslateX(50);
+        oppLvLbl.setTranslateY(-5);
+
+    }
+
+    private void setMovesPane(OwnedPokemon pkmn) {
+        ArrayList<Move> moves = pkmn.getMoves();
+        ArrayList<Integer> PPs = pkmn.getPPs();
         int size = moves.size();
 
         for (int i=0; i<size; i++) {
             ctrl.movesPane.getChildren().add(new BattleMoveCard(moves.get(i), PPs.get(i)));
         }
 
+    }
+
+    private void startOpeningAnimation() {
         PauseTransition pause = new PauseTransition(Duration.seconds(1.6));
         pause.setOnFinished(ev -> {
             ctrl.rootPane.getChildren().remove(ctrl.transitionGif);
@@ -55,7 +125,21 @@ public class BattleNodeManager extends NodeManager {
             ctrl.buttonsPane.setVisible(true);
             ctrl.logScrollPane.setVisible(true);
         });
-
         pause.play();
+    }
+
+    public void updateLogLbl(String text) {
+        text = ctrl.logLbl.getText() + SEPARATOR + text + "\n";
+        ctrl.logLbl.setText(text);
+    }
+
+    public void updatePokeCounterBox(Profile player) {
+        for (int id : player.getOwnedPokemonIDs()) {
+            ImageView pokeball = new ImageView(ResourceLoader.loadImage("img.pokeCount"));
+            pokeball.setPreserveRatio(true);
+            pokeball.setFitWidth(30);
+            ctrl.pokeCounterBox.getChildren().add(pokeball);
+        }
+
     }
 }

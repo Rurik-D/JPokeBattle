@@ -1,21 +1,31 @@
 package it.rd.jpokebattle.controller.battle;
 
+import it.rd.jpokebattle.controller.Controller;
+import it.rd.jpokebattle.controller.NodeManager;
+import it.rd.jpokebattle.controller.SceneManager;
+import it.rd.jpokebattle.controller.arcade.ArcadeController;
+import it.rd.jpokebattle.controller.arcade.ArcadeNodeManager;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import it.rd.jpokebattle.model.pokemon.Pokemon;
-import it.rd.jpokebattle.model.profile.Profile;
-import it.rd.jpokebattle.util.file.ResourceLoader;
+import it.rd.jpokebattle.util.audio.SoundManager;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Line;
+
+import java.io.IOException;
 
 
-public class BattleController {
+public class BattleController extends Controller {
     private static BattleNodeManager nodeMan = BattleNodeManager.getIstance();
-    private static Profile player;
+    private SoundManager soundMan = SoundManager.getInstance();
     private static OwnedPokemon playerPokemon;
     private static Pokemon wildPokemon;
 
@@ -36,29 +46,38 @@ public class BattleController {
 
     @FXML
     protected Label
-            playerPkmnNameLbl, opponentPkmnNameLbl, playerPkmnLvLbl, opponentPkmnLvLbl,
-            currHPLbl, logLbl;
+            playerPkmnNameLbl, opponentPkmnNameLbl, logLbl;
 
 
 
-    public static void setWildBattle(Profile playerProf, Pokemon wildPkmn) {
-        player = playerProf;
+
+    public void initializeWildBattleScene(Pokemon wildPkmn) {
         wildPokemon = wildPkmn;
-        playerPokemon = player.getFirstPokemon();
-    }
+        playerPokemon = getPlayer().getFirstPokemon();
 
-
-    public void initializeWildBattleScene() {
         nodeMan.initializeNodes(playerPokemon, wildPokemon);
-
-        for (int id : player.getOwnedPokemonIDs()) {
-            ImageView pokeball = new ImageView(ResourceLoader.loadImage("img.pokeCount"));
-            pokeball.setPreserveRatio(true);
-            pokeball.setFitWidth(30);
-            pokeCounterBox.getChildren().add(pokeball);
-        }
-
-
+        nodeMan.updatePokeCounterBox(getPlayer());
     }
 
+
+
+    @FXML
+    public void escape(MouseEvent e) {
+        getPlayer().goToLastSafeArea();
+        switchToArcadeScene(e);
+    }
+
+
+
+    private void switchToArcadeScene(Event e) {
+        try {
+            FXMLLoader loader = SceneManager.switchScene(e, "fxml.arcade", "css.arcade");
+            NodeManager.setRoot(loader.getRoot());
+            ArcadeController arcadeCtrl = loader.getController();
+            ArcadeNodeManager.setController(arcadeCtrl);
+            arcadeCtrl.initializeScene();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 }

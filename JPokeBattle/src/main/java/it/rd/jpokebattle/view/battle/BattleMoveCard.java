@@ -76,14 +76,15 @@ public class BattleMoveCard extends GridPane {
     private void setNameLbl() {
         nameLbl.setText(move.getName());
         nameLbl.setStyle("-fx-font-size: 18px;");
+        nameLbl.setTextFill(borderColor.brighter());
         this.add(nameLbl, 0, 0);
         setColumnSpan(nameLbl, 3);
-        nameLbl.setTranslateX(5);
+        nameLbl.setTranslateX(10);
     }
 
     private void setTypeLbl() {
         typeLbl.setText(move.getType());
-        typeLbl.setStyle("-fx-font-size: 12px;");
+        typeLbl.setStyle("-fx-font-size: 12px; -fx-text-fill: #D1D1D1;");
         typeLbl.setTranslateX(15);
         typeLbl.setTranslateY(-6);
         typeLbl.setPadding(new Insets(0, 3, 0, 3));
@@ -94,7 +95,7 @@ public class BattleMoveCard extends GridPane {
                 borderColor,
                 BorderStrokeStyle.SOLID,
                 new CornerRadii(20),
-                new BorderWidths(1)
+                new BorderWidths(1.2)
         );
 
         typeLbl.setBorder(new Border (b));
@@ -103,7 +104,7 @@ public class BattleMoveCard extends GridPane {
 
     private void setPPLbl() {
         ppLbl.setText(curPP + "/" + move.getPP());
-        ppLbl.setStyle("-fx-font-size: 15px;");
+        ppLbl.setStyle("-fx-font-size: 15px; -fx-text-fill: #D1D1D1;");
         ppLbl.setTranslateX(-20);
         ppLbl.setTranslateY(-10);
         this.add(ppLbl, 1, 1);

@@ -12,14 +12,12 @@
 }
 
 #movesPane .label {
-    -fx-text-fill: #D1D1D1;
     -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.5, 1, 1);
 }
 
-#escapeBtnPane .label {
+#actionButtonsBox .label {
     -fx-font-size: 17;
     -fx-font-family: "OCR A Extended";
-    -fx-text-fill: #D1D1D1;
     -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.5, 1, 1);
 }
 

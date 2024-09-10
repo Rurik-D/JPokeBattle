@@ -11,6 +11,8 @@ import it.rd.jpokebattle.view.arcade.MoveCard;
 import it.rd.jpokebattle.view.arcade.PokemonCard;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.time.LocalTime;
@@ -48,15 +50,6 @@ public class ArcadeNodeManager extends NodeManager {
         return istance;
     }
 
-    public void initialize(ArcadeController controller, Profile player) {
-        setController(controller);
-        setNarratorLbl(player.getNarratorTextHistory());
-        updateNextAreaButtons(player.getCurrentArea());
-        ctrl.profileNameLbl.setText(player.getName());
-        ctrl.avatarImageView.setImage(ResourceLoader.loadImage(player.getAvatarSrcName()));
-        startClock();
-        ctrl.locationLbl.setText(player.getCurrentArea().getTitle());
-    }
 
     /**
      * Salva il controller passato in input come attributo, in modo da poterlo usare
@@ -68,6 +61,15 @@ public class ArcadeNodeManager extends NodeManager {
         ctrl = controller;
     }
 
+
+    public void initializeNodes(Profile player) {
+        setNarratorLbl(player.getNarratorTextHistory());
+        updateNextAreaButtons(player.getCurrentArea());
+        ctrl.profileNameLbl.setText(player.getName());
+        ctrl.avatarImageView.setImage(ResourceLoader.loadImage(player.getAvatarSrcName()));
+        startClock();
+        ctrl.locationLbl.setText(player.getCurrentArea().getTitle());
+    }
 
 
     /**
@@ -176,6 +178,17 @@ public class ArcadeNodeManager extends NodeManager {
     }
 
     /**
+     * Aggiorna il testo del narratore con la descrizione dell'area corrente in cui
+     * il giocatore si trova.
+     */
+    public void updateNarrationInterface(Area currentArea) {
+        updateNarratorLbl(currentArea.getDescription());
+        updateNextAreaButtons(currentArea);
+        updateNarratorScrollbarPosition();
+        ctrl.locationLbl.setText(currentArea.getTitle());
+    }
+
+    /**
      * Aggiorna il testo del narratore con il testo passato in input. Aggiunge il nuovo
      * testo in fondo e sposta la scrollbar sul fondo.
      *
@@ -202,7 +215,6 @@ public class ArcadeNodeManager extends NodeManager {
         }).start();
     }
 
-
     /**
      *
      */
@@ -221,6 +233,15 @@ public class ArcadeNodeManager extends NodeManager {
         ctrl.clockLbl.setText(currentTime.format(formatter));
     }
 
+    public void startClosingAnimation() {
+        ImageView clsAnimGif = new ImageView(ResourceLoader.loadImage("gif.transCls"));
+        clsAnimGif.setId("battleTransition");
+        clsAnimGif.setPreserveRatio(false);
+        clsAnimGif.setFitWidth(1000);
+        clsAnimGif.setFitHeight(702);
+        GridPane rootPane = (GridPane) root;
+        rootPane.add(clsAnimGif, 0, 0,5, 11);
+    }
 
     /**
      * Nasconde tutti i panneli al di fuori dal principale

@@ -19,6 +19,7 @@ public class Profile implements Serializable {
     private String name;
     private String avatarSrcName;
     private String currentAreaName;
+    private String lastSafeAreaName;
     private String narratorTextHistory;
     private ArrayList<Integer> ownedPkmnIDs = new ArrayList<>();
     private HashMap<String, Integer> itemsMap;
@@ -77,7 +78,7 @@ public class Profile implements Serializable {
     }
 
     public void setCurrentArea(String areaName) {
-        this.currentAreaName = areaName;
+        currentAreaName = areaName;
     }
 
     /**
@@ -86,13 +87,19 @@ public class Profile implements Serializable {
      * @see Area
      */
     public void goToNextArea(int areaIndex) {
-        Area currArea = Area.fromName(this.currentAreaName);
+        lastSafeAreaName = currentAreaName;
+        Area currArea = Area.fromName(currentAreaName);
         setCurrentArea(currArea.getNextAreaName(areaIndex));
     }
 
     public void goToSpecialArea() {
-        Area currArea = Area.fromName(this.currentAreaName);
+        lastSafeAreaName = currentAreaName;
+        Area currArea = Area.fromName(currentAreaName);
         setCurrentArea(currArea.getSpecialAreaName());
+    }
+
+    public void goToLastSafeArea() {
+        setCurrentArea(lastSafeAreaName);
     }
 
     public void setNarratorTextHistory(String narratorTextHistory) {

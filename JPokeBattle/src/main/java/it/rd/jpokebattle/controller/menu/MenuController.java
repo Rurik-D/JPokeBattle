@@ -1,5 +1,6 @@
 package it.rd.jpokebattle.controller.menu;
 
+import it.rd.jpokebattle.controller.Controller;
 import it.rd.jpokebattle.controller.NodeManager;
 import it.rd.jpokebattle.controller.SceneManager;
 import it.rd.jpokebattle.controller.arcade.ArcadeController;
@@ -29,11 +30,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class MenuController {
+public class MenuController extends Controller {
     private MenuNodeManager nodeMan = MenuNodeManager.getInstance();
     private SoundManager soundMan = SoundManager.getInstance();
     private AlertMessage alert = new AlertMessage();
-    private Profile selectedProfile;            // Ultimo profilo selezionato nella schermata di visualizzazione profili
 
     @FXML
     protected ImageView volumeImg, avatarViewImg, gengarGif, snorlaxGif;
@@ -90,15 +90,13 @@ public class MenuController {
     @FXML
     public void arcade(ActionEvent e) throws IOException {
         soundMan.buttonClick();
-        soundMan.switchTrack(selectedProfile.getCurrentArea().getMusicSrcName());
+        soundMan.switchTrack(getPlayer().getCurrentArea().getMusicSrcName());
 
         FXMLLoader loader = SceneManager.switchScene(e, "fxml.arcade", "css.arcade");
         NodeManager.setRoot(loader.getRoot());
-
-        ArcadeNodeManager arcNodeMan = ArcadeNodeManager.getIstance();
-
-        ArcadeController.setPlayer(selectedProfile);
-        arcNodeMan.initialize(loader.getController(), selectedProfile);
+        ArcadeController arcadeCtrl = loader.getController();
+        ArcadeNodeManager.setController(arcadeCtrl);
+        arcadeCtrl.initializeScene();
     }
 
     /**
@@ -116,7 +114,7 @@ public class MenuController {
     public void confirmProfChanges(ActionEvent e) {
         soundMan.buttonClick();
         if (!nicknameTxtFd.getText().isBlank() && avatarViewImg.getImage() != null) {
-            ProfileManager.updateProfileInfo(selectedProfile, nicknameTxtFd.getText(), avatarViewImg.getImage().getUrl());
+            ProfileManager.updateProfileInfo(getPlayer(), nicknameTxtFd.getText(), avatarViewImg.getImage().getUrl());
             profContBox.updateProfileContainer();
             nodeMan.switchToProfilesMenu();
         } else {
@@ -166,7 +164,7 @@ public class MenuController {
         soundMan.buttonClick();
 
         if (alert.confirmDeleteProfile()) {
-            ProfileManager.delete(selectedProfile);
+            ProfileManager.delete(getPlayer());
             profContBox.updateProfileContainer();
             nodeMan.switchToProfilesMenu();
         }
@@ -209,7 +207,7 @@ public class MenuController {
     @FXML
     public void modifyProf(ActionEvent e) {
         soundMan.buttonClick();
-        nodeMan.switchToModifyProfile(selectedProfile);
+        nodeMan.switchToModifyProfile(getPlayer());
     }
 
     /**
@@ -222,7 +220,7 @@ public class MenuController {
     public void profilePreview(Profile prof) {
         soundMan.buttonClick();
         nodeMan.showProfPreview(prof);
-        selectedProfile = prof;
+        setPlayer(prof);
     }
 
     /**

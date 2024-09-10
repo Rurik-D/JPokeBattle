@@ -40,7 +40,9 @@ public class PokemonManager implements SerializableHandler {
      * @param id  Codice intero identificativo del pokemon che si vuole caricare
      */
     public static OwnedPokemon getPokemonFromID(int id) {
-        return pkmnMap.get(id);
+        OwnedPokemon pkmn =  pkmnMap.get(id);
+        pkmn.refreshProperties();
+        return pkmn;
     }
 
     /**
