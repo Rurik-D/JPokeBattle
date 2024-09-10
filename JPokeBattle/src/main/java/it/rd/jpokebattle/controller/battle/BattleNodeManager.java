@@ -4,10 +4,10 @@ import it.rd.jpokebattle.controller.NodeManager;
 import it.rd.jpokebattle.model.move.Move;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import it.rd.jpokebattle.model.pokemon.Pokemon;
-import it.rd.jpokebattle.model.pokemon.Stats;
 import it.rd.jpokebattle.model.profile.Profile;
 import it.rd.jpokebattle.util.file.ResourceLoader;
-import it.rd.jpokebattle.view.LifeBar;
+import it.rd.jpokebattle.view.bar.LifeBar;
+import it.rd.jpokebattle.view.bar.XpBar;
 import it.rd.jpokebattle.view.battle.BattleMoveCard;
 import javafx.animation.PauseTransition;
 import javafx.beans.binding.Bindings;
@@ -27,6 +27,7 @@ public class BattleNodeManager extends NodeManager {
 
     private LifeBar oppLB = new LifeBar(184, 9);
     private LifeBar plrLB = new LifeBar(184, 9);
+    private XpBar xpBar = new XpBar(340, 3);
     private Label currHPLbl = new Label();
     private Label plrLvLbl = new Label();
     private Label oppLvLbl = new Label();
@@ -59,6 +60,7 @@ public class BattleNodeManager extends NodeManager {
         ctrl.opponentPkmnNameLbl.setText(opponentPkmn.getName());
 
         ///////////////////////////////////////////////////////////////
+
         oppLB.setListener(opponentPkmn);
         plrLB.setListener(playerPkmn);
 
@@ -69,6 +71,15 @@ public class BattleNodeManager extends NodeManager {
         oppLB.setTranslateY(26.5);
         plrLB.setTranslateX(106.5);
         plrLB.setTranslateY(26.5);
+
+        ///////////////////////////////////////////////////////////////
+
+        xpBar.setListener(playerPkmn);
+
+        ctrl.labelsPane.add(xpBar, 3, 2, 2, 1);
+
+        xpBar.setTranslateX(30);
+        xpBar.setTranslateY(42);
 
         ///////////////////////////////////////////////////////////////
 
@@ -103,6 +114,15 @@ public class BattleNodeManager extends NodeManager {
         GridPane.setHalignment(oppLvLbl, HPos.CENTER);
         oppLvLbl.setTranslateX(50);
         oppLvLbl.setTranslateY(-5);
+
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(4));
+        pause.setOnFinished(ev -> {
+            playerPkmn.increaseXP(100);
+
+
+        });
+        pause.play();
 
     }
 

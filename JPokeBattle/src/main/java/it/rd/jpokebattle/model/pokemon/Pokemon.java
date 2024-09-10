@@ -28,8 +28,6 @@ public class Pokemon implements Serializable {
 
 
 
-
-
     public Pokemon(Breed breed, int lv) {
         this.breed = breed;
         this.name = breed.getName();
@@ -52,7 +50,6 @@ public class Pokemon implements Serializable {
         this.currHP= pkmn.getCurrHP();
         refreshProperties();
     }
-
 
     protected Pokemon() {}
 
@@ -167,7 +164,7 @@ public class Pokemon implements Serializable {
         int iv;
         int ev;
 
-        for (Stats stat : Stats.values()) {
+        for (Stats stat : ivMap.keySet()) {
             baseStat = getBreed().baseValueOf(stat);
             iv = ivMap.get(stat);
             ev = evMap.get(stat);

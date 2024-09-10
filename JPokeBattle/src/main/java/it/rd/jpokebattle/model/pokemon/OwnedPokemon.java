@@ -1,12 +1,19 @@
 package it.rd.jpokebattle.model.pokemon;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.io.Serializable;
+
 import static it.rd.jpokebattle.model.pokemon.PokemonManager.getXPTreshold;
 
 public class OwnedPokemon extends Pokemon implements Serializable {
     private int ID;
     private int xp;
     private int nextLvXPTresh;
+
+    protected transient IntegerProperty xpProperty;
+
 
     /**
      */
@@ -35,32 +42,44 @@ public class OwnedPokemon extends Pokemon implements Serializable {
         return ID;
     }
 
-
     public int getXp() {
         return xp;
     }
 
-    private void setXp() {
-        xp = getXPTreshold(getLevel());
-        nextLvXPTresh = getXPTreshold(getLevel() + 1);
+    public int getNextLvXPTresh() {
+        return nextLvXPTresh;
     }
 
     public int getXpToNextLv() {
         return Math.max(nextLvXPTresh - xp, 0);
     }
 
+    private void setXp() {
+        updateXp(getXPTreshold(getLevel()));
+        nextLvXPTresh = getXPTreshold(getLevel() + 1);
+    }
+
+    public IntegerProperty xpProperty() {
+        return xpProperty;
+    }
+
     public void increaseXP(int addedXP) {
-        xp += addedXP;
+        updateXp(addedXP);
 
         while (xp >= nextLvXPTresh) {
             increaseLevel();
-            nextLvXPTresh = PokemonManager.getXPTreshold(getLevel() + 1);
+            nextLvXPTresh = getXPTreshold(getLevel() + 1);
             updateStats();
         }
 
         if (canEvolve())
             breed = Breed.fromName(breed.getSuccBreedName());
 
+    }
+
+    private void updateXp(int addedXP) {
+        xp += addedXP;
+        xpProperty.set(xp);
     }
 
     private void increaseLevel() {
@@ -80,4 +99,11 @@ public class OwnedPokemon extends Pokemon implements Serializable {
     public void heal(int amount) {
         setCurrHP(Math.min(getMaxHP(), amount));
     }
+
+    @Override
+    protected void refreshProperties() {
+        super.refreshProperties();
+        xpProperty = new SimpleIntegerProperty(xp);
+    }
+
 }

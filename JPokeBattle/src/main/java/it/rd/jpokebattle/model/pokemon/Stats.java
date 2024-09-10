@@ -6,7 +6,8 @@ public enum Stats {
     DEF("def"),
     SPEC_ATK("spec_atk"),
     SPEC_DEF("spec_def"),
-    SPEED("speed");
+    SPEED("speed"),
+    XP("xp");
 
     private final String NAME_ID;
 

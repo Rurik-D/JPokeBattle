@@ -2,11 +2,10 @@ package it.rd.jpokebattle.view.arcade;
 
 
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
-import it.rd.jpokebattle.model.pokemon.Pokemon;
 import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import it.rd.jpokebattle.model.pokemon.Stats;
 import it.rd.jpokebattle.util.file.ResourceLoader;
-import it.rd.jpokebattle.view.LifeBar;
+import it.rd.jpokebattle.view.bar.LifeBar;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -17,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
 
 public class PokemonCard extends GridPane {
     private OwnedPokemon pkmn;

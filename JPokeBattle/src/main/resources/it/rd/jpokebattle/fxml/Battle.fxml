@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Line?>
 
 <GridPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.rd.jpokebattle.controller.battle.BattleController">
    <children>
@@ -77,6 +78,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </ImageView>
+            <Line endX="340.0" stroke="#838383" strokeWidth="3.0" translateX="30.0" translateY="42.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <HBox fx:id="pokeCounterBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" spacing="5.0" translateX="25.0" translateY="-2.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets />
@@ -151,7 +153,11 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <Label text="borsa" textFill="#ffcd00" translateX="35.0" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                        <Label text="borsa" textFill="#ffcd00" translateX="35.0" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
                      </children>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -170,10 +176,14 @@
                               <Image url="@../images/battle/battle_btn_c.png" />
                            </image>
                            <cursor>
-                              <Cursor fx:constant="DEFAULT" />
+                              <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <Label alignment="CENTER" text="fuga" textAlignment="CENTER" textFill="#1a94ff" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label alignment="CENTER" text="fuga" textAlignment="CENTER" textFill="#1a94ff" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
                      </children>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -195,7 +205,11 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
-                        <Label text="pkmn" textFill="#15f805" translateX="-45.0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                        <Label text="pkmn" textFill="#15f805" translateX="-45.0" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
                      </children>
                      <cursor>
                         <Cursor fx:constant="HAND" />

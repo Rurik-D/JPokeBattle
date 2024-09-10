@@ -1,88 +1,4 @@
 {
-    "charmander": {
-        "name" : "Charmander",
-        "firstTypeName": "fire",
-        "secondTypeName": "",
-        "predBreedName": "",
-        "succBreedName": "charmeleon",
-        "avatarSrcName": "png.charmander",
-        "frontGifSrcName": "gif.charmander_f",
-        "backGifSrcName": "gif.charmander_b",
-        "nextEvoThreshold": 16,
-        "baseHP": 39,
-        "baseAtk": 52,
-        "baseDef": 43,
-        "baseSpecAtk": 60,
-        "baseSpecDef": 50,
-        "baseSpeed": 65,
-        "movesPerLevel" : {
-            "graffio": 0,
-            "ruggito": 0,
-            "braciere": 4,
-            "muro_di_fumo": 8,
-            "drago_spiro": 12
-        }
-    },
-    "charmeleon": {
-        "name" : "Charmeleon",
-        "firstTypeName": "fire",
-        "secondTypeName": "",
-        "predBreedName": "charmander",
-        "succBreedName": "charizard",
-        "avatarSrcName": "png.charmeleon",
-        "frontGifSrcName": "gif.charmeleon_f",
-        "backGifSrcName": "gif.charmeleon_b",
-        "nextEvoThreshold": 36,
-        "baseHP": 58,
-        "baseAtk": 64,
-        "baseDef": 58,
-        "baseSpecAtk": 80,
-        "baseSpecDef": 65,
-        "baseSpeed": 80,
-        "movesPerLevel" : {
-            "graffio": 0,
-            "ruggito": 0,
-            "braciere": 0,
-            "muro_di_fumo": 0,
-            "drago_spiro": 12,
-            "rogodenti": 19,
-            "lacerazione": 24,
-            "lanciafiamme": 30
-        }
-    },
-    "charizard": {
-        "name" : "Charizard",
-        "firstTypeName": "fire",
-        "secondTypeName": "flying",
-        "predBreedName": "charmeleon",
-        "succBreedName": "",
-        "avatarSrcName": "png.charizard",
-        "frontGifSrcName": "gif.charizard_f",
-        "backGifSrcName": "gif.charizard_b",
-        "nextEvoThreshold": 0,
-        "baseHP": 78,
-        "baseAtk": 84,
-        "baseDef": 78,
-        "baseSpecAtk": 109,
-        "baseSpecDef": 85,
-        "baseSpeed": 100,
-        "movesPerLevel" : {
-            "graffio": 0,
-            "ruggito": 0,
-            "braciere": 0,
-            "muro_di_fumo": 0,
-            "drago_spiro": 12,
-            "rogodenti": 19,
-            "lacerazione": 24,
-            "lanciafiamme": 30,
-            "visotruce": 37,
-            "turbofuoco": 40,
-            "marchiatura": 48,
-            "fuococarica": 54
-        }
-    },
-
-
     "bulbasaur": {
         "name" : "Bulbasaur",
         "firstTypeName": "grass",
@@ -99,6 +15,7 @@
         "baseSpecAtk": 65,
         "baseSpecDef": 65,
         "baseSpeed": 45,
+        "baseXp": 64,
         "movesPerLevel" : {
             "azione": 0,
             "ruggito": 0,
@@ -124,6 +41,7 @@
         "baseSpecAtk": 80,
         "baseSpecDef": 80,
         "baseSpeed": 60,
+        "baseXp": 141,
         "movesPerLevel" : {
             "azione": 0,
             "ruggito": 0,
@@ -153,6 +71,7 @@
         "baseSpecAtk": 100,
         "baseSpecDef": 100,
         "baseSpeed": 80,
+        "baseXp": 208,
         "movesPerLevel" : {
             "azione": 0,
             "ruggito": 0,
@@ -169,6 +88,91 @@
         }
     },
 
+    "charmander": {
+        "name" : "Charmander",
+        "firstTypeName": "fire",
+        "secondTypeName": "",
+        "predBreedName": "",
+        "succBreedName": "charmeleon",
+        "avatarSrcName": "png.charmander",
+        "frontGifSrcName": "gif.charmander_f",
+        "backGifSrcName": "gif.charmander_b",
+        "nextEvoThreshold": 16,
+        "baseHP": 39,
+        "baseAtk": 52,
+        "baseDef": 43,
+        "baseSpecAtk": 60,
+        "baseSpecDef": 50,
+        "baseSpeed": 65,
+        "baseXp": 65,
+        "movesPerLevel" : {
+            "graffio": 0,
+            "ruggito": 0,
+            "braciere": 4,
+            "muro_di_fumo": 8,
+            "drago_spiro": 12
+        }
+    },
+    "charmeleon": {
+        "name" : "Charmeleon",
+        "firstTypeName": "fire",
+        "secondTypeName": "",
+        "predBreedName": "charmander",
+        "succBreedName": "charizard",
+        "avatarSrcName": "png.charmeleon",
+        "frontGifSrcName": "gif.charmeleon_f",
+        "backGifSrcName": "gif.charmeleon_b",
+        "nextEvoThreshold": 36,
+        "baseHP": 58,
+        "baseAtk": 64,
+        "baseDef": 58,
+        "baseSpecAtk": 80,
+        "baseSpecDef": 65,
+        "baseSpeed": 80,
+        "baseXp": 142,
+        "movesPerLevel" : {
+            "graffio": 0,
+            "ruggito": 0,
+            "braciere": 0,
+            "muro_di_fumo": 0,
+            "drago_spiro": 12,
+            "rogodenti": 19,
+            "lacerazione": 24,
+            "lanciafiamme": 30
+        }
+    },
+    "charizard": {
+        "name" : "Charizard",
+        "firstTypeName": "fire",
+        "secondTypeName": "flying",
+        "predBreedName": "charmeleon",
+        "succBreedName": "",
+        "avatarSrcName": "png.charizard",
+        "frontGifSrcName": "gif.charizard_f",
+        "backGifSrcName": "gif.charizard_b",
+        "nextEvoThreshold": 0,
+        "baseHP": 78,
+        "baseAtk": 84,
+        "baseDef": 78,
+        "baseSpecAtk": 109,
+        "baseSpecDef": 85,
+        "baseSpeed": 100,
+        "baseXp": 209,
+        "movesPerLevel" : {
+            "graffio": 0,
+            "ruggito": 0,
+            "braciere": 0,
+            "muro_di_fumo": 0,
+            "drago_spiro": 12,
+            "rogodenti": 19,
+            "lacerazione": 24,
+            "lanciafiamme": 30,
+            "visotruce": 37,
+            "turbofuoco": 40,
+            "marchiatura": 48,
+            "fuococarica": 54
+        }
+    },
 
     "squirtle": {
         "name" : "Squirtle",
@@ -186,6 +190,7 @@
         "baseSpecAtk": 50,
         "baseSpecDef": 64,
         "baseSpeed": 43,
+        "baseXp": 66,
         "movesPerLevel" : {
             "azione": 0,
             "colpocoda": 0,
@@ -212,6 +217,7 @@
         "baseSpecAtk": 65,
         "baseSpecDef": 80,
         "baseSpeed": 58,
+        "baseXp": 143,
         "movesPerLevel" : {
             "azione": 0,
             "colpocoda": 0,
@@ -242,6 +248,7 @@
         "baseSpecAtk": 85,
         "baseSpecDef": 105,
         "baseSpeed": 78,
+        "baseXp": 210,
         "movesPerLevel" : {
             "azione": 0,
             "colpocoda": 0,
@@ -277,6 +284,7 @@
         "baseSpecAtk": 20,
         "baseSpecDef": 20,
         "baseSpeed": 45,
+        "baseXp": 53,
         "movesPerLevel" : {
             "azione": 0,
             "millebave": 0,
@@ -299,6 +307,7 @@
         "baseSpecAtk": 25,
         "baseSpecDef": 25,
         "baseSpeed": 30,
+        "baseXp": 72,
         "movesPerLevel" : {
             "rafforzatore": 0
         }
@@ -319,6 +328,7 @@
         "baseSpecAtk": 90,
         "baseSpecDef": 80,
         "baseSpeed": 70,
+        "baseXp": 160,
         "movesPerLevel" : {
             "azione": 0,
             "millebave": 0,
@@ -349,6 +359,7 @@
         "baseSpecAtk": 20,
         "baseSpecDef": 20,
         "baseSpeed": 50,
+        "baseXp": 52,
         "movesPerLevel" : {
             "millebave": 0,
             "velenospina": 0,
@@ -371,6 +382,7 @@
         "baseSpecAtk": 25,
         "baseSpecDef": 25,
         "baseSpeed": 35,
+        "baseXp": 71,
         "movesPerLevel" : {
             "rafforzatore": 0
         }
@@ -391,6 +403,7 @@
         "baseSpecAtk": 45,
         "baseSpecDef": 80,
         "baseSpeed": 75,
+        "baseXp": 159,
         "movesPerLevel" : {
             "millebave": 0,
             "velenospina": 0,
@@ -422,6 +435,7 @@
         "baseSpecAtk": 35,
         "baseSpecDef": 35,
         "baseSpeed": 56,
+        "baseXp": 55,
         "movesPerLevel" : {
             "azione": 0,
             "turbosabbia": 5,
@@ -446,6 +460,7 @@
         "baseSpecAtk": 50,
         "baseSpecDef": 50,
         "baseSpeed": 71,
+        "baseXp": 113,
         "movesPerLevel" : {
             "azione": 0,
             "turbosabbia": 5,
@@ -473,6 +488,7 @@
         "baseSpecAtk": 70,
         "baseSpecDef": 70,
         "baseSpeed": 101,
+        "baseXp": 172,
         "movesPerLevel" : {
             "azione": 0,
             "turbosabbia": 5,
@@ -507,6 +523,7 @@
         "baseSpecAtk": 25,
         "baseSpecDef": 35,
         "baseSpeed": 72,
+        "baseXp": 57,
         "movesPerLevel" : {
             "azione" : 0,
             "colpocoda": 0,
@@ -533,6 +550,7 @@
         "baseSpecAtk": 50,
         "baseSpecDef": 70,
         "baseSpeed": 97,
+        "baseXp": 116,
         "movesPerLevel" : {
             "azione" : 0,
             "colpocoda": 0,
@@ -564,6 +582,7 @@
         "baseSpecAtk": 31,
         "baseSpecDef": 31,
         "baseSpeed": 70,
+        "baseXp": 58,
         "movesPerLevel" : {
 
 
@@ -585,6 +604,7 @@
         "baseSpecAtk": 61,
         "baseSpecDef": 61,
         "baseSpeed": 100,
+        "baseXp": 162,
         "movesPerLevel" : {
 
 
@@ -608,6 +628,7 @@
         "baseSpecAtk": 40,
         "baseSpecDef": 54,
         "baseSpeed": 55,
+        "baseXp": 62,
         "movesPerLevel" : {
 
 
@@ -629,6 +650,7 @@
         "baseSpecAtk": 65,
         "baseSpecDef": 79,
         "baseSpeed": 80,
+        "baseXp": 147,
         "movesPerLevel" : {
 
 
@@ -652,6 +674,7 @@
         "baseSpecAtk": 50,
         "baseSpecDef": 50,
         "baseSpeed": 90,
+        "baseXp": 82,
         "movesPerLevel" : {
 
 

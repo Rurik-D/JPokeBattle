@@ -26,6 +26,7 @@ public class Breed implements Serializable {
     private int baseSpecAtk;
     private int baseSpecDef;
     private int baseSpeed;
+    private int baseXp;
     private HashMap<String, Integer> movesPerLevel;
 
 
@@ -37,6 +38,7 @@ public class Breed implements Serializable {
             case SPEC_ATK -> baseSpecAtk;
             case SPEC_DEF -> baseSpecDef;
             case SPEED -> baseSpeed;
+            case XP -> baseXp;
         };
     }
 

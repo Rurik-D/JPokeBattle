@@ -58,4 +58,6 @@ module it.rd.jpokebattle {
     opens it.rd.jpokebattle.view.arcade;
     exports it.rd.jpokebattle.model.move;
     opens it.rd.jpokebattle.model.move;
+    exports it.rd.jpokebattle.view.bar;
+    opens it.rd.jpokebattle.view.bar;
 }
