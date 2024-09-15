@@ -2,6 +2,8 @@ package it.rd.jpokebattle.view.bar;
 
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import it.rd.jpokebattle.model.pokemon.PokemonManager;
+import javafx.animation.PauseTransition;
+import javafx.util.Duration;
 
 public class XpBar extends Bar {
     private int xpRange;
@@ -32,14 +34,9 @@ public class XpBar extends Bar {
                 PokemonManager.getXPTreshold(pkmn.getLevel());
         remainingXp = pkmn.getXpToNextLv();
 
-        double length = calcCurrLength((xpRange - remainingXp), xpRange);
-        //TODO QUANDO LA BARRA VA OLTRE LA LUNGHEZZA NON SI RESETTA CORRETTAMENTE
-        //TODO QUANDO LA BARRA VA OLTRE LA LUNGHEZZA NON SI RESETTA CORRETTAMENTE
-        //TODO QUANDO LA BARRA VA OLTRE LA LUNGHEZZA NON SI RESETTA CORRETTAMENTE
-        //TODO QUANDO LA BARRA VA OLTRE LA LUNGHEZZA NON SI RESETTA CORRETTAMENTE
-        if (length >= getMaxLength())
-            length = 0;
+        long length = Math.round(calcCurrLength((xpRange - remainingXp), xpRange));
 
         setEndX(length);
     }
+
 }

@@ -736,7 +736,7 @@
   },
   "ruggito" : {
     "name": "Ruggito",
-    "description": "Attacco fisico che colpisce il bersaglio investendolo con tutto il corpo.",
+    "description": "Il Pokémon ruggisce con cattiveria. Viene ridotto l'attacco dell'avversario.",
     "type": "normal",
     "category": "state",
     "opponentStats": {"atk": -1},
@@ -744,7 +744,7 @@
     "duration": [],
     "sideEffects": [],
     "nextRoundSideEffects": [],
-    "power": 40,
+    "power": 0,
     "priority": 0,
     "precision": 100,
     "pp": 40

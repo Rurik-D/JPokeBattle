@@ -96,15 +96,11 @@ public class ArcadeNodeManager extends NodeManager {
      */
     public void showOwnedTeam(Profile player) {
         ctrl.teamPane.setVisible(true);
-        int teamCounter = 0;
 
-        for (int pkmnID : player.getOwnedPokemonIDs()) {
-            if (teamCounter >= 6) break;
-            OwnedPokemon pkmn = PokemonManager.getPokemonFromID(pkmnID);
+        for (OwnedPokemon pkmn : player.getTeam()) {
             PokemonCard card = new PokemonCard(pkmn);
             card.setOnMouseClicked(e -> ctrl.pokemonDetails(e, pkmn));
             ctrl.teamCardsPane.getChildren().add(card);
-            teamCounter++;
         }
     }
 
@@ -121,9 +117,10 @@ public class ArcadeNodeManager extends NodeManager {
         ArrayList<Move> moves = pkmn.getMoves();
         ArrayList<Integer> pps = pkmn.getPPs();
         Move move;
+        int size = Math.min(moves.size(), 4);
         int pp;
 
-        for (int i=0; i<4; i++) {
+        for (int i=0; i<size; i++) {
             move = moves.get(i);
             pp = pps.get(i);
             ctrl.pokemonMovesVBox.getChildren().add(new MoveCard(move, pp));
@@ -174,7 +171,7 @@ public class ArcadeNodeManager extends NodeManager {
     public void setNarratorLbl(String narratorText) {
         ctrl.narratorLbl.setText(narratorText);
         // Imposta la barra di scorrimento dopo che la GUI è pronta
-        updateNarratorScrollbarPosition();
+        updateNarratorScrollbarPosition(ctrl.narratorScrlPane);
     }
 
     /**
@@ -184,7 +181,7 @@ public class ArcadeNodeManager extends NodeManager {
     public void updateNarrationInterface(Area currentArea) {
         updateNarratorLbl(currentArea.getDescription());
         updateNextAreaButtons(currentArea);
-        updateNarratorScrollbarPosition();
+        updateNarratorScrollbarPosition(ctrl.narratorScrlPane);
         ctrl.locationLbl.setText(currentArea.getTitle());
     }
 
@@ -197,22 +194,7 @@ public class ArcadeNodeManager extends NodeManager {
     public void updateNarratorLbl(String newNarratorText) {
         String text = ctrl.narratorLbl.getText() + SEPARATOR + newNarratorText + SEPARATOR;
         ctrl.narratorLbl.setText(text);
-        updateNarratorScrollbarPosition();
-    }
-
-    /**
-     *
-     */
-    public void updateNarratorScrollbarPosition() {
-        new Thread(() -> {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            ctrl.narratorScrlPane.setVvalue(1.0);
-        }).start();
+        updateNarratorScrollbarPosition(ctrl.narratorScrlPane);
     }
 
     /**

@@ -1,8 +1,10 @@
 package it.rd.jpokebattle.view.battle;
 
 import it.rd.jpokebattle.model.move.Move;
+import it.rd.jpokebattle.model.pokemon.Pokemon;
 import it.rd.jpokebattle.model.pokemon.Type;
 import it.rd.jpokebattle.util.file.ResourceLoader;
+import javafx.beans.binding.Bindings;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -13,8 +15,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 public class BattleMoveCard extends GridPane {
-    private Move move;
-    private int curPP;
+    private Pokemon pkmn;
+    private int moveIndex;
     private Color borderColor;
     private Label nameLbl = new Label();
     private Label ppLbl = new Label();
@@ -22,10 +24,10 @@ public class BattleMoveCard extends GridPane {
     private ImageView bg;
 
 
-    public BattleMoveCard(Move move, int curPP) {
-        this.move = move;
-        this.curPP = curPP;
-        this.borderColor = Type.getLabelBorderColor(move.getType());
+    public BattleMoveCard(Pokemon pkmn, int moveIndex) {
+        this.pkmn = pkmn;
+        this.moveIndex = moveIndex;
+        this.borderColor = Type.getLabelBorderColor(pkmn.getMove(moveIndex).getType());
         setPane();
         setBg();
         setNameLbl();
@@ -74,7 +76,7 @@ public class BattleMoveCard extends GridPane {
 
 
     private void setNameLbl() {
-        nameLbl.setText(move.getName());
+        nameLbl.setText(pkmn.getMove(moveIndex).getName());
         nameLbl.setStyle("-fx-font-size: 18px;");
         nameLbl.setTextFill(borderColor.brighter());
         this.add(nameLbl, 0, 0);
@@ -83,7 +85,7 @@ public class BattleMoveCard extends GridPane {
     }
 
     private void setTypeLbl() {
-        typeLbl.setText(move.getType());
+        typeLbl.setText(pkmn.getMove(moveIndex).getType());
         typeLbl.setStyle("-fx-font-size: 12px; -fx-text-fill: #D1D1D1;");
         typeLbl.setTranslateX(15);
         typeLbl.setTranslateY(-6);
@@ -103,7 +105,13 @@ public class BattleMoveCard extends GridPane {
     }
 
     private void setPPLbl() {
-        ppLbl.setText(curPP + "/" + move.getPP());
+        int curPP = pkmn.getPP(moveIndex);
+        ppLbl.textProperty().bind(Bindings.format("%d/%d",
+                pkmn.getPpProperties().get(moveIndex),
+                pkmn.getMove(moveIndex).getPP()
+            )
+        );
+
         ppLbl.setStyle("-fx-font-size: 15px; -fx-text-fill: #D1D1D1;");
         ppLbl.setTranslateX(-20);
         ppLbl.setTranslateY(-10);

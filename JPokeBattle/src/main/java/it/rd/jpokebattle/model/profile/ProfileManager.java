@@ -51,13 +51,9 @@ public class ProfileManager implements SerializableHandler {
     public static void delete(Profile p) {
         SerializableHandler.delete(p.getID(), SER_SRC_NAME);
 
-        int teamCounter = 0;
-
         for (int pkmnID : p.getOwnedPokemonIDs()) {
-            if (teamCounter >= 6) break;
             OwnedPokemon pkmn = PokemonManager.getPokemonFromID(pkmnID);
             PokemonManager.delete(pkmn, false);
-            teamCounter++;
         }
         PokemonManager.save();
     }

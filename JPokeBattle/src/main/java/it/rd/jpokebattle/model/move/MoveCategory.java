@@ -11,7 +11,7 @@ public enum MoveCategory {
         this.NAME_ID = name;
     }
 
-    public MoveCategory fromName(String name) {
+    public static MoveCategory fromName(String name) {
         for (MoveCategory cat : MoveCategory.values())
             if (cat.NAME_ID.equalsIgnoreCase(name))
                 return cat;

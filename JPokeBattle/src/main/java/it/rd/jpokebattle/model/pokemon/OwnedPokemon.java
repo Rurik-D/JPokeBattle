@@ -59,18 +59,27 @@ public class OwnedPokemon extends Pokemon implements Serializable {
         nextLvXPTresh = getXPTreshold(getLevel() + 1);
     }
 
+    private void setXpTresh() {
+        nextLvXPTresh = getXPTreshold(getLevel() + 1);
+    }
+
     public IntegerProperty xpProperty() {
         return xpProperty;
     }
 
     public void increaseXP(int addedXP) {
-        updateXp(addedXP);
+        xp += addedXP;
 
         while (xp >= nextLvXPTresh) {
+            xpProperty.set(nextLvXPTresh);
             increaseLevel();
-            nextLvXPTresh = getXPTreshold(getLevel() + 1);
+            setXpTresh();
             updateStats();
+            xpProperty.set(xp);
         }
+
+        xpProperty.set(xp);
+
 
         if (canEvolve())
             breed = Breed.fromName(breed.getSuccBreedName());

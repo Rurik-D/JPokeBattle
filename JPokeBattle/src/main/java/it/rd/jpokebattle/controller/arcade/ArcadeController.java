@@ -7,7 +7,6 @@ import it.rd.jpokebattle.controller.battle.BattleController;
 import it.rd.jpokebattle.controller.battle.BattleNodeManager;
 import it.rd.jpokebattle.controller.menu.MenuNodeManager;
 import it.rd.jpokebattle.model.pokemon.*;
-import it.rd.jpokebattle.model.profile.Profile;
 import it.rd.jpokebattle.model.profile.ProfileManager;
 import it.rd.jpokebattle.util.audio.SoundManager;
 import it.rd.jpokebattle.util.file.ResourceLoader;
@@ -27,7 +26,6 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.Random;
 
 public class ArcadeController extends Controller {
 
@@ -35,7 +33,6 @@ public class ArcadeController extends Controller {
     private ArcadeNodeManager nodeMan = ArcadeNodeManager.getIstance();
     private SoundManager soundMan = SoundManager.getInstance();
     private Breed selectedBreed;
-    private Random rand = new Random();
 
 
     @FXML
@@ -169,7 +166,7 @@ public class ArcadeController extends Controller {
     @FXML
     public void confirmSelection(ActionEvent e) {
         soundMan.buttonClick();
-        Pokemon pkmn = PokemonManager.generatePokemon(selectedBreed, 8);
+        Pokemon pkmn = PokemonManager.generatePokemon(selectedBreed, 5);
         getPlayer().addToOwned(PokemonManager.toOwnedPokemon(pkmn));
         nodeMan.hideAllPane();
         nextArea(0);

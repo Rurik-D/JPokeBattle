@@ -13,9 +13,15 @@ public abstract class Bar extends Line {
 
     public Bar(double maxL, double strokeW) {
         super(0, 0, maxL, 0);
-
+        setVisible(true);
         setMaxLength(maxL);
         setStrokeWidth(strokeW);
+    }
+
+    public void setLength(double length) {
+        setEndX(length);
+        if (length == 0)
+            setVisible(false);
     }
 
     public double getMaxLength() {

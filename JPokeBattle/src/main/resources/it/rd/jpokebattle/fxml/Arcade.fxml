@@ -86,27 +86,23 @@
             <Insets left="100.0" />
          </GridPane.margin>
       </Button>
-
-      <ImageView fitHeight="46.0" fitWidth="48.0" onMouseClicked="#settings" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="20.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <ImageView fitHeight="46.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0" translateY="20.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <image>
-            <Image url="@../images/pngwing.com.png" />
+            <Image url="@../images/gear.png" />
          </image>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <effect>
-            <DropShadow blurType="ONE_PASS_BOX" height="25.0" radius="12.0" spread="0.2" width="25.0" />
+            <DropShadow blurType="ONE_PASS_BOX" height="17.0" radius="6.75" spread="0.2" width="12.0" />
          </effect>
       </ImageView>
-      <ImageView fitHeight="88.0" fitWidth="50.0" onMouseClicked="#ownedTeam" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.rowSpan="2">
+      <ImageView fitWidth="45.0" onMouseClicked="#ownedTeam" pickOnBounds="true" preserveRatio="true" translateX="-32.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.rowSpan="2">
          <image>
             <Image url="@../images/pokeball.png" />
          </image>
          <GridPane.margin>
-            <Insets bottom="20.0" right="30.0" />
+            <Insets bottom="20.0" />
          </GridPane.margin>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -115,12 +111,12 @@
             <DropShadow blurType="ONE_PASS_BOX" height="25.0" radius="12.0" spread="0.2" width="25.0" />
          </effect>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="50.0" onMouseClicked="#invenctory" pickOnBounds="true" preserveRatio="true" translateY="10.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+      <ImageView fitHeight="150.0" fitWidth="50.0" onMouseClicked="#invenctory" pickOnBounds="true" preserveRatio="true" translateX="-30.0" translateY="10.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="9" GridPane.valignment="CENTER">
          <image>
             <Image url="@../images/backpack.png" />
          </image>
          <GridPane.margin>
-            <Insets right="30.0" />
+            <Insets />
          </GridPane.margin>
          <cursor>
             <Cursor fx:constant="HAND" />

@@ -25,8 +25,7 @@ public class Pokemon implements Serializable {
     protected transient IntegerProperty currLevelProperty;
     protected transient IntegerProperty currHPProperty;
     protected transient IntegerProperty maxHPProperty;
-
-
+    protected transient ArrayList<IntegerProperty> ppProperties;
 
     public Pokemon(Breed breed, int lv) {
         this.breed = breed;
@@ -126,9 +125,11 @@ public class Pokemon implements Serializable {
         if (moves.size() > index) {
             moves.set(index, move);
             PPs.set(index, move.getPP());
+            ppProperties.get(index).set(move.getPP());
         } else {
             moves.addFirst(move);
             PPs.addFirst(move.getPP());
+            ppProperties.add(new SimpleIntegerProperty(move.getPP()));
         }
     }
 
@@ -152,10 +153,19 @@ public class Pokemon implements Serializable {
         return maxHPProperty;
     }
 
+    public ArrayList<IntegerProperty> getPpProperties() {
+        return ppProperties;
+    }
+
     protected void refreshProperties() {
         currHPProperty = new SimpleIntegerProperty(currHP);
         currLevelProperty = new SimpleIntegerProperty(currLevel);
         maxHPProperty = new SimpleIntegerProperty(getMaxHP());
+        ppProperties = new ArrayList<>(4);
+
+        for (int pp : PPs) {
+            ppProperties.add(new SimpleIntegerProperty(pp));
+        }
     }
 
     protected void updateStats(){
@@ -177,10 +187,11 @@ public class Pokemon implements Serializable {
                     currHP += newValue - getStat(HP);
 
                 maxHPProperty.set(newValue);
+                statsMap.replace(HP, newValue);  // Per gli HP ho bisogno di aggiornare prima MAX e poi CURR
                 currHPProperty.set(currHP);
+            } else {
+                statsMap.replace(stat, newValue);
             }
-
-            statsMap.replace(stat, newValue);
         }
     }
 
@@ -193,6 +204,22 @@ public class Pokemon implements Serializable {
             evMap.replace(stat, value);
         }
     }
+
+    public void restorePPs() {
+        int pp;
+        for (int i = 0; i < PPs.size(); i++) {
+            pp = moves.get(i).getPP();
+            PPs.set(i, pp);
+            ppProperties.get(i).set(pp);
+        }
+    }
+
+    public void decresePP(int i) {
+        int pp = PPs.get(i);
+        PPs.set(i, pp - 1);
+        ppProperties.get(i).set(pp - 1);
+    }
+
 
     public void takeDamage(int dmg) {
         setCurrHP(Math.max(currHP - dmg, 0));

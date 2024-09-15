@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class BattleNodeManager extends NodeManager {
     private static BattleNodeManager istance;
     private static BattleController ctrl;
-    private final String SEPARATOR = "\n———————————————————————————————\n\n";
+    private final String SEPARATOR = " ————————————————————————————————————\n\n";
 
     private LifeBar oppLB = new LifeBar(184, 9);
     private LifeBar plrLB = new LifeBar(184, 9);
@@ -63,6 +63,9 @@ public class BattleNodeManager extends NodeManager {
 
         oppLB.setListener(opponentPkmn);
         plrLB.setListener(playerPkmn);
+
+        oppLB.setVisible(true);
+        plrLB.setVisible(true);
 
         ctrl.labelsPane.add(oppLB, 0, 0, 2, 1);
         ctrl.labelsPane.add(plrLB, 3, 2, 1, 1);
@@ -116,13 +119,13 @@ public class BattleNodeManager extends NodeManager {
         oppLvLbl.setTranslateY(-5);
 
 
-        PauseTransition pause = new PauseTransition(Duration.seconds(4));
-        pause.setOnFinished(ev -> {
-            playerPkmn.increaseXP(100);
-
-
-        });
-        pause.play();
+//        PauseTransition pause = new PauseTransition(Duration.seconds(4));
+//        pause.setOnFinished(ev -> {
+//            playerPkmn.increaseXP(100);
+//
+//
+//        });
+//        pause.play();
 
     }
 
@@ -132,7 +135,11 @@ public class BattleNodeManager extends NodeManager {
         int size = moves.size();
 
         for (int i=0; i<size; i++) {
-            ctrl.movesPane.getChildren().add(new BattleMoveCard(moves.get(i), PPs.get(i)));
+            BattleMoveCard moveCard = new BattleMoveCard(pkmn, i);
+            moveCard.setUserData(moves.get(i));
+            moveCard.setId("move_" + i);
+            moveCard.setOnMouseClicked(e -> ctrl.move(e));
+            ctrl.movesPane.getChildren().add(moveCard);
         }
 
     }
@@ -149,8 +156,10 @@ public class BattleNodeManager extends NodeManager {
     }
 
     public void updateLogLbl(String text) {
-        text = ctrl.logLbl.getText() + SEPARATOR + text + "\n";
+        text = ctrl.logLbl.getText() + SEPARATOR + text + "\n\n";
         ctrl.logLbl.setText(text);
+        updateNarratorScrollbarPosition(ctrl.logScrollPane);
+
     }
 
     public void updatePokeCounterBox(Profile player) {
@@ -160,6 +169,5 @@ public class BattleNodeManager extends NodeManager {
             pokeball.setFitWidth(30);
             ctrl.pokeCounterBox.getChildren().add(pokeball);
         }
-
     }
 }

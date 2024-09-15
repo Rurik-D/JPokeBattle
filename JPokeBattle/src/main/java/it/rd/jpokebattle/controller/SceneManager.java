@@ -20,7 +20,11 @@ public class SceneManager {
      * @return Il loader del nuovo file FXML
      * */
     public static FXMLLoader switchScene(Event e, String fxmlSrcName, String cssSrcName) throws IOException {
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        return switchScene((Node) e.getSource(), fxmlSrcName, cssSrcName);
+    }
+
+    public static FXMLLoader switchScene(Node n, String fxmlSrcName, String cssSrcName) throws IOException {
+        Stage stage = (Stage) (n.getScene().getWindow());
         FXMLLoader loader = ResourceLoader.loadFXML(fxmlSrcName);
         Scene scene = new Scene(loader.load());
 
@@ -31,6 +35,7 @@ public class SceneManager {
 
         return loader;
     }
+
 
 
     public static Parent getRootFromEvent(Event e) {

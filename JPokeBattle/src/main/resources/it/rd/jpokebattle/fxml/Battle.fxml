@@ -40,7 +40,7 @@
       <Ellipse fill="#8f8f8f53" radiusX="154.0" radiusY="66.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="-15.0" translateY="-20.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" />
       <Ellipse fill="#8f8f8f53" radiusX="154.0" radiusY="66.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="15.0" translateY="-30.0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.rowSpan="2" />
       <ImageView fx:id="playerPkmnGif" fitHeight="280.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.rowSpan="3" />
-      <ImageView fx:id="opponentPkmnGif" fitHeight="221.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" translateX="30.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowSpan="2" GridPane.valignment="BOTTOM" />
+      <ImageView fx:id="opponentPkmnGif" fitHeight="221.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" translateX="30.0" translateY="-10.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowSpan="2" GridPane.valignment="BOTTOM" />
       <ImageView fx:id="transitionGif" fitHeight="700.0" fitWidth="1000.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="5" GridPane.rowSpan="5">
          <image>
             <Image url="@../images/battle/battle_transition_2.gif" />
@@ -106,27 +106,15 @@
          <children>
             <ImageView fitHeight="46.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="20.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <image>
-                  <Image url="@../images/pngwing.com.png" />
+                  <Image url="@../images/gear.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <effect>
-                  <DropShadow blurType="ONE_PASS_BOX" height="22.0" radius="8.0" spread="0.2" width="12.0" />
+                  <DropShadow blurType="ONE_PASS_BOX" height="17.0" radius="6.75" spread="0.2" width="12.0" />
                </effect>
             </ImageView>
-            <ScrollPane fx:id="logScrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="440.0" translateX="-20.0" translateY="-40.0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="BOTTOM">
-               <content>
-                  <Label fx:id="logLbl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="410.0" wrapText="true">
-                     <padding>
-                        <Insets left="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-               </content>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </ScrollPane>
             <FlowPane fx:id="movesPane" hgap="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="350.0" translateY="10.0" vgap="15.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets />
@@ -137,7 +125,7 @@
             </FlowPane>
             <HBox fx:id="actionButtonsBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="290.0" spacing="10.0" translateX="30.0" translateY="15.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                <children>
-                  <GridPane>
+                  <GridPane onMouseClicked="#openBag">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                      </columnConstraints>
@@ -189,7 +177,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </GridPane>
-                  <GridPane>
+                  <GridPane onMouseClicked="#pkmnTeam">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                      </columnConstraints>
@@ -219,7 +207,19 @@
             </HBox>
          </children>
       </GridPane>
-      <GridPane fx:id="pkmnPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000E5;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">
+      <ScrollPane fx:id="logScrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="440.0" translateX="-20.0" translateY="-40.0" visible="false" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="BOTTOM">
+         <content>
+            <Label fx:id="logLbl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="410.0" wrapText="true">
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+            </Label>
+         </content>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </ScrollPane>
+      <GridPane fx:id="pkmnPane" onMouseClicked="#pkmnTeam" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000E5;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">
          <columnConstraints>
             <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
             <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
@@ -235,7 +235,26 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="Indietro" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#backToGame" text="Indietro" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <GridPane fx:id="bagPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000E5;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">
+         <columnConstraints>
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+         </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#backToGame" text="Indietro" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </children>

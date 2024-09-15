@@ -2,6 +2,7 @@ package it.rd.jpokebattle.model.profile;
 
 import it.rd.jpokebattle.model.area.Area;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
+import it.rd.jpokebattle.model.pokemon.Pokemon;
 import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import javafx.scene.image.Image;
 
@@ -51,13 +52,25 @@ public class Profile implements Serializable {
         return ownedPkmnIDs;
     }
 
+    public ArrayList<OwnedPokemon> getTeam() {
+        ArrayList<OwnedPokemon> team = new ArrayList<>();
+        int size = Math.min(6, ownedPkmnIDs.size());
+
+        for (int i=0; i<size; i++){
+            int pkmnID = ownedPkmnIDs.get(i);
+            team.add(PokemonManager.getPokemonFromID(pkmnID));
+        }
+
+
+        return team;
+    }
+
     public String getCurrentAreaName() {
         return currentAreaName;
     }
 
     public Area getCurrentArea() {
-        return Area.fromName(currentAreaName);
-    }
+        return Area.fromName(currentAreaName);}
 
     public OwnedPokemon getFirstPokemon() {
         int id = ownedPkmnIDs.getFirst();
@@ -103,6 +116,12 @@ public class Profile implements Serializable {
     }
 
     public void setNarratorTextHistory(String narratorTextHistory) {
+        int length = narratorTextHistory.length();
+        this.narratorTextHistory = narratorTextHistory.substring(Math.max(0, length - 2000));
+    }
+
+    public void updateNarratorTextHistory(String text) {
+        narratorTextHistory += "\n———————————————————————————————\n\n" + text + "\n\n———————————————————————————————\n\n";
         int length = narratorTextHistory.length();
         this.narratorTextHistory = narratorTextHistory.substring(Math.max(0, length - 2000));
     }

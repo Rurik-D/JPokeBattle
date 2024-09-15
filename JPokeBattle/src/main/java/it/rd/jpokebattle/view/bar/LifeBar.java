@@ -2,11 +2,15 @@ package it.rd.jpokebattle.view.bar;
 
 import it.rd.jpokebattle.model.pokemon.Pokemon;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 public class LifeBar extends Bar {
     private int hp;
     private int maxHP;
+    private double currLength;
 
     public LifeBar(double maxL, double strokeW) {
         super(maxL, strokeW);
@@ -26,9 +30,31 @@ public class LifeBar extends Bar {
             hp = newV.intValue();
             maxHP = pkmn.getMaxHP();
 
-            updateColor(hp, maxHP);
-            setEndX(calcCurrLength(hp, maxHP));
+            long newLength = Math.round(calcCurrLength(hp, maxHP));
+            movingAnimation(newLength);
+
         });
+    }
+
+
+    private void movingAnimation(long newLength) {
+        double step = (newLength - currLength) / 80;
+
+        Timeline fadeOutIn = new Timeline(
+                new KeyFrame(Duration.millis(10),
+                        e -> {
+                            currLength = currLength + step;
+                            setEndX(currLength);
+                            updateColor(currLength, getMaxLength());
+                        }
+                )
+        );
+        fadeOutIn.setCycleCount(80);
+        fadeOutIn.setOnFinished(e -> {
+            currLength = newLength;
+            setLength(currLength);
+        });
+        fadeOutIn.play();
     }
 
     private void updateBar(Pokemon pkmn) {
@@ -36,7 +62,10 @@ public class LifeBar extends Bar {
         maxHP = pkmn.getMaxHP();
 
         updateColor(hp, maxHP);
-        setEndX(calcCurrLength(hp, maxHP));
+
+        currLength = (int) Math.round(calcCurrLength(hp, maxHP));
+        setLength(currLength);
+
     }
 
     private void updateColor(double hp, double maxHP) {
