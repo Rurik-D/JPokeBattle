@@ -20,15 +20,6 @@ public abstract class NodeManager {
         root = sceneRoot;
     }
 
-    /**
-     * Nasconde tutti i bottoni della scena.
-     *
-     * @see MenuController
-     */
-    protected void hideAllButtons(){
-        root.lookupAll(".button").forEach(node -> node.setVisible(false));
-    }
-
 
     /**
      *

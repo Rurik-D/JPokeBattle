@@ -3,14 +3,17 @@ package it.rd.jpokebattle.controller.arcade;
 import it.rd.jpokebattle.controller.NodeManager;
 import it.rd.jpokebattle.model.area.Area;
 import it.rd.jpokebattle.model.move.Move;
+import it.rd.jpokebattle.model.move.MoveCategory;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
-import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import it.rd.jpokebattle.model.profile.Profile;
 import it.rd.jpokebattle.util.file.ResourceLoader;
 import it.rd.jpokebattle.view.arcade.MoveCard;
 import it.rd.jpokebattle.view.arcade.PokemonCard;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
+import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
@@ -30,7 +33,7 @@ import static it.rd.jpokebattle.model.pokemon.Stats.*;
  * @see ArcadeController
  */
 public class ArcadeNodeManager extends NodeManager {
-    private static ArcadeNodeManager istance;
+    private static ArcadeNodeManager instance;
     private static ArcadeController ctrl;
     private static final String SEPARATOR = "\n———————————————————————————————\n\n";
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -43,11 +46,11 @@ public class ArcadeNodeManager extends NodeManager {
      *
      * @return L'unica istanza del node manager
      */
-    public static ArcadeNodeManager getIstance() {
-        if (istance == null)
-            istance = new ArcadeNodeManager();
+    public static ArcadeNodeManager getInstance() {
+        if (instance == null)
+            instance = new ArcadeNodeManager();
 
-        return istance;
+        return instance;
     }
 
 
@@ -111,21 +114,48 @@ public class ArcadeNodeManager extends NodeManager {
         ctrl.teamCardsPane.setVisible(false);
         ctrl.teamPaneBackBtn.setVisible(false);
         ctrl.pokemonInfoPane.setVisible(true);
-        ctrl.pokemonInfoPaneBackBtn.setVisible(true);
         updatePokemonInfoPane(pkmn);
 
         ArrayList<Move> moves = pkmn.getMoves();
         ArrayList<Integer> pps = pkmn.getPPs();
-        Move move;
         int size = Math.min(moves.size(), 4);
-        int pp;
 
         for (int i=0; i<size; i++) {
-            move = moves.get(i);
-            pp = pps.get(i);
-            ctrl.pokemonMovesVBox.getChildren().add(new MoveCard(move, pp));
+            Move move = moves.get(i);
+            int pp = pps.get(i);
+            MoveCard mc = new MoveCard(move, pp);
+            mc.setOnMouseClicked(e -> showMoveInfoPane(move, pp));
+            ctrl.pokemonMovesVBox.getChildren().add(mc);
         }
+    }
 
+    private void showMoveInfoPane(Move move, int pp) {
+        ctrl.pokemonInfoPane.setVisible(false);
+        ctrl.moveInfoPane.setVisible(true);
+        MoveCard mc = new MoveCard(move, pp);
+        mc.setCursor(Cursor.DEFAULT);
+        ctrl.moveInfoPane.getChildren().add(mc);
+        GridPane.setValignment(mc, VPos.BOTTOM);
+        GridPane.setHalignment(mc, HPos.RIGHT);
+
+        ctrl.moveDescriptionLbl.setText(move.getDescription());
+        ctrl.moveTypeLbl.setText(String.format("Tipo: %s", move.getType().getFormattedName()) );
+        ctrl.moveCatLbl.setText(String.format("Categoria: %s", MoveCategory.getFormattedName(move.getCategory())) );
+        ctrl.movePowLbl.setText(String.format("Potenza: %s", move.getPower()) );
+        ctrl.movePriorityLbl.setText(String.format("Priorità: %s", move.getPriority()));
+        ctrl.movePrecLbl.setText(String.format("Precisione: %d", (int) move.getPrecision()));
+        ctrl.movPPLbl.setText(String.format("PP: %s", move.getPP()));
+
+    }
+
+    /**
+     *
+     */
+    public void showPokemonDetails() {
+        ctrl.teamCardsPane.setVisible(false);
+        ctrl.teamPaneBackBtn.setVisible(false);
+        ctrl.moveInfoPane.setVisible(false);
+        ctrl.pokemonInfoPane.setVisible(true);
     }
 
     /**
@@ -149,7 +179,6 @@ public class ArcadeNodeManager extends NodeManager {
      */
     public void backToShowTeam() {
         ctrl.pokemonInfoPane.setVisible(false);
-        ctrl.pokemonInfoPaneBackBtn.setVisible(false);
         ctrl.teamCardsPane.setVisible(true);
         ctrl.teamPaneBackBtn.setVisible(true);
         ctrl.pokemonMovesVBox.getChildren().clear();

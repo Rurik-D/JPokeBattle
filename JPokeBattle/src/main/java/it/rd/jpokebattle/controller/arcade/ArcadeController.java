@@ -30,17 +30,19 @@ import java.io.IOException;
 public class ArcadeController extends Controller {
 
     private static SpawnZone currSpawnZone;
-    private ArcadeNodeManager nodeMan = ArcadeNodeManager.getIstance();
+    private ArcadeNodeManager nodeMan = ArcadeNodeManager.getInstance();
     private SoundManager soundMan = SoundManager.getInstance();
     private Breed selectedBreed;
 
 
     @FXML
-    protected Button area0Btn, area1Btn, area2Btn, teamPaneBackBtn, pokemonInfoPaneBackBtn;
+    protected Button area0Btn, area1Btn, area2Btn, teamPaneBackBtn;
     @FXML
     protected Label
             narratorLbl, profileNameLbl, clockLbl, locationLbl,
-            info_nameLbl, info_lvLbl, info_xpLbl, info_hpLbl, info_attLbl, info_difLbl, info_sAttLbl, info_sDifLbl, info_velLbl;
+            info_nameLbl, info_lvLbl, info_xpLbl, info_hpLbl, info_attLbl,
+            info_difLbl, info_sAttLbl, info_sDifLbl, info_velLbl, moveDescriptionLbl,
+            moveTypeLbl, moveCatLbl, movePowLbl, movePriorityLbl, movePrecLbl, movPPLbl;
     @FXML
     protected ImageView avatarImageView, selectPrevImgView, info_avatarImgView;
     @FXML
@@ -51,7 +53,8 @@ public class ArcadeController extends Controller {
             starterSelectionPane,
             pokeMartPane,
             selectionPreviewPane,
-            pokemonInfoPane;
+            pokemonInfoPane,
+            moveInfoPane;
 
     @FXML
     protected ScrollPane narratorScrlPane;
@@ -97,6 +100,15 @@ public class ArcadeController extends Controller {
         nodeMan.backToShowTeam();
     }
 
+    /**
+     *
+     */
+    @FXML
+    public void backToPokemonDetails(ActionEvent e) {
+        soundMan.buttonClick();
+        nodeMan.showPokemonDetails();
+        moveInfoPane.getChildren().removeLast();
+    }
 
     /**
      * TODO:DA IMPLEMENTARE
@@ -241,11 +253,11 @@ public class ArcadeController extends Controller {
                 nextArea(areaIndex);
                 break;
             case TALL_GRASS:
-                int foundValue = rand.nextInt(0, 2);
-                if (foundValue == 0)
-                    nextArea(areaIndex);
-                else
+                int foundValue = rand.nextInt(0, 100);
+                if (foundValue < 70)
                     specialArea();
+                else
+                    nextArea(areaIndex);
                 break;
             case HEAL:
                 getPlayer().healTeam();
@@ -260,8 +272,8 @@ public class ArcadeController extends Controller {
                 startBattle(e);
                 break;
             case TRY_ESCAPE:
-                int succesValue = rand.nextInt(0, 2);
-                if (succesValue == 0) {
+                int succesValue = rand.nextInt(0, 100);
+                if (succesValue < 70) {
                     nodeMan.updateNarratorLbl("Non sei riuscito a seminare il pokémon, ora sei costretto a combattere!");
                     area1Btn.setVisible(false);
                 } else {

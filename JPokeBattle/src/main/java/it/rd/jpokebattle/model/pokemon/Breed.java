@@ -39,6 +39,7 @@ public class Breed implements Serializable {
             case SPEC_DEF -> baseSpecDef;
             case SPEED -> baseSpeed;
             case XP -> baseXp;
+            default -> 100;
         };
     }
 
@@ -64,6 +65,14 @@ public class Breed implements Serializable {
 
     public Image getBackGif() {
         return ResourceLoader.loadImage(backGifSrcName);
+    }
+
+    public String getFirstTypeName() {
+        return firstTypeName;
+    }
+
+    public String getSecondTypeName() {
+        return secondTypeName;
     }
 
     public HashMap<String, Integer> getMovesPerLevel() {

@@ -58,7 +58,7 @@ public class Pokemon implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return name + " selvatico";
     }
 
     public int getLevel() {return currLevel;}
@@ -71,8 +71,13 @@ public class Pokemon implements Serializable {
         return statsMap.get(HP);
     }
 
+    /**
+     * Ritorna la statistica se è presente, altrimenti 100 (precisione ed elusione).
+     * @param stat
+     * @return
+     */
     public int getStat(Stats stat) {
-        return statsMap.get(stat);
+        return statsMap.getOrDefault(stat, 100);
     }
 
     public HashMap<String, Integer> getMoveSet() {
@@ -205,15 +210,6 @@ public class Pokemon implements Serializable {
         }
     }
 
-    public void restorePPs() {
-        int pp;
-        for (int i = 0; i < PPs.size(); i++) {
-            pp = moves.get(i).getPP();
-            PPs.set(i, pp);
-            ppProperties.get(i).set(pp);
-        }
-    }
-
     public void decresePP(int i) {
         int pp = PPs.get(i);
         PPs.set(i, pp - 1);
@@ -225,8 +221,13 @@ public class Pokemon implements Serializable {
         setCurrHP(Math.max(currHP - dmg, 0));
     }
 
+    public void takeDamage(double v) {
+        takeDamage((int) Math.round(v));
+    }
+
     public boolean isFainted() {
         return currHP <= 0;
     }
+
 
 }

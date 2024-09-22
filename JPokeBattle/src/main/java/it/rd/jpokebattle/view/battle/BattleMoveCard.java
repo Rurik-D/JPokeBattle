@@ -85,8 +85,8 @@ public class BattleMoveCard extends GridPane {
     }
 
     private void setTypeLbl() {
-        typeLbl.setText(pkmn.getMove(moveIndex).getType());
-        typeLbl.setStyle("-fx-font-size: 12px; -fx-text-fill: #D1D1D1;");
+        typeLbl.setText(pkmn.getMove(moveIndex).getType().getFormattedName());
+        typeLbl.setStyle("-fx-font-size: 11px; -fx-text-fill: #D1D1D1;");
         typeLbl.setTranslateX(15);
         typeLbl.setTranslateY(-6);
         typeLbl.setPadding(new Insets(0, 3, 0, 3));

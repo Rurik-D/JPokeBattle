@@ -1,26 +1,24 @@
-
-
 #narratorLbl {
-    -fx-control-inner-background: transparent; /* Rende lo strato interno trasparente */
-    -fx-background-color: transparent; /* Rende trasparente lo strato di sfondo esterno */
-    -fx-border-color: transparent;  /* Se vuoi mantenere un bordo nero */
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
     -fx-font-family: "Lucida Console";
     -fx-font-size: 17px;
 }
 
 #narratorScrlPane {
-    -fx-control-inner-background: transparent; /* Rende lo strato interno trasparente */
-    -fx-background-color: rgba(215, 215, 187, 0.7); /* Rende trasparente lo strato di sfondo esterno */
+    -fx-control-inner-background: transparent;
+    -fx-background-color: rgba(215, 215, 187, 0.7);
 
-    -fx-border-color: #916161;  /* Se vuoi mantenere un bordo nero */
-    -fx-border-width: 5px;      /* Larghezza del bordo */
-    -fx-border-radius: 5px;     /* Bordo con angoli arrotondati */
-    -fx-background-radius: 6px; /* Sfondo con angoli arrotondati */
+    -fx-border-color: #916161;
+    -fx-border-width: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 6px;
     -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.0, 0, 0);
 }
 
 #narratorScrlPane .viewport {
-    -fx-background-color: transparent; /* Rende trasparente l'area di visualizzazione interna */
+    -fx-background-color: transparent;
 }
 
 #narratorScrlPane .scroll-bar:vertical {
@@ -34,7 +32,7 @@
 }
 
 #narratorScrlPane .scroll-bar:vertical .thumb {
-    -fx-background-color: #A18181;  /* colore della scrollbar */
+    -fx-background-color: #A18181;
     -fx-background-radius: 10px;
 }
 
@@ -46,13 +44,13 @@
     -fx-font-size: 16;
     -fx-font-family: "Lucida Console";
 
-    -fx-control-inner-background: transparent; /* Rende lo strato interno trasparente */
-    -fx-background-color: rgba(215, 215, 187, 0.7); /* Rende trasparente lo strato di sfondo esterno */
+    -fx-control-inner-background: transparent;
+    -fx-background-color: rgba(215, 215, 187, 0.7);
 
-    -fx-border-color: #916161;  /* Se vuoi mantenere un bordo nero */
-    -fx-border-width: 3px;      /* Larghezza del bordo */
-    -fx-border-radius: 5px;     /* Bordo con angoli arrotondati */
-    -fx-background-radius: 6px; /* Sfondo con angoli arrotondati */
+    -fx-border-color: #916161;
+    -fx-border-width: 3px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 6px;
     -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.0, 0, 0);
 }
 
@@ -61,19 +59,21 @@
 #invenctoryPane .button,
 #starterSelectionPane .button,
 #pokeMartPane .button{
-   -fx-font-size: 17;
-   -fx-font-family: "Lucida Console";
+   -fx-font-size: 18;
+   -fx-font-family: "OCR A Extended";
    -fx-background-color: transparent;
    -fx-text-fill: #D1D1D1;
 
-   -fx-border-color: transparent;  /* Se vuoi mantenere un bordo nero */
-   -fx-border-width: 1px;      /* Larghezza del bordo */
+   -fx-border-color: transparent;
+   -fx-border-width: 1px;
 }
 
 #titleLbl{
-    -fx-font-family: "Lucida Console";
+    -fx-font-family: "OCR A Extended";
     -fx-text-fill: #C62828;
-    -fx-font-size: 60;
+    -fx-font-size: 65;
+    -fx-alignment: center;
+
 }
 
 
@@ -84,10 +84,10 @@
     -fx-text-fill: #C1C1C1;
     -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.5, 1, 1);
 }
+
 #profileCardBox .image-view {
     -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.0, 0, 0);
 }
-
 
 
 #teamCardsPane {
@@ -108,12 +108,35 @@
 }
 
 
-#pokemonInfoPane .label {
+#pokemonInfoPane .label,
+#moveInfoPane  .label {
     -fx-font-size: 25;
     -fx-font-family: "OCR A Extended";
-    -fx-text-fill: #C1C1C1;
-    -fx-font-weight: bold
+    -fx-text-fill: #C1C191;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.0, 0, 0);
 }
+
+
+#teamCardsPane,
+#pokemonInfoPane,
+#moveInfoPane {
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+
+    -fx-border-color: #916161;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
+}
+
+
+#moveInfoPane #moveDescriptionLbl,
+#moveInfoPane #moveInfoDataPane .label{
+   -fx-font-size: 20;
+   -fx-text-fill: #C1C1C1;
+
+}
+
 
 #pokemonInfoVBox {
     -fx-control-inner-background: transparent;
@@ -130,14 +153,4 @@
     -fx-text-fill: #C1C1C1;
     -fx-font-weight: bold
 }
-
-#pokemonInfoPane {
-    -fx-control-inner-background: transparent;
-    -fx-background-color: transparent;
-
-    -fx-border-color: #969696;
-    -fx-border-width: 2px;
-    -fx-border-radius: 30px;
-}
-
 

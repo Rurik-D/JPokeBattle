@@ -46,7 +46,7 @@ public class PokemonCard extends GridPane {
         this.setVisible(true);
 
         BackgroundFill bg = new BackgroundFill(
-                Color.rgb(40,40,40),
+                Color.rgb(30,30,30),
                 new CornerRadii(18, 1, 18, 1, false),
                 Insets.EMPTY
         );

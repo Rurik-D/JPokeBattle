@@ -70,5 +70,4 @@ public class Area {
     public static Area fromName(String areaName) {
         return AREA_MAP.getOrDefault(areaName, null);
     }
-
 }

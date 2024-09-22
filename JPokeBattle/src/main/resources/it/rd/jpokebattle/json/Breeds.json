@@ -17,12 +17,13 @@
         "baseSpeed": 45,
         "baseXp": 64,
         "movesPerLevel" : {
+            "protezione": 0,
             "azione": 0,
             "ruggito": 0,
             "frustata": 3,
             "crescita": 7,
-            "parassiseme": 9,
-            "foglielama": 12
+            "foglielama": 9,
+            "coleomorso": 12
         }
     },
     "ivysaur": {
@@ -47,8 +48,8 @@
             "ruggito": 0,
             "frustata": 0,
             "crescita": 0,
-            "parassiseme": 9,
-            "foglielama": 12,
+            "foglielama": 9,
+            "coleomorso": 12,
             "semebomba": 20,
             "riduttore": 25,
             "profumino": 30,
@@ -77,8 +78,8 @@
             "ruggito": 0,
             "frustata": 0,
             "crescita": 0,
-            "parassiseme": 9,
-            "foglielama": 12,
+            "foglielama": 9,
+            "coleomorso": 12,
             "semebomba": 20,
             "riduttore": 25,
             "profumino": 30,
@@ -196,8 +197,8 @@
             "colpocoda": 0,
             "pistolacqua": 3,
             "ritirata": 6,
-            "rapigiro": 9,
-            "morso": 12,
+            "morso": 9,
+            "visotruce": 12,
             "idropulsar": 15
         }
     },
@@ -223,13 +224,12 @@
             "colpocoda": 0,
             "pistolacqua": 3,
             "ritirata": 6,
-            "rapigiro": 9,
-            "morso": 12,
+            "morso": 9,
+            "visotruce": 12,
             "idropulsar": 15,
             "protezione": 20,
-            "pioggiadanza": 25,
-            "idrondata": 30,
-            "gettaguscio": 35
+            "idrondata": 25,
+            "gettaguscio": 30
         }
     },
     "blastoise": {
@@ -254,16 +254,15 @@
             "colpocoda": 0,
             "pistolacqua": 3,
             "ritirata": 6,
-            "rapigiro": 9,
-            "morso": 12,
+            "morso": 9,
+            "visotruce": 12,
             "idropulsar": 15,
             "protezione": 20,
-            "pioggiadanza": 25,
-            "idrondata": 30,
-            "gettaguscio": 35,
-            "ferroscudo": 40,
-            "idropompa": 44,
-            "ondaschianto": 51
+            "idrondata": 25,
+            "gettaguscio": 30,
+            "ferroscudo": 35,
+            "idropompa": 40,
+            "ondaschianto": 44
         }
     },
 
@@ -409,10 +408,10 @@
             "velenospina": 0,
             "coleomorso": 0,
             "rafforzatore": 0,
-            "concentrazione": 14,
-            "furia": 17,
+            "furia": 14,
+            "stridio": 17,
             "focalenergia": 20,
-            "garanzia": 26,
+            "ronzio": 26,
             "missilspillo": 32,
             "agilita": 38
         }
@@ -530,7 +529,7 @@
             "attacco_rapido" : 4,
             "focalenergia": 7,
             "morso": 10,
-            "concentrazione": 13,
+            "visotruce": 13,
             "riduttore": 16
         }
     },
@@ -557,11 +556,11 @@
             "attacco_rapido" : 4,
             "focalenergia": 7,
             "morso": 10,
-            "concentrazione": 13,
+            "visotruce": 13,
             "riduttore": 16,
-            "garanzia" : 19,
-            "sgranocchio": 24,
-            "sbigoattacco" : 29,
+            "sgranocchio": 19,
+            "sbigoattacco" : 24,
+            "sdoppiatore" : 29,
             "superzanna": 34
         }
     },

@@ -22,6 +22,23 @@
 }
 
 
+#teamCardsPane {
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+
+    -fx-border-color: #916161;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+}
+
+#teamCardsPane .label{
+    -fx-font-size: 16;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C1C1C1;
+    -fx-font-weight: bold
+}
+
 
 .scroll-pane {
      -fx-background-color: GRAY;
@@ -48,4 +65,12 @@
 .scroll-bar:vertical .thumb {
     -fx-background-color: DARKSLATEGRAY;
     -fx-background-radius: 10px;
+}
+
+
+.button{
+    -fx-font-size: 18;
+    -fx-font-family: "OCR A Extended";
+    -fx-background-color: transparent;
+    -fx-text-fill: #D1D1D1;
 }

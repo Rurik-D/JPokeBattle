@@ -261,6 +261,15 @@ public class MenuNodeManager extends NodeManager {
     }
 
     /**
+     * Nasconde tutti i bottoni della scena.
+     *
+     * @see MenuController
+     */
+    protected void hideAllButtons(){
+        root.lookupAll(".button").forEach(node -> node.setVisible(false));
+    }
+
+    /**
      * Nasconde e tutte le label della scena, escluso il titolo e le
      * label presenti nei pannelli.
      *

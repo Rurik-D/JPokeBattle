@@ -24,6 +24,7 @@ public abstract class Bar extends Line {
             setVisible(false);
     }
 
+
     public double getMaxLength() {
         return maxLength;
     }

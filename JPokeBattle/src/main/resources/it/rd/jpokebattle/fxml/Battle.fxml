@@ -219,7 +219,7 @@
             <Insets />
          </opaqueInsets>
       </ScrollPane>
-      <GridPane fx:id="pkmnPane" onMouseClicked="#pkmnTeam" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000E5;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">
+      <GridPane fx:id="pkmnPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000EF;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">
          <columnConstraints>
             <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
             <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
@@ -235,10 +235,18 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#backToGame" text="Indietro" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <FlowPane fx:id="teamCardsPane" hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="560.0" translateY="35.0" vgap="20.0" GridPane.columnSpan="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
+               <padding>
+                  <Insets left="30.0" top="30.0" />
+               </padding>
+            </FlowPane>
+            <Button mnemonicParsing="false" onAction="#backToGame" text="Indietro" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </GridPane>
-      <GridPane fx:id="bagPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000E5;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">
+      <GridPane fx:id="bagPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000EF;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">
          <columnConstraints>
             <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
             <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
@@ -254,7 +262,10 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#backToGame" text="Indietro" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#backToGame" text="Indietro" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </GridPane>
    </children>

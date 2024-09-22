@@ -54,6 +54,11 @@ public class OwnedPokemon extends Pokemon implements Serializable {
         return Math.max(nextLvXPTresh - xp, 0);
     }
 
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
     private void setXp() {
         updateXp(getXPTreshold(getLevel()));
         nextLvXPTresh = getXPTreshold(getLevel() + 1);
@@ -71,19 +76,15 @@ public class OwnedPokemon extends Pokemon implements Serializable {
         xp += addedXP;
 
         while (xp >= nextLvXPTresh) {
-            xpProperty.set(nextLvXPTresh);
             increaseLevel();
             setXpTresh();
             updateStats();
-            xpProperty.set(xp);
         }
 
         xpProperty.set(xp);
 
-
         if (canEvolve())
             breed = Breed.fromName(breed.getSuccBreedName());
-
     }
 
     private void updateXp(int addedXP) {
@@ -101,8 +102,19 @@ public class OwnedPokemon extends Pokemon implements Serializable {
         return getLevel() >= evoT && evoT != 0;
     }
 
+    public void restorePPs() {
+        int pp;
+        for (int i = 0; i < PPs.size(); i++) {
+            pp = moves.get(i).getPP();
+            PPs.set(i, pp);
+            ppProperties.get(i).set(pp);
+        }
+    }
+
+
     public void heal() {
         setCurrHP(getMaxHP());
+        restorePPs();
     }
 
     public void heal(int amount) {

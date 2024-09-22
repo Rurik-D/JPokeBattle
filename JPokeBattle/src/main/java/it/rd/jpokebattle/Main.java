@@ -20,6 +20,8 @@ import java.io.IOException;
  * Classe principale da cui parte l'esecuzione del codice.
  *
  * @author Emanuele D'Agostino
+ * @version 1.0
+ * @since 2024-08-12
  */
 public class Main extends Application {
     private FXMLLoader loader;

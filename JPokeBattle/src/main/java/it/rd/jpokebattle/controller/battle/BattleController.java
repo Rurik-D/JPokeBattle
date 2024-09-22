@@ -7,6 +7,7 @@ import it.rd.jpokebattle.controller.arcade.ArcadeController;
 import it.rd.jpokebattle.controller.arcade.ArcadeNodeManager;
 import it.rd.jpokebattle.model.move.Move;
 import it.rd.jpokebattle.model.move.MoveCategory;
+import it.rd.jpokebattle.model.move.MoveSpecialEffect;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import it.rd.jpokebattle.model.pokemon.Pokemon;
 import it.rd.jpokebattle.model.pokemon.Stats;
@@ -28,22 +29,30 @@ import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.HashMap;
+import java.util.Map;
 
-
+/**
+ * Classe controller per la gestione della scena di lotta.
+ */
 public class BattleController extends Controller {
-    private static BattleNodeManager nodeMan = BattleNodeManager.getIstance();
+    private static BattleNodeManager nodeMan = BattleNodeManager.getInstance();
     private SoundManager soundMan = SoundManager.getInstance();
     private PauseTransition delay_3_0 = new PauseTransition(Duration.seconds(3.0));
+    private PauseTransition delay2_3_0 = new PauseTransition(Duration.seconds(3.0));
     private PauseTransition delay_2_0 = new PauseTransition(Duration.seconds(2.0));
     private PauseTransition delay2_2_0 = new PauseTransition(Duration.seconds(2.0));
     private PauseTransition delay3_2_0 = new PauseTransition(Duration.seconds(2.0));
     private PauseTransition delay_1_5 = new PauseTransition(Duration.seconds(1.5));
-    private PauseTransition delay_1_0 = new PauseTransition(Duration.seconds(1.0));
-    private static OwnedPokemon playerPokemon;
-    private static Pokemon opponentPokemon;
-    private static Turn firstAttacker;
+    private HashMap<Pokemon, Map<Stats, Double>> stats = new HashMap<>();
+    private OwnedPokemon playerPokemon;
+    private Pokemon opponentPokemon;
+    private Turn nextAttacker;
     private boolean running;
+    private boolean firstAttackDone;
+    private boolean hesitation;
+    private boolean protect;
+
 
     @FXML
     protected GridPane rootPane, labelsPane, buttonsPane, bagPane, pkmnPane;
@@ -52,7 +61,7 @@ public class BattleController extends Controller {
     protected ScrollPane logScrollPane;
 
     @FXML
-    protected FlowPane movesPane;
+    protected FlowPane movesPane, teamCardsPane;
 
     @FXML
     protected HBox pokeCounterBox;
@@ -64,20 +73,27 @@ public class BattleController extends Controller {
     protected Label
             playerPkmnNameLbl, opponentPkmnNameLbl, logLbl;
 
-
-
-
+    /**
+     * Inizializza variabili chiave e nodi della scena.
+     *
+     * @param oppPkmn Pokemon avversario
+     */
     public void initializeWildBattleScene(Pokemon oppPkmn) {
         opponentPokemon = oppPkmn;
         playerPokemon = getPlayer().getFirstPokemon();
         running = true;
+        setStats();
 
         nodeMan.initializeNodes(playerPokemon, opponentPokemon);
         nodeMan.updatePokeCounterBox(getPlayer());
     }
 
-
-
+    /**
+     *  Metodo chiamato dal bottone 'fugaa'.
+     *  Termina l'incontro e riporta all'ultima area sicura nella modalita arcade.
+     *
+     * @param e Click del mouse
+     */
     @FXML
     public void escape(MouseEvent e) {
         soundMan.buttonClick();
@@ -85,30 +101,112 @@ public class BattleController extends Controller {
         switchToArcadeScene();
     }
 
+    /** TODO DA IMPLEMENTARE
+     *  Metodo chiamato dal bottone 'borsa'.
+     *  Apre la schermata dello zaino per la selezione degli item.
+     *
+     * @param e Click del mouse
+     */
     @FXML
     public void openBag(MouseEvent e) {
         soundMan.buttonClick();
         bagPane.setVisible(true);
     }
 
+    /** TODO DA IMPLEMENTARE
+     * Metodo chiamato dal bottone 'pkmn'.
+     * Apre la schermata di visualizzazione del team, dove è anche possibile scambiare
+     * il pokemon attualmente in lotta con un altro pokemon del team.
+     *
+     * @param e Click del mouse
+     */
     @FXML
     public void pkmnTeam(MouseEvent e) {
         soundMan.buttonClick();
-        pkmnPane.setVisible(true);
+        nodeMan.showPkmnPane(getPlayer());
     }
 
+    /**
+     *  Bottone che nasconde i pannelli di pkmn, borsa e impostazioni e riporta al gioco.
+     *
+     * @param e Click del mouse
+     */
     @FXML
     public void backToGame(ActionEvent e) {
         soundMan.buttonClick();
-        bagPane.setVisible(false);
-        pkmnPane.setVisible(false);
+        nodeMan.backToGame();
     }
 
+    /**
+     *  Durante la lotta i cambiamenti sulle statistiche sono temporanei e si resettano quando la
+     *  lotta finisce.
+     *  Per ottenere questo utilizziamo una mappa contente a sua volta due mappe, una per le statistiche
+     *  del giocatore e una per quelle del suo avversario.
+     *  In questo metodo andiamo a impostare le statistiche temporanee alle statistiche originali dei
+     *  due pokemon.
+     */
+    private void setStats() {
+        stats.put(playerPokemon, new HashMap<>());
+        stats.put(opponentPokemon, new HashMap<>());
+
+        for (Stats stat : Stats.values()) {
+            stats.get(playerPokemon).put(stat, (double) playerPokemon.getStat(stat));
+            stats.get(opponentPokemon).put(stat, (double) opponentPokemon.getStat(stat));
+        }
+    }
 
     /**
-     * MOTORE DELLA FOTTUTISSIMA CLASSE
+     * Dato un pokemon, tra i due in gioco, ed una statistica in particolare, ritorna il valore temporaneo
+     * (che ha valore unicamente nel corso della lotta corrente) associato a quella statistica per quel
+     * pokemon.
      *
-     * @param e
+     * @param pkmn Pokemon del quale si vuole selezionare una statistica
+     * @param stat Statistica da selezionare
+     * @return Statistica selezionata per il relativo pokemon
+     */
+    private double getStat(Pokemon pkmn, Stats stat) {
+        return stats.get(pkmn).get(stat);
+    }
+
+    /**
+     * Ogni statistica (al di fuori dalla salute) può subire una variazione positiva o negativa fino al 50%.
+     * Ogni variazione modifica la statistica positivamente o negativamente di val * (10% * stat_originaria).
+     *
+     * @param pkmn Pokemon del quale si vuole aggiornare una certa statistica
+     * @param stat Statistica da aggiornare
+     * @param val Valore da aggiungere (o rimuovare se negativo) in percentuale rispetto alla statistica originaria
+     */
+    private void updateStat(Pokemon pkmn, Stats stat, double val) {
+        double offset = 10 * val;
+
+        if (stat == Stats.HP)
+            pkmn.takeDamage((double) pkmn.getMaxHP() / offset);
+        else {
+            double statVal = getStat(pkmn, stat);
+            double valPercentage = statVal / offset;
+            double newVal = valPercentage > 0 ? Math.ceil(statVal + valPercentage) : Math.floor(statVal + valPercentage);
+
+            double min = Math.ceil((double) pkmn.getStat(stat) / 100 * 50);
+            double max = Math.ceil((double) pkmn.getStat(stat) / 100 * 150);
+
+            if (newVal < min)
+                nodeMan.updateLogLbl(String.format("%s di %s non può diminuire ancora", stat.getFormattedName(), pkmn.getName()));
+            else if (newVal > max)
+                nodeMan.updateLogLbl(String.format("%s di %s non può aumentare ancora", stat.getFormattedName(), pkmn.getName()));
+            else {
+                String changeText =  newVal < statVal ? "diminuisce" : "aumenta";
+                nodeMan.updateLogLbl(String.format("%s di %s %s", stat.getFormattedName(), pkmn.getName(), changeText));
+                stats.get(pkmn).put(stat, newVal);
+            }
+        }
+    }
+
+    /**
+     * Metodo chiamato a seguito del click del mouse su uno dei 4 Grid Pane delle mosse.
+     * Viene calcolato l'indice della mossa e, se la mossa ha PP > 0, viene calcolata
+     * randomicamente la mossa dell'avversario e inizia un nuovo round.
+     *
+     * @param e Click del mouse
      */
     public void move(MouseEvent e) {
         Node moveCard = (Node) e.getSource();
@@ -117,91 +215,295 @@ public class BattleController extends Controller {
 
         if (isMoveAvailable(playerPokemon, playerMoveIndex)) {
             soundMan.buttonClick();
+            resetSpecialEffects();
             opponentMoveIndex = getOpponentMoveIndex();
             battlePhase(playerMoveIndex, opponentMoveIndex);
-
         }
     }
 
+    /**
+     * La Battle Phase consta è scandita dai due attacchi (uno per pokemon) seguiti ogni volta
+     * dal controllo che il pokemon attaccato sia ancora vivo (e che quindi sia terminata quella
+     * lotta).
+     * Attacca prima il pokemon con la mossa avente priorità più alta, in caso di parità quello
+     * più veloce.
+     *
+     * @param plMvIndex Indice della mossa (tra le 4) selezionata dal giocatore
+     * @param oppMvIndex Indice della mossa (tra le 4) selezionata dall'avversario
+     */
     private void battlePhase(int plMvIndex, int oppMvIndex) {
         buttonsPane.setDisable(true);
-        updateFirstAttacker(plMvIndex, oppMvIndex);
+        updateNextAttacker(plMvIndex, oppMvIndex);
         boolean isSecondMove = false;
 
         for (int i=0; i<2; i++) {
-            switch (firstAttacker) {
+            switch (nextAttacker) {
                 case PLAYER:
                     makeMove(playerPokemon, opponentPokemon, plMvIndex, isSecondMove);
-                    firstAttacker = Turn.OPPONENT;
+                    nextAttacker = Turn.OPPONENT;
                     break;
                 case OPPONENT:
                     makeMove(opponentPokemon, playerPokemon, oppMvIndex, isSecondMove);
-                    firstAttacker = Turn.PLAYER;
+                    nextAttacker = Turn.PLAYER;
                     break;
             }
-
             isSecondMove = true;
         }
     }
 
-    private void makeMove(Pokemon pkmnAtt, Pokemon pkmnDef, int moveIndex, boolean isSecondMove) {
+
+    /**
+     * Metodo in cui viene messo in atto l'effetto della mossa.
+     * Tale metodo viene chiamato al più due volte per ogni Battle Phase (uno per pokemon in gioco).
+     * Ogni attacco viene prima annunciato nella log label e successivamente (dopo un ritardo di
+     * 1.5 secondi) viene calcolato prima se il colpo va a segno. In caso affermativo vengono
+     * calcolati e applicati i danni.
+     * Se il pokemon sta attaccando per secondo l'annuncio dell'attacco viene ritardato di ulteriori
+     * 3 secondi (per permettere all'animazione della barra della vita di concludersi);
+     * successivamente dopo aver effettuato l'attacco viene applicato un ulteriore ritardo di 3 secondi
+     * (stesso motivo).
+     *
+     * @param attPkmn Pokemon attaccante
+     * @param defPkmn Pokemon difensore
+     * @param moveIndex Indice della mossa (tra le 4) dell'attaccante
+     * @param isSecondMove Valore booleano che specifica se l'attaccante sta attaccando per secondo
+     */
+    private void makeMove(Pokemon attPkmn, Pokemon defPkmn, int moveIndex, boolean isSecondMove) {
         if (isSecondMove) {
-            delay_3_0.setOnFinished(e -> {
-                makeMove(pkmnAtt, pkmnDef, moveIndex, false);
-                delay_3_0.setOnFinished(ev -> {
-                    buttonsPane.setDisable(!running);
-                });
-                delay_3_0.play();
+            delay_3_0.setOnFinished(e1 -> {
+                if (!firstAttackDone)
+                    delay_3_0.play();
+                else {
+                    makeMove(attPkmn, defPkmn, moveIndex, false);
+
+                    delay2_3_0.setOnFinished(e2 -> {
+                        buttonsPane.setDisable(!running);
+                    });
+
+                    delay2_3_0.play();
+                }
             });
             delay_3_0.play();
         } else if (running){
-            Move move = pkmnAtt.getMove(moveIndex);
-            pkmnAtt.decresePP(moveIndex);
-            nodeMan.updateLogLbl(pkmnAtt.getName() + " usa " + move.getName());
+            Move move = attPkmn.getMove(moveIndex);
+            attPkmn.decresePP(moveIndex);
+            nodeMan.updateLogLbl(attPkmn.getName() + " usa " + move.getName());
 
-            delay_1_5.setOnFinished(ev -> {
-                pkmnDef.takeDamage(calcDamage(pkmnAtt, pkmnDef, move));
+            delay_1_5.setOnFinished(e -> {
+                if (striked(attPkmn, defPkmn, move)) { // controllo del colpo a segno
+                    if (!checkSpecialEffects(attPkmn, defPkmn)) {
+                        defPkmn.takeDamage(calcDamage(attPkmn, defPkmn, move)); // calcolo danno
+                        applyStatsVariations(attPkmn, defPkmn, move);
+                        applySpecialEffects(move);
+                    }
+                } else
+                    nodeMan.updateLogLbl(move.getName() + " non ha colpito il bersaglio");
+                firstAttackDone = true;
                 checkEndConditions();
             });
             delay_1_5.play();
         }
     }
 
+
+
+    /**
+     * In base alla formula per il 'calcolo del colpo a segno' ((prec. attaccante / elus. difensore) * prec. mossa)
+     * viene calcolato se il colpo va o meno a segno.
+     *
+     * @param attPkmn Pokemon attaccante
+     * @param defPkmn Pokemon difensore
+     * @param move Mossa eseguita dall'attaccante
+     * @return Valore booleano che specifica se la mossa ha colpito o meno
+     */
+    private boolean striked(Pokemon attPkmn, Pokemon defPkmn, Move move) {
+        double attPrec = getStat(attPkmn, Stats.PRECISION);
+        double defElus = getStat(defPkmn, Stats.ELUSION);
+        double movePrec = move.getPrecision();
+
+        double formula = (attPrec / defElus) * movePrec;
+
+        return rand.nextDouble(0, 105) < formula;
+    }
+
+    private boolean checkSpecialEffects(Pokemon attPkmn, Pokemon defPkmn) {
+        boolean blockAttack = false;
+
+        if (protect) {
+            nodeMan.updateLogLbl(defPkmn.getName() + " si protegge");
+            protect = false;
+            blockAttack = true;
+        } else if (hesitation) {
+            nodeMan.updateLogLbl(attPkmn.getName() + " tentenna");
+            hesitation = false;
+            blockAttack = true;
+        }
+
+        return blockAttack;
+    }
+
+    /**
+     * A seconda della tipologia della mossa (fisico, speciale o stato) viene calcolato il danno con la
+     * seguente formula ((2 * lv / 5 + 2) * pow * atk / def) / 50 + 2.
+     * Per mosse fisiche vengono considerati attacco e difesa normali.
+     * Per mosse speciali vengono considerti att speciale e dif speciale.
+     * Per mosse stato il danno è 0 a priori.
+     *
+     * @param attPkmn Pokemon attaccante
+     * @param defPkmn Pokemon difensore
+     * @param move Mossa eseguita dall'attaccante
+     * @return Danno calcolato in base alla formula
+     */
     private int calcDamage(Pokemon attPkmn, Pokemon defPkmn, Move move) {
-        int lv = attPkmn.getLevel();
-        int pow = move.getPower();
-        int atk = attPkmn.getStat(Stats.ATK);
-        int def = defPkmn.getStat(Stats.DEF);
-        int spAtk = attPkmn.getStat(Stats.SPEC_ATK);
-        int spDef = defPkmn.getStat(Stats.SPEC_DEF);
+        MoveCategory moveCat = MoveCategory.fromName(move.getCategory());
+        double effectiveness = getEffectiveness(defPkmn, move);
+        double lv = attPkmn.getLevel();
+        double pow = move.getPower();
+        int strikes = 1;
+        double damage;
+        double atk;
+        double def;
 
-        return switch(MoveCategory.fromName(move.getCategory())) {
-            case PHYSICAL -> ((2 * lv / 5 + 2) * pow * atk / def) / 50 + 2;
-            case SPECIAL ->  ((2 * lv / 5 + 2) * pow * spAtk / spDef) / 50 + 2;
-            case STATE -> 0;
-        };
+        if (moveCat == MoveCategory.PHYSICAL) {
+            atk = getStat(attPkmn, Stats.ATK);
+            def = getStat(defPkmn, Stats.DEF);
+        } else if (moveCat == MoveCategory.SPECIAL) {
+            atk = getStat(attPkmn, Stats.SPEC_ATK);
+            def = getStat(defPkmn, Stats.SPEC_DEF);
+        } else
+            return 0;
 
+        damage = ((2 * lv / 5 + 2) * pow * atk / def) / 50 + 2;
+
+        if (move.getSpecialEffect() == MoveSpecialEffect.MULTI_ATTACK) {
+            strikes = rand.nextInt(1, 6);
+            nodeMan.updateLogLbl(String.format("%s ha colpito %d volte", attPkmn.getName(), strikes) );
+        }
+
+        printEffectiveness(defPkmn.getName(), effectiveness);
+
+        return (int) Math.ceil(strikes * damage * effectiveness * rand.nextDouble(0.85, 1.0001) * critic(attPkmn, move));
+    }
+
+    /**
+     * Calcola il modificatore del colpo critico (intero [1, 2]) a partire dal modificatore della probabilità
+     * del colpo critico dell'utente. Più tale modificatore è basso più la probabilità del colpo critico è alta.
+     * La probabilità di critico di base è di circa il 10%. Se la mossa possiede l'effetto speciale "high_crit_prob"
+     * tala probabilità si incrementa di circa il 30%.
+     *
+     * @param attPkmn Pokemon che sta attaccando in questo turno
+     * @param move Mossa utilizzata dal pokemon attaccante
+     * @return Modificatore del critico (1 o 2)
+     */
+    private double critic(Pokemon attPkmn, Move move) {
+        double critMod = 1;
+        double pkmnCritProb = attPkmn.getStat(Stats.CRIT_PROB);
+        boolean highProb = move.getSpecialEffect() == MoveSpecialEffect.HIGH_CRIT_PROB;
+        int range = highProb ? 140 : 110;
+        int randVal = rand.nextInt(0, range);
+
+        if (randVal >= pkmnCritProb) {
+            critMod = 2;
+            nodeMan.updateLogLbl("Colpo critico!");
+        }
+
+        return critMod;
+    }
+
+    /**
+     * Vengono applicate le variazioni di stato che una mossa può causare (all'ultilizzatore o all'avversario).
+     * Ogni statistica non può variare in positivo o in negativo di più del 50% dal suo valore originale.
+     *
+     * @param attPkmn Pokemon attaccante
+     * @param defPkmn Pokemon difensore
+     * @param move Mossa eseguita dall'attaccante
+     */
+    private void applyStatsVariations(Pokemon attPkmn, Pokemon defPkmn, Move move) {
+        Map<String, Double> oppStatsVariations = move.getOpponentStats();
+        Map<String, Double> userStatsVariations = move.getUserStats();
+
+        for (String stat : oppStatsVariations.keySet()) {
+            double var = oppStatsVariations.get(stat);
+            updateStat(defPkmn, Stats.fromName(stat), var);
+        }
+
+        for (String stat : userStatsVariations.keySet()) {
+            double var = userStatsVariations.get(stat);
+            updateStat(attPkmn, Stats.fromName(stat), var);
+        }
+    }
+
+    private void applySpecialEffects(Move move) {
+        MoveSpecialEffect moveEffect = move.getSpecialEffect();
+        protect = (moveEffect == MoveSpecialEffect.PROTECT);
+
+        if (moveEffect == MoveSpecialEffect.HESITATION) {
+            hesitation = (rand.nextInt(0, 100) < 30);
+        }
     }
 
 
+    private void resetSpecialEffects() {
+        hesitation = false;
+        protect = false;
+    }
+
+
+    /**
+     * Viene calcolata e restituita l'efficacia della mossa utilizzata rispetto al tipo (o ai tipi) del
+     * pokemon che difende.
+     *
+     * @param pkmn Pokemon che subisce l'attacco
+     * @param move Mossa subita dal pokemon
+     */
+    private double getEffectiveness(Pokemon pkmn, Move move) {
+        String type1 = pkmn.getBreed().getFirstTypeName();
+        String type2 = pkmn.getBreed().getSecondTypeName();
+        return move.getType().getTypeEff(type1, type2);
+    }
+
+    /**
+     * Viene mostrata sulla log label l'efficacia della mossa utilizzata.
+     *
+     * @param defPkmnName Nome del pokemon che subisce l'attacco
+     * @param eff Grado di efficacia della mossa
+     */
+    private void printEffectiveness(String defPkmnName, double eff) {
+        if (eff >= 2)
+            nodeMan.updateLogLbl("È super efficace");
+        else if (eff >= 1.5)
+            nodeMan.updateLogLbl("È molto efficace");
+        else if (eff >= 1)
+            nodeMan.updateLogLbl(defPkmnName + " è stato colpito");
+        else if (eff > 0)
+            nodeMan.updateLogLbl("Non è molto efficace...");
+        else
+            nodeMan.updateLogLbl(defPkmnName + " è immune a questo tipo di attacchi!");
+    }
+
+    /**
+     * Controllate condizioni di vittoria e sconfitta. Eventualmente viene fermata l'esecuzione della
+     * Battle Phase e viene chiamato il relativo metodo per il ritorno alla modalità arcade per vittoria
+     * o per sconfitta.
+     */
     private void checkEndConditions() {
-        if (playerPokemon.getCurrHP() <= 0) {
+        if (playerPokemon.isFainted()) {
             running = false;
             defeat();
-        }
-
-        else if (opponentPokemon.getCurrHP() <= 0) {
+        } else if (opponentPokemon.isFainted()) {
             running = false;
             victory();
         }
-
     }
 
+    /**
+     * A seguito della sconfitta del giocatore, viene controllata l'eventuale presenza di pokemon nel
+     * team ancora in grado di lottare. In caso negativo si torna alla modalità arcade.
+     */
     private void defeat() {
         delay3_2_0.setOnFinished(e2 -> {
             endGame(false);
         });
-
 
         delay2_2_0.setOnFinished(e2 -> {
             if (checkOtherPokemonAvailable()) {
@@ -221,14 +523,32 @@ public class BattleController extends Controller {
         delay_2_0.play();
     }
 
+    /**
+     * A seguito della sconfitta del pokemon avversario vengono assegnati i punti XP ed EV.
+     * L'eventuale aumento di livello del pokemon viene segnalato con un messaggio nella
+     * log label.
+     */
     private void victory() {
+        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) / 7;
+        int oldLevel = playerPokemon.getLevel();
+        playerPokemon.increaseEV(opponentPokemon);
+
         delay3_2_0.setOnFinished(e2 -> {
             endGame(true);
         });
 
-        delay2_2_0.setOnFinished(e2 -> {
-            nodeMan.updateLogLbl(playerPokemon.getName() + " ha ottenuto " + 20 + "xp!");
+        delay_1_5.setOnFinished(e2 -> {
+            nodeMan.updateLogLbl(playerPokemon.getName() + " è salito al livello " + playerPokemon.getLevel() + "!");
             delay3_2_0.play();
+        });
+
+        delay2_2_0.setOnFinished(e2 -> {
+            playerPokemon.increaseXP(gainedXP);
+            nodeMan.updateLogLbl(playerPokemon.getName() + " ha ottenuto " + gainedXP + "xp!");
+            if (playerPokemon.getLevel() > oldLevel)
+                delay_1_5.play();
+            else
+                delay3_2_0.play();
         });
 
         delay_2_0.setOnFinished(e1 -> {
@@ -240,35 +560,53 @@ public class BattleController extends Controller {
         delay_2_0.play();
     }
 
+    /**
+     * Metodo di fine gioco. In base al valore del parametro victory, il giocatore viene riportato o all'ultima
+     * area visitata (vittoria) o a casa sua nel soggiorno, curando tutto il team (sconfitta).
+     *
+     * @param victory Valore booleano che specifica se si sta chiudendo con una vittoria o con una sconfitta
+     */
     private void endGame(boolean victory) {
         if (victory){
             getPlayer().goToLastSafeArea();
-            getPlayer().updateNarratorTextHistory("Complimenti, hai sconfitto " + opponentPokemon.getName() + " selvatico!");
+            getPlayer().updateNarratorTextHistory(String.format("Complimenti, hai sconfitto %s!", opponentPokemon.getName()));
         } else {
             getPlayer().setCurrentArea("home_living_room");
-            getPlayer().updateNarratorTextHistory("Sei stato sconfitto da " + opponentPokemon.getName() + " selvatico... sei tornato a casa per curare la tua scuadra.");
-
+            getPlayer().updateNarratorTextHistory(String.format("Sei stato sconfitto da %s... sei tornato a casa per curare la tua scuadra.", opponentPokemon.getName()));
+            getPlayer().healTeam();
         }
         switchToArcadeScene();
     }
 
+    /**
+     * Controllata l'eventuale presenza di altri pokemon (tra quelli nel team del giocatore) in grado di lottare.
+     *
+     * @return Valore booleano che specifica la presenza o meno di altri pokemon disponibili tra i pokemon posseduti dall'utente
+     */
     private boolean checkOtherPokemonAvailable() {
         for (Pokemon pkmn : getPlayer().getTeam()) {
-            if (pkmn.getCurrHP() > 0)
+            if (!pkmn.isFainted())
                 return true;
         }
         return false;
     }
 
     /**
+     * Controlla che la mossa sia disponibile all'utlizzo (PP > 0).
      *
-     * @param moveIndex
-     * @return Se la mossa è stata o meno eseguita
+     * @param pkmn Pokemon che sta selezionando la mossa
+     * @param moveIndex Indice della mossa che si vuole selezionare (tra le 4 del pokemon)
+     * @return Valore booleano che specidica se la mossa è disponibile (ha abbastanza PP)
      */
     private boolean isMoveAvailable(Pokemon pkmn, int moveIndex) {
         return (pkmn.getPP(moveIndex) > 0 && pkmn.getCurrHP() > 0);
     }
 
+    /** TODO DA GESTIRE CASO IN CUI TUTTI I PP DI TUTTE LE MOSSE SONO ESAURITI
+     * Selezionata randomicamente una tra le mosse disponibili dell'avversario e ritornato il suo indice.
+     *
+     * @return Genera randomicamente l'indice di una mossa tra le mosse disponibili
+     */
     private int getOpponentMoveIndex(){
         int mvSize = opponentPokemon.getMoves().size();
         int moveIndex;
@@ -279,37 +617,46 @@ public class BattleController extends Controller {
         return moveIndex;
     }
 
-
+    /**
+     * A partire dal nome identificativo del pannello della mossa (move_0, move_1, move_2, move_3),
+     * estrae l'indice della mossa relativa.
+     *
+     * @param name Nome identificativo del pannello della mossa selezionata
+     * @return Indice della mossa
+     */
     private int getMoveIndexFromPaneID(String name) {
-        // move_0, move_1, move_2, move_3
         return Integer.parseInt(name.substring(name.length()-1));
     }
     
     /**
-     * Ordine deciso prima in base alla priorità della mossa e in caso di parità in
+     * Aggiorna la variabile nextAttacker (contenente una delle due istanze di pokemon tra quello
+     * dell'utente e quello dell'avversario) con il primo pokemon che deve attaccare nel turno corrente.
+     * L'ordine viene deciso prima in base alla priorità della mossa e in caso di parità in
      * base alla velocità del pokemon. A velocità uguale attacca prima l'avversario.
      * 
-     * @param plMvIndex
-     * @param oppMvIndex
+     * @param plMvIndex Indice della mossa (tra le 4) selezionata dal giocatore
+     * @param oppMvIndex Indice della mossa (tra le 4) selezionata dall'avversario
      */
-    private void updateFirstAttacker(int plMvIndex, int oppMvIndex) {
+    private void updateNextAttacker(int plMvIndex, int oppMvIndex) {
         int playerPriority = playerPokemon.getMove(plMvIndex).getPriority();
         int opponentPriority = opponentPokemon.getMove(oppMvIndex).getPriority();
         
         if (playerPriority == opponentPriority) {
-            if (playerPokemon.getStat(Stats.SPEED) > opponentPokemon.getStat(Stats.SPEED)) {
-                firstAttacker = Turn.PLAYER;
+            if (getStat(playerPokemon, Stats.SPEED) > getStat(opponentPokemon, Stats.SPEED)) {
+                nextAttacker = Turn.PLAYER;
             } else {
-                firstAttacker = Turn.OPPONENT;
+                nextAttacker = Turn.OPPONENT;
             }
         } else if (playerPriority > opponentPriority) {
-            firstAttacker = Turn.PLAYER;
+            nextAttacker = Turn.PLAYER;
         } else {
-            firstAttacker = Turn.OPPONENT;
+            nextAttacker = Turn.OPPONENT;
         }
     }
 
-
+    /**
+     * Passa alla scena di arcade.
+     */
     private void switchToArcadeScene() {
         try {
             FXMLLoader loader = SceneManager.switchScene(rootPane, "fxml.arcade", "css.arcade");
@@ -321,6 +668,4 @@ public class BattleController extends Controller {
             throw new RuntimeException(ex);
         }
     }
-
-
 }

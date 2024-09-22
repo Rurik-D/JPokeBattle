@@ -1,7 +1,6 @@
 package it.rd.jpokebattle.controller;
 
 import it.rd.jpokebattle.model.profile.Profile;
-
 import java.util.Random;
 
 public class Controller {

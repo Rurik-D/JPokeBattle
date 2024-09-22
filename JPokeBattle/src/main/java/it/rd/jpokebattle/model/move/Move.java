@@ -1,5 +1,6 @@
 package it.rd.jpokebattle.model.move;
 
+import it.rd.jpokebattle.model.pokemon.Type;
 import it.rd.jpokebattle.util.file.DataMapLoader;
 
 import java.io.Serializable;
@@ -14,8 +15,7 @@ public class Move implements Serializable {
     private String category;
     private HashMap<String, Double> opponentStats;
     private HashMap<String, Double> userStats;
-    private List<String> sideEffects;
-    private List<String> nextRoundSideEffects;
+    private String specialEffect;
     private int power;
     private int priority;
     private double precision;
@@ -30,8 +30,8 @@ public class Move implements Serializable {
         return description;
     }
 
-    public String getType() {
-        return type;
+    public Type getType() {
+        return Type.fromName(type);
     }
 
     public String getCategory() {
@@ -46,13 +46,10 @@ public class Move implements Serializable {
         return userStats;
     }
 
-    public List<String> getSideEffects() {
-        return sideEffects;
+    public MoveSpecialEffect getSpecialEffect() {
+        return MoveSpecialEffect.fromName(specialEffect);
     }
 
-    public List<String> getNextRoundSideEffects() {
-        return nextRoundSideEffects;
-    }
 
     public int getPower() {
         return power;

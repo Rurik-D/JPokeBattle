@@ -35,14 +35,23 @@ public class PokemonManager implements SerializableHandler {
     }
 
     /**
+     *
+     * @param id
+     * @return
+     */
+    public static OwnedPokemon loadPokemonFromID(int id) {
+        OwnedPokemon pkmn =  pkmnMap.get(id);
+        pkmn.refreshProperties();
+        return pkmn;
+    }
+
+    /**
      * Restituisce dalla mappa (se presente) un oggetto OwnedPokemon a partire dal suo ID.
      *
      * @param id  Codice intero identificativo del pokemon che si vuole caricare
      */
     public static OwnedPokemon getPokemonFromID(int id) {
-        OwnedPokemon pkmn =  pkmnMap.get(id);
-        pkmn.refreshProperties();
-        return pkmn;
+        return pkmnMap.get(id);
     }
 
     /**
@@ -126,7 +135,7 @@ public class PokemonManager implements SerializableHandler {
     public static void updatePkmnMap() {
         pkmnMap = SerManager.loadSER(SER_SRC_NAME);
         if (pkmnMap == null)
-            pkmnMap = new HashMap<Integer, OwnedPokemon>();
+            pkmnMap = new HashMap<>();
     }
 
     /**

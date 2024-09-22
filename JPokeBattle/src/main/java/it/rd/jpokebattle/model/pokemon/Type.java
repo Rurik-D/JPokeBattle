@@ -6,15 +6,20 @@ import javafx.scene.paint.Color;
 import java.util.HashMap;
 
 public enum Type {
-    FIRE("fire"), WATER("water"), GRASS("grass"), NORMAL("normal"), ELECTRIC("electric"), PSYCHIC("psychic"),
-    ICE("ice"), DRAGON("dragon"), GROUND("ground"), FIGHTING("fighting"), FLYING("flying"), POISON("poison"),
-    BUG("bug"), GHOST("ghost"), ROCK("rock"), STEEL("steel"), DARK("dark");
+    FIRE("fire", "Fuoco"), WATER("water", "Acqua"), GRASS("grass", "Erba"),
+    NORMAL("normal", "Normale"), ELECTRIC("electric", "Elettro"), PSYCHIC("psychic", "Psico"),
+    ICE("ice", "Ghiaccio"), DRAGON("dragon", "Drago"), GROUND("ground", "Terra"),
+    FIGHTING("fighting", "Lotta"), FLYING("flying", "Volante"), POISON("poison", "Veleno"),
+    BUG("bug", "Coleottero"), GHOST("ghost", "Spettro"), ROCK("rock", "Roccia"),
+    STEEL("steel", "Acciaio"), DARK("dark", "Buio");
 
     private final String NAME_ID;
+    private final String name;
     private final HashMap<String, String> effMap;     // mappa delle efficacia
 
-    private Type(String name) {
-        this.NAME_ID = name;
+    private Type(String nameID, String name) {
+        this.NAME_ID = nameID;
+        this.name = name;
         this.effMap = DataMapLoader.getTypeEffMap().get(NAME_ID);
     }
 
@@ -30,7 +35,15 @@ public enum Type {
      *
      * @return
      */
-    public Double getTypeEff(String typeID) {
+    public String getFormattedName() {
+        return name;
+    }
+
+    /**
+     *
+     * @return
+     */
+    private Double getTypeEff(String typeID) {
         return switch (effMap.getOrDefault(typeID, "")) {
             case "immune" -> 0.0;
             case "not_eff" -> 0.5;
@@ -51,8 +64,8 @@ public enum Type {
      *
      * @return
      */
-    public static Color getLabelBorderColor(String name) {
-        return switch (name) {
+    public static Color getLabelBorderColor(Type type) {
+        return switch (type.getNameID()) {
             case "fire" -> Color.rgb(219, 35, 36);
             case "water" -> Color.rgb(39, 122, 236);
             case "grass" -> Color.rgb(59, 153, 38);

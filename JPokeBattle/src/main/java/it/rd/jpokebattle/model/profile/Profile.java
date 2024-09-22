@@ -2,7 +2,6 @@ package it.rd.jpokebattle.model.profile;
 
 import it.rd.jpokebattle.model.area.Area;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
-import it.rd.jpokebattle.model.pokemon.Pokemon;
 import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import javafx.scene.image.Image;
 
@@ -60,8 +59,6 @@ public class Profile implements Serializable {
             int pkmnID = ownedPkmnIDs.get(i);
             team.add(PokemonManager.getPokemonFromID(pkmnID));
         }
-
-
         return team;
     }
 
@@ -74,7 +71,7 @@ public class Profile implements Serializable {
 
     public OwnedPokemon getFirstPokemon() {
         int id = ownedPkmnIDs.getFirst();
-        return PokemonManager.getPokemonFromID(id);
+        return PokemonManager.loadPokemonFromID(id);
     }
 
     public String getNarratorTextHistory() {
@@ -132,7 +129,7 @@ public class Profile implements Serializable {
 
     public void healTeam() {
         for (int id : ownedPkmnIDs) {
-            PokemonManager.getPokemonFromID(id).heal();
+            PokemonManager.loadPokemonFromID(id).heal();
         }
     }
 
