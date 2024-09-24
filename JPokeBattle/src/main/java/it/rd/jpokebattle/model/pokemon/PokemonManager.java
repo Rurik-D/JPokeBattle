@@ -163,4 +163,15 @@ public class PokemonManager implements SerializableHandler {
         if (save)
             SerializableHandler.delete(p.getID(), SER_SRC_NAME);
     }
+
+    /**
+     * Dato un pokemon ritorna la mossa imparata nel livello corrente (se esiste)
+     *
+     * @param pkmn Pokemon posseduto da cui estrarre razza e livello
+     * @return Mossa imparata al livello corrente
+     */
+    public static Move getNewMove(OwnedPokemon pkmn) {
+        int lv = pkmn.getLevel();
+        return pkmn.getBreed().getMoveFromLevel(lv);
+    }
 }

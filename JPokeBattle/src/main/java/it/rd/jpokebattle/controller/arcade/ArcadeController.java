@@ -27,7 +27,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class ArcadeController extends Controller {
+public final class ArcadeController extends Controller {
 
     private static SpawnZone currSpawnZone;
     private ArcadeNodeManager nodeMan = ArcadeNodeManager.getInstance();

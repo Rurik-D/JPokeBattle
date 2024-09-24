@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class MenuController extends Controller {
+public final class MenuController extends Controller {
     private MenuNodeManager nodeMan = MenuNodeManager.getInstance();
     private SoundManager soundMan = SoundManager.getInstance();
     private AlertMessage alert = new AlertMessage();

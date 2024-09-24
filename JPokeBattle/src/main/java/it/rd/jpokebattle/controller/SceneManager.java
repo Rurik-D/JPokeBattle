@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SceneManager {
+public final class SceneManager {
     /**
      * Questo metodo consente il passaggio di una scena ad un'altra.
      *

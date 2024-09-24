@@ -14,14 +14,16 @@ import javafx.animation.PauseTransition;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-public class BattleNodeManager extends NodeManager {
+public final class BattleNodeManager extends NodeManager {
     private static BattleNodeManager instance;
     private static BattleController ctrl;
     private final String SEPARATOR = " ————————————————————————————————————\n\n";
@@ -104,6 +106,16 @@ public class BattleNodeManager extends NodeManager {
             PokemonCard card = new PokemonCard(pkmn);
 //            card.setOnMouseClicked(e -> ctrl.pokemonDetails(e, pkmn));
             ctrl.teamCardsPane.getChildren().add(card);
+        }
+    }
+
+
+    protected void showNewMovePane(OwnedPokemon pkmn, Move newMove) {
+        ctrl.newMovePane.setVisible(true);
+        insertMovesIntoPane(pkmn, ctrl.updateMovesPane, "oldMove_");
+
+        for (Node node : ctrl.movesPane.getChildren()) {
+            node.setOnMouseClicked(e -> System.out.println(((Node) e.getSource()).getId()));//TODO DA IMPLEMENTARE
         }
     }
 
@@ -215,19 +227,26 @@ public class BattleNodeManager extends NodeManager {
      * @see BattleController
      */
     private void setMovesPane(OwnedPokemon pkmn) {
+        insertMovesIntoPane(pkmn, ctrl.movesPane, "move_");
+
+        for (Node node : ctrl.movesPane.getChildren()) {
+            node.setOnMouseClicked(e -> ctrl.move(e));
+        }
+    }
+
+    private void insertMovesIntoPane(OwnedPokemon pkmn, FlowPane movesPane, String movesIdPrefix) {
         ArrayList<Move> moves = pkmn.getMoves();
-        ArrayList<Integer> PPs = pkmn.getPPs();
         int size = moves.size();
 
         for (int i=0; i<size; i++) {
             BattleMoveCard moveCard = new BattleMoveCard(pkmn, i);
             moveCard.setUserData(moves.get(i));
-            moveCard.setId("move_" + i);
-            moveCard.setOnMouseClicked(e -> ctrl.move(e));
-            ctrl.movesPane.getChildren().add(moveCard);
+            moveCard.setId(movesIdPrefix + i);
+            movesPane.getChildren().add(moveCard);
         }
-
     }
+
+
 
     /**
      * Avvia l'animazione di apertura della scena.
@@ -242,4 +261,5 @@ public class BattleNodeManager extends NodeManager {
         });
         pause.play();
     }
+
 }

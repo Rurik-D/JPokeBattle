@@ -79,10 +79,17 @@ public class Breed implements Serializable {
         return movesPerLevel;
     }
 
-    public String getMoveFromLevel(int level) {
+    /**
+     * Dato il livello di un pokemon di una certa razza, viene restituita, se esiste la
+     * mossa imparata a quel livello. Restituisce null se tale mossa non esiste
+     *
+     * @param level Livello del pokemon
+     * @return Nome della mossa
+     */
+    public Move getMoveFromLevel(int level) {
         for (String move : movesPerLevel.keySet()) {
             if (movesPerLevel.get(move) == level)
-                return move;
+                return Move.fromName(move);
         }
         return null;
     }

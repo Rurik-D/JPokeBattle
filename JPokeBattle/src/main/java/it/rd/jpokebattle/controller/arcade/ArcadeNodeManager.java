@@ -32,7 +32,7 @@ import static it.rd.jpokebattle.model.pokemon.Stats.*;
  *
  * @see ArcadeController
  */
-public class ArcadeNodeManager extends NodeManager {
+public final class ArcadeNodeManager extends NodeManager {
     private static ArcadeNodeManager instance;
     private static ArcadeController ctrl;
     private static final String SEPARATOR = "\n———————————————————————————————\n\n";

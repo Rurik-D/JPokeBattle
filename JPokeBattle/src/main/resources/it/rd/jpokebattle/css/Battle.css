@@ -39,6 +39,13 @@
     -fx-font-weight: bold
 }
 
+#keepOldMovesBtnPane .label{
+    -fx-font-size: 16;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C1C1FF;
+    -fx-font-weight: bold
+}
+
 
 .scroll-pane {
      -fx-background-color: GRAY;

@@ -10,6 +10,7 @@ import it.rd.jpokebattle.model.move.MoveCategory;
 import it.rd.jpokebattle.model.move.MoveSpecialEffect;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import it.rd.jpokebattle.model.pokemon.Pokemon;
+import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import it.rd.jpokebattle.model.pokemon.Stats;
 import it.rd.jpokebattle.util.audio.SoundManager;
 import javafx.animation.KeyFrame;
@@ -35,7 +36,7 @@ import java.util.Map;
 /**
  * Classe controller per la gestione della scena di lotta.
  */
-public class BattleController extends Controller {
+public final class BattleController extends Controller {
     private static BattleNodeManager nodeMan = BattleNodeManager.getInstance();
     private SoundManager soundMan = SoundManager.getInstance();
     private PauseTransition delay_3_0 = new PauseTransition(Duration.seconds(3.0));
@@ -43,6 +44,7 @@ public class BattleController extends Controller {
     private PauseTransition delay_2_0 = new PauseTransition(Duration.seconds(2.0));
     private PauseTransition delay2_2_0 = new PauseTransition(Duration.seconds(2.0));
     private PauseTransition delay3_2_0 = new PauseTransition(Duration.seconds(2.0));
+    private PauseTransition delay4_2_0 = new PauseTransition(Duration.seconds(2.0));
     private PauseTransition delay_1_5 = new PauseTransition(Duration.seconds(1.5));
     private HashMap<Pokemon, Map<Stats, Double>> stats = new HashMap<>();
     private OwnedPokemon playerPokemon;
@@ -52,16 +54,18 @@ public class BattleController extends Controller {
     private boolean firstAttackDone;
     private boolean hesitation;
     private boolean protect;
+    private Move newMove;
 
 
     @FXML
-    protected GridPane rootPane, labelsPane, buttonsPane, bagPane, pkmnPane;
+    protected GridPane
+            rootPane, labelsPane, buttonsPane, bagPane, pkmnPane, newMovePane;
 
     @FXML
     protected ScrollPane logScrollPane;
 
     @FXML
-    protected FlowPane movesPane, teamCardsPane;
+    protected FlowPane movesPane, teamCardsPane, updateMovesPane;
 
     @FXML
     protected HBox pokeCounterBox;
@@ -124,6 +128,12 @@ public class BattleController extends Controller {
     public void pkmnTeam(MouseEvent e) {
         soundMan.buttonClick();
         nodeMan.showPkmnPane(getPlayer());
+    }
+
+    public void keepOldMoves(MouseEvent e) {
+        soundMan.buttonClick();
+        nodeMan.backToGame();
+        endGame(true);
     }
 
     /**
@@ -529,20 +539,29 @@ public class BattleController extends Controller {
      * log label.
      */
     private void victory() {
-        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) / 7;
+        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) / 2;
         int oldLevel = playerPokemon.getLevel();
         playerPokemon.increaseEV(opponentPokemon);
 
-        delay3_2_0.setOnFinished(e2 -> {
+        delay4_2_0.setOnFinished(e -> {
+            nodeMan.showNewMovePane(playerPokemon, newMove);
+        });
+
+        delay3_2_0.setOnFinished(e -> {
             endGame(true);
         });
 
-        delay_1_5.setOnFinished(e2 -> {
+        delay_1_5.setOnFinished(e -> {
             nodeMan.updateLogLbl(playerPokemon.getName() + " è salito al livello " + playerPokemon.getLevel() + "!");
-            delay3_2_0.play();
+
+            newMove = PokemonManager.getNewMove(playerPokemon);
+            if (newMove != null)
+                delay4_2_0.play();
+            else
+                delay3_2_0.play();
         });
 
-        delay2_2_0.setOnFinished(e2 -> {
+        delay2_2_0.setOnFinished(e -> {
             playerPokemon.increaseXP(gainedXP);
             nodeMan.updateLogLbl(playerPokemon.getName() + " ha ottenuto " + gainedXP + "xp!");
             if (playerPokemon.getLevel() > oldLevel)
@@ -551,7 +570,7 @@ public class BattleController extends Controller {
                 delay3_2_0.play();
         });
 
-        delay_2_0.setOnFinished(e1 -> {
+        delay_2_0.setOnFinished(e -> {
             nodeMan.updateLogLbl(opponentPokemon.getName() + " è esausto!");
             opponentPkmnGif.setVisible(false);
             delay2_2_0.play();
@@ -627,20 +646,20 @@ public class BattleController extends Controller {
     private int getMoveIndexFromPaneID(String name) {
         return Integer.parseInt(name.substring(name.length()-1));
     }
-    
+
     /**
      * Aggiorna la variabile nextAttacker (contenente una delle due istanze di pokemon tra quello
      * dell'utente e quello dell'avversario) con il primo pokemon che deve attaccare nel turno corrente.
      * L'ordine viene deciso prima in base alla priorità della mossa e in caso di parità in
      * base alla velocità del pokemon. A velocità uguale attacca prima l'avversario.
-     * 
+     *
      * @param plMvIndex Indice della mossa (tra le 4) selezionata dal giocatore
      * @param oppMvIndex Indice della mossa (tra le 4) selezionata dall'avversario
      */
     private void updateNextAttacker(int plMvIndex, int oppMvIndex) {
         int playerPriority = playerPokemon.getMove(plMvIndex).getPriority();
         int opponentPriority = opponentPokemon.getMove(oppMvIndex).getPriority();
-        
+
         if (playerPriority == opponentPriority) {
             if (getStat(playerPokemon, Stats.SPEED) > getStat(opponentPokemon, Stats.SPEED)) {
                 nextAttacker = Turn.PLAYER;

@@ -12,7 +12,7 @@ import it.rd.jpokebattle.util.file.ResourceLoader;
  *
  * @see MenuController
  */
-public class MenuNodeManager extends NodeManager {
+public final class MenuNodeManager extends NodeManager {
     private static MenuNodeManager instance;
     private static MenuController ctrl;
 
