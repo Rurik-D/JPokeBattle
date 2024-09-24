@@ -3,7 +3,6 @@ module it.rd.jpokebattle {
     requires transitive javafx.fxml;
     requires transitive javafx.web;
     requires transitive javafx.graphics;
-
     requires transitive org.controlsfx.controls;
     requires transitive com.dlsc.formsfx;
     requires transitive net.synedra.validatorfx;
@@ -14,8 +13,8 @@ module it.rd.jpokebattle {
     requires transitive javafx.media;
     requires transitive com.google.gson;
     requires transitive java.desktop;
-    requires annotations;
-    requires java.sql;
+    requires transitive annotations;
+    requires transitive java.sql;
 
     exports it.rd.jpokebattle;
     opens it.rd.jpokebattle;
@@ -52,12 +51,16 @@ module it.rd.jpokebattle {
 
     exports it.rd.jpokebattle.model.area;
     opens it.rd.jpokebattle.model.area;
+
     exports it.rd.jpokebattle.view.menu;
     opens it.rd.jpokebattle.view.menu;
+
     exports it.rd.jpokebattle.view.arcade;
     opens it.rd.jpokebattle.view.arcade;
+
     exports it.rd.jpokebattle.model.move;
     opens it.rd.jpokebattle.model.move;
+
     exports it.rd.jpokebattle.view.bar;
     opens it.rd.jpokebattle.view.bar;
 }
