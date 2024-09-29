@@ -93,7 +93,7 @@ public final class BattleController extends Controller {
     }
 
     /**
-     *  Metodo chiamato dal bottone 'fugaa'.
+     *  Metodo chiamato dal bottone 'fuga'.
      *  Termina l'incontro e riporta all'ultima area sicura nella modalita arcade.
      *
      * @param e Click del mouse
@@ -117,7 +117,7 @@ public final class BattleController extends Controller {
         bagPane.setVisible(true);
     }
 
-    /** TODO DA IMPLEMENTARE
+    /**
      * Metodo chiamato dal bottone 'pkmn'.
      * Apre la schermata di visualizzazione del team, dove è anche possibile scambiare
      * il pokemon attualmente in lotta con un altro pokemon del team.
@@ -130,6 +130,16 @@ public final class BattleController extends Controller {
         nodeMan.showPkmnPane(getPlayer());
     }
 
+    /**
+     * Metodo chiamato dal bottone "Mantieni le vecchie mosse" all'interno del pannello di
+     * aggiunta di una nuova mossa appresa. La mossa non viene appresa e si ritorna alla scena
+     * di arcade. Quest'ultimo passaggio viene fatto dando per scontata la vittoria del pokemon,
+     * in quanto per apprendere una nuova mossa deve salire di livello e ciò è possibile esclusivamente
+     * vincendo la lotta.
+     *
+     * @param e
+     */
+    @FXML
     public void keepOldMoves(MouseEvent e) {
         soundMan.buttonClick();
         nodeMan.backToGame();
@@ -137,7 +147,7 @@ public final class BattleController extends Controller {
     }
 
     /**
-     *  Bottone che nasconde i pannelli di pkmn, borsa e impostazioni e riporta al gioco.
+     * Bottone che nasconde i pannelli in sovrimpressione e riporta alla schermata di lotta.
      *
      * @param e Click del mouse
      */
@@ -261,7 +271,6 @@ public final class BattleController extends Controller {
         }
     }
 
-
     /**
      * Metodo in cui viene messo in atto l'effetto della mossa.
      * Tale metodo viene chiamato al più due volte per ogni Battle Phase (uno per pokemon in gioco).
@@ -315,8 +324,6 @@ public final class BattleController extends Controller {
         }
     }
 
-
-
     /**
      * In base alla formula per il 'calcolo del colpo a segno' ((prec. attaccante / elus. difensore) * prec. mossa)
      * viene calcolato se il colpo va o meno a segno.
@@ -336,6 +343,16 @@ public final class BattleController extends Controller {
         return rand.nextDouble(0, 105) < formula;
     }
 
+    /**
+     * Controlla se è attivo un effetto speciale che potrebbe andare a bloccare l'attacco corrente.
+     * Tale effetto può essere tentennamento (l'attacante fallisce) o protezione (il difensore si
+     * protegge).
+     * Viene ritornato un valore booleano asserito nel caso in cui l'attacco debba essere interrotto.
+     *
+     * @param attPkmn Pokemon in attacco
+     * @param defPkmn Pokemon in difesa
+     * @return Valore booleano che specifica se l'attacco debba o meno essere interrotto
+     */
     private boolean checkSpecialEffects(Pokemon attPkmn, Pokemon defPkmn) {
         boolean blockAttack = false;
 
@@ -443,6 +460,15 @@ public final class BattleController extends Controller {
         }
     }
 
+    /**
+     * Vengono applicati gli (eventuali) effetti speciali della mossa dell'attaccante.
+     * Se tale effetto è protezione, il prossimo attacco nel turno del pokemon avversario
+     * (se avviene) verrà bloccato.
+     * Se tale effetto è tentennamento, il prossimo attacco nel turno del pokemon avversario
+     * (se avviene) potrebbe fallire.
+     *
+     * @param move
+     */
     private void applySpecialEffects(Move move) {
         MoveSpecialEffect moveEffect = move.getSpecialEffect();
         protect = (moveEffect == MoveSpecialEffect.PROTECT);
@@ -452,12 +478,14 @@ public final class BattleController extends Controller {
         }
     }
 
-
+    /**
+     * Gli efetti speciali delle mosse eventualmente ancora attivi vengono resettati.
+     * (metodo chiamato ad ogni inizio turno)
+     */
     private void resetSpecialEffects() {
         hesitation = false;
         protect = false;
     }
-
 
     /**
      * Viene calcolata e restituita l'efficacia della mossa utilizzata rispetto al tipo (o ai tipi) del
@@ -539,7 +567,7 @@ public final class BattleController extends Controller {
      * log label.
      */
     private void victory() {
-        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) / 2;
+        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel());
         int oldLevel = playerPokemon.getLevel();
         playerPokemon.increaseEV(opponentPokemon);
 

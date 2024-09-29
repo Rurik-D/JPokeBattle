@@ -14,9 +14,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+/**
+ * Classe che definisce le move card per la lotta.
+ * Tali card sono dei grid pane che mostrano tutte le informazioni della mossa.
+ */
 public class BattleMoveCard extends GridPane {
-    private Pokemon pkmn;
-    private int moveIndex;
+    private Move move;
     private Color borderColor;
     private Label nameLbl = new Label();
     private Label ppLbl = new Label();
@@ -25,9 +28,28 @@ public class BattleMoveCard extends GridPane {
 
 
     public BattleMoveCard(Pokemon pkmn, int moveIndex) {
-        this.pkmn = pkmn;
-        this.moveIndex = moveIndex;
+        this.move = pkmn.getMove(moveIndex);
         this.borderColor = Type.getLabelBorderColor(pkmn.getMove(moveIndex).getType());
+        initialize();
+        ppLbl.textProperty().bind(Bindings.format("%d/%d",
+                        pkmn.getPpProperties().get(moveIndex),
+                        move.getPP()
+                )
+        );
+    }
+
+    public BattleMoveCard(Move move) {
+        this.move = move;
+        this.borderColor = Type.getLabelBorderColor(move.getType());
+        initialize();
+        ppLbl.textProperty().bind(Bindings.format("%d/%d",
+                        move.getPP(),
+                        move.getPP()
+                )
+        );
+    }
+
+    private void initialize() {
         setPane();
         setBg();
         setNameLbl();
@@ -76,7 +98,7 @@ public class BattleMoveCard extends GridPane {
 
 
     private void setNameLbl() {
-        nameLbl.setText(pkmn.getMove(moveIndex).getName());
+        nameLbl.setText(move.getName());
         nameLbl.setStyle("-fx-font-size: 18px;");
         nameLbl.setTextFill(borderColor.brighter());
         this.add(nameLbl, 0, 0);
@@ -85,7 +107,7 @@ public class BattleMoveCard extends GridPane {
     }
 
     private void setTypeLbl() {
-        typeLbl.setText(pkmn.getMove(moveIndex).getType().getFormattedName());
+        typeLbl.setText(move.getType().getFormattedName());
         typeLbl.setStyle("-fx-font-size: 11px; -fx-text-fill: #D1D1D1;");
         typeLbl.setTranslateX(15);
         typeLbl.setTranslateY(-6);
@@ -101,17 +123,9 @@ public class BattleMoveCard extends GridPane {
         );
 
         typeLbl.setBorder(new Border (b));
-
     }
 
     private void setPPLbl() {
-        int curPP = pkmn.getPP(moveIndex);
-        ppLbl.textProperty().bind(Bindings.format("%d/%d",
-                pkmn.getPpProperties().get(moveIndex),
-                pkmn.getMove(moveIndex).getPP()
-            )
-        );
-
         ppLbl.setStyle("-fx-font-size: 15px; -fx-text-fill: #D1D1D1;");
         ppLbl.setTranslateX(-20);
         ppLbl.setTranslateY(-10);

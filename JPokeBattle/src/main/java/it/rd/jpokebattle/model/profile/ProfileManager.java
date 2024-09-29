@@ -52,7 +52,7 @@ public class ProfileManager implements SerializableHandler {
         SerializableHandler.delete(p.getID(), SER_SRC_NAME);
 
         for (int pkmnID : p.getOwnedPokemonIDs()) {
-            OwnedPokemon pkmn = PokemonManager.loadPokemonFromID(pkmnID);
+            OwnedPokemon pkmn = PokemonManager.getPokemonFromID(pkmnID);
             PokemonManager.delete(pkmn, false);
         }
         PokemonManager.save();

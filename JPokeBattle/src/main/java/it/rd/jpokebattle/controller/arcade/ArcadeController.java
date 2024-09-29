@@ -69,6 +69,7 @@ public final class ArcadeController extends Controller {
 
     public void initializeScene() {
         nodeMan.initializeNodes(getPlayer());
+        PokemonManager.refreshPlayerPkmnsProperties(getPlayer());
     }
 
 

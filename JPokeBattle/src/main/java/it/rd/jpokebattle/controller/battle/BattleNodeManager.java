@@ -23,6 +23,9 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
+/**
+ * Classe che gestisce la creazione e la visualizzazione di nodi nella scena di lotta.
+ */
 public final class BattleNodeManager extends NodeManager {
     private static BattleNodeManager instance;
     private static BattleController ctrl;
@@ -57,7 +60,6 @@ public final class BattleNodeManager extends NodeManager {
     public static void setController(BattleController controller) {
         ctrl = controller;
     }
-
 
     /**
      * Inizializza tutti i nodi della label. Da chiamare all'inizio di una nuova lotta.
@@ -99,6 +101,11 @@ public final class BattleNodeManager extends NodeManager {
         }
     }
 
+    /**
+     * Mostra il pannello contenente le card di tutti i pokemon posseduti.
+     *
+     * @param player Giocatore da cui poter prendere i pokemon
+     */
     protected void showPkmnPane(Profile player) {
         ctrl.pkmnPane.setVisible(true);
 
@@ -110,6 +117,13 @@ public final class BattleNodeManager extends NodeManager {
     }
 
 
+    /**
+     * Mostra il pannello che consente l'aggiunta/la modifica delle mosse quando il pokemon
+     * apprende una nuova mossa
+     *
+     * @param pkmn Pokemon da cui prendere le mosse conosciute
+     * @param newMove Nuova mossa da imparare
+     */
     protected void showNewMovePane(OwnedPokemon pkmn, Move newMove) {
         ctrl.newMovePane.setVisible(true);
         insertMovesIntoPane(pkmn, ctrl.updateMovesPane, "oldMove_");
@@ -117,8 +131,21 @@ public final class BattleNodeManager extends NodeManager {
         for (Node node : ctrl.movesPane.getChildren()) {
             node.setOnMouseClicked(e -> System.out.println(((Node) e.getSource()).getId()));//TODO DA IMPLEMENTARE
         }
+
+        BattleMoveCard newMoveCard = new BattleMoveCard(newMove);
+        newMoveCard.setUserData(newMove);
+        newMoveCard.setId("newMove_0");
+        GridPane.setConstraints(newMoveCard, 2, 1, 2, 2, HPos.LEFT, VPos.CENTER);
+        newMoveCard.setTranslateX(14);
+        newMoveCard.setTranslateY(60);
+        ctrl.newMovePane.getChildren().add(newMoveCard);
+
     }
 
+    /**
+     * Chiude tutti i pannelli aperti al di fuori dal principale, mostrando quindi solo la
+     * schermata di gioco.
+     */
     protected void backToGame() {
         ctrl.bagPane.setVisible(false);
         ctrl.pkmnPane.setVisible(false);
@@ -234,6 +261,15 @@ public final class BattleNodeManager extends NodeManager {
         }
     }
 
+    /**
+     * Dato in input un flow pane e un pokemon, vengono aggiunte nel flow pane le card delle mosse conosciute
+     * da quel pokemon. In aggiunta viene richiesto una stringa prefisso da usare per identificare univocamente
+     * la specifica card della mossa nella scena (non possono esserci due id uguali nella stessa scena).
+     *
+     * @param pkmn Pokemon da cui prendere le mosse
+     * @param movesPane Flow pane in cui aggiungere le card delle mosse
+     * @param movesIdPrefix Prefisso degli identificatori delle card delle mosse in questo pannello
+     */
     private void insertMovesIntoPane(OwnedPokemon pkmn, FlowPane movesPane, String movesIdPrefix) {
         ArrayList<Move> moves = pkmn.getMoves();
         int size = moves.size();

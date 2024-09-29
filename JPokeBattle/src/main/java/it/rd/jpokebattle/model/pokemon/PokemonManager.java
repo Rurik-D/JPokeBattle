@@ -2,6 +2,7 @@ package it.rd.jpokebattle.model.pokemon;
 
 import it.rd.jpokebattle.model.SerializableHandler;
 import it.rd.jpokebattle.model.move.Move;
+import it.rd.jpokebattle.model.profile.Profile;
 import it.rd.jpokebattle.util.file.DataMapLoader;
 import it.rd.jpokebattle.util.file.SerManager;
 
@@ -173,5 +174,20 @@ public class PokemonManager implements SerializableHandler {
     public static Move getNewMove(OwnedPokemon pkmn) {
         int lv = pkmn.getLevel();
         return pkmn.getBreed().getMoveFromLevel(lv);
+    }
+
+    /**
+     * Vengono aggiornate le variabili properties di tutti i pokemon del giocatore.
+     * Tali variabili consentono di rendere "ascoltabili" determinati parametri del pokemon, come gli HP o i PP.
+     * Queste variabili non sono però serializzabili, di consequenza necessitano di un aggiornamento manuale
+     * (e quindi di un istanziamento) in determinati punti chiave dell'esecuzione del programma, come ad esempio
+     * l'inizializzazione della scena di arcade.
+     *
+     * @param player Profilo da cui selezionare i pokemon di cui si vogliono aggiornare le variabili properties
+     */
+    public static void refreshPlayerPkmnsProperties(Profile player) {
+        for (OwnedPokemon pkmn : player.getTeam()) {
+            pkmn.refreshProperties();
+        }
     }
 }

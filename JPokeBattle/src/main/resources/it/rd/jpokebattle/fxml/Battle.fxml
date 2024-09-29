@@ -284,12 +284,13 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
          </rowConstraints>
          <children>
+            <Label text="Seleziona la mossa da dimenticare" translateY="10.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <FlowPane fx:id="updateMovesPane" hgap="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="350.0" vgap="15.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="3">
                <padding>
                   <Insets top="30.0" />
                </padding>
             </FlowPane>
-            <GridPane fx:id="keepOldMovesBtnPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#keepOldMoves" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <GridPane fx:id="keepOldMovesBtnPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#keepOldMoves" translateY="38.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
