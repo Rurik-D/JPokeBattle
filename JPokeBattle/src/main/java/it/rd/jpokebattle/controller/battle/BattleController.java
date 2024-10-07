@@ -589,7 +589,7 @@ public final class BattleController extends Controller {
      * log label.
      */
     private void victory() {
-        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel());
+        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) * 2;
         int oldLevel = playerPokemon.getLevel();
         playerPokemon.increaseEV(opponentPokemon);
 

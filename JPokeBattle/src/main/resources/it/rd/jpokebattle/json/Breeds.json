@@ -109,6 +109,7 @@
         "movesPerLevel" : {
             "graffio": 0,
             "ruggito": 0,
+            "rogodenti": 0,
             "braciere": 4,
             "muro_di_fumo": 8,
             "dragospiro": 12

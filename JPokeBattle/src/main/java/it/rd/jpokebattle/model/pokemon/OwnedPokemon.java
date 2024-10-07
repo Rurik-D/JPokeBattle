@@ -142,6 +142,7 @@ public class OwnedPokemon extends Pokemon implements Serializable {
 
     public void replaceMove(int moveToForgetIndex, Move newMove) {
         moves.set(moveToForgetIndex, newMove);
-
+        PPs.set(moveToForgetIndex, newMove.getPP());
+        ppProperties.get(moveToForgetIndex).set(newMove.getPP());
     }
 }
