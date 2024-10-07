@@ -15,8 +15,10 @@ import javafx.beans.binding.Bindings;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
@@ -111,7 +113,6 @@ public final class BattleNodeManager extends NodeManager {
 
         for (OwnedPokemon pkmn : player.getTeam()) {
             PokemonCard card = new PokemonCard(pkmn);
-//            card.setOnMouseClicked(e -> ctrl.pokemonDetails(e, pkmn));
             ctrl.teamCardsPane.getChildren().add(card);
         }
     }
@@ -128,18 +129,31 @@ public final class BattleNodeManager extends NodeManager {
         ctrl.newMovePane.setVisible(true);
         insertMovesIntoPane(pkmn, ctrl.updateMovesPane, "oldMove_");
 
-        for (Node node : ctrl.movesPane.getChildren()) {
-            node.setOnMouseClicked(e -> System.out.println(((Node) e.getSource()).getId()));//TODO DA IMPLEMENTARE
+        for (Node node : ctrl.updateMovesPane.getChildren()) {
+            node.setOnMouseClicked(e -> showForgetMove());
         }
 
         BattleMoveCard newMoveCard = new BattleMoveCard(newMove);
         newMoveCard.setUserData(newMove);
         newMoveCard.setId("newMove_0");
-        GridPane.setConstraints(newMoveCard, 2, 1, 2, 2, HPos.LEFT, VPos.CENTER);
-        newMoveCard.setTranslateX(14);
-        newMoveCard.setTranslateY(60);
-        ctrl.newMovePane.getChildren().add(newMoveCard);
+        newMoveCard.setOnMouseClicked(e -> hideForgetMove());
 
+        newMoveCard.setTranslateY(60);
+        newMoveCard.setMaxSize(165, 70);
+        GridPane.setValignment(newMoveCard, VPos.TOP);
+        GridPane.setHalignment(newMoveCard, HPos.CENTER);
+
+        ctrl.newMovePane.add(newMoveCard, 2, 1);
+
+    }
+
+    private void showForgetMove() {
+        ctrl.forgetMoveBtnPane.setVisible(true);
+    }
+
+
+    private void hideForgetMove() {
+        ctrl.forgetMoveBtnPane.setVisible(false);
     }
 
     /**

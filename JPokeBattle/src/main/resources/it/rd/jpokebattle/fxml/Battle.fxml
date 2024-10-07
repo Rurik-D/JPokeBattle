@@ -284,7 +284,7 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
          </rowConstraints>
          <children>
-            <Label text="Seleziona la mossa da dimenticare" translateY="10.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Label fx:id="selectMoveLbl" text="Seleziona la mossa da dimenticare" translateY="10.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <FlowPane fx:id="updateMovesPane" hgap="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="350.0" vgap="15.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="3">
                <padding>
                   <Insets top="30.0" />
@@ -304,6 +304,29 @@
                      </image>
                   </ImageView>
                   <Label text="Mantieni le mosse vecchie" translateY="-2.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </GridPane>
+            <GridPane fx:id="forgetMoveBtnPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#keepOldMoves" translateY="-25.0" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="33.0" fitWidth="159.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/battle/forget_move_bg.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Dimentica" translateY="-2.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>

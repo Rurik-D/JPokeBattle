@@ -1,5 +1,6 @@
 package it.rd.jpokebattle.model.pokemon;
 
+import it.rd.jpokebattle.model.move.Move;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -100,6 +101,18 @@ public class OwnedPokemon extends Pokemon implements Serializable {
     private boolean canEvolve() {
         int evoT = breed.getNextEvoThresh();
         return getLevel() >= evoT && evoT != 0;
+    }
+
+    public void addMove(Move move) {
+        moves.add(move);
+        PPs.add(move.getPP());
+        ppProperties.add(new SimpleIntegerProperty(move.getPP()));
+    }
+
+    public void removeMove(int moveIndex) {
+        moves.remove(moveIndex);
+        PPs.remove(moveIndex);
+        ppProperties.remove(moveIndex);
     }
 
     public void restorePPs() {

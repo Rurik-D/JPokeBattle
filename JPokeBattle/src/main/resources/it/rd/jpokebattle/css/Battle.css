@@ -39,11 +39,27 @@
     -fx-font-weight: bold
 }
 
-#keepOldMovesBtnPane .label{
+#selectMoveLbl{
+    -fx-font-size: 22;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C1C1C1;
+    -fx-font-weight: bold
+}
+
+
+#keepOldMovesBtnPane .label,
+#forgetMoveBtnPane .label{
     -fx-font-size: 16;
     -fx-font-family: "OCR A Extended";
-    -fx-text-fill: #C1C1FF;
     -fx-font-weight: bold
+}
+
+#keepOldMovesBtnPane .label{
+    -fx-text-fill: #C1C1FF;
+}
+
+#forgetMoveBtnPane .label{
+    -fx-text-fill: #FFC1C1;
 }
 
 

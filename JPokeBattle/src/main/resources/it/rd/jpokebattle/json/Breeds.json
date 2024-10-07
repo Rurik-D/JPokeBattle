@@ -111,7 +111,7 @@
             "ruggito": 0,
             "braciere": 4,
             "muro_di_fumo": 8,
-            "drago_spiro": 12
+            "dragospiro": 12
         }
     },
     "charmeleon": {
@@ -136,7 +136,7 @@
             "ruggito": 0,
             "braciere": 0,
             "muro_di_fumo": 0,
-            "drago_spiro": 12,
+            "dragospiro": 12,
             "rogodenti": 19,
             "lacerazione": 24,
             "lanciafiamme": 30
@@ -164,7 +164,7 @@
             "ruggito": 0,
             "braciere": 0,
             "muro_di_fumo": 0,
-            "drago_spiro": 12,
+            "dragospiro": 12,
             "rogodenti": 19,
             "lacerazione": 24,
             "lanciafiamme": 30,

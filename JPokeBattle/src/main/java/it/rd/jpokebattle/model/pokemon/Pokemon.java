@@ -112,7 +112,6 @@ public class Pokemon implements Serializable {
         return PPs.get(index);
     }
 
-
     protected void setCurrHP(int value) {
         currHP = value;
         currHPProperty.set(value);
@@ -144,7 +143,6 @@ public class Pokemon implements Serializable {
             setMove(moves.get(i), i);
         }
     }
-
 
     public IntegerProperty currHPProperty() {
         return currHPProperty;
@@ -216,7 +214,6 @@ public class Pokemon implements Serializable {
         ppProperties.get(i).set(pp - 1);
     }
 
-
     public void takeDamage(int dmg) {
         setCurrHP(Math.max(currHP - dmg, 0));
     }
@@ -228,6 +225,4 @@ public class Pokemon implements Serializable {
     public boolean isFainted() {
         return currHP <= 0;
     }
-
-
 }

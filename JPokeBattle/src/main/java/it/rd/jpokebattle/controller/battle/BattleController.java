@@ -59,7 +59,7 @@ public final class BattleController extends Controller {
 
     @FXML
     protected GridPane
-            rootPane, labelsPane, buttonsPane, bagPane, pkmnPane, newMovePane;
+            rootPane, labelsPane, buttonsPane, bagPane, pkmnPane, newMovePane, forgetMoveBtnPane;
 
     @FXML
     protected ScrollPane logScrollPane;
@@ -571,10 +571,12 @@ public final class BattleController extends Controller {
         int oldLevel = playerPokemon.getLevel();
         playerPokemon.increaseEV(opponentPokemon);
 
+        // Schermata di aggiunta nuova mossa
         delay4_2_0.setOnFinished(e -> {
             nodeMan.showNewMovePane(playerPokemon, newMove);
         });
 
+        // Termina la lotta
         delay3_2_0.setOnFinished(e -> {
             endGame(true);
         });
@@ -583,10 +585,16 @@ public final class BattleController extends Controller {
             nodeMan.updateLogLbl(playerPokemon.getName() + " è salito al livello " + playerPokemon.getLevel() + "!");
 
             newMove = PokemonManager.getNewMove(playerPokemon);
-            if (newMove != null)
-                delay4_2_0.play();
+            if (newMove != null) {
+                if (playerPokemon.getMoves().size() < 4) { // se le mosse sono meno di 4
+                    playerPokemon.addMove(newMove);
+                    delay3_2_0.play(); // Termina la lotta
+                } else
+                    delay4_2_0.play(); // Schermata di aggiunta nuova mossa
+            }
             else
-                delay3_2_0.play();
+                delay3_2_0.play(); // Termina la lotta
+
         });
 
         delay2_2_0.setOnFinished(e -> {
