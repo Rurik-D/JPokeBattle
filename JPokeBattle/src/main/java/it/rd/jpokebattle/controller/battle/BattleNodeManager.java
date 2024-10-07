@@ -130,7 +130,7 @@ public final class BattleNodeManager extends NodeManager {
         insertMovesIntoPane(pkmn, ctrl.updateMovesPane, "oldMove_");
 
         for (Node node : ctrl.updateMovesPane.getChildren()) {
-            node.setOnMouseClicked(e -> showForgetMove());
+            node.setOnMouseClicked(e -> showForgetMove(e));
         }
 
         BattleMoveCard newMoveCard = new BattleMoveCard(newMove);
@@ -147,7 +147,11 @@ public final class BattleNodeManager extends NodeManager {
 
     }
 
-    private void showForgetMove() {
+    private void showForgetMove(MouseEvent e) {
+        Node node = (Node) e.getSource();
+        String moveId = node.getId();
+        int moveIndex = Integer.parseInt(moveId.substring(moveId.length()-1));
+        ctrl.setMoveToForgetIndex(moveIndex);
         ctrl.forgetMoveBtnPane.setVisible(true);
     }
 

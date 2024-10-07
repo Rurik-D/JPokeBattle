@@ -140,4 +140,8 @@ public class OwnedPokemon extends Pokemon implements Serializable {
         xpProperty = new SimpleIntegerProperty(xp);
     }
 
+    public void replaceMove(int moveToForgetIndex, Move newMove) {
+        moves.set(moveToForgetIndex, newMove);
+
+    }
 }

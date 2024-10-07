@@ -54,6 +54,7 @@ public final class BattleController extends Controller {
     private boolean firstAttackDone;
     private boolean hesitation;
     private boolean protect;
+    private int moveToForgetIndex;
     private Move newMove;
 
 
@@ -77,20 +78,6 @@ public final class BattleController extends Controller {
     protected Label
             playerPkmnNameLbl, opponentPkmnNameLbl, logLbl;
 
-    /**
-     * Inizializza variabili chiave e nodi della scena.
-     *
-     * @param oppPkmn Pokemon avversario
-     */
-    public void initializeWildBattleScene(Pokemon oppPkmn) {
-        opponentPokemon = oppPkmn;
-        playerPokemon = getPlayer().getFirstPokemon();
-        running = true;
-        setStats();
-
-        nodeMan.initializeNodes(playerPokemon, opponentPokemon);
-        nodeMan.updatePokeCounterBox(getPlayer());
-    }
 
     /**
      *  Metodo chiamato dal bottone 'fuga'.
@@ -147,6 +134,21 @@ public final class BattleController extends Controller {
     }
 
     /**
+     * Il pokemon del giocatore dimentica la mossa selezionata in precedenza e aggiunge alle mosse conosciute
+     * nuova mossa imparata al passaggio di livello.
+     *
+     * @param e
+     */
+    @FXML
+    public void forgetMove(MouseEvent e) {
+        soundMan.buttonClick();
+        playerPokemon.replaceMove(moveToForgetIndex, newMove);
+
+        nodeMan.backToGame();
+        endGame(true);
+    }
+
+    /**
      * Bottone che nasconde i pannelli in sovrimpressione e riporta alla schermata di lotta.
      *
      * @param e Click del mouse
@@ -155,6 +157,21 @@ public final class BattleController extends Controller {
     public void backToGame(ActionEvent e) {
         soundMan.buttonClick();
         nodeMan.backToGame();
+    }
+
+    /**
+     * Inizializza variabili chiave e nodi della scena.
+     *
+     * @param oppPkmn Pokemon avversario
+     */
+    public void initializeWildBattleScene(Pokemon oppPkmn) {
+        opponentPokemon = oppPkmn;
+        playerPokemon = getPlayer().getFirstPokemon();
+        running = true;
+        setStats();
+
+        nodeMan.initializeNodes(playerPokemon, opponentPokemon);
+        nodeMan.updatePokeCounterBox(getPlayer());
     }
 
     /**
@@ -173,6 +190,11 @@ public final class BattleController extends Controller {
             stats.get(playerPokemon).put(stat, (double) playerPokemon.getStat(stat));
             stats.get(opponentPokemon).put(stat, (double) opponentPokemon.getStat(stat));
         }
+    }
+
+
+    public void setMoveToForgetIndex(int moveToForget) {
+        this.moveToForgetIndex = moveToForget;
     }
 
     /**
@@ -723,4 +745,5 @@ public final class BattleController extends Controller {
             throw new RuntimeException(ex);
         }
     }
+
 }
