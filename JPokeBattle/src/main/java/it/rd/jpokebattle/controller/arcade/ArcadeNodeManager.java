@@ -139,12 +139,12 @@ public final class ArcadeNodeManager extends NodeManager {
         GridPane.setHalignment(mc, HPos.RIGHT);
 
         ctrl.moveDescriptionLbl.setText(move.getDescription());
-        ctrl.moveTypeLbl.setText(String.format("Tipo: %s", move.getType().getFormattedName()) );
-        ctrl.moveCatLbl.setText(String.format("Categoria: %s", MoveCategory.getFormattedName(move.getCategory())) );
-        ctrl.movePowLbl.setText(String.format("Potenza: %s", move.getPower()) );
-        ctrl.movePriorityLbl.setText(String.format("Priorità: %s", move.getPriority()));
-        ctrl.movePrecLbl.setText(String.format("Precisione: %d", (int) move.getPrecision()));
-        ctrl.movPPLbl.setText(String.format("PP: %s", move.getPP()));
+        ctrl.moveTypeLbl.setText("Tipo: " + move.getType().getFormattedName());
+        ctrl.moveCatLbl.setText("Categoria: " + MoveCategory.getFormattedName(move.getCategory()));
+        ctrl.movePowLbl.setText("Potenza: " + move.getPower());
+        ctrl.movePriorityLbl.setText("Priorità: " + move.getPriority());
+        ctrl.movePrecLbl.setText("Precisione: " + (int) move.getPrecision());
+        ctrl.movPPLbl.setText("PP: " + move.getPP());
 
     }
 
