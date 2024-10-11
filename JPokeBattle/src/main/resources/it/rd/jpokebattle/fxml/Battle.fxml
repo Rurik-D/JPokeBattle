@@ -21,7 +21,7 @@
 
 <GridPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.rd.jpokebattle.controller.battle.BattleController">
    <children>
-      <ImageView fitHeight="803.0" fitWidth="1116.0" pickOnBounds="true" preserveRatio="true" translateY="-45.0" GridPane.columnSpan="5" GridPane.rowSpan="5" GridPane.valignment="CENTER">
+      <ImageView fitHeight="803.0" fitWidth="1112.0" pickOnBounds="true" preserveRatio="true" translateY="-45.0" GridPane.columnSpan="5" GridPane.rowSpan="5" GridPane.valignment="CENTER">
          <image>
             <Image url="@../images/background/battle_bg.jpg" />
          </image>
@@ -41,7 +41,7 @@
       <Ellipse fill="#8f8f8f53" radiusX="154.0" radiusY="66.0" stroke="TRANSPARENT" strokeType="INSIDE" translateX="15.0" translateY="-30.0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.rowSpan="2" />
       <ImageView fx:id="playerPkmnGif" fitHeight="280.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.rowSpan="3" />
       <ImageView fx:id="opponentPkmnGif" fitHeight="221.0" fitWidth="221.0" pickOnBounds="true" preserveRatio="true" translateX="30.0" translateY="-10.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowSpan="2" GridPane.valignment="BOTTOM" />
-      <ImageView fx:id="transitionGif" fitHeight="700.0" fitWidth="1000.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="5" GridPane.rowSpan="5">
+      <ImageView fx:id="transitionGif" fitHeight="705.0" fitWidth="1009.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="5" GridPane.rowSpan="5">
          <image>
             <Image url="@../images/battle/battle_transition_2.gif" />
          </image>
@@ -104,7 +104,7 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
          </rowConstraints>
          <children>
-            <ImageView fitHeight="46.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="20.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <ImageView fitHeight="46.0" fitWidth="48.0" onMouseClicked="#settings" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="20.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <image>
                   <Image url="@../images/gear.png" />
                </image>
@@ -219,6 +219,58 @@
             <Insets />
          </opaqueInsets>
       </ScrollPane>
+
+      <GridPane fx:id="gameSettingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000EF;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="11">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="183.0" prefWidth="189.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="200.0" prefWidth="211.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="25.0" prefWidth="180.0" text="Menù principale" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#backToGame" prefHeight="25.0" prefWidth="180.0" text="Torna al gioco" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#volume" prefHeight="25.0" prefWidth="180.0" text="Volume" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+
+            <Label fx:id="titleLbl" alignment="CENTER" prefHeight="53.0" prefWidth="995.0" text="JP keBattle" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <ImageView fitHeight="63.0" fitWidth="63.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+               <image>
+                  <Image url="@../images/pokeball_2.gif" />
+               </image>
+               <GridPane.margin>
+                  <Insets right="40.0" top="8.0" />
+               </GridPane.margin>
+            </ImageView>
+
+         </children>
+      </GridPane>
+
       <GridPane fx:id="pkmnPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000EF;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">
          <columnConstraints>
             <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
@@ -345,6 +397,12 @@
       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
    </rowConstraints>
    <columnConstraints>
       <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />

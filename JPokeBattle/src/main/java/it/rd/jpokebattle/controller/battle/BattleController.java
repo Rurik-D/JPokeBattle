@@ -5,6 +5,7 @@ import it.rd.jpokebattle.controller.NodeManager;
 import it.rd.jpokebattle.controller.SceneManager;
 import it.rd.jpokebattle.controller.arcade.ArcadeController;
 import it.rd.jpokebattle.controller.arcade.ArcadeNodeManager;
+import it.rd.jpokebattle.controller.menu.MenuNodeManager;
 import it.rd.jpokebattle.model.move.Move;
 import it.rd.jpokebattle.model.move.MoveCategory;
 import it.rd.jpokebattle.model.move.MoveSpecialEffect;
@@ -60,7 +61,7 @@ public final class BattleController extends Controller {
 
     @FXML
     protected GridPane
-            rootPane, labelsPane, buttonsPane, bagPane, pkmnPane, newMovePane, forgetMoveBtnPane;
+            rootPane, labelsPane, buttonsPane, bagPane, pkmnPane, newMovePane, forgetMoveBtnPane, gameSettingsPane;
 
     @FXML
     protected ScrollPane logScrollPane;
@@ -158,6 +159,41 @@ public final class BattleController extends Controller {
         soundMan.buttonClick();
         nodeMan.backToGame();
     }
+
+    /**
+     * Mostra la schermata di impostazioni.
+     */
+    @FXML
+    public void settings (MouseEvent e) {
+        soundMan.buttonClick();
+        nodeMan.showSettingsPane();
+    }
+
+    /**
+     * Torna al menù principale, carica la nuova scena, aggiorna la root nella classe
+     * astratta NodeManager e aggiorna il file dei profili.
+     * */
+    @FXML
+    public void mainMenu(ActionEvent e) throws IOException {
+        soundMan.buttonClick();
+        soundMan.switchTrack("mp3.title");
+
+        FXMLLoader loader = SceneManager.switchScene(e, "fxml.menu", "css.menu");
+        NodeManager.setRoot(loader.getRoot());
+        MenuNodeManager.setController(loader.getController());
+
+    }
+
+    /**
+     * TODO: DA IMPLEMENTARE (PROVVISORIA)
+     * @param e
+     */
+    @FXML
+    public void volume(ActionEvent e) {
+        soundMan.buttonClick();
+        soundMan.toggleVolume();
+    }
+
 
     /**
      * Inizializza variabili chiave e nodi della scena.
@@ -436,27 +472,25 @@ public final class BattleController extends Controller {
 
     /**
      * Calcola il modificatore del colpo critico (intero [1, 2]) a partire dal modificatore della probabilità
-     * del colpo critico dell'utente. Più tale modificatore è basso più la probabilità del colpo critico è alta.
+     * del colpo critico dell'utente. Più tale modificatore è alto più la probabilità del colpo critico è alta.
      * La probabilità di critico di base è di circa il 10%. Se la mossa possiede l'effetto speciale "high_crit_prob"
-     * tala probabilità si incrementa di circa il 30%.
+     * tale probabilità si incrementa di circa il 30% oltre la probabilità base.
      *
      * @param attPkmn Pokemon che sta attaccando in questo turno
      * @param move Mossa utilizzata dal pokemon attaccante
      * @return Modificatore del critico (1 o 2)
      */
     private double critic(Pokemon attPkmn, Move move) {
-        double critMod = 1;
-        double pkmnCritProb = attPkmn.getStat(Stats.CRIT_PROB);
         boolean highProb = move.getSpecialEffect() == MoveSpecialEffect.HIGH_CRIT_PROB;
-        int range = highProb ? 140 : 110;
-        int randVal = rand.nextInt(0, range);
+        int pkmnCritProb = attPkmn.getStat(Stats.CRIT_PROB) + (highProb ? 40 : 10);
+        int randVal = rand.nextInt(0, pkmnCritProb);
 
-        if (randVal >= pkmnCritProb) {
-            critMod = 2;
+        if (randVal >= 100) {
             nodeMan.updateLogLbl("Colpo critico!");
+            return 2; // Doppio del danno
         }
 
-        return critMod;
+        return 1; // Danno normale
     }
 
     /**
@@ -589,18 +623,18 @@ public final class BattleController extends Controller {
      * log label.
      */
     private void victory() {
-        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) * 2;
+        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) / 7;
         int oldLevel = playerPokemon.getLevel();
         playerPokemon.increaseEV(opponentPokemon);
-
-        // Schermata di aggiunta nuova mossa
-        delay4_2_0.setOnFinished(e -> {
-            nodeMan.showNewMovePane(playerPokemon, newMove);
-        });
 
         // Termina la lotta
         delay3_2_0.setOnFinished(e -> {
             endGame(true);
+        });
+
+        // Schermata di aggiunta nuova mossa
+        delay4_2_0.setOnFinished(e -> {
+            nodeMan.showNewMovePane(playerPokemon, newMove);
         });
 
         delay_1_5.setOnFinished(e -> {

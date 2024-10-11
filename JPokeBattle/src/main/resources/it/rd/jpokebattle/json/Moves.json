@@ -1,4 +1,43 @@
 {
+  "acido" : {
+    "name": "Acido",
+    "description": "Colpisce i nemici intorno spruzzando un acido corrosivo, riducendo di poco la Difesa Speciale.",
+    "type": "poison",
+    "category": "special",
+    "opponentStats": {"spec_def": -0.5},
+    "userStats": {},
+    "specialEffect": "",
+    "power": 40,
+    "priority": 0,
+    "precision": 100,
+    "pp": 30
+  },
+  "acidobomba" : {
+    "name": "Acidobomba",
+    "description": "Chi la usa attacca il bersaglio con un acido altamente corrosivo. Il fluido riduce di molto la Difesa Speciale del bersaglio.",
+    "type": "poison",
+    "category": "special",
+    "opponentStats": {"spec_def": -2},
+    "userStats": {},
+    "specialEffect": "",
+    "power": 50,
+    "priority": 0,
+    "precision": 100,
+    "pp": 20
+  },
+  "accumulo" : {
+    "name": "Accumulo",
+    "description": "Chi la usa accumula energia aumentando la Difesa, la Difesa Speciale e la probabilità di brutti colpi.",
+    "type": "normal",
+    "category": "state",
+    "opponentStats": {},
+    "userStats": {"def": 1,"spec_def": 1, "crit_prob": 1},
+    "specialEffect": "",
+    "power": 0,
+    "priority": 0,
+    "precision": 1000,
+    "pp": 20
+  },
   "aeroassalto" : {
     "name": "Aeroassalto",
     "description": "Chi la usa attacca il bersaglio a grande velocità. Questo attacco è infallibile.",
@@ -8,6 +47,19 @@
     "userStats": {},
     "specialEffect": "",
     "power": 60,
+    "priority": 0,
+    "precision": 1000,
+    "pp": 20
+  },
+  "arrotola" : {
+    "name": "Arrotola",
+    "description": "Chi la usa si concentra, aumentando Attacco, Difesa e Precisione.",
+    "type": "poison",
+    "category": "state",
+    "opponentStats": {},
+    "userStats": {"atk": 1, "def": 1, "precision": 1},
+    "specialEffect": "",
+    "power": 0,
     "priority": 0,
     "precision": 1000,
     "pp": 20
@@ -85,7 +137,7 @@
     "opponentStats": {},
     "userStats": {},
     "specialEffect": "",
-    "power": 4000,
+    "power": 40,
     "priority": 0,
     "precision": 100,
     "pp": 25
@@ -115,6 +167,19 @@
     "priority": 0,
     "precision": 100,
     "pp": 30
+  },
+  "congiura" : {
+    "name": "Congiura",
+    "description": "Chi la usa stimola il cervello pensando a cose cattive. Aumenta di molto l'Attacco Speciale.",
+    "type": "dark",
+    "category": "state",
+    "opponentStats": {},
+    "userStats": {"spec_atk": 2},
+    "specialEffect": "",
+    "power": 0,
+    "priority": 0,
+    "precision": 1000,
+    "pp": 20
   },
   "crescita" : {
     "name": "Crescita",
@@ -194,6 +259,19 @@
     "precision": 95,
     "pp": 15
   },
+  "fangobomba" : {
+    "name": "Fangobomba",
+    "description": "Chi la usa attacca lanciando una grande quantità di fango sul bersaglio, riducendone di molto l'attacco speciale.",
+    "type": "ground",
+    "category": "special",
+    "opponentStats": {"spec_atk":  -2},
+    "userStats": {},
+    "specialEffect": "",
+    "power": 90,
+    "priority": 0,
+    "precision": 100,
+    "pp": 10
+  },
   "ferroscudo" : {
     "name": "Ferroscudo",
     "description": "Il corpo di chi la usa si indurisce come il ferro, facendone salire di molto la Difesa.",
@@ -213,7 +291,7 @@
     "type": "normal",
     "category": "state",
     "opponentStats": {},
-    "userStats": {"crit_prob": -1},
+    "userStats": {"crit_prob": 1},
     "specialEffect": "",
     "power": 0,
     "priority": 0,
@@ -245,6 +323,19 @@
     "priority": 0,
     "precision": 100,
     "pp": 25
+  },
+  "fulmine" : {
+    "name": "Fulmine",
+    "description": "Il bersaglio viene colpito da una potente scarica elettrica. Probabile brutto colpo.",
+    "type": "electric",
+    "category": "special",
+    "opponentStats": {},
+    "userStats": {},
+    "specialEffect": "high_crit_prob",
+    "power": 90,
+    "priority": 0,
+    "precision": 100,
+    "pp": 15
   },
   "fulmisguardo" : {
     "name": "Fulmisguardo",
@@ -297,6 +388,19 @@
     "priority": 0,
     "precision": 1000,
     "pp": 15
+  },
+  "giravvita" : {
+    "name": "Giravvita",
+    "description": "Chi la usa si scaglia sul bersaglio ruotando su se stesso come un trapano perforante. Probabile brutto colpo.",
+    "type": "ground",
+    "category": "physical",
+    "opponentStats": {},
+    "userStats": {},
+    "specialEffect": "high_crit_prob",
+    "power": 80,
+    "priority": 0,
+    "precision": 95,
+    "pp": 10
   },
   "graffio" : {
     "name": "Graffio",
@@ -454,6 +558,19 @@
     "precision": 100,
     "pp": 10
   },
+  "perforbecco" : {
+    "name": "Perforbecco",
+    "description": "Attacco a spirale con un becco aguzzo che fa da trapano.",
+    "type": "flying",
+    "category": "physical",
+    "opponentStats": {},
+    "userStats": {},
+    "specialEffect": "",
+    "power": 80,
+    "priority": 0,
+    "precision": 100,
+    "pp": 20
+  },
   "pistolacqua" : {
     "name": "Pistolacqua",
     "description": "Il nemico è colpito da un potente getto d'acqua.",
@@ -484,7 +601,7 @@
     "name": "Protezione",
     "description": "Permette di eludere tutti gli attacchi.",
     "type": "normal",
-    "category": "stato",
+    "category": "state",
     "opponentStats": {},
     "userStats": {},
     "specialEffect": "protect",
@@ -509,8 +626,8 @@
   "rafforzatore" : {
     "name": "Rafforzatore",
     "description": "Tutti i muscoli del corpo si tonificano per aumentare la Difesa.",
-    "type": "",
-    "category": "",
+    "type": "normal",
+    "category": "state",
     "opponentStats": {},
     "userStats": {"def":  1},
     "specialEffect": "",
@@ -623,6 +740,45 @@
     "precision": 100,
     "pp": 15
   },
+  "schermoluce" : {
+    "name": "Schermoluce",
+    "description": "Innalza una barriera di luce fantastica per aumentare di molto la Difesa speciale.",
+    "type": "psychic",
+    "category": "state",
+    "opponentStats": {},
+    "userStats": {"spec_def":  2},
+    "specialEffect": "",
+    "power": 0,
+    "priority": 0,
+    "precision": 1000,
+    "pp": 30
+  },
+  "schianto" : {
+    "name": "Schianto",
+    "description": "Infligge danni al nemico con una coda, con una liana o con qualcosa di simile.",
+    "type": "normal",
+    "category": "physical",
+    "opponentStats": {},
+    "userStats": {},
+    "specialEffect": "",
+    "power": 80,
+    "priority": 0,
+    "precision": 75,
+    "pp": 20
+  },
+  "scintilla" : {
+    "name": "Scintilla",
+    "description": "Colpisce il nemico con una carica elettrica che diminuisce la Velocità e può causare tentennamento.",
+    "type": "electric",
+    "category": "physical",
+    "opponentStats": {"speed": -1},
+    "userStats": {},
+    "specialEffect": "hesitation",
+    "power": 65,
+    "priority": 0,
+    "precision": 100,
+    "pp": 20
+  },
   "sgranocchio" : {
     "name": "Sgranocchio",
     "description": "Il nemico viene morso con denti affilati. Riduce un po' la Difesa.",
@@ -635,6 +791,19 @@
     "priority": 0,
     "precision": 100,
     "pp": 15
+  },
+  "sguardo_feroce" : {
+    "name": "Sguardo Feroce",
+    "description": "Chi la usa spaventa il nemico con uno sguardo terrificante diminuendone velocità ed elusione, inoltre il nemico può tentennare.",
+    "type": "dark",
+    "category": "physical",
+    "opponentStats": {"speed": -1, "elusion": -1},
+    "userStats": {},
+    "specialEffect": "hesitation",
+    "power": 0,
+    "priority": 1,
+    "precision": 100,
+    "pp": 30
   },
   "sintesi" : {
     "name": "Sintesi",
@@ -661,6 +830,32 @@
     "priority": 0,
     "precision": 100,
     "pp": 10
+  },
+  "sporcolancio" : {
+    "name": "Sporcolancio",
+    "description": "Chi la usa attacca il nemico con rifiuti sudici che ne riducono Attacco speciale e Difesa speciale.",
+    "type": "poison",
+    "category": "physical",
+    "opponentStats": {"spec_atk": -1, "spec_def": -1},
+    "userStats": {},
+    "specialEffect": "",
+    "power": 120,
+    "priority": 0,
+    "precision": 80,
+    "pp": 5
+  },
+  "sprizzalampo" : {
+    "name": "Sprizzalampo",
+    "description": "Chi la usa si carica di elettricità per poi scagliarsi sul bersaglio, ma subisce dei danni per il contraccolpo.",
+    "type": "electric",
+    "category": "physical",
+    "opponentStats": {},
+    "userStats": {"hp": -1},
+    "specialEffect": "",
+    "power": 90,
+    "priority": 0,
+    "precision": 100,
+    "pp": 15
   },
   "stridio" : {
     "name": "Stridio",
@@ -725,6 +920,32 @@
     "power": 0,
     "priority": 0,
     "precision": 100,
+    "pp": 20
+  },
+  "tuono" : {
+    "name": "Tuono",
+    "description": "Il bersaglio è colpito da un fulmine molto violento che ne riduce la difesa speciale e può farlo tentennare.",
+    "type": "electric",
+    "category": "special",
+    "opponentStats": {"spec_def":  -1},
+    "userStats": {},
+    "specialEffect": "hesitation",
+    "power": 110,
+    "priority": 0,
+    "precision": 70,
+    "pp": 10
+  },
+  "tuononda" : {
+    "name": "Tuononda",
+    "description": "Il nemico viene colpito da una debole scarica elettrica che, se va a segno, riduce Velocità e può causare tentennamento.",
+    "type": "electric",
+    "category": "state",
+    "opponentStats": {"speed":  -1},
+    "userStats": {},
+    "specialEffect": "hesitation",
+    "power": 0,
+    "priority": 0,
+    "precision": 90,
     "pp": 20
   },
   "tuonoshock" : {

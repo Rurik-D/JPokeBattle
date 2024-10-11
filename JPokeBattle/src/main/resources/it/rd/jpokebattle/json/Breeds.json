@@ -109,7 +109,6 @@
         "movesPerLevel" : {
             "graffio": 0,
             "ruggito": 0,
-            "rogodenti": 0,
             "braciere": 4,
             "muro_di_fumo": 8,
             "dragospiro": 12
@@ -584,8 +583,13 @@
         "baseSpeed": 70,
         "baseXp": 58,
         "movesPerLevel" : {
-
-
+            "beccata" : 0,
+            "ruggito": 0,
+            "fulmisguardo" : 4,
+            "attacco_rapido": 8,
+            "furia": 11,
+            "aeroassalto": 15,
+            "attacco_d_ala": 18
         }
     },
     "fearow": {
@@ -606,8 +610,19 @@
         "baseSpeed": 100,
         "baseXp": 162,
         "movesPerLevel" : {
-
-
+            "beccata" : 0,
+            "ruggito": 0,
+            "fulmisguardo" : 0,
+            "attacco_rapido": 0,
+            "furia": 11,
+            "aeroassalto": 15,
+            "attacco_d_ala": 18,
+            "riduttore": 23,
+            "agilita": 27,
+            "focalenergia": 32,
+            "trespolo": 36,
+            "perforbecco": 41,
+            "giravvita": 45
         }
     },
 
@@ -630,8 +645,13 @@
         "baseSpeed": 55,
         "baseXp": 62,
         "movesPerLevel" : {
-
-
+            "velenospina" : 0,
+            "fulmisguardo": 0,
+            "morso": 6,
+            "sguardo_feroce": 11,
+            "stridio": 14,
+            "acido": 17,
+            "accumulo": 20
         }
     },
     "arbok": {
@@ -652,8 +672,18 @@
         "baseSpeed": 80,
         "baseXp": 147,
         "movesPerLevel" : {
-
-
+            "velenospina" : 0,
+            "fulmisguardo": 0,
+            "morso": 6,
+            "sguardo_feroce": 11,
+            "stridio": 14,
+            "acido": 17,
+            "accumulo": 20,
+            "sgranocchio": 22,
+            "acidobomba": 27,
+            "fangobomba": 32,
+            "arrotola": 36,
+            "sporcolancio": 45
         }
     },
 
@@ -676,8 +706,22 @@
         "baseSpeed": 90,
         "baseXp": 82,
         "movesPerLevel" : {
-
-
+            "tuonoshock": 0,
+            "colpocoda": 0,
+            "ruggito": 5,
+            "attacco_rapido" : 8,
+            "congiura": 12,
+            "stridio": 14,
+            "tuononda": 18,
+            "doppioteam": 22,
+            "scintilla": 26,
+            "accumulo": 30,
+            "schianto": 35,
+            "fulmine": 40,
+            "agilita": 45,
+            "sprizzalampo": 50,
+            "schermoluce": 53,
+            "tuono": 56
         }
     }
 }

@@ -117,6 +117,13 @@ public final class BattleNodeManager extends NodeManager {
         }
     }
 
+    /**
+     * Mostra il pannelo delle impostazioni.
+     */
+    public void showSettingsPane() {
+        ctrl.gameSettingsPane.setVisible(true);
+    }
+
 
     /**
      * Mostra il pannello che consente l'aggiunta/la modifica delle mosse quando il pokemon
@@ -167,6 +174,7 @@ public final class BattleNodeManager extends NodeManager {
     protected void backToGame() {
         ctrl.bagPane.setVisible(false);
         ctrl.pkmnPane.setVisible(false);
+        ctrl.gameSettingsPane.setVisible(false);
         ctrl.teamCardsPane.getChildren().clear();
     }
 

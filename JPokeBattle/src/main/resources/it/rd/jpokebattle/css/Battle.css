@@ -21,6 +21,12 @@
     -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.5, 1, 1);
 }
 
+#titleLbl{
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C62828;
+    -fx-font-size: 65;
+    -fx-alignment: center;
+}
 
 #teamCardsPane {
     -fx-control-inner-background: transparent;

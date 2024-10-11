@@ -245,8 +245,7 @@ public final class ArcadeController extends Controller {
 
 
     /**
-     * Aggiorna il testo del narratore con la descrizione dell'area corrente in cui
-     * il giocatore si trova.
+     *
      */
     private void checkSpecialArea(ActionEvent e, int areaIndex) {
         switch (getPlayer().getCurrentArea().getNextAreaType(areaIndex)) {
@@ -279,7 +278,8 @@ public final class ArcadeController extends Controller {
                     area1Btn.setVisible(false);
                 } else {
                     nodeMan.updateNarratorLbl("Sei riuscito a seminare il pokémon!");
-                    nextArea(areaIndex);
+                    getPlayer().goToLastSafeArea();
+                    nodeMan.updateNarrationInterface(getPlayer().getCurrentArea());
                 }
                 break;
             case STARTER_SELECT:

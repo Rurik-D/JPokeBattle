@@ -2,7 +2,7 @@
   "start": {
     "nameID": "start",
     "title": "Inizio",
-    "description": "Benvenuto in JPokeBattle Arcade!\n\nAllena i tuoi Pokémon, scofinggi allenatori e prosegui nella trama principale prendendo le tue scelte.\n\nE non dimenticare mai:\n\n      Gotta Catch'em all!\n",
+    "description": "Benvenuto in JPokeBattle Arcade!\n\nAllena i tuoi Pokémon, scofinggi allenatori e prosegui nella trama principale prendendo le tue scelte!\n\nE non dimenticare mai:\n\n      Gotta Catch'em all!\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
@@ -13,7 +13,7 @@
   "home_bedroom_1": {
     "nameID": "home_bedroom_1",
     "title": "Camera tua",
-    "description": "\t  ‘YOU WIN!’\n\nI colori sgargianti dello schermo illuminano la penombra della tua stanza. Dalle tende pentrano alcuni flebili raggi di un tiepido sole primaverile.\nIl cinguettio di alcuni pidgey accompagna l'allegra musichetta di vittoria del videogame, ci hai messo quasi due ore per completare questo livello ma alla fine ci sei riuscito e adesso ti godi questo piccolo momento di gloria.\n\nDal piano di sotto senti la voce di tua madre che ti chiama.\n\nDi cosa avrà bisogno?\n",
+    "description": "\t  ‘YOU WIN!’\n\nI colori sgargianti dello schermo illuminano la penombra della tua stanza. Dalle tende penetrano alcuni flebili raggi di un tiepido sole primaverile.\nIl cinguettio di un pidgey appolaiato sul davanzale della finestra accompagna l'allegra musichetta di vittoria in 8 bit del videogame. Ci hai messo quasi due ore per completare questo livello ma alla fine ci sei riuscito e adesso ti godi questo piccolo momento di gloria.\n\nDal piano di sotto senti la voce di tua madre che ti chiama.\n\nDi cosa avrà bisogno?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
@@ -58,7 +58,7 @@
   "laboratory_1": {
     "nameID": "laboratory_1",
     "title": "Laboratorio",
-    "description": "Il prof ti saluta: prendi un pokemon bastardo!\n",
+    "description": "Il prof ti saluta con un ampio sorriso.\n - Oggi è un gran giorno per te... Finalmente sceglierai il tuo primo pokémon!\nA queste parole il tuo cuore salta un battito, non riesci a crederci, hai aspettato per una vita questo momento...\n - Ne ho parlato a lungo con tua madre, non è stato facile convincerla...\nProsegue il professore.\n - ... ma alla fine ha ceduto e mi ha dato il permesso di farti scegliere il tuo primo pokémon! Con il tuo nuovo amico ora potrai girare il mondo e affrontare un sacco di fantastiche avventure. Vai pure al tavolo alle mie spalle e scegli il tuo primo compagno di viaggio!\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
@@ -102,7 +102,7 @@
   "bark_town": {
     "nameID": "bark_town",
     "title": "Bark Town",
-    "description": "Sempre la solita città di merda, niente di nuovo qui a Bark Town.\n\nChe cosa fai?\n",
+    "description": "La vista di Bark Town ti porta alla memoria tanti bei momenti della tua infanzia... ma adesso è ora di andare.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
@@ -115,7 +115,7 @@
   "laboratory": {
     "nameID": "laboratory",
     "title": "Laboratorio",
-    "description": "Il professore ti guarda stranito: che fai ancora qui stupida troia?\n\nChe cosa fai?\n",
+    "description": "Il professore ti saluta con la mano, è visibilmente felice di vederti.\n - Ciao! Come vanno le tue avventure? Spero di vederti presto sconfiggere la lega pokémon!\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
     "area1Name": "bark_town",
@@ -127,7 +127,7 @@
   "home_living_room": {
     "nameID": "home_living_room",
     "title": "Soggiorno",
-    "description": "Tua madre ti saluta.\n\nChe cosa fai?\n",
+    "description": "Tua madre ti saluta.\n - Ciao tesoro! Come sta la tua squadra? Ha bisogno di cure?\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
@@ -140,7 +140,7 @@
   "home_bedroom": {
     "nameID": "home_bedroom",
     "title": "Camera tua",
-    "description": "Salendo le scale trovi subito sulla destra la tua camera da letto. Ogni cosa è come l'hai lasciata.\n\nChe cosa fai?\n",
+    "description": "Salendo le scale trovi subito sulla destra la tua camera da letto. Ogni cosa è come l'hai lasciata. L'avventura che cerchi non si trova qui, è ora di andare!\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
@@ -151,7 +151,7 @@
   "route1_start": {
     "nameID": "route1_start",
     "title": "Route 1",
-    "description": "La rotta 1 ti sorride avventuriero!\nPer procedere devi entrare nell'erba alta.\n\nChe cosa fai?\n",
+    "description": "La rotta 1 ti sorride allenatore!\nPer procedere devi entrare nell'erba alta.\n\nChe cosa fai?\n",
     "musicSrcName": "mp3.barkTown",
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
@@ -184,30 +184,6 @@
       {"name":  "r1_tall_grass", "type": "try_escape", "btnText": "Tento la fuga"}
     ],
     "specialArea": "loser_r1"
-  },
-  "winner_r1": {
-    "nameID": "winner_r1",
-    "title": "Route 1",
-    "description": "",
-    "musicSrcName": "mp3.barkTown",
-    "bgImageSrcName": "img.barkTown",
-    "nextAreas": [
-      {"name":  "route1_end", "type": "default", "btnText": "Prosegui nella Route 1"},
-      {"name":  "r1_tall_grass", "type": "tall_grass", "btnText": "Cerca pokémon nell'erba alta"},
-      {"name":  "route1_start", "type": "default", "btnText": "Torna indietro verso Bark Town"}
-    ],
-    "specialArea": ""
-  },
-  "loser_r1": {
-    "nameID": "loser_r1",
-    "title": "Route 1",
-    "description": "Hai perso la lotta, ma non la battaglia. Torni a casa per curare i tuoi pokémon.\n",
-    "musicSrcName": "mp3.barkTown",
-    "bgImageSrcName": "img.barkTown",
-    "nextAreas": [
-      {"name":  "home_living_room", "type": "heal", "btnText": "Torna a casa"}
-    ],
-    "specialArea": ""
   },
   "route1_end": {
     "nameID": "route1_end",
@@ -255,7 +231,7 @@
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
       {"name":  "", "type": "heal", "btnText": "Cura la tua squadra"},
-      {"name":  "rcherrygrove_est", "type": "default", "btnText": "Esci dal centro pokémon"}
+      {"name":  "cherrygrove_est", "type": "default", "btnText": "Esci dal centro pokémon"}
     ],
     "specialArea": ""
   },
@@ -294,7 +270,19 @@
       {"name":  "r2_tall_grass", "type": "tall_grass", "btnText": "Cerca pokémon nell'erba alta"},
       {"name":  "route2_start", "type": "default", "btnText": "Torna indietro verso Cherrygrove"}
     ],
-    "specialArea": ""
+    "specialArea": "spawn_r2"
+  },
+  "spawn_r2": {
+    "nameID": "spawn_r2",
+    "title": "Route 2",
+    "description": "Camminando nell'erba alta senti un rumore alle tue spalle...\nUn pokemon è nelle vicinanze, combatti o tenti la fuga?\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "winner_r1", "type": "battle", "btnText": "Combatto!"},
+      {"name":  "r2_tall_grass", "type": "try_escape", "btnText": "Tento la fuga"}
+    ],
+    "specialArea": "loser_r1"
   },
   "route2_end": {
     "nameID": "route2_end",
