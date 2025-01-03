@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -28,6 +29,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -58,10 +60,15 @@ public final class BattleController extends Controller {
     private int moveToForgetIndex;
     private Move newMove;
 
+    @FXML
+    protected Button
+            teamPaneBackBtn;
 
     @FXML
     protected GridPane
-            rootPane, labelsPane, buttonsPane, bagPane, pkmnPane, newMovePane, forgetMoveBtnPane, gameSettingsPane;
+            rootPane, labelsPane, buttonsPane, bagPane, teamPane,
+            newMovePane, forgetMoveBtnPane, gameSettingsPane,
+            pokemonInfoPane, moveInfoPane;
 
     @FXML
     protected ScrollPane logScrollPane;
@@ -73,12 +80,16 @@ public final class BattleController extends Controller {
     protected HBox pokeCounterBox;
 
     @FXML
-    protected ImageView playerPkmnGif, opponentPkmnGif, transitionGif;
+    protected ImageView playerPkmnGif, opponentPkmnGif, transitionGif, info_avatarImgView;
 
     @FXML
     protected Label
-            playerPkmnNameLbl, opponentPkmnNameLbl, logLbl;
+            playerPkmnNameLbl, opponentPkmnNameLbl, logLbl, info_nameLbl, info_lvLbl, info_xpLbl, info_hpLbl, info_attLbl,
+            info_difLbl, info_sAttLbl, info_sDifLbl, info_velLbl, moveDescriptionLbl,
+            moveTypeLbl, moveCatLbl, movePowLbl, movePriorityLbl, movePrecLbl, movPPLbl;
 
+    @FXML
+    protected VBox pokemonMovesVBox;
 
     /**
      *  Metodo chiamato dal bottone 'fuga'.
@@ -115,7 +126,26 @@ public final class BattleController extends Controller {
     @FXML
     public void pkmnTeam(MouseEvent e) {
         soundMan.buttonClick();
-        nodeMan.showPkmnPane(getPlayer());
+        nodeMan.showTeamPane(getPlayer());
+    }
+
+    /**
+     *
+     */
+    @FXML
+    public void backToPokemonDetails(ActionEvent e) {
+        soundMan.buttonClick();
+        nodeMan.showPokemonDetails();
+        moveInfoPane.getChildren().removeLast();
+    }
+
+
+    /**
+     *
+     */
+    public void pokemonDetails(MouseEvent e, OwnedPokemon pkmn) {
+        soundMan.buttonClick();
+        nodeMan.showPokemonDetails(pkmn);
     }
 
     /**
@@ -192,6 +222,15 @@ public final class BattleController extends Controller {
     public void volume(ActionEvent e) {
         soundMan.buttonClick();
         soundMan.toggleVolume();
+    }
+
+    /**
+     * Torna alla schermata di visualizzazione dei pokemon.
+     */
+    @FXML
+    public void backToOwnedTeam(ActionEvent e) {
+        soundMan.buttonClick();
+        nodeMan.backToShowTeam();
     }
 
 
@@ -623,7 +662,7 @@ public final class BattleController extends Controller {
      * log label.
      */
     private void victory() {
-        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) / 7;
+        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) / 2;
         int oldLevel = playerPokemon.getLevel();
         playerPokemon.increaseEV(opponentPokemon);
 

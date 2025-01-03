@@ -121,8 +121,7 @@
 #teamCardsPane,
 #pokemonInfoPane,
 #moveInfoPane {
-    -fx-control-inner-background: transparent;
-    -fx-background-color: transparent;
+    -fx-background-color: #111111F0;
 
     -fx-border-color: #916161;
     -fx-border-width: 2px;
@@ -139,9 +138,8 @@
 
 
 #pokemonInfoVBox {
-    -fx-control-inner-background: transparent;
-    -fx-background-color: transparent;
-
+    -fx-background-color: #1E1E1E;
+    -fx-background-radius: 18px 0px 18px 0px;
     -fx-border-color: #55550A;
     -fx-border-width: 3px;
     -fx-border-radius: 15px 0px 15px 0px;

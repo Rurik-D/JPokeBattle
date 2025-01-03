@@ -89,7 +89,7 @@ public final class ArcadeController extends Controller {
     @FXML
     public void ownedTeam(MouseEvent e) {
         soundMan.buttonClick();
-        nodeMan.showOwnedTeam(getPlayer());
+        nodeMan.showTeamPane(getPlayer());
     }
 
     /**
@@ -199,7 +199,6 @@ public final class ArcadeController extends Controller {
     /**
      *
      */
-    @FXML
     public void pokemonDetails(MouseEvent e, OwnedPokemon pkmn) {
         soundMan.buttonClick();
         nodeMan.showPokemonDetails(pkmn);

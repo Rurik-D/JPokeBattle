@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Ellipse?>
@@ -271,31 +272,165 @@
          </children>
       </GridPane>
 
-      <GridPane fx:id="pkmnPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000EF;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">
+      <GridPane fx:id="teamPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="702.0" prefWidth="1000.0" style="-fx-background-color: #000000E0;" visible="false" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
          <columnConstraints>
-            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
-            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
-            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
-            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
-            <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="183.0" prefWidth="189.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="200.0" prefWidth="211.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
-            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="140.0" />
+            <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="63.0" minHeight="63.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <FlowPane fx:id="teamCardsPane" hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="560.0" translateY="35.0" vgap="20.0" GridPane.columnSpan="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
+            <Button fx:id="teamPaneBackBtn" maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" onAction="#backToGame" prefHeight="25.0" prefWidth="180.0" text="Indietro" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+
+            <FlowPane fx:id="teamCardsPane" hgap="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="560.0" vgap="20.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="20.0" />
+               </GridPane.margin>
                <padding>
                   <Insets left="30.0" top="30.0" />
                </padding>
             </FlowPane>
-            <Button mnemonicParsing="false" onAction="#backToGame" text="Indietro" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
+
+            <GridPane fx:id="pokemonInfoPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="780.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.valignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="260.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="-Infinity" prefWidth="207.0" />
+                  <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="260.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="20.0" />
+               </GridPane.margin>
+               <children>
+                  <ImageView fx:id="info_avatarImgView" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="BASELINE">
+                     <GridPane.margin>
+                        <Insets left="20.0" top="15.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <Label text="Informazioni" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="15.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Mosse" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="15.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <VBox fx:id="pokemonInfoVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="4" GridPane.valignment="CENTER">
+                     <children>
+                        <Label fx:id="info_nameLbl" />
+                        <Label fx:id="info_lvLbl" />
+                        <Label fx:id="info_xpLbl" />
+                        <Label fx:id="info_hpLbl" />
+                        <Label fx:id="info_attLbl" />
+                        <Label fx:id="info_difLbl" />
+                        <Label fx:id="info_sAttLbl" />
+                        <Label fx:id="info_sDifLbl" />
+                        <Label fx:id="info_velLbl" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox fx:id="pokemonMovesVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="8.0" translateX="40.0" translateY="-10.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="4" GridPane.valignment="TOP">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </VBox>
+                  <Button maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" onAction="#backToOwnedTeam"  prefHeight="25.0" prefWidth="180.0" text="Indietro" translateX="5.2" translateY="119.7" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </GridPane>
+
+            <GridPane fx:id="moveInfoPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="780.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="6" GridPane.valignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="260.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="-Infinity" prefWidth="207.0" />
+                  <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="260.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="116.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="20.0" />
+               </GridPane.margin>
+               <children>
+                  <Button maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" onAction="#backToPokemonDetails" prefHeight="25.0" prefWidth="180.0" text="Indietro" translateX="5.0" translateY="118" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label text="Descrizione" translateY="15.0" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="moveDescriptionLbl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="700.0" translateY="25.0" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label text="Informazioni" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                  <GridPane fx:id="moveInfoDataPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="700.0" translateY="-10.0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="moveTypeLbl" text="Tipo" />
+                        <Label fx:id="moveCatLbl" text="Categoria" GridPane.rowIndex="1" />
+                        <Label fx:id="movePowLbl" text="Potenza" GridPane.columnIndex="1" />
+                        <Label fx:id="movePriorityLbl" text="Priorità" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="movePrecLbl" text="Precisione" GridPane.columnIndex="2" />
+                        <Label fx:id="movPPLbl" text="PP" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="20.0" />
+               </GridPane.margin>
+            </GridPane>
+
          </children>
       </GridPane>
       <GridPane fx:id="bagPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #000000EF;" visible="false" GridPane.columnSpan="5" GridPane.rowSpan="5">

@@ -1,6 +1,7 @@
 package it.rd.jpokebattle.controller;
 
 import it.rd.jpokebattle.controller.menu.MenuController;
+import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import javafx.animation.PauseTransition;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
@@ -28,6 +29,7 @@ public abstract class NodeManager {
         pause.setOnFinished(e -> scrl.setVvalue(1.0));
         pause.play();
     }
+
 
 
 }

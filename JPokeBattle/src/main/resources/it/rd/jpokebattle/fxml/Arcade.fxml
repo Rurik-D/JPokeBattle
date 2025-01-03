@@ -302,7 +302,7 @@
                         <Insets />
                      </GridPane.margin>
                   </VBox>
-                  <Button maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" onAction="#backToOwnedTeam" prefHeight="25.0" prefWidth="180.0" text="Indietro" translateX="5.0" translateY="112.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                  <Button maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" onAction="#backToOwnedTeam"  prefHeight="25.0" prefWidth="180.0" text="Indietro" translateX="5.2" translateY="119.7" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

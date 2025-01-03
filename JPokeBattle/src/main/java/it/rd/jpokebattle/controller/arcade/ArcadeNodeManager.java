@@ -76,7 +76,9 @@ public final class ArcadeNodeManager extends NodeManager {
 
 
     /**
-     *
+     * Aggiorna i bottoni di "scelta della prossima area" con i valori delle aree successive
+     * contenuti nell'ogetto Area corrente. Se non sono presenti valori per un bottone, tale
+     * bottone viene nascosto.
      */
     public void updateNextAreaButtons(Area area) {
         ctrl.area0Btn.setText(area.getNextAreaBtnText(0));
@@ -95,9 +97,9 @@ public final class ArcadeNodeManager extends NodeManager {
     }
 
     /**
-     *
+     * Mostra i pokemon del team
      */
-    public void showOwnedTeam(Profile player) {
+    public void showTeamPane(Profile player) {
         ctrl.teamPane.setVisible(true);
 
         for (OwnedPokemon pkmn : player.getTeam()) {
@@ -129,6 +131,16 @@ public final class ArcadeNodeManager extends NodeManager {
         }
     }
 
+    /**
+     *
+     */
+    public void showPokemonDetails() {
+        ctrl.teamCardsPane.setVisible(false);
+        ctrl.teamPaneBackBtn.setVisible(false);
+        ctrl.moveInfoPane.setVisible(false);
+        ctrl.pokemonInfoPane.setVisible(true);
+    }
+
     private void showMoveInfoPane(Move move, int pp) {
         ctrl.pokemonInfoPane.setVisible(false);
         ctrl.moveInfoPane.setVisible(true);
@@ -146,16 +158,6 @@ public final class ArcadeNodeManager extends NodeManager {
         ctrl.movePrecLbl.setText("Precisione: " + (int) move.getPrecision());
         ctrl.movPPLbl.setText("PP: " + move.getPP());
 
-    }
-
-    /**
-     *
-     */
-    public void showPokemonDetails() {
-        ctrl.teamCardsPane.setVisible(false);
-        ctrl.teamPaneBackBtn.setVisible(false);
-        ctrl.moveInfoPane.setVisible(false);
-        ctrl.pokemonInfoPane.setVisible(true);
     }
 
     /**

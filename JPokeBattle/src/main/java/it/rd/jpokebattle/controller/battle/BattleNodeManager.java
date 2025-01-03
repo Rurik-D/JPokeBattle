@@ -2,10 +2,12 @@ package it.rd.jpokebattle.controller.battle;
 
 import it.rd.jpokebattle.controller.NodeManager;
 import it.rd.jpokebattle.model.move.Move;
+import it.rd.jpokebattle.model.move.MoveCategory;
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import it.rd.jpokebattle.model.pokemon.Pokemon;
 import it.rd.jpokebattle.model.profile.Profile;
 import it.rd.jpokebattle.util.file.ResourceLoader;
+import it.rd.jpokebattle.view.arcade.MoveCard;
 import it.rd.jpokebattle.view.arcade.PokemonCard;
 import it.rd.jpokebattle.view.bar.LifeBar;
 import it.rd.jpokebattle.view.bar.XpBar;
@@ -14,6 +16,7 @@ import javafx.animation.PauseTransition;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,6 +27,9 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+
+import static it.rd.jpokebattle.model.pokemon.Stats.*;
+import static it.rd.jpokebattle.model.pokemon.Stats.SPEED;
 
 /**
  * Classe che gestisce la creazione e la visualizzazione di nodi nella scena di lotta.
@@ -108,13 +114,91 @@ public final class BattleNodeManager extends NodeManager {
      *
      * @param player Giocatore da cui poter prendere i pokemon
      */
-    protected void showPkmnPane(Profile player) {
-        ctrl.pkmnPane.setVisible(true);
+    protected void showTeamPane(Profile player) {
+        ctrl.teamPane.setVisible(true);
 
         for (OwnedPokemon pkmn : player.getTeam()) {
             PokemonCard card = new PokemonCard(pkmn);
+            card.setOnMouseClicked(e -> ctrl.pokemonDetails(e, pkmn));
             ctrl.teamCardsPane.getChildren().add(card);
         }
+    }
+
+    /**
+     *
+     */
+    public void showPokemonDetails(OwnedPokemon pkmn) {
+        ctrl.teamCardsPane.setVisible(false);
+        ctrl.teamPaneBackBtn.setVisible(false);
+        ctrl.pokemonInfoPane.setVisible(true);
+        updatePokemonInfoPane(pkmn);
+
+        ArrayList<Move> moves = pkmn.getMoves();
+        ArrayList<Integer> pps = pkmn.getPPs();
+        int size = Math.min(moves.size(), 4);
+
+        for (int i=0; i<size; i++) {
+            Move move = moves.get(i);
+            int pp = pps.get(i);
+            MoveCard mc = new MoveCard(move, pp);
+            mc.setOnMouseClicked(e -> showMoveInfoPane(move, pp));
+            ctrl.pokemonMovesVBox.getChildren().add(mc);
+        }
+    }
+
+    /**
+     *
+     */
+    public void showPokemonDetails() {
+        ctrl.teamCardsPane.setVisible(false);
+        ctrl.teamPaneBackBtn.setVisible(false);
+        ctrl.moveInfoPane.setVisible(false);
+        ctrl.pokemonInfoPane.setVisible(true);
+    }
+
+    private void showMoveInfoPane(Move move, int pp) {
+        ctrl.pokemonInfoPane.setVisible(false);
+        ctrl.moveInfoPane.setVisible(true);
+        MoveCard mc = new MoveCard(move, pp);
+        mc.setCursor(Cursor.DEFAULT);
+        ctrl.moveInfoPane.getChildren().add(mc);
+        GridPane.setValignment(mc, VPos.BOTTOM);
+        GridPane.setHalignment(mc, HPos.RIGHT);
+
+        ctrl.moveDescriptionLbl.setText(move.getDescription());
+        ctrl.moveTypeLbl.setText("Tipo: " + move.getType().getFormattedName());
+        ctrl.moveCatLbl.setText("Categoria: " + MoveCategory.getFormattedName(move.getCategory()));
+        ctrl.movePowLbl.setText("Potenza: " + move.getPower());
+        ctrl.movePriorityLbl.setText("Priorità: " + move.getPriority());
+        ctrl.movePrecLbl.setText("Precisione: " + (int) move.getPrecision());
+        ctrl.movPPLbl.setText("PP: " + move.getPP());
+
+    }
+
+    /**
+     *
+     */
+    public void backToShowTeam() {
+        ctrl.pokemonInfoPane.setVisible(false);
+        ctrl.teamCardsPane.setVisible(true);
+        ctrl.teamPaneBackBtn.setVisible(true);
+        ctrl.pokemonMovesVBox.getChildren().clear();
+    }
+
+    /**
+     *
+     */
+    private void updatePokemonInfoPane(OwnedPokemon pkmn) {
+        ctrl.info_avatarImgView.setImage(pkmn.getBreed().getAvatar());
+        ctrl.info_nameLbl.setText("Nome: " + pkmn.getName());
+        ctrl.info_lvLbl.setText("Livello: " + pkmn.getLevel());
+        ctrl.info_xpLbl.setText("Esperienza: " + pkmn.getXp());
+        ctrl.info_hpLbl.setText("Punti Salute: " + pkmn.getStat(HP));
+        ctrl.info_attLbl.setText("Attacco: " + pkmn.getStat(ATK));
+        ctrl.info_difLbl.setText("Difesa: " + pkmn.getStat(DEF));
+        ctrl.info_sAttLbl.setText("Att. Speciale: " + pkmn.getStat(SPEC_ATK));
+        ctrl.info_sDifLbl.setText("Dif. Speciale: " + pkmn.getStat(SPEC_DEF));
+        ctrl.info_velLbl.setText("Velocità: " + pkmn.getStat(SPEED));
     }
 
     /**
@@ -173,7 +257,7 @@ public final class BattleNodeManager extends NodeManager {
      */
     protected void backToGame() {
         ctrl.bagPane.setVisible(false);
-        ctrl.pkmnPane.setVisible(false);
+        ctrl.teamPane.setVisible(false);
         ctrl.gameSettingsPane.setVisible(false);
         ctrl.teamCardsPane.getChildren().clear();
     }
