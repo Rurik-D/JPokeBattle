@@ -10,7 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-
+/**
+ * Classe che rappresenta una "card" per visualizzare le informazioni relative a una mossa
+ * di un Pokémon nel menu di informazioni.
+ * Ogni card include il nome, i PP (Power Points) e il tipo della mossa.
+ */
 public class MoveCard extends GridPane {
     private Move move;
     private int curPP;
@@ -19,7 +23,12 @@ public class MoveCard extends GridPane {
     private Label ppLbl = new Label();
     private Label typeLbl = new Label();
 
-
+    /**
+     * Costruttore che inizializza una nuova card per una mossa.
+     *
+     * @param move La mossa da visualizzare nella card.
+     * @param curPP I Power Points (PP) attuali della mossa.
+     */
     public MoveCard(Move move, int curPP) {
         this.move = move;
         this.curPP = curPP;
@@ -30,7 +39,10 @@ public class MoveCard extends GridPane {
         setTypeLbl();
     }
 
-
+    /**
+     * Configura il layout principale del pannello della card.
+     * Imposta dimensioni, colore di sfondo, e stile del bordo.
+     */
     private void setPane() {
         this.setCursor(Cursor.HAND);
         this.setMinSize(240, 70);
@@ -62,6 +74,10 @@ public class MoveCard extends GridPane {
         this.setBorder(new Border(bs));
     }
 
+    /**
+     * Configura l'etichetta per il nome della mossa.
+     * Imposta il testo, lo stile, e la posizione nel layout.
+     */
     private void setNameLbl() {
         nameLbl.setText(move.getName());
         nameLbl.setStyle("-fx-font-size: 20px; -fx-text-fill: #C1C1C1;");
@@ -70,6 +86,10 @@ public class MoveCard extends GridPane {
         nameLbl.setTranslateX(5);
     }
 
+    /**
+     * Configura l'etichetta per il tipo della mossa.
+     * Imposta il testo, lo stile, e un bordo colorato.
+     */
     private void setTypeLbl() {
         typeLbl.setText(move.getType().getFormattedName());
         typeLbl.setStyle("-fx-font-size: 17px; -fx-text-fill: #C1C1C1;");
@@ -89,6 +109,10 @@ public class MoveCard extends GridPane {
         typeLbl.setBorder(new Border (b));
     }
 
+    /**
+     * Configura l'etichetta per i Power Points (PP) della mossa.
+     * Imposta il testo, lo stile, e la posizione nel layout.
+     */
     private void setPPLbl() {
         ppLbl.setText("PP " + curPP + " / " + move.getPP());
         ppLbl.setStyle("-fx-font-size: 18px; -fx-text-fill: #C1C1C1;");

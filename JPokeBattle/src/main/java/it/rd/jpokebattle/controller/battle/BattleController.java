@@ -662,7 +662,7 @@ public final class BattleController extends Controller {
      * log label.
      */
     private void victory() {
-        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) / 2;
+        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) ;
         int oldLevel = playerPokemon.getLevel();
         playerPokemon.increaseEV(opponentPokemon);
 
@@ -752,7 +752,7 @@ public final class BattleController extends Controller {
         return (pkmn.getPP(moveIndex) > 0 && pkmn.getCurrHP() > 0);
     }
 
-    /** TODO DA GESTIRE CASO IN CUI TUTTI I PP DI TUTTE LE MOSSE SONO ESAURITI
+    /**
      * Selezionata randomicamente una tra le mosse disponibili dell'avversario e ritornato il suo indice.
      *
      * @return Genera randomicamente l'indice di una mossa tra le mosse disponibili

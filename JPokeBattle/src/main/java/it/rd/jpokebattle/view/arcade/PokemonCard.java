@@ -1,6 +1,5 @@
 package it.rd.jpokebattle.view.arcade;
 
-
 import it.rd.jpokebattle.model.pokemon.OwnedPokemon;
 import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import it.rd.jpokebattle.model.pokemon.Stats;
@@ -17,6 +16,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
+/**
+ * Classe che rappresenta una "card" grafica selezionabile per visualizzare le informazioni
+ * di un Pokémon posseduto. Le card mostrano il nome, il livello, l'immagine, i punti vita (HP),
+ * e una barra dell'esperienza del Pokémon.
+ */
 public class PokemonCard extends GridPane {
     private OwnedPokemon pkmn;
     private ImageView pkmnImg;
@@ -27,6 +31,11 @@ public class PokemonCard extends GridPane {
     private Label levelLbl = new Label();
     private Label lifeLbl = new Label();
 
+    /**
+     * Costruttore che inizializza una nuova card per il Pokémon specificato.
+     *
+     * @param pkmn Il Pokémon da rappresentare nella card.
+     */
     public PokemonCard(OwnedPokemon pkmn) {
         this.pkmn = pkmn;
         setPane();
@@ -39,7 +48,10 @@ public class PokemonCard extends GridPane {
         setLifeLbl();
     }
 
-
+    /**
+     * Configura il layout principale del pannello della card.
+     * Imposta dimensioni, colore di sfondo, e stile del bordo.
+     */
     private void setPane() {
         this.setCursor(Cursor.HAND);
         this.setPrefSize(240, 110);
@@ -63,6 +75,10 @@ public class PokemonCard extends GridPane {
 
     }
 
+    /**
+     * Configura l'etichetta per il livello del Pokémon.
+     * Mostra il livello corrente.
+     */
     private void setLevelLbl() {
         String text = "Lv. " + pkmn.getLevel();
         levelLbl.setText(text);
@@ -73,8 +89,12 @@ public class PokemonCard extends GridPane {
         setHalignment(levelLbl, HPos.CENTER);
     }
 
+    /**
+     * Configura l'etichetta per il nome del Pokémon.
+     * Mostra il nome corrente.
+     */
     private void setNameLbl() {
-        nameLbl.setText(pkmn.getName());
+        nameLbl.setText(pkmn.getBreed().getName());
         nameLbl.setStyle("-fx-font-size: 18px;");
         nameLbl.setTranslateY(5);
         this.add(nameLbl, 1, 1);
@@ -83,6 +103,10 @@ public class PokemonCard extends GridPane {
         setHalignment(nameLbl, HPos.CENTER);
     }
 
+    /**
+     * Configura l'immagine del Pokémon.
+     * Mostra un'animazione o un'immagine statica in base ai suoi punti vita (HP).
+     */
     private void setPkmnImage() {
         Image img;
         if (pkmn.getCurrHP() > 0)
@@ -100,6 +124,10 @@ public class PokemonCard extends GridPane {
         setValignment(pkmnImg, VPos.BOTTOM);
     }
 
+    /**
+     * Configura la cornice della barra della vita.
+     * Utilizza un'immagine come sfondo.
+     */
     private void setLifeCard() {
         String src = "img.lifeBar";
         Image img = ResourceLoader.loadImage(src);
@@ -115,6 +143,10 @@ public class PokemonCard extends GridPane {
         setHalignment(lifeCard, HPos.CENTER);
     }
 
+    /**
+     * Configura la barra della vita del Pokémon.
+     * Mostra graficamente i punti vita attuali rispetto al massimo.
+     */
     private void setLifeBar() {
         lifeBar = new LifeBar(pkmn, 105.0, 6.7);
         lifeBar.setTranslateX(29.5);
@@ -125,15 +157,16 @@ public class PokemonCard extends GridPane {
         setValignment(lifeBar, VPos.BOTTOM);
     }
 
-
+    /**
+     * Configura la barra della vita del Pokémon.
+     * Mostra graficamente i punti vita attuali rispetto al massimo.
+     */
     private void setXpLine() {
         double maxL = 108;
         double xpRange =
                 PokemonManager.getXPTreshold(pkmn.getLevel()+1) -
                 PokemonManager.getXPTreshold(pkmn.getLevel());
         double xpToNxtLv = pkmn.getXpToNextLv();
-        // length : maxL = (xr - xtnl) : xr
-        // length = ((xr - xtnl) * maxL) / xr
         double length = ((xpRange - xpToNxtLv) * maxL) / xpRange;
 
         xpLine.setStartX(0);
@@ -148,7 +181,10 @@ public class PokemonCard extends GridPane {
         setValignment(xpLine, VPos.BOTTOM);
     }
 
-
+    /**
+     * Configura l'etichetta per i punti vita (HP) del Pokémon.
+     * Mostra gli HP attuali e il massimo.
+     */
     private void setLifeLbl() {
         String text = pkmn.getCurrHP() + " / " + pkmn.getStat(Stats.HP);
         lifeLbl.setText(text);
@@ -157,19 +193,3 @@ public class PokemonCard extends GridPane {
         setHalignment(lifeLbl, HPos.CENTER);
     }
 }
-
-
-
-//        BackgroundFill bg = new BackgroundFill(
-//        Color.AQUAMARINE,
-//        new CornerRadii(10),
-//        Insets.EMPTY);
-//
-//        this.setBackground(new Background(bg));
-//        BorderStroke borderStroke = new BorderStroke(
-//        Color.BLACK,
-//        BorderStrokeStyle.SOLID,
-//        new CornerRadii(10),
-//        new BorderWidths(5)
-//);
-

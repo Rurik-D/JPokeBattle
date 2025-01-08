@@ -18,7 +18,6 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -125,7 +124,7 @@ public final class BattleNodeManager extends NodeManager {
     }
 
     /**
-     *
+     * Mostra i dettagli di un Pokemon specifico.
      */
     public void showPokemonDetails(OwnedPokemon pkmn) {
         ctrl.teamCardsPane.setVisible(false);
@@ -147,7 +146,7 @@ public final class BattleNodeManager extends NodeManager {
     }
 
     /**
-     *
+     * Mostra i dettagli del Pokemon senza specificarne uno in particolare.
      */
     public void showPokemonDetails() {
         ctrl.teamCardsPane.setVisible(false);
@@ -156,6 +155,9 @@ public final class BattleNodeManager extends NodeManager {
         ctrl.pokemonInfoPane.setVisible(true);
     }
 
+    /**
+     * Mostra i dettagli di una mossa specifica.
+     */
     private void showMoveInfoPane(Move move, int pp) {
         ctrl.pokemonInfoPane.setVisible(false);
         ctrl.moveInfoPane.setVisible(true);
@@ -176,7 +178,7 @@ public final class BattleNodeManager extends NodeManager {
     }
 
     /**
-     *
+     * Torna alla visualizzazione del team dopo aver mostrato i dettagli di un Pokemon.
      */
     public void backToShowTeam() {
         ctrl.pokemonInfoPane.setVisible(false);
@@ -186,11 +188,11 @@ public final class BattleNodeManager extends NodeManager {
     }
 
     /**
-     *
+     * Aggiorna i dettagli del Pokemon visualizzati.
      */
     private void updatePokemonInfoPane(OwnedPokemon pkmn) {
         ctrl.info_avatarImgView.setImage(pkmn.getBreed().getAvatar());
-        ctrl.info_nameLbl.setText("Nome: " + pkmn.getName());
+        ctrl.info_nameLbl.setText("Nome: " + pkmn.getBreed().getName());
         ctrl.info_lvLbl.setText("Livello: " + pkmn.getLevel());
         ctrl.info_xpLbl.setText("Esperienza: " + pkmn.getXp());
         ctrl.info_hpLbl.setText("Punti Salute: " + pkmn.getStat(HP));
@@ -238,6 +240,9 @@ public final class BattleNodeManager extends NodeManager {
 
     }
 
+    /**
+     * Mostra il pannello di scelta della mossa da dimenticare.
+     */
     private void showForgetMove(MouseEvent e) {
         Node node = (Node) e.getSource();
         String moveId = node.getId();
@@ -246,7 +251,9 @@ public final class BattleNodeManager extends NodeManager {
         ctrl.forgetMoveBtnPane.setVisible(true);
     }
 
-
+    /**
+     * Nasconde il pannello di scelta della mossa da dimenticare.
+     */
     private void hideForgetMove() {
         ctrl.forgetMoveBtnPane.setVisible(false);
     }
@@ -271,7 +278,7 @@ public final class BattleNodeManager extends NodeManager {
     private void setLabels(OwnedPokemon playerPkmn, Pokemon opponentPkmn) {
         ctrl.playerPkmnGif.setImage(playerPkmn.getBreed().getBackGif());
         ctrl.opponentPkmnGif.setImage(opponentPkmn.getBreed().getFrontGif());
-        ctrl.playerPkmnNameLbl.setText(playerPkmn.getName());
+        ctrl.playerPkmnNameLbl.setText(playerPkmn.getBreed().getName());
         ctrl.opponentPkmnNameLbl.setText(opponentPkmn.getBreed().getName());
         setLifeBars(playerPkmn, opponentPkmn);
         setPlayerXPBar(playerPkmn);

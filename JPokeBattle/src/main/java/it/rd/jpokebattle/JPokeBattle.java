@@ -23,7 +23,7 @@ import java.io.IOException;
  * @version 1.0
  * @since 2024-08-12
  */
-public class Main extends Application {
+public class JPokeBattle extends Application {
     private FXMLLoader loader;
     private Stage mainStage;
     private Scene mainScene;

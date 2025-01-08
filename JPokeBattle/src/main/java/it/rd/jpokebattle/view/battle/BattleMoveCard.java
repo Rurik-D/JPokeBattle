@@ -15,8 +15,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 /**
- * Classe che definisce le move card per la lotta.
- * Tali card sono dei grid pane che mostrano tutte le informazioni della mossa.
+ * Classe che rappresenta una card per la selezione delle mosse durante una battaglia.
+ * Ogni card è un {@link GridPane} che visualizza le informazioni principali di una mossa,
+ * inclusi nome, PP rimanenti, e tipo.
  */
 public class BattleMoveCard extends GridPane {
     private Move move;
@@ -26,7 +27,13 @@ public class BattleMoveCard extends GridPane {
     private Label typeLbl = new Label();
     private ImageView bg;
 
-
+    /**
+     * Costruttore che crea una card della mossa associata a un Pokémon e un indice di mossa.
+     * La card visualizza dinamicamente i PP rimanenti della mossa.
+     *
+     * @param pkmn il Pokémon che conosce la mossa.
+     * @param moveIndex l'indice della mossa nel set di mosse del Pokémon.
+     */
     public BattleMoveCard(Pokemon pkmn, int moveIndex) {
         this.move = pkmn.getMove(moveIndex);
         this.borderColor = Type.getLabelBorderColor(pkmn.getMove(moveIndex).getType());
@@ -38,6 +45,12 @@ public class BattleMoveCard extends GridPane {
         );
     }
 
+    /**
+     * Costruttore che crea una card per una mossa generica.
+     * I PP rimanenti sono inizializzati al massimo.
+     *
+     * @param move la mossa da rappresentare nella card.
+     */
     public BattleMoveCard(Move move) {
         this.move = move;
         this.borderColor = Type.getLabelBorderColor(move.getType());
@@ -49,6 +62,9 @@ public class BattleMoveCard extends GridPane {
         );
     }
 
+    /**
+     * Inizializza la card aggiungendo gli elementi grafici principali.
+     */
     private void initialize() {
         setPane();
         setBg();
@@ -57,7 +73,9 @@ public class BattleMoveCard extends GridPane {
         setTypeLbl();
     }
 
-
+    /**
+     * Configura il layout principale della card, impostando dimensioni e margini.
+     */
     private void setPane() {
         this.setCursor(Cursor.HAND);
         this.setPrefSize(165, 70);
@@ -69,7 +87,6 @@ public class BattleMoveCard extends GridPane {
 
         this.getRowConstraints().add(new RowConstraints(35));
         this.getRowConstraints().add(new RowConstraints(35));
-
 
         BackgroundFill bf = new BackgroundFill(
                 Color.TRANSPARENT,
@@ -88,7 +105,9 @@ public class BattleMoveCard extends GridPane {
         this.setBorder(new Border(bs));
     }
 
-
+    /**
+     * Imposta l'immagine di sfondo della card.
+     */
     private void setBg() {
         bg = new ImageView(ResourceLoader.loadImage("img.mvCardBg"));
         bg.setFitWidth(165);
@@ -96,7 +115,9 @@ public class BattleMoveCard extends GridPane {
         this.add(bg, 0, 0, 3, 2);
     }
 
-
+    /**
+     * Configura l'etichetta per il nome della mossa.
+     */
     private void setNameLbl() {
         nameLbl.setText(move.getName());
         nameLbl.setStyle("-fx-font-size: 18px;");
@@ -106,6 +127,9 @@ public class BattleMoveCard extends GridPane {
         nameLbl.setTranslateX(10);
     }
 
+    /**
+     * Configura l'etichetta per il tipo della mossa.
+     */
     private void setTypeLbl() {
         typeLbl.setText(move.getType().getFormattedName());
         typeLbl.setStyle("-fx-font-size: 11px; -fx-text-fill: #D1D1D1;");
@@ -125,6 +149,9 @@ public class BattleMoveCard extends GridPane {
         typeLbl.setBorder(new Border (b));
     }
 
+    /**
+     * Configura l'etichetta per i PP rimanenti della mossa.
+     */
     private void setPPLbl() {
         ppLbl.setStyle("-fx-font-size: 15px; -fx-text-fill: #D1D1D1;");
         ppLbl.setTranslateX(-20);
