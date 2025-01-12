@@ -5,18 +5,27 @@ import javafx.scene.paint.Color;
 
 import java.util.HashMap;
 
+/**
+ * Enum che rappresenta i tipi di Pokémon, includendo il nome, l'identificatore e le mappe di efficacia.
+ */
 public enum Type {
     FIRE("fire", "Fuoco"), WATER("water", "Acqua"), GRASS("grass", "Erba"),
     NORMAL("normal", "Normale"), ELECTRIC("electric", "Elettro"), PSYCHIC("psychic", "Psico"),
     ICE("ice", "Ghiaccio"), DRAGON("dragon", "Drago"), GROUND("ground", "Terra"),
     FIGHTING("fighting", "Lotta"), FLYING("flying", "Volante"), POISON("poison", "Veleno"),
-    BUG("bug", "Coleottero"), GHOST("ghost", "Spettro"), ROCK("rock", "Roccia"),
+    BUG("bug", "Coleot."), GHOST("ghost", "Spettro"), ROCK("rock", "Roccia"),
     STEEL("steel", "Acciaio"), DARK("dark", "Buio");
 
     private final String NAME_ID;
     private final String name;
     private final HashMap<String, String> effMap;     // mappa delle efficacia
 
+    /**
+     * Costruttore dell'enum Type.
+     *
+     * @param nameID Identificatore unico del tipo.
+     * @param name   Nome formattato del tipo.
+     */
     private Type(String nameID, String name) {
         this.NAME_ID = nameID;
         this.name = name;
@@ -24,24 +33,28 @@ public enum Type {
     }
 
     /**
+     * Restituisce l'identificatore unico del tipo.
      *
-     * @return
+     * @return Identificatore del tipo.
      */
     public String getNameID() {
         return NAME_ID;
     }
 
     /**
+     * Restituisce il nome formattato del tipo.
      *
-     * @return
+     * @return Nome formattato.
      */
     public String getFormattedName() {
         return name;
     }
 
     /**
+     * Restituisce l'efficacia di un tipo rispetto a un altro.
      *
-     * @return
+     * @param typeID Identificatore del tipo avversario.
+     * @return Moltiplicatore di efficacia.
      */
     private Double getTypeEff(String typeID) {
         return switch (effMap.getOrDefault(typeID, "")) {
@@ -53,16 +66,21 @@ public enum Type {
     }
 
     /**
+     * Restituisce il moltiplicatore di efficacia del tipo rispetto a due tipi avversari.
      *
-     * @return
+     * @param typeID1 Identificatore del primo tipo avversario.
+     * @param typeID2 Identificatore del secondo tipo avversario.
+     * @return Moltiplicatore di efficacia combinato.
      */
     public Double getTypeEff(String typeID1, String typeID2) {
         return this.getTypeEff(typeID1) * this.getTypeEff(typeID2);
     }
 
     /**
+     * Restituisce il colore del bordo dell'etichetta per un determinato tipo.
      *
-     * @return
+     * @param type Tipo di cui ottenere il colore.
+     * @return Colore RGB del bordo.
      */
     public static Color getLabelBorderColor(Type type) {
         return switch (type.getNameID()) {
@@ -89,8 +107,10 @@ public enum Type {
     }
 
     /**
+     * Restituisce un tipo a partire dal suo identificatore.
      *
-     * @return
+     * @param name Nome o identificatore del tipo.
+     * @return Tipo corrispondente o null se non esiste.
      */
     public static Type fromName(String name) {
         for (Type type : Type.values()) {

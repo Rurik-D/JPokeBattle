@@ -27,6 +27,11 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
+/**
+ * Classe che gestisce la logica e l'interfaccia utente della modalità Arcade.
+ * Consente al giocatore di navigare tra aree, gestire i Pokémon posseduti,
+ * accedere all'inventario, alle impostazioni e di effettuare battaglie.
+ */
 public final class ArcadeController extends Controller {
 
     private static SpawnZone currSpawnZone;
@@ -66,16 +71,21 @@ public final class ArcadeController extends Controller {
     protected VBox pokemonMovesVBox;
 
 
-
+    /**
+     * Inizializza la scena Arcade, configurando i nodi e aggiornando i Pokémon del giocatore.
+     */
     public void initializeScene() {
         nodeMan.initializeNodes(getPlayer());
         PokemonManager.refreshPlayerPkmnsProperties(getPlayer());
+        soundMan.switchTrack(getPlayer().getCurrentArea().getMusicSrcName());
     }
 
 
 
     /**
-     * Nasconde tutti i panelli e torna alla schermata di gioco attuale.
+     * Nasconde tutti i pannelli e torna alla schermata di gioco attuale.
+     *
+     * @param e L'evento di azione associato.
      */
     @FXML
     public void backToGame (ActionEvent e) {
@@ -84,7 +94,9 @@ public final class ArcadeController extends Controller {
     }
 
     /**
-     * Mostra la schermata di visualizzazione dei pokemon in squadra.
+     * Mostra la schermata di visualizzazione dei Pokémon in squadra.
+     *
+     * @param e L'evento di mouse associato.
      */
     @FXML
     public void ownedTeam(MouseEvent e) {
@@ -93,7 +105,9 @@ public final class ArcadeController extends Controller {
     }
 
     /**
-     * Torna alla schermata di visualizzazione dei pokemon.
+     * Torna alla schermata di visualizzazione dei Pokémon in squadra.
+     *
+     * @param e L'evento di azione associato.
      */
     @FXML
     public void backToOwnedTeam(ActionEvent e) {
@@ -102,7 +116,9 @@ public final class ArcadeController extends Controller {
     }
 
     /**
+     * Torna alla schermata dei dettagli del Pokémon selezionato.
      *
+     * @param e L'evento di azione associato.
      */
     @FXML
     public void backToPokemonDetails(ActionEvent e) {
@@ -114,6 +130,8 @@ public final class ArcadeController extends Controller {
     /**
      * TODO:DA IMPLEMENTARE
      * Mostra la schermata di visualizzazione dell'inventario.
+     *
+     * @param e L'evento di mouse associato.
      */
     @FXML
     public void invenctory(MouseEvent e) {
@@ -122,7 +140,9 @@ public final class ArcadeController extends Controller {
     }
 
     /**
-     * Mostra la schermata di impostazioni.
+     * Mostra la schermata delle impostazioni.
+     *
+     * @param e L'evento di mouse associato.
      */
     @FXML
     public void settings (MouseEvent e) {
@@ -132,9 +152,11 @@ public final class ArcadeController extends Controller {
 
 
     /**
-     * Torna al menù principale, carica la nuova scena, aggiorna la root nella classe
-     * astratta NodeManager e aggiorna il file dei profili.
-     * */
+     * Torna al menu principale, aggiornando i file di salvataggio.
+     *
+     * @param e L'evento di azione associato.
+     * @throws IOException Se si verifica un errore nel caricamento della nuova scena.
+     */
     @FXML
     public void mainMenu(ActionEvent e) throws IOException {
         soundMan.buttonClick();
@@ -149,7 +171,9 @@ public final class ArcadeController extends Controller {
 
 
     /**
-     * TODO: DA IMPLEMENTARE (PROVVISORIA)
+     * TODO: DA IMPLEMENTARE
+     * Switch del volume.
+     *
      * @param e
      */
     @FXML
@@ -161,7 +185,9 @@ public final class ArcadeController extends Controller {
 
 
     /**
-     * Mostra la schermata di impostazioni.
+     * Seleziona un Pokémon iniziale e aggiorna l'anteprima.
+     *
+     * @param e L'evento di mouse associato.
      */
     @FXML
     public void selectStarterPokemon (MouseEvent e) {
@@ -174,7 +200,9 @@ public final class ArcadeController extends Controller {
     }
 
     /**
+     * Conferma la selezione del Pokémon iniziale e passa alla prima area.
      *
+     * @param e L'evento di azione associato.
      */
     @FXML
     public void confirmSelection(ActionEvent e) {
@@ -185,10 +213,8 @@ public final class ArcadeController extends Controller {
         nextArea(0);
     }
 
-
-
     /**
-     *
+     * Annulla la selezione dello starter e torna alla schermata precedente.
      */
     @FXML
     public void cancelSelection(ActionEvent e) {
@@ -197,7 +223,10 @@ public final class ArcadeController extends Controller {
     }
 
     /**
+     * Aggiorna l'interfaccia per mostrare i dettagli di un Pokémon.
      *
+     * @param e L'evento di mouse associato.
+     * @param pkmn Il Pokémon selezionato.
      */
     public void pokemonDetails(MouseEvent e, OwnedPokemon pkmn) {
         soundMan.buttonClick();
@@ -205,7 +234,10 @@ public final class ArcadeController extends Controller {
     }
 
     /**
+     * Gestisce il passaggio alla prossima area, con controlli aggiuntivi in
+     * caso di presenza di aree speciali.
      *
+     * @param e L'evento di azione associato.
      */
     @FXML
     public void nextAreaWithTypeCheck(ActionEvent e) {
@@ -215,24 +247,33 @@ public final class ArcadeController extends Controller {
     }
 
     /**
+     * Passa il giocatore all'area successiva.
      *
+     * @param areaIndex L'indice dell'area successiva.
      */
     public void nextArea(int areaIndex) {
         soundMan.buttonClick();
         getPlayer().goToNextArea(areaIndex);
         nodeMan.updateNarrationInterface(getPlayer().getCurrentArea());
+        soundMan.switchTrack(getPlayer().getCurrentArea().getMusicSrcName());
     }
 
     /**
-     *
+     * Gestisce il passaggio a una zona speciale (es. erba alta, guarigione, ecc).
      */
     public void specialArea() {
         soundMan.buttonClick();
         getPlayer().goToSpecialArea();
         nodeMan.updateNarrationInterface(getPlayer().getCurrentArea());
+        soundMan.switchTrack(getPlayer().getCurrentArea().getMusicSrcName());
     }
 
-
+    /**
+     * Ottiene l'indice dell'area successiva dal pulsante premuto.
+     *
+     * @param e L'evento di azione associato.
+     * @return L'indice dell'area successiva.
+     */
     private int getNextAreaBtnID(ActionEvent e) {
         Node n = (Node) e.getSource();
         String btnID = n.getId();
@@ -241,10 +282,11 @@ public final class ArcadeController extends Controller {
         else
             return 1;
     }
-
-
     /**
+     * Controlla il tipo di area successiva e gestisce l'azione appropriata.
      *
+     * @param e         L'evento di azione associato.
+     * @param areaIndex L'indice dell'area da verificare.
      */
     private void checkSpecialArea(ActionEvent e, int areaIndex) {
         switch (getPlayer().getCurrentArea().getNextAreaType(areaIndex)) {
@@ -253,7 +295,7 @@ public final class ArcadeController extends Controller {
                 break;
             case TALL_GRASS:
                 int foundValue = rand.nextInt(0, 100);
-                if (foundValue < 70)
+                if (foundValue < 80)
                     specialArea();
                 else
                     nextArea(areaIndex);
@@ -268,11 +310,12 @@ public final class ArcadeController extends Controller {
             case BATTLE:
                 area0Btn.setDisable(true);
                 currSpawnZone = SpawnZone.fromName(getPlayer().getCurrentArea().getNameID());
+                soundMan.switchTrack("mp3.battle");
                 startBattle(e);
                 break;
             case TRY_ESCAPE:
                 int succesValue = rand.nextInt(0, 100);
-                if (succesValue < 70) {
+                if (succesValue < 85) {
                     nodeMan.updateNarratorLbl("Non sei riuscito a seminare il pokémon, ora sei costretto a combattere!");
                     area1Btn.setVisible(false);
                 } else {
@@ -284,20 +327,38 @@ public final class ArcadeController extends Controller {
             case STARTER_SELECT:
                 starterSelectionPane.setVisible(true);
                 break;
+            case NEW_POKEMON:
+                nextArea(areaIndex);
+                nodeMan.updateNarratorLbl("Un nuovo Pokémon si è unito alla tua squadra!");
+                currSpawnZone = SpawnZone.fromName(getPlayer().getCurrentArea().getSpecialAreaName());
+
+                // Se il numero di pokemon posseduti è uguale all'indice dell'area, genera un nuovo pokemon posseduto da aggiungere agli altri del team
+                if (getPlayer().getTeam().size() == getPlayer().getCurrentArea().getSectionIndex())
+                    getPlayer().addToOwned(PokemonManager.toOwnedPokemon(PokemonManager.spawnOwnedPokemon(currSpawnZone)));
+                break;
         }
     }
 
+    /**
+     * Avvia una battaglia, preparando la transizione verso la scena della battaglia.
+     *
+     * @param e L'evento di azione associato.
+     */
     private void startBattle(ActionEvent e) {
         nodeMan.startClosingAnimation();
+        saveAll();
 
         // Prima di passare alla scena successiva attendo che la transizione sia terminata
         PauseTransition pause = new PauseTransition(Duration.seconds(1.4));
         pause.setOnFinished(ev -> switchToBattleScene(e));
         pause.play();
-
-        saveAll();
     }
 
+    /**
+     * Passa alla scena di battaglia e la inizializza.
+     *
+     * @param e L'evento di azione associato.
+     */
     private void switchToBattleScene(ActionEvent e) {
         try {
             FXMLLoader loader = SceneManager.switchScene(e, "fxml.battle", "css.battle");
@@ -311,6 +372,9 @@ public final class ArcadeController extends Controller {
         }
     }
 
+    /**
+     * Salva lo stato attuale del giocatore e dei Pokémon.
+     */
     private void saveAll() {
         getPlayer().setNarratorTextHistory(narratorLbl.getText());
         ProfileManager.save(getPlayer());

@@ -190,7 +190,6 @@ public final class MenuNodeManager extends NodeManager {
         ctrl.settingsLbl.setVisible(true);
     }
 
-
     /**
      * Visualizza, all'interno della schermata di visualizzazione dei profili, la scheda
      * del profilo selezionato sulla destra insieme ai bottoni 'modifica' e 'visualizza'.
@@ -231,7 +230,6 @@ public final class MenuNodeManager extends NodeManager {
         ctrl.snorlaxGif.setVisible(false);
     }
 
-
     /**
      * Allunga i separatori ai lati del menù.
      */
@@ -247,7 +245,6 @@ public final class MenuNodeManager extends NodeManager {
         ctrl.leftSeparatorLn.setEndX(220);
         ctrl.rightSeparatorLn.setEndX(220);
     }
-
 
     /**
      * Nasconde tutti gli oggetti della scena (al di fuori dei separatori e

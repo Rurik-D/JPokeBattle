@@ -19,6 +19,7 @@ public class Area {
     private static HashMap<String, Area> AREA_MAP = DataMapLoader.loadMap("json.area", Area.class);
     private String nameID;
     private String title;
+    private String section;
     private String description;
     private String musicSrcName;
     private String imageSrcName;
@@ -41,6 +42,16 @@ public class Area {
      */
     public String getTitle() {
         return title;
+    }
+
+    /**
+     * Restituisce l'indice della sezione attuale.
+     * Le sezioni sono le macroaree che contengono un certo numero di aree.
+     *
+     * @return L'indice della sezione (macroarea).
+     */
+    public int getSectionIndex() {
+        return Integer.parseInt(section);
     }
 
     /**

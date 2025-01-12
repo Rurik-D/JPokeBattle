@@ -147,11 +147,11 @@ public final class MenuController extends Controller {
 
     /**
      * TODO: da implementare!
+     * Scheramata dei crediti (non implementata).
      * */
     @FXML
     public void credits(ActionEvent e){
         soundMan.buttonClick();
-        System.out.println("Crediti");
     }
 
     /**
@@ -174,7 +174,7 @@ public final class MenuController extends Controller {
      * TODO: DA IMPLEMENTARE
      * Metodo chiamato dal bottone 'visualizza' nel menù di selezione dei
      * profili: passa alla schermata di visualizzazioni delle informazioni del
-     * profilo selezionato.
+     * profilo selezionato. (non implementato)
      */
     @FXML
     public void displayProfileInfo(ActionEvent e) {
@@ -184,11 +184,11 @@ public final class MenuController extends Controller {
 
     /**
      * TODO: da implementare!
+     * Metodo per cambiare l'idioma del menù. (non implementato)
      * */
     @FXML
     public void language(ActionEvent e){
         soundMan.buttonClick();
-        System.out.println("Lingua");
     }
 
     /**
@@ -236,11 +236,11 @@ public final class MenuController extends Controller {
 
     /**
      * TODO: da implementare!
+     * Metodo per aprire la modalità pvp. (non implementato)
      * */
     @FXML
     public void pvp(ActionEvent e){
         soundMan.buttonClick();
-        System.out.println("PvP");
     }
 
     /**
@@ -326,10 +326,10 @@ public final class MenuController extends Controller {
 
     /**
      * TODO: da implementare!
+     * Controllo del livello del volume. (non implementato
      * */
     @FXML
     public void volume(ActionEvent e){
         soundMan.buttonClick();
-        System.out.println("Volume");
     }
 }

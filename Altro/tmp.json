@@ -1,0 +1,100 @@
+{
+    "route4_start": {
+        "nameID": "route4_start",
+        "title": "Route 4",
+        "description": "La Route 4 ti sorride avventuriero!\nPer procedere devi entrare nell'erba alta.\n\nChe cosa fai?\n",
+        "musicSrcName": "mp3.route4",
+        "bgImageSrcName": "img.barkTown",
+        "nextAreas": [
+          {"name":  "r4_tall_grass", "type": "default", "btnText": "Prosegui nell'erba alta"},
+          {"name":  "cianwood_sud", "type": "default", "btnText": "Torna a Cianwood Sud"}
+        ],
+        "specialArea": ""
+      },
+      "r4_tall_grass": {
+        "nameID": "r4_tall_grass",
+        "title": "Route 4",
+        "description": "Sei nell'erba alta della Route 4.\nAl momento non vedi nessun pokémon nelle vicinanze...\n\nChe cosa fai?\n",
+        "musicSrcName": "mp3.route4",
+        "bgImageSrcName": "img.barkTown",
+        "nextAreas": [
+          {"name":  "route4_end", "type": "default", "btnText": "Prosegui nella Route 4 verso Cianwood"},
+          {"name":  "r4_tall_grass", "type": "tall_grass", "btnText": "Cerca pokémon nell'erba alta"},
+          {"name":  "route4_start", "type": "default", "btnText": "Torna indietro verso Cianwood Sud"}
+        ],
+        "specialArea": "spawn_r4"
+      },
+      "spawn_r4": {
+        "nameID": "spawn_r4",
+        "title": "Route 4",
+        "description": "Camminando nell'erba alta senti un rumore alle tue spalle...\nUn pokemon è nelle vicinanze, combatti o tenti la fuga?\n",
+        "musicSrcName": "mp3.route4",
+        "bgImageSrcName": "img.barkTown",
+        "nextAreas": [
+          {"name":  "", "type": "battle", "btnText": "Combatto!"},
+          {"name":  "r4_tall_grass", "type": "try_escape", "btnText": "Tento la fuga"}
+        ],
+        "specialArea": ""
+      },
+      "route4_end": {
+        "nameID": "route4_end",
+        "title": "Route 4",
+        "description": "Sei alla fine della Route 4, davanti a te c'è la città di Cianwood.\n\nChe cosa fai?\n",
+        "musicSrcName": "mp3.route4",
+        "bgImageSrcName": "img.barkTown",
+        "nextAreas": [
+          {"name":  "cianwood_est", "type": "default", "btnText": "Entra nella città di Cianwood"},
+          {"name":  "r4_tall_grass", "type": "default", "btnText": "Torna indietro nell'erba alta"}
+        ],
+        "specialArea": ""
+      },
+      "cianwood_est": {
+        "nameID": "cianwood_est",
+        "title": "Cianwood City Est",
+        "description": "Sei a Cianwood Est\n\nChe cosa fai?\n",
+        "musicSrcName": "mp3.cianwood",
+        "bgImageSrcName": "img.barkTown",
+        "nextAreas": [
+          {"name":  "cianwood_sud", "type": "default", "btnText": "Prosegui verso Cianwood Sud"},
+          {"name":  "route4_end", "type": "default", "btnText": "Torna sulla Route 4"}
+        ],
+        "specialArea": ""
+      },
+      "cianwood_sud": {
+        "nameID": "cianwood_sud",
+        "title": "Cianwood City Sud",
+        "description": "Sei a Cianwood Sud\n\nChe cosa fai?\n",
+        "musicSrcName": "mp3.cianwood",
+        "bgImageSrcName": "img.barkTown",
+        "nextAreas": [
+          {"name":  "end", "type": "default", "btnText": "Prosegui verso la Route 4"},
+          {"name":  "cianwood_est", "type": "default", "btnText": "Torna a Cianwood Est"}
+        ],
+        "specialArea": ""
+      },
+      "cianwood_pokemart": {
+        "nameID": "cianwood_pokemart",
+        "title": "Poke-Mart",
+        "description": "Sei al Poké-Mart di Cianwood City.\n\nChe cosa fai?\n",
+        "musicSrcName": "mp3.cianwood",
+        "bgImageSrcName": "img.barkTown",
+        "nextAreas": [
+          {"name":  "", "type": "trade", "btnText": "Commercia"},
+          {"name":  "cianwood_est", "type": "default", "btnText": "Esci dal Poké-Mart di Cianwood"}
+        ],
+        "specialArea": ""
+      },
+      "cianwood_pokecenter": {
+        "nameID": "cianwood_pokecenter",
+        "title": "Centro Pokémon",
+        "description": "Sei al centro pokémon di Cianwood City.\n\nChe cosa fai?\n",
+        "musicSrcName": "mp3.cianwood",
+        "bgImageSrcName": "img.barkTown",
+        "nextAreas": [
+          {"name":  "", "type": "heal", "btnText": "Cura la tua squadra"},
+          {"name":  "cianwood_sud", "type": "default", "btnText": "Esci dal centro pokémon di Cianwood"}
+        ],
+        "specialArea": ""
+      }
+    
+}

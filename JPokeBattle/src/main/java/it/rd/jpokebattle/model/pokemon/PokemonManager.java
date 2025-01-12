@@ -8,6 +8,11 @@ import it.rd.jpokebattle.util.file.SerManager;
 
 import java.util.*;
 
+/**
+ * Classe per la gestione dei Pokémon nel gioco.
+ * Fornisce metodi per generare, salvare, aggiornare ed eliminare Pokémon,
+ * oltre a gestire statistiche, IV e spawn casuali.
+ */
 public class PokemonManager implements SerializableHandler {
     private static Map<String, Map<String, Integer[]>> pkmnSpawnMap = DataMapLoader.loadSpawnMap();
     private static HashMap<Integer, OwnedPokemon> pkmnMap;
@@ -16,11 +21,11 @@ public class PokemonManager implements SerializableHandler {
     private static Random rand = new Random();
 
     /**
-     * A partire da una razza e da un livello viene generato casualmente un pokemon di
-     * quella razza e quel livello.
+     * Genera un Pokémon di una determinata razza e livello con mosse casuali valide.
      *
-     * @param breed  Razza del pokemon da generare
-     * @param lv     Livello del pokemon da generare
+     * @param breed Razza del Pokémon da generare.
+     * @param lv    Livello del Pokémon da generare.
+     * @return Istanza del Pokémon generato.
      */
     public static Pokemon generatePokemon(Breed breed, int lv) {
         Pokemon pkmn =  new Pokemon(breed, lv);
@@ -36,9 +41,10 @@ public class PokemonManager implements SerializableHandler {
     }
 
     /**
+     * Carica un Pokémon posseduto dalla mappa a partire dal suo ID e aggiorna le sue proprietà.
      *
-     * @param id
-     * @return
+     * @param id ID del Pokémon da caricare.
+     * @return Istanza del Pokémon posseduto.
      */
     public static OwnedPokemon loadPokemonFromID(int id) {
         OwnedPokemon pkmn =  pkmnMap.get(id);
@@ -47,19 +53,20 @@ public class PokemonManager implements SerializableHandler {
     }
 
     /**
-     * Restituisce dalla mappa (se presente) un oggetto OwnedPokemon a partire dal suo ID.
+     * Restituisce un Pokémon posseduto dalla mappa a partire dal suo ID.
      *
-     * @param id  Codice intero identificativo del pokemon che si vuole caricare
+     * @param id ID del Pokémon da ottenere.
+     * @return Istanza del Pokémon posseduto, o null se non esiste.
      */
     public static OwnedPokemon getPokemonFromID(int id) {
         return pkmnMap.get(id);
     }
 
     /**
-     * A partire da un'istanza della classe Pokemon, viene generata e restituita un'istanza
-     * della classe OwnedPokemon che sia coerente con l'istanza passata in input.
+     * Converte un Pokémon generico in un Pokémon posseduto e lo aggiunge alla mappa.
      *
-     * @param pkmn   Istanza della classe Pokemon che si vuole convertire
+     * @param pkmn Pokémon da convertire.
+     * @return Istanza del Pokémon posseduto generato.
      */
     public static OwnedPokemon toOwnedPokemon(Pokemon pkmn) {
         OwnedPokemon ownPkmn =  new OwnedPokemon(getNextID(), pkmn);
@@ -67,15 +74,20 @@ public class PokemonManager implements SerializableHandler {
         return ownPkmn;
     }
 
+    /**
+     * Genera e restituisce un Pokémon casuale basato sulla zona di spawn.
+     *
+     * @param spawn Zona di spawn del Pokémon.
+     * @return Pokémon generato casualmente.
+     */
     public static Pokemon spawnPokemon(SpawnZone spawn) {
         Map<String, Integer[]> pkmnAreaMap = pkmnSpawnMap.get(spawn.getNameID());
-        List<String> breeds = new ArrayList<>(pkmnAreaMap.keySet());
+        List<String> tmpBreeds = new ArrayList<>(pkmnAreaMap.keySet());
 
-        while (breeds.size() > 1) {
-            breeds.remove(rand.nextInt(0, breeds.size()));
-        }
+        while (tmpBreeds.size() > 1)
+            tmpBreeds.remove(rand.nextInt(0, tmpBreeds.size()));
 
-        String breedName = breeds.getFirst();
+        String breedName = tmpBreeds.getFirst();
         Integer[] lvRange = pkmnAreaMap.get(breedName);
 
         Breed breed = Breed.fromName(breedName);
@@ -84,15 +96,51 @@ public class PokemonManager implements SerializableHandler {
         return generatePokemon(breed, lv);
     }
 
+    
     /**
-     * Dato un livello calcola la soglia xp per passare al livello successivo.
+     * Genera e restituisce un nuovo Pokémon posseduto basato sulla zona di spawn.
+     *
+     * @param spawn Zona di spawn del Pokémon.
+     * @return Pokémon generato casualmente.
+     */
+    public static Pokemon spawnOwnedPokemon(SpawnZone spawn) {
+        Map<String, Integer[]> pkmnAreaMap = pkmnSpawnMap.get(spawn.getNameID());
+
+        List<String> tmpBreeds = switch (spawn) {
+            case SPAWN_R1 -> new ArrayList<>(Arrays.asList("pidgey"));
+            case SPAWN_R2 -> new ArrayList<>(Arrays.asList("spearow", "ekans"));
+            case SPAWN_R3 -> new ArrayList<>(Arrays.asList("butterfree", "beedrill"));
+            case SPAWN_R4 -> new ArrayList<>(Arrays.asList("raticate"));
+            case SPAWN_R5 -> new ArrayList<>(Arrays.asList("pikachu"));
+        };
+
+        while (tmpBreeds.size() > 1)
+            tmpBreeds.remove(rand.nextInt(0, tmpBreeds.size()));
+
+        String breedName = tmpBreeds.getFirst();
+        Integer[] lvRange = pkmnAreaMap.get(breedName);
+
+        Breed breed = Breed.fromName(breedName);
+        int lv = rand.nextInt(lvRange[0], lvRange[1]);
+
+        return generatePokemon(breed, lv);
+    }
+
+
+    /**
+     * Calcola la soglia di esperienza necessaria per passare al livello successivo.
+     *
+     * @param lv Livello attuale.
+     * @return Soglia di esperienza necessaria.
      */
     public static int getXPTreshold(int lv) {
         return (int) Math.pow(lv, 3.0);
     }
 
     /**
-     * Genera una mappa delle statistiche con tutti i valori impostati a 0.
+     * Crea una mappa delle statistiche con tutti i valori inizializzati a 0.
+     *
+     * @return Mappa delle statistiche vuota.
      */
     public static HashMap<Stats, Integer> getVoidStatsMap() {
         HashMap<Stats, Integer> map = new HashMap<>(
@@ -109,8 +157,9 @@ public class PokemonManager implements SerializableHandler {
     }
 
     /**
-     * Genera una mappa casuale degli IV.
-     * Per ogni pokemon tale mappa viene calcolata una volta sola al momento della creazione.
+     * Genera una mappa casuale di IV per le statistiche di un Pokémon.
+     *
+     * @return Mappa degli IV generata casualmente.
      */
     public static HashMap<Stats, Integer> getRandomIVsMap() {
         Random rand = new Random();
@@ -123,7 +172,9 @@ public class PokemonManager implements SerializableHandler {
     }
 
     /**
-     * Incrementa e ritorna il valore dell'attuale ID più grande generato.
+     * Incrementa e restituisce il prossimo ID disponibile.
+     *
+     * @return Prossimo ID disponibile.
      */
     public static int getNextID() {
         return ++maxID;
@@ -147,8 +198,9 @@ public class PokemonManager implements SerializableHandler {
     }
 
     /**
-     * Aggiunge o aggiorna un pokemon nella mappa, dopodiché salva sul relativo file ser
-     * la mappa attuale dei pokemon.
+     * Salva un Pokémon specifico nella mappa e aggiorna il file di serializzazione.
+     *
+     * @param p Pokémon da salvare.
      */
     public static void save(OwnedPokemon p) {
         pkmnMap.put(p.getID(), p);
@@ -156,7 +208,10 @@ public class PokemonManager implements SerializableHandler {
     }
 
     /**
-     * Elimina un pokemon dalla mappa
+     * Elimina un Pokémon dalla mappa e opzionalmente aggiorna il file di serializzazione.
+     *
+     * @param p    Pokémon da eliminare.
+     * @param save Se true, aggiorna il file di serializzazione.
      */
     public static void delete(OwnedPokemon p, boolean save) {
         pkmnMap.remove(p.getID());

@@ -67,6 +67,4 @@ public class ResourceLoader extends FileManager{
         Media media = new Media(ResourceLoader.class.getResource(path).toExternalForm());
         return new MediaPlayer(media);
     }
-
-
 }

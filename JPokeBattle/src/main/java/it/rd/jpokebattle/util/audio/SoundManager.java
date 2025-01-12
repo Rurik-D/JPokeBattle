@@ -8,17 +8,18 @@ public class SoundManager {
     private boolean isVolumeOn = true;
     private AudioTrack currentTrack = AudioTrack.fromSrcName("mp3.title");
     private AudioTrack buttonPlayer = AudioTrack.fromSrcName("wav.btn");
+    private AudioTrack pkmnAttackPlayer = AudioTrack.fromSrcName("mp3.tackle");
 
     private SoundManager() {
         currentTrack.playLoop();
-        currentTrack = currentTrack;
+        pkmnAttackPlayer.setVolume(1);
     }
 
     /**
      * Se l'istanza ancora non esiste la crea, altrimenti ritorna
      * quella già esistente.
      *
-     * @return      L'unica istanza della classe
+     * @return L'unica istanza della classe
      */
     public static SoundManager getInstance() {
         if (instance == null)
@@ -34,11 +35,18 @@ public class SoundManager {
         return isVolumeOn;
     }
 
-
+    /**
+     * Dato in input il nome di una traccia (presente nel file .properties) se la
+     * traccia non è già in esecuzione effettua il cambio.
+     *
+     * @param srcName Nome sorgente della traccia  (presente nel file .properties)
+     */
     public void switchTrack(String srcName) {
-        AudioTrack newTrack = AudioTrack.fromSrcName(srcName);
-        currentTrack.switchToTrack(newTrack);
-        currentTrack = newTrack;
+        if (!currentTrack.getSrcName().equals(srcName)) {
+            AudioTrack newTrack = AudioTrack.fromSrcName(srcName);
+            currentTrack.switchToTrack(newTrack);
+            currentTrack = newTrack;
+        }
     }
 
     /**
@@ -47,7 +55,6 @@ public class SoundManager {
      */
     public void toggleVolume() {
         isVolumeOn = !isVolumeOn;
-
         if (isVolumeOn)
             currentTrack.audioOn();
         else
@@ -59,5 +66,9 @@ public class SoundManager {
      */
     public void buttonClick() {
         buttonPlayer.playOnce();
+    }
+
+    public void attackSound() {
+        pkmnAttackPlayer.playOnce();
     }
 }

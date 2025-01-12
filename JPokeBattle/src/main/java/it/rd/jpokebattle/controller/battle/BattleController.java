@@ -14,9 +14,7 @@ import it.rd.jpokebattle.model.pokemon.Pokemon;
 import it.rd.jpokebattle.model.pokemon.PokemonManager;
 import it.rd.jpokebattle.model.pokemon.Stats;
 import it.rd.jpokebattle.util.audio.SoundManager;
-import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,17 +56,18 @@ public final class BattleController extends Controller {
     private boolean hesitation;
     private boolean protect;
     private int moveToForgetIndex;
+    private int currentPlayerPkmn = 0;
     private Move newMove;
 
     @FXML
     protected Button
-            teamPaneBackBtn;
+            teamPaneBackBtn, changePkmnBtn;
 
     @FXML
     protected GridPane
             rootPane, labelsPane, buttonsPane, bagPane, teamPane,
             newMovePane, forgetMoveBtnPane, gameSettingsPane,
-            pokemonInfoPane, moveInfoPane;
+            pokemonInfoPane, moveInfoPane, pkmnChangePane;
 
     @FXML
     protected ScrollPane logScrollPane;
@@ -130,7 +129,9 @@ public final class BattleController extends Controller {
     }
 
     /**
+     * Torna alla schermata di visualizzazione dei dettagli del pokemon.-
      *
+     * @param e Azione generica sul bottone.
      */
     @FXML
     public void backToPokemonDetails(ActionEvent e) {
@@ -141,7 +142,9 @@ public final class BattleController extends Controller {
 
 
     /**
+     * Mostra la schermata dettagli del pokemon.
      *
+     * @param e Click del mouse.
      */
     public void pokemonDetails(MouseEvent e, OwnedPokemon pkmn) {
         soundMan.buttonClick();
@@ -155,7 +158,7 @@ public final class BattleController extends Controller {
      * in quanto per apprendere una nuova mossa deve salire di livello e ciò è possibile esclusivamente
      * vincendo la lotta.
      *
-     * @param e
+     * @param e Click del mouse.
      */
     @FXML
     public void keepOldMoves(MouseEvent e) {
@@ -168,7 +171,7 @@ public final class BattleController extends Controller {
      * Il pokemon del giocatore dimentica la mossa selezionata in precedenza e aggiunge alle mosse conosciute
      * nuova mossa imparata al passaggio di livello.
      *
-     * @param e
+     * @param e Click del mouse.
      */
     @FXML
     public void forgetMove(MouseEvent e) {
@@ -182,7 +185,7 @@ public final class BattleController extends Controller {
     /**
      * Bottone che nasconde i pannelli in sovrimpressione e riporta alla schermata di lotta.
      *
-     * @param e Click del mouse
+     * @param e Click del mouse.
      */
     @FXML
     public void backToGame(ActionEvent e) {
@@ -192,6 +195,8 @@ public final class BattleController extends Controller {
 
     /**
      * Mostra la schermata di impostazioni.
+     *
+     * @param e Click del mouse.
      */
     @FXML
     public void settings (MouseEvent e) {
@@ -202,6 +207,8 @@ public final class BattleController extends Controller {
     /**
      * Torna al menù principale, carica la nuova scena, aggiorna la root nella classe
      * astratta NodeManager e aggiorna il file dei profili.
+     *
+     * @param e Azione generica sul bottone.
      * */
     @FXML
     public void mainMenu(ActionEvent e) throws IOException {
@@ -215,8 +222,9 @@ public final class BattleController extends Controller {
     }
 
     /**
-     * TODO: DA IMPLEMENTARE (PROVVISORIA)
-     * @param e
+     * Switch del volume.
+     *
+     * @param e Azione generica sul bottone.
      */
     @FXML
     public void volume(ActionEvent e) {
@@ -226,6 +234,8 @@ public final class BattleController extends Controller {
 
     /**
      * Torna alla schermata di visualizzazione dei pokemon.
+     *
+     * @param e Azione generica sul bottone.
      */
     @FXML
     public void backToOwnedTeam(ActionEvent e) {
@@ -233,6 +243,48 @@ public final class BattleController extends Controller {
         nodeMan.backToShowTeam();
     }
 
+    /**
+     * Apre la schermata di selezione del pokemon da cambiare.
+     *
+     * @param e Azione generica sul bottone.
+     */
+    @FXML
+    public void changePkmn_view(ActionEvent e) {
+        soundMan.buttonClick();
+        nodeMan.showChangePkmnView();
+    }
+
+    /**
+     * Annulla la selezione del pokemon con cui cambiare e torna
+     * alla schermata di visualizzazione del team.
+     *
+     * @param e Azione generica sul bottone.
+     */
+    @FXML
+    public void cancelPkmnChange(ActionEvent e) {
+        soundMan.buttonClick();
+        nodeMan.hideChangePkmnView();
+    }
+
+
+    /**
+     * Selezione del pokemon con cui eseguire
+     *
+     * @param e Azione generica sul bottone.
+     */
+    @FXML
+    public void changePlayerPokemon(ActionEvent e) {
+        soundMan.buttonClick();
+        int selectedPkmnIndex = Integer.parseInt(((Node) e.getSource()).getId().substring(1));
+
+        if (selectedPkmnIndex != currentPlayerPkmn && selectedPkmnIndex < getPlayer().getTeam().size()) {
+            currentPlayerPkmn = selectedPkmnIndex;
+            playerPokemon = getPlayer().getTeam().get(selectedPkmnIndex);
+            nodeMan.updatePlayerPokemonGraphics(playerPokemon);
+            nodeMan.backToGame();
+            battlePhase(-1, getOpponentMoveIndex());
+        }
+    }
 
     /**
      * Inizializza variabili chiave e nodi della scena.
@@ -252,22 +304,28 @@ public final class BattleController extends Controller {
     /**
      *  Durante la lotta i cambiamenti sulle statistiche sono temporanei e si resettano quando la
      *  lotta finisce.
-     *  Per ottenere questo utilizziamo una mappa contente a sua volta due mappe, una per le statistiche
-     *  del giocatore e una per quelle del suo avversario.
-     *  In questo metodo andiamo a impostare le statistiche temporanee alle statistiche originali dei
-     *  due pokemon.
+     *  Per ottenere questo utilizziamo una mappa contente a sua volta una mappa per ogni pokemon presente
+     *  nella lotta (compresi quelli nel team del giocatore non attualmente in combattimento, in tal modo le
+     *  modifiche alle statistiche sono preservate durante i cambi) dove andiamo a impostare le statistiche
+     *  temporanee alle statistiche originali dei pokemon.
      */
     private void setStats() {
-        stats.put(playerPokemon, new HashMap<>());
         stats.put(opponentPokemon, new HashMap<>());
 
+        for (OwnedPokemon pkmn : getPlayer().getTeam())
+            stats.put(pkmn, new HashMap<>());
+
         for (Stats stat : Stats.values()) {
-            stats.get(playerPokemon).put(stat, (double) playerPokemon.getStat(stat));
-            stats.get(opponentPokemon).put(stat, (double) opponentPokemon.getStat(stat));
+            for (Pokemon pkmn : stats.keySet())
+                stats.get(pkmn).put(stat, (double) pkmn.getStat(stat));
         }
     }
 
-
+    /**
+     * Imposta l'indice della mossa da dimenticare con l'indice passato in input.
+     *
+     * @param moveToForget Indice della mossa da dimenticare.
+     */
     public void setMoveToForgetIndex(int moveToForget) {
         this.moveToForgetIndex = moveToForget;
     }
@@ -385,6 +443,14 @@ public final class BattleController extends Controller {
      * @param isSecondMove Valore booleano che specifica se l'attaccante sta attaccando per secondo
      */
     private void makeMove(Pokemon attPkmn, Pokemon defPkmn, int moveIndex, boolean isSecondMove) {
+        if (moveIndex == -1) {
+            if (isSecondMove)
+                buttonsPane.setDisable(!running);
+            else
+                firstAttackDone = true;
+            return;
+        }
+
         if (isSecondMove) {
             delay_3_0.setOnFinished(e1 -> {
                 if (!firstAttackDone)
@@ -404,6 +470,7 @@ public final class BattleController extends Controller {
             Move move = attPkmn.getMove(moveIndex);
             attPkmn.decresePP(moveIndex);
             nodeMan.updateLogLbl(attPkmn.getName() + " usa " + move.getName());
+            soundMan.attackSound();
 
             delay_1_5.setOnFinished(e -> {
                 if (striked(attPkmn, defPkmn, move)) { // controllo del colpo a segno
@@ -662,7 +729,9 @@ public final class BattleController extends Controller {
      * log label.
      */
     private void victory() {
-        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) ;
+        soundMan.switchTrack("mp3.victory");
+
+        int gainedXP = (opponentPokemon.getBreed().baseValueOf(Stats.XP) * opponentPokemon.getLevel()) / 6;
         int oldLevel = playerPokemon.getLevel();
         playerPokemon.increaseEV(opponentPokemon);
 
@@ -689,7 +758,6 @@ public final class BattleController extends Controller {
             }
             else
                 delay3_2_0.play(); // Termina la lotta
-
         });
 
         delay2_2_0.setOnFinished(e -> {
@@ -788,6 +856,14 @@ public final class BattleController extends Controller {
      * @param oppMvIndex Indice della mossa (tra le 4) selezionata dall'avversario
      */
     private void updateNextAttacker(int plMvIndex, int oppMvIndex) {
+        if (plMvIndex == -1) {
+            nextAttacker = Turn.OPPONENT;
+            return;
+        } else if (oppMvIndex == -1){
+            nextAttacker = Turn.PLAYER;
+            return;
+        }
+
         int playerPriority = playerPokemon.getMove(plMvIndex).getPriority();
         int opponentPriority = opponentPokemon.getMove(oppMvIndex).getPriority();
 

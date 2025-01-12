@@ -5,6 +5,9 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
+/**
+ * Classe di utilità astratta per la lettura dei file mediante il file properties.
+ */
 public abstract class FileManager {
     protected final static ResourceBundle src = ResourceBundle.getBundle("it/rd/jpokebattle/properties/resources");
     protected final static File dataDir = new File(System.getProperty("user.dir"), "data");

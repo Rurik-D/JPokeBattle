@@ -122,15 +122,12 @@
     -fx-border-radius: 30px;
 }
 
-
+#pkmnChangePane .label,
 #moveInfoPane #moveDescriptionLbl,
 #moveInfoPane #moveInfoDataPane .label{
    -fx-font-size: 20;
    -fx-text-fill: #C1C1C1;
-
-
 }
-
 
 #pokemonInfoVBox {
     -fx-background-color: #1E1E1E;

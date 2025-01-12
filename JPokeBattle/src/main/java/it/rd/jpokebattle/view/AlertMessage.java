@@ -6,6 +6,9 @@ import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
 
+/**
+ * Classe che gestisce i pop-up di allerta nel menù principale.
+ */
 public class AlertMessage {
     private SoundManager soundMan = SoundManager.getInstance();
 

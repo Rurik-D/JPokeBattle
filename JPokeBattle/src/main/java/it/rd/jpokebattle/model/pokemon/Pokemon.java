@@ -365,6 +365,11 @@ public class Pokemon implements Serializable {
         setCurrHP(Math.max(currHP - dmg, 0));
     }
 
+    /**
+     * Infligge danno al Pokémon, riducendo gli HP correnti di un valore da arrotondare.
+     *
+     * @param v Il danno da infliggere.
+     */
     public void takeDamage(double v) {
         takeDamage((int) Math.round(v));
     }

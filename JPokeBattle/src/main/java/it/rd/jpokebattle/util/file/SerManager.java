@@ -3,6 +3,9 @@ package it.rd.jpokebattle.util.file;
 import java.io.*;
 import java.util.HashMap;
 
+/**
+ * Classe di utilità per la gestione dei file serializzati.
+ */
 public class SerManager extends FileManager{
 
     /**

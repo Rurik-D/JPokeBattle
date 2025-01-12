@@ -24,7 +24,11 @@ public enum AreaType {
     BATTLE("battle"),
 
     /** Area in cui il giocatore può tentare di scappare. */
-    TRY_ESCAPE("try_escape");
+    TRY_ESCAPE("try_escape"),
+
+    /** Area in cui il giocatore ottiene un pokemon casuale di quell'area. */
+    NEW_POKEMON("newPokemon");
+
 
     private final String NAME;
 

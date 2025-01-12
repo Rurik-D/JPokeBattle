@@ -109,12 +109,59 @@ public final class BattleNodeManager extends NodeManager {
     }
 
     /**
+     * Aggiorna la grafica complessiva legata al pokemon del giocatore dopo l'esecuzione
+     * di un cambio con un altro pokemon della squadra.
+     *
+     * @param playerPkmn Nuovo pokemon controllato dal giocatore.
+     */
+    protected void updatePlayerPokemonGraphics(OwnedPokemon playerPkmn){
+        // Pulisce il contenuto dei vecchi nodi
+        ctrl.labelsPane.getChildren().remove(plrLB);
+        ctrl.labelsPane.getChildren().remove(xpBar);
+        ctrl.labelsPane.getChildren().remove(currHPLbl);
+        ctrl.labelsPane.getChildren().remove(plrLvLbl);
+
+        // Aggiorna png e labal del nome
+        ctrl.playerPkmnGif.setImage(playerPkmn.getBreed().getBackGif());
+        ctrl.playerPkmnNameLbl.setText(playerPkmn.getBreed().getName());
+
+        // Riassegna i nodi di barra della vita, degli xp e label di livello e hp
+        plrLB = new LifeBar(184, 9);
+        xpBar = new XpBar(340, 3);
+        currHPLbl = new Label();
+        plrLvLbl = new Label();
+
+        // Aggiorna la barra della vita
+        plrLB.setListener(playerPkmn);
+        plrLB.setVisible(true);
+        ctrl.labelsPane.add(plrLB, 3, 2, 1, 1);
+        plrLB.setTranslateX(106.5);
+        plrLB.setTranslateY(26.5);
+
+        // Aggiorna la label del livello
+        plrLvLbl.textProperty().bind(Bindings.format("Lv %d", playerPkmn.currLevelProperty()));
+        ctrl.labelsPane.add(plrLvLbl, 4, 2, 1, 1);
+        GridPane.setHalignment(plrLvLbl, HPos.CENTER);
+        plrLvLbl.setTranslateX(30);
+        plrLvLbl.setTranslateY(-5);
+
+        // Aggiorna la barra degli xp e la label degli hp
+        setPlayerXPBar(playerPkmn);
+        setCurrentPlayerHPLabel(playerPkmn);
+
+        // Pulisce e aggiorna il pannello delle mosse
+        ctrl.movesPane.getChildren().clear();
+        setMovesPane(playerPkmn);
+    }
+
+    /**
      * Mostra il pannello contenente le card di tutti i pokemon posseduti.
      *
      * @param player Giocatore da cui poter prendere i pokemon
      */
     protected void showTeamPane(Profile player) {
         ctrl.teamPane.setVisible(true);
+        ctrl.changePkmnBtn.setVisible(true);
 
         for (OwnedPokemon pkmn : player.getTeam()) {
             PokemonCard card = new PokemonCard(pkmn);
@@ -130,6 +177,7 @@ public final class BattleNodeManager extends NodeManager {
         ctrl.teamCardsPane.setVisible(false);
         ctrl.teamPaneBackBtn.setVisible(false);
         ctrl.pokemonInfoPane.setVisible(true);
+        ctrl.changePkmnBtn.setVisible(false);
         updatePokemonInfoPane(pkmn);
 
         ArrayList<Move> moves = pkmn.getMoves();
@@ -153,6 +201,7 @@ public final class BattleNodeManager extends NodeManager {
         ctrl.teamPaneBackBtn.setVisible(false);
         ctrl.moveInfoPane.setVisible(false);
         ctrl.pokemonInfoPane.setVisible(true);
+        ctrl.changePkmnBtn.setVisible(true);
     }
 
     /**
@@ -184,6 +233,7 @@ public final class BattleNodeManager extends NodeManager {
         ctrl.pokemonInfoPane.setVisible(false);
         ctrl.teamCardsPane.setVisible(true);
         ctrl.teamPaneBackBtn.setVisible(true);
+        ctrl.changePkmnBtn.setVisible(true);
         ctrl.pokemonMovesVBox.getChildren().clear();
     }
 
@@ -209,7 +259,6 @@ public final class BattleNodeManager extends NodeManager {
     public void showSettingsPane() {
         ctrl.gameSettingsPane.setVisible(true);
     }
-
 
     /**
      * Mostra il pannello che consente l'aggiunta/la modifica delle mosse quando il pokemon
@@ -238,6 +287,25 @@ public final class BattleNodeManager extends NodeManager {
 
         ctrl.newMovePane.add(newMoveCard, 2, 1);
 
+    }
+
+    /**
+     * Mostra la schermata di scelta del pokemon da scambiare durante la lotta.
+     */
+    protected void showChangePkmnView() {
+        ctrl.teamPaneBackBtn.setVisible(false);
+        ctrl.changePkmnBtn.setVisible(false);
+        ctrl.pkmnChangePane.setVisible(true);
+    }
+
+    /**
+     * Nasconde la schermata di scelta del pokemon da scambiare, ritorna alla schermata
+     * precedente.
+     */
+    protected void hideChangePkmnView() {
+        ctrl.teamPaneBackBtn.setVisible(true);
+        ctrl.changePkmnBtn.setVisible(true);
+        ctrl.pkmnChangePane.setVisible(false);
     }
 
     /**
@@ -319,7 +387,6 @@ public final class BattleNodeManager extends NodeManager {
         ctrl.labelsPane.add(xpBar, 3, 2, 2, 1);
         xpBar.setTranslateX(30);
         xpBar.setTranslateY(42);
-
     }
 
     /**
@@ -398,8 +465,6 @@ public final class BattleNodeManager extends NodeManager {
             movesPane.getChildren().add(moveCard);
         }
     }
-
-
 
     /**
      * Avvia l'animazione di apertura della scena.

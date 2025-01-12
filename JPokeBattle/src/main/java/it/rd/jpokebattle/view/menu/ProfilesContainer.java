@@ -13,7 +13,10 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/**
+ * Classe che rappresenta il contenitore delle card dei profili all'interno del menù
+ * principale.
+ */
 public class ProfilesContainer extends VBox {
     private HashMap<Integer, Profile> profMap;
 
@@ -50,8 +53,7 @@ public class ProfilesContainer extends VBox {
 
 
     /**
-     * A partire dall'evento di input ricava lo stage e poi il controller del
-     * menù.
+     * A partire dall'evento di input ricava lo stage e poi il controller del menù.
      *
      * @param e     Click del mouse
      * @return      Il controller del menù
