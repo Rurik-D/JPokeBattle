@@ -27,7 +27,6 @@ public interface SerializableHandler {
      * Calcola e restituisce l'ID più grande generato per una certa mappa serializzata.
      *
      * @param serSrcName Nome della risorsa serializzata.
-     * @return L'ID massimo presente nella mappa, oppure 0 se la mappa è vuota o nulla.
      */
     static <V> void save(HashMap<Integer, V> map, String serSrcName) {
         if (map == null)

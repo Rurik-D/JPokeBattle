@@ -29,7 +29,6 @@ public class ResourceLoader extends FileManager{
      *
      * @param fxmlSrcName   nome di risorsa del file
      * @return              FXMLLoader contenente la scena caricata
-     * @see it.rd.jpokebattle.properties
      * */
     public static FXMLLoader loadFXML(String fxmlSrcName) {
         String path =  ROOT_PATH + src.getString(fxmlSrcName);
@@ -42,8 +41,7 @@ public class ResourceLoader extends FileManager{
      *
      * @param imageSrcName  nome di risorsa del file
      * @return              immagine caricata
-     * @see it.rd.jpokebattle.properties
-     * */
+     */
     public static Image loadImage(String imageSrcName) {
         String path = ROOT_PATH + src.getString(imageSrcName);
         URL imageUrl = ResourceLoader.class.getResource(path);
@@ -60,7 +58,6 @@ public class ResourceLoader extends FileManager{
      * Restituisce il media player di un file audio.
      *
      * @param mediaSrcName  nome di risorsa del file
-     * @see it.rd.jpokebattle.properties
      */
     public static MediaPlayer loadMP3(String mediaSrcName) {
         String path = ROOT_PATH + src.getString(mediaSrcName);

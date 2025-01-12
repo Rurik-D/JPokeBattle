@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"it.rd.jpokebattle"}];updateSearchResults();
