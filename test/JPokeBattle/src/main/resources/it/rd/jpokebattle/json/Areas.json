@@ -1,0 +1,657 @@
+{
+  "start": {
+    "nameID": "start",
+    "title": "Inizio",
+    "section": "0",
+    "description": "Benvenuto in JPokeBattle Arcade!\n\nAllena i tuoi Pokémon, scofinggi allenatori e prosegui nella trama principale prendendo le tue scelte!\n\nE non dimenticare mai:\n\n      Gotta Catch'em all!\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "home_bedroom_1", "type": "default", "btnText": "Inizia la tua avventura!"}
+    ],
+    "specialArea": ""
+  },
+  "home_bedroom_1": {
+    "nameID": "home_bedroom_1",
+    "title": "Camera tua",
+    "section": "0",
+    "description": "\t  ‘YOU WIN!’\n\nI colori sgargianti dello schermo illuminano la penombra della tua stanza. Dalle tende penetrano alcuni flebili raggi di un tiepido sole primaverile.\nIl cinguettio di un pidgey appolaiato sul davanzale della finestra accompagna l'allegra musichetta di vittoria in 8 bit del videogame. Ci hai messo quasi due ore per completare questo livello ma alla fine ci sei riuscito e adesso ti godi questo piccolo momento di gloria.\n\nDal piano di sotto senti la voce di tua madre che ti chiama.\n\nDi cosa avrà bisogno?\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "home_living_room_1", "type": "default", "btnText": "Vai al piano di sotto"}
+    ],
+    "specialArea": ""
+  },
+  "home_living_room_1": {
+    "nameID": "home_living_room_1",
+    "title": "Soggiorno",
+    "section": "0",
+    "description": "\nPosi sulla scrivania il tuo joystick, spegnendo poi monitor e console.\nEsci dalla stanza e scendi le scale andando al piano inferiore.\n\n - Il professor Elm vuole parlarti!\n\nEsordisce tua madre visibilmente entusiasmata.\n\n - Credo proprio che abbia qualcosa di speciale per te, sbrigati e vai a trovarlo al laboratorio!\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "bark_town_1", "type": "default", "btnText": "Esci di casa"}
+    ],
+    "specialArea": ""
+  },
+  "bark_town_1": {
+    "nameID": "bark_town_1",
+    "title": "Bark Town",
+    "section": "0",
+    "description": "\nTi sbrighi ad uscire di casa, venendo per un istante abbagliato dal sole. Oggi è una bellissima giornata nella piccola cittadina di Bark Town, il sole splende alto e fiori primaverli adornano gli ampi spazi verdi.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "laboratory_1", "type": "default", "btnText": "Vai a trovare il professore"},
+      {"name":  "route1_1", "type": "default", "btnText": "Ti dirigi verso la Route 1"}
+    ],
+    "specialArea": ""
+  },
+  "route1_1": {
+    "nameID": "route1_1",
+    "title": "Bark Town",
+    "section": "0",
+    "description": "Non puoi proseguire senza pokémon, è pericoloso! Torni alla centro di Bark Town: devi prima andare dal professore!\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "laboratory_1", "type": "default", "btnText": "Vai a trovare il professore"}
+    ],
+    "specialArea": ""
+  },
+  "laboratory_1": {
+    "nameID": "laboratory_1",
+    "title": "Laboratorio",
+    "section": "0",
+    "description": "Il prof ti saluta con un ampio sorriso.\n - Oggi è un gran giorno per te... Finalmente sceglierai il tuo primo pokémon!\nA queste parole il tuo cuore salta un battito, non riesci a crederci, hai aspettato per una vita questo momento...\n - Ne ho parlato a lungo con tua madre, non è stato facile convincerla...\nProsegue il professore.\n - ... ma alla fine ha ceduto e mi ha dato il permesso di farti scegliere il tuo primo pokémon! Con il tuo nuovo amico ora potrai girare il mondo e affrontare un sacco di fantastiche avventure. Vai pure al tavolo alle mie spalle e scegli il tuo primo compagno di viaggio!\n",
+    "musicSrcName": "mp3.lab",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "starter_selection_1", "type": "default", "btnText": "Ti dirigi verso il bancone per scegliere il tuo primo pokémon"}
+    ],
+    "specialArea": ""
+  },
+  "starter_selection_1": {
+    "nameID": "starter_selection_1",
+    "title": "Laboratorio",
+    "section": "0",
+    "description": "Alle spalle del professore, su un tavolo di metallo, sono poggiate 3 pokeball. Il professore ti incita, facendoti cenno con la mano, a sceglierne una.\nHai aspettato questo momento per una vita, ma adesso sei qui con il cuore in gola, pronto per ciò che ti attende.\n\nQuale pokéball scegli?\n",
+    "musicSrcName": "mp3.lab",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "starter_selection_2", "type": "starter_select", "btnText": "Scegli il tuo primo pokémon!"}
+    ],
+    "specialArea": ""
+  },
+  "starter_selection_2": {
+    "nameID": "starter_selection_2",
+    "title": "Laboratorio",
+    "section": "0",
+    "description": "Hai appena ricevuto il tuo primo pokémon, stenti ancora a crederci. Ti domandi quante avventure ti attendono insieme al tuo nuovo amico...\n",
+    "musicSrcName": "mp3.lab",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "laboratory_2", "type": "default", "btnText": "Torna dal professore"}
+    ],
+    "specialArea": ""
+  },
+  "laboratory_2": {
+    "nameID": "laboratory_2",
+    "title": "Laboratorio",
+    "section": "0",
+    "description": "Ti avvicini nuovamente al professore mentre metti la tua prima pokeball (insieme al suo ospite) nello zaino. Il professore ti guarda soddisfatto e si congratula per la scelta presa.\n\n",
+    "musicSrcName": "mp3.lab",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "bark_town", "type": "default", "btnText": "Esci dal laboratorio"}
+    ],
+    "specialArea": ""
+  },
+  "bark_town": {
+    "nameID": "bark_town",
+    "title": "Bark Town",
+    "section": "0",
+    "description": "La vista di Bark Town ti porta alla memoria tanti bei momenti della tua infanzia... ma adesso è ora di andare.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "route1_start", "type": "default", "btnText": "Ti dirigi verso la Route 1"},
+      {"name":  "home_living_room", "type": "default", "btnText": "Torna a casa"},
+      {"name":  "laboratory", "type": "default", "btnText": "Vai al laboratorio del prof. Elm"}
+    ],
+    "specialArea": ""
+  },
+  "laboratory": {
+    "nameID": "laboratory",
+    "title": "Laboratorio",
+    "section": "0",
+    "description": "Il professore ti saluta con la mano, è visibilmente felice di vederti.\n - Ciao! Come vanno le tue avventure? Spero di vederti presto sconfiggere la lega pokémon!\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "area1Name": "bark_town",
+    "nextAreas": [
+      {"name":  "bark_town", "type": "default", "btnText": "Esci dal laboratorio"}
+    ],
+    "specialArea": ""
+  },
+  "home_living_room": {
+    "nameID": "home_living_room",
+    "title": "Soggiorno",
+    "section": "0",
+    "description": "Tua madre ti saluta.\n - Ciao tesoro! Come sta la tua squadra? Ha bisogno di cure?\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "heal", "btnText": "Cura la tua squadra"},
+      {"name":  "bark_town", "type": "default", "btnText": "Esci di casa"},
+      {"name":  "home_bedroom", "type": "default", "btnText": "Vai in camera tua"}
+    ],
+    "specialArea": ""
+  },
+  "home_bedroom": {
+    "nameID": "home_bedroom",
+    "title": "Camera tua",
+    "section": "0",
+    "description": "Salendo le scale trovi subito sulla destra la tua camera da letto. Ogni cosa è come l'hai lasciata. L'avventura che cerchi non si trova qui, è ora di andare!\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "home_living_room", "type": "default", "btnText": "Vai al piano di sotto"}
+    ],
+    "specialArea": ""
+  },
+  "route1_start": {
+    "nameID": "route1_start",
+    "title": "Route 1",
+    "section": "0",
+    "description": "La rotta 1 ti sorride allenatore!\nPer procedere devi entrare nell'erba alta.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route1",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "r1_tall_grass", "type": "tall_grass", "btnText": "Procedi nell'erba alta"},
+      {"name":  "bark_town", "type": "default", "btnText": "Torna a Bark Town"}
+    ],
+    "specialArea": "spawn_r1"
+  },
+  "r1_tall_grass": {
+    "nameID": "r1_tall_grass",
+    "title": "Route 1",
+    "section": "1",
+    "description": "Sei nell'erba alta della Route 1.\nAl momento non vedi nessun pokémon nelle vicinanze...\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route1",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "route1_end", "type": "newPokemon", "btnText": "Prosegui nella Route 1"},
+      {"name":  "r1_tall_grass", "type": "tall_grass", "btnText": "Cerca pokémon nell'erba alta"},
+      {"name":  "route1_start", "type": "default", "btnText": "Torna indietro verso Bark Town"}
+    ],
+    "specialArea": "spawn_r1"
+  },
+  "spawn_r1": {
+    "nameID": "spawn_r1",
+    "title": "Route 1",
+    "section": "1",
+    "description": "Camminando nell'erba alta senti un rumore alle tue spalle...\nUn pokemon è nelle vicinanze, combatti o tenti la fuga?\n",
+    "musicSrcName": "mp3.route1",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "battle", "btnText": "Combatto!"},
+      {"name":  "r1_tall_grass", "type": "try_escape", "btnText": "Tento la fuga"}
+    ],
+    "specialArea": ""
+  },
+  "route1_end": {
+    "nameID": "route1_end",
+    "title": "Route 1",
+    "section": "1",
+    "description": "Sei arrivato alla fine della Route 1, davanti a te c'è l'entrata di Cherrygrove.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route1",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "cherrygrove_est", "type": "default", "btnText": "Procedi verso Cherrygrove Est!"},
+      {"name":  "r1_tall_grass", "type": "default", "btnText": "Torna indietro nell'erba alta"}
+    ],
+    "specialArea": "spawn_r1"
+  },
+  "cherrygrove_est": {
+    "nameID": "cherrygrove_est",
+    "title": "Cherrygrove Est",
+    "section": "1",
+    "description": "Sei a Cherrygrove est.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.chGrove",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "cherrygrove_ovest", "type": "default", "btnText": "Procedi verso Cherrygrove Ovest"},
+      {"name":  "route1_end", "type": "default", "btnText": "Torna indietro verso la Route 1"},
+      {"name":  "cherrygrove_pokecenter", "type": "default", "btnText": "Vai al centro pokémon"}
+    ],
+    "specialArea": ""
+  },
+  "cherrygrove_ovest": {
+    "nameID": "cherrygrove_ovest",
+    "title": "Cherrygrove Ovest",
+    "section": "1",
+    "description": "Sei a Cherrygrove ovest.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.chGrove",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "route2_start", "type": "default", "btnText": "Procedi verso la Route 2"},
+      {"name":  "cherrygrove_est", "type": "default", "btnText": "Torna a Cherrygrove Est"},
+      {"name":  "cherrygrove_pokemart", "type": "default", "btnText": "Vai al Poké-Mart"}
+    ],
+    "specialArea": ""
+  },
+  "cherrygrove_pokecenter": {
+    "nameID": "cherrygrove_pokecenter",
+    "title": "Centro Pokémon",
+    "section": "1",
+    "description": "Sei al centro pokémon di Cherrygrove.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.chGrove",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "heal", "btnText": "Cura la tua squadra"},
+      {"name":  "cherrygrove_est", "type": "default", "btnText": "Esci dal centro pokémon"}
+    ],
+    "specialArea": ""
+  },
+  "cherrygrove_pokemart": {
+    "nameID": "cherrygrove_pokemart",
+    "title": "Poke-Mart",
+    "section": "1",
+    "description": "Sei al Poké-Mart di Cherrygrove.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.chGrove",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "trade", "btnText": "Commercia"},
+      {"name":  "cherrygrove_ovest", "type": "default", "btnText": "Esci dal Poké-Mart"}
+    ],
+    "specialArea": ""
+  },
+  "route2_start": {
+    "nameID": "route2_start",
+    "title": "Route 2",
+    "section": "2",
+    "description": "La rotta 2 ti sorride avventuriero!\nPer procedere devi entrare nell'erba alta.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route2",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "r2_tall_grass", "type": "default", "btnText": "Prosegui nell'erba alta"},
+      {"name":  "cherrygrove_ovest", "type": "default", "btnText": "Torna a Cherrygrove"}
+    ],
+    "specialArea": "spawn_r2"
+  },
+  "r2_tall_grass": {
+    "nameID": "r2_tall_grass",
+    "title": "Route 2",
+    "section": "2",
+    "description": "Sei nell'erba alta della Route 2.\nAl momento non vedi nessun pokémon nelle vicinanze...\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route2",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "route2_end", "type": "newPokemon", "btnText": "Prosegui nella Route 2 verso Violet"},
+      {"name":  "r2_tall_grass", "type": "tall_grass", "btnText": "Cerca pokémon nell'erba alta"},
+      {"name":  "route2_start", "type": "default", "btnText": "Torna indietro verso Cherrygrove"}
+    ],
+    "specialArea": "spawn_r2"
+  },
+  "spawn_r2": {
+    "nameID": "spawn_r2",
+    "title": "Route 2",
+    "section": "2",
+    "description": "Camminando nell'erba alta senti un rumore alle tue spalle...\nUn pokemon è nelle vicinanze, combatti o tenti la fuga?\n",
+    "musicSrcName": "mp3.route2",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "battle", "btnText": "Combatto!"},
+      {"name":  "r2_tall_grass", "type": "try_escape", "btnText": "Tento la fuga"}
+    ],
+    "specialArea": ""
+  },
+  "route2_end": {
+    "nameID": "route2_end",
+    "title": "Route 2",
+    "section": "2",
+    "description": "Sei alla fine della Route 2, davanti a te c'è la città di Violet.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route2",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "violet_sud", "type": "default", "btnText": "Entra nella città di Violet"},
+      {"name":  "r2_tall_grass", "type": "default", "btnText": "Torna indietro nell'erba alta"}
+    ],
+    "specialArea": "spawn_r2"
+  },
+  "violet_sud": {
+    "nameID": "violet_sud",
+    "title": "Violet Sud",
+    "section": "2",
+    "description": "Sei a Violet Sud\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.violet",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "violet_nord", "type": "default", "btnText": "Prosegui verso Violet Nord"},
+      {"name":  "route2_end", "type": "default", "btnText": "Torna sulla Route 2"},
+      {"name":  "violet_pokemart", "type": "default", "btnText": "Vai al Poké-Mart"}
+    ],
+    "specialArea": ""
+  },
+  "violet_nord": {
+    "nameID": "violet_nord",
+    "title": "Violet Nord",
+    "section": "2",
+    "description": "Sei a Violet Nord\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.violet",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "route3_start", "type": "default", "btnText": "Prosegui verso la Route 3"},
+      {"name":  "violet_sud", "type": "default", "btnText": "Torna a Violet Sud"},
+      {"name":  "violet_pokecenter", "type": "default", "btnText": "Vai al centro pokémon"}
+    ],
+    "specialArea": ""
+  },
+  "violet_pokemart": {
+    "nameID": "violet_pokemart",
+    "title": "Poke-Mart",
+    "section": "2",
+    "description": "Sei al Poké-Mart di Violet.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.violet",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "trade", "btnText": "Commercia"},
+      {"name":  "violet_sud", "type": "default", "btnText": "Esci dal Poké-Mart di Violet"}
+    ],
+    "specialArea": ""
+  },
+  "violet_pokecenter": {
+    "nameID": "violet_pokecenter",
+    "title": "Centro Pokémon",
+    "section": "2",
+    "description": "Sei al centro pokémon di Violet.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.violet",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "heal", "btnText": "Cura la tua squadra"},
+      {"name":  "violet_nord", "type": "default", "btnText": "Esci dal centro pokémon di Violet"}
+    ],
+    "specialArea": ""
+  },
+
+  "route3_start": {
+    "nameID": "route3_start",
+    "title": "Route 3",
+    "section": "3",
+    "description": "La Route 3 ti sorride avventuriero!\nPer procedere devi entrare nell'erba alta.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route3",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "r3_tall_grass", "type": "default", "btnText": "Prosegui nell'erba alta"},
+      {"name":  "violet_nord", "type": "default", "btnText": "Torna a Violet Nord"}
+    ],
+    "specialArea": "spawn_r3"
+  },
+  "r3_tall_grass": {
+    "nameID": "r3_tall_grass",
+    "title": "Route 3",
+    "section": "3",
+    "description": "Sei nell'erba alta della Route 3.\nAl momento non vedi nessun pokémon nelle vicinanze...\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route3",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "route3_end", "type": "newPokemon", "btnText": "Prosegui nella Route 3 verso Goldenrod"},
+      {"name":  "r3_tall_grass", "type": "tall_grass", "btnText": "Cerca pokémon nell'erba alta"},
+      {"name":  "route3_start", "type": "default", "btnText": "Torna indietro verso Violet Nord"}
+    ],
+    "specialArea": "spawn_r3"
+  },
+  "spawn_r3": {
+    "nameID": "spawn_r3",
+    "title": "Route 3",
+    "section": "3",
+    "description": "Camminando nell'erba alta senti un rumore alle tue spalle...\nUn pokemon è nelle vicinanze, combatti o tenti la fuga?\n",
+    "musicSrcName": "mp3.route3",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "battle", "btnText": "Combatto!"},
+      {"name":  "r3_tall_grass", "type": "try_escape", "btnText": "Tento la fuga"}
+    ],
+    "specialArea": ""
+  },
+  "route3_end": {
+    "nameID": "route3_end",
+    "title": "Route 3",
+    "section": "3",
+    "description": "Sei alla fine della Route 3, davanti a te c'è la città di Goldenrod.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route3",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "goldenrod_est", "type": "default", "btnText": "Entra nella città di Goldenrod"},
+      {"name":  "r3_tall_grass", "type": "default", "btnText": "Torna indietro nell'erba alta"}
+    ],
+    "specialArea": "spawn_r3"
+  },
+  "goldenrod_est": {
+    "nameID": "goldenrod_est",
+    "title": "Goldenrod Est",
+    "section": "3",
+    "description": "Sei a Goldenrod Est\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.goldenrod",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "goldenrod_sud", "type": "default", "btnText": "Prosegui verso Goldenrod Sud"},
+      {"name":  "route3_end", "type": "default", "btnText": "Torna sulla Route 3"}
+    ],
+    "specialArea": ""
+  },
+  "goldenrod_sud": {
+    "nameID": "goldenrod_sud",
+    "title": "Goldenrod Sud",
+    "section": "3",
+    "description": "Sei a Goldenrod Sud\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.goldenrod",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "route4_start", "type": "default", "btnText": "Prosegui verso la Route 3"},
+      {"name":  "goldenrod_est", "type": "default", "btnText": "Torna a Goldenrod Est"}
+    ],
+    "specialArea": ""
+  },
+  "goldenrod_pokemart": {
+    "nameID": "goldenrod_pokemart",
+    "title": "Poke-Mart",
+    "section": "3",
+    "description": "Sei al Poké-Mart di Goldenrod.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.goldenrod",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "trade", "btnText": "Commercia"},
+      {"name":  "goldenrod_est", "type": "default", "btnText": "Esci dal Poké-Mart di Goldenrod"}
+    ],
+    "specialArea": ""
+  },
+  "goldenrod_pokecenter": {
+    "nameID": "goldenrod_pokecenter",
+    "title": "Centro Pokémon",
+    "section": "3",
+    "description": "Sei al centro pokémon di Goldenrod.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.goldenrod",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "heal", "btnText": "Cura la tua squadra"},
+      {"name":  "goldenrod_sud", "type": "default", "btnText": "Esci dal centro pokémon di Goldenrod"}
+    ],
+    "specialArea": ""
+  },
+
+  "route4_start": {
+    "nameID": "route4_start",
+    "title": "Route 4",
+    "section": "4",
+    "description": "La Route 4 ti sorride avventuriero!\nPer procedere devi entrare nell'erba alta.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route4",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "r4_tall_grass", "type": "default", "btnText": "Prosegui nell'erba alta"},
+      {"name":  "goldenrod_sud", "type": "default", "btnText": "Torna a Goldenrod Sud"}
+    ],
+    "specialArea": "spawn_r4"
+  },
+  "r4_tall_grass": {
+    "nameID": "r4_tall_grass",
+    "title": "Route 4",
+    "section": "4",
+    "description": "Sei nell'erba alta della Route 4.\nAl momento non vedi nessun pokémon nelle vicinanze...\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route4",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "route4_end", "type": "newPokemon", "btnText": "Prosegui nella Route 4 verso Cianwood"},
+      {"name":  "r4_tall_grass", "type": "tall_grass", "btnText": "Cerca pokémon nell'erba alta"},
+      {"name":  "route4_start", "type": "default", "btnText": "Torna indietro verso Goldenrod Sud"}
+    ],
+    "specialArea": "spawn_r4"
+  },
+  "spawn_r4": {
+    "nameID": "spawn_r4",
+    "title": "Route 4",
+    "section": "4",
+    "description": "Camminando nell'erba alta senti un rumore alle tue spalle...\nUn pokemon è nelle vicinanze, combatti o tenti la fuga?\n",
+    "musicSrcName": "mp3.route4",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "battle", "btnText": "Combatto!"},
+      {"name":  "r4_tall_grass", "type": "try_escape", "btnText": "Tento la fuga"}
+    ],
+    "specialArea": ""
+  },
+  "route4_end": {
+    "nameID": "route4_end",
+    "title": "Route 4",
+    "section": "4",
+    "description": "Sei alla fine della Route 4, davanti a te c'è la città di Cianwood.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route4",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "cianwood_est", "type": "default", "btnText": "Entra nella città di Cianwood"},
+      {"name":  "r4_tall_grass", "type": "default", "btnText": "Torna indietro nell'erba alta"}
+    ],
+    "specialArea": "spawn_r4"
+  },
+  "cianwood_est": {
+    "nameID": "cianwood_est",
+    "title": "Cianwood City Est",
+    "section": "4",
+    "description": "Sei a Cianwood Est\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.cianwood",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "cianwood_sud", "type": "default", "btnText": "Prosegui verso Cianwood Sud"},
+      {"name":  "route4_end", "type": "default", "btnText": "Torna sulla Route 4"}
+    ],
+    "specialArea": ""
+  },
+  "cianwood_sud": {
+    "nameID": "cianwood_sud",
+    "title": "Cianwood City Sud",
+    "section": "4",
+    "description": "Sei a Cianwood Sud\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.cianwood",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "route5_start", "type": "default", "btnText": "Prosegui verso la Route 5"},
+      {"name":  "cianwood_est", "type": "default", "btnText": "Torna a Cianwood Est"}
+    ],
+    "specialArea": ""
+  },
+  "cianwood_pokemart": {
+    "nameID": "cianwood_pokemart",
+    "title": "Poke-Mart",
+    "section": "4",
+    "description": "Sei al Poké-Mart di Cianwood City.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.cianwood",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "trade", "btnText": "Commercia"},
+      {"name":  "cianwood_est", "type": "default", "btnText": "Esci dal Poké-Mart di Cianwood"}
+    ],
+    "specialArea": ""
+  },
+  "cianwood_pokecenter": {
+    "nameID": "cianwood_pokecenter",
+    "title": "Centro Pokémon",
+    "section": "4",
+    "description": "Sei al centro pokémon di Cianwood City.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.cianwood",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "heal", "btnText": "Cura la tua squadra"},
+      {"name":  "cianwood_sud", "type": "default", "btnText": "Esci dal centro pokémon di Cianwood"}
+    ],
+    "specialArea": ""
+  },
+
+  "route5_start": {
+    "nameID": "route5_start",
+    "title": "Route 5",
+    "section": "5",
+    "description": "La Route 5 ti sorride avventuriero!\nPer procedere devi entrare nell'erba alta.\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route5",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "r5_tall_grass", "type": "default", "btnText": "Prosegui nell'erba alta"},
+      {"name":  "cianwood_sud", "type": "default", "btnText": "Torna a Cianwood Sud"}
+    ],
+    "specialArea": "spawn_r5"
+  },
+  "r5_tall_grass": {
+    "nameID": "r5_tall_grass",
+    "title": "Route 5",
+    "section": "5",
+    "description": "Sei nell'erba alta della Route 5.\nAl momento non vedi nessun pokémon nelle vicinanze...\n\nChe cosa fai?\n",
+    "musicSrcName": "mp3.route5",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "route5_end", "type": "newPokemon", "btnText": "Prosegui nella Route 5"},
+      {"name":  "r5_tall_grass", "type": "tall_grass", "btnText": "Cerca pokémon nell'erba alta"},
+      {"name":  "route5_start", "type": "default", "btnText": "Torna indietro verso Cianwood Sud"}
+    ],
+    "specialArea": "spawn_r5"
+  },
+  "spawn_r5": {
+    "nameID": "spawn_r5",
+    "title": "Route 5",
+    "section": "5",
+    "description": "Camminando nell'erba alta senti un rumore alle tue spalle...\nUn pokemon è nelle vicinanze, combatti o tenti la fuga?\n",
+    "musicSrcName": "mp3.route5",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "", "type": "battle", "btnText": "Combatto!"},
+      {"name":  "r5_tall_grass", "type": "try_escape", "btnText": "Tento la fuga"}
+    ],
+    "specialArea": ""
+  },
+  "route5_end": {
+    "nameID": "route5_end",
+    "title": "Route 5",
+    "section": "5",
+    "description": "Sei alla fine della Route 5, prosegui per completare la tua avventura!\n",
+    "musicSrcName": "mp3.route5",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "end", "type": "default", "btnText": "Prosegui"},
+      {"name":  "r5_tall_grass", "type": "default", "btnText": "Torna indietro nell'erba alta"}
+    ],
+    "specialArea": "spawn_r5"
+  },
+
+  "end": {
+    "nameID": "end",
+    "title": "Violet Nord",
+    "section": "5",
+    "description": "CONGRATULAZIONI!\nHai completato con successo la tua avventura arrivando alla fine del percorso. Spero che il gioco ti sia piaciuto, ti auguro buon divertimento con il tuo nuovo Pikachu!\n",
+    "musicSrcName": "mp3.barkTown",
+    "bgImageSrcName": "img.barkTown",
+    "nextAreas": [
+      {"name":  "cianwood_sud", "type": "default", "btnText": "Torna a Cianwood City Sud"}
+    ],
+    "specialArea": ""
+  }
+}

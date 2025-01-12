@@ -1,0 +1,163 @@
+{
+  "normal" : {
+    "rock" : "not_eff",
+    "ghost" : "immune",
+    "steel" : "not_eff"
+  },
+  "fighting" : {
+    "normal" : "super_eff",
+    "flying" : "not_eff",
+    "poison" : "not_eff",
+    "rock" : "super_eff",
+    "bug" : "not_eff",
+    "ghost" : "immune",
+    "psychic" : "not_eff",
+    "ice" : "super_eff",
+    "steel" : "super_eff",
+    "dark" : "super_eff"
+  },
+  "flying" : {
+    "fighting" : "super_eff",
+    "rock" : "not_eff",
+    "bug" : "super_eff",
+    "grass" : "super_eff",
+    "electric" : "not_eff",
+    "steel" : "not_eff"
+  },
+  "poison" : {
+    "poison" : "not_eff",
+    "ground" : "not_eff",
+    "rock" : "not_eff",
+    "ghost" : "not_eff",
+    "grass" : "super_eff",
+    "steel" : "immune"
+  },
+  "ground" : {
+    "flying" : "immune",
+    "poison" : "super_eff",
+    "rock" : "super_eff",
+    "bug" : "not_eff",
+    "fire" : "super_eff",
+    "grass" : "not_eff",
+    "electric" : "super_eff",
+    "steel" : "super_eff"
+  },
+  "rock" : {
+    "fighting" : "not_eff",
+    "flying" : "super_eff",
+    "ground" : "not_eff",
+    "bug" : "super_eff",
+    "fire" : "super_eff",
+    "ice" : "super_eff",
+    "steel" : "not_eff"
+  },
+  "bug" : {
+    "fighting" : "not_eff",
+    "flying" : "not_eff",
+    "poison" : "not_eff",
+    "ghost" : "not_eff",
+    "fire" : "not_eff",
+    "grass" : "super_eff",
+    "psychic" : "super_eff",
+    "steel" : "not_eff",
+    "dark" : "super_eff"
+  },
+  "ghost" : {
+    "normal" : "immune",
+    "ghost" : "super_eff",
+    "psychic" : "super_eff",
+    "steel" : "not_eff",
+    "dark" : "not_eff"
+  },
+  "fire" : {
+    "rock" : "not_eff",
+    "bug" : "super_eff",
+    "fire" : "not_eff",
+    "water" : "not_eff",
+    "grass" : "super_eff",
+    "ice" : "super_eff",
+    "dragon" : "not_eff",
+    "steel" : "super_eff"
+  },
+  "water" : {
+    "ground" : "super_eff",
+    "rock" : "super_eff",
+    "fire" : "super_eff",
+    "water" : "not_eff",
+    "grass" : "not_eff",
+    "dragon" : "not_eff"
+  },
+  "grass" : {
+    "flying" : "not_eff",
+    "poison" : "not_eff",
+    "ground" : "super_eff",
+    "rock" : "super_eff",
+    "bug" : "not_eff",
+    "fire" : "not_eff",
+    "water" : "super_eff",
+    "grass" : "not_eff",
+    "dragon" : "not_eff",
+    "steel" : "not_eff"
+  },
+  "electric" : {
+    "flying" : "super_eff",
+    "ground" : "immune",
+    "water" : "super_eff",
+    "grass" : "not_eff",
+    "electric" : "not_eff",
+    "dragon" : "not_eff"
+  },
+  "psychic" : {
+    "fighting" : "super_eff",
+    "poison" : "super_eff",
+    "psychic" : "not_eff",
+    "steel" : "not_eff",
+    "dark" : "immune"
+  },
+  "ice" : {
+    "flying" : "super_eff",
+    "ground" : "super_eff",
+    "fire" : "not_eff",
+    "water" : "not_eff",
+    "grass" : "super_eff",
+    "ice" : "not_eff",
+    "dragon" : "super_eff",
+    "steel" : "not_eff"
+  },
+  "dragon" : {
+    "dragon" : "super_eff",
+    "steel" : "not_eff"
+  },
+  "steel" : {
+    "rock" : "super_eff",
+    "fire" : "not_eff",
+    "water" : "not_eff",
+    "electric" : "not_eff",
+    "ice" : "super_eff",
+    "steel" : "not_eff"
+  },
+  "dark" : {
+    "fighting" : "not_eff",
+    "ghost" : "super_eff",
+    "psychic" : "super_eff",
+    "steel" : "not_eff",
+    "dark" : "not_eff"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

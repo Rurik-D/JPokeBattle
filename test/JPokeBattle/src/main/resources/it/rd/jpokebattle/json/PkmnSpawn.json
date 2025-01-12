@@ -1,0 +1,36 @@
+{
+  "spawn_r1": {
+    "caterpie": [4, 6],
+    "weedle": [4, 6],
+    "pidgey": [5, 7],
+    "rattata": [4, 7]
+  },
+  "spawn_r2": {
+    "metapod": [7, 9],
+    "kakuna": [7, 9],
+    "spearow": [8, 11],
+    "ekans": [8, 11]
+  },
+  "spawn_r3": {
+    "butterfree": [12, 15],
+    "beedrill": [12, 15],
+    "pidgey": [12, 15],
+    "rattata": [12, 15]
+  },
+  "spawn_r4": {
+    "rattata": [16, 19],
+    "raticate": [20, 24],
+    "pidgey": [15, 17],
+    "pidgeotto": [18, 25],
+    "fearow": [20, 27],
+    "ekans": [17, 21],
+    "arbok": [22, 26]
+  },
+  "spawn_r5": {
+    "pidgeot": [36, 45],
+    "venusaur": [36, 45],
+    "charizard": [36, 45],
+    "blastoise": [36, 45],
+    "pikachu": [35, 55]
+  }
+}

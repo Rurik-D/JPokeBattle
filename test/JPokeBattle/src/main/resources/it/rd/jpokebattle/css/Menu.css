@@ -1,0 +1,70 @@
+.root{
+    -fx-background-color: #181818;
+}
+
+.label{
+    -fx-font-size: 21;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C62828;
+}
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-radius: 5px;
+    -fx-border-color: #818181;
+    -fx-font-family: "OCR A Extended";
+    -fx-font-size: 17px;
+    -fx-text-fill: #D1D1D1;
+}
+
+
+.button{
+    -fx-font-size: 18;
+    -fx-font-family: "OCR A Extended";
+    -fx-background-color: transparent;
+    -fx-text-fill: #D1D1D1;
+}
+
+.scroll-pane {
+     -fx-background-color: transparent;
+     -fx-background-radius: 5px;
+     -fx-border-radius: 5px;
+     -fx-border-color: #D1D1D1;
+     -fx-border-width: 2;
+     -fx-font-family: "OCR A Extended";
+     -fx-font-size: 17px;
+     -fx-text-fill: #D1D1D1;
+ }
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent; /* Rende trasparente l'area di visualizzazione interna */
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 8px; /* Larghezza della scrollbar verticale */
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #606060;  /* colore della scrollbar */
+    -fx-background-radius: 10px;
+}
+
+
+
+#nicknameProfCardLbl {
+    -fx-font-size: 26;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #D1D1D1;
+}
+
+#titleLbl{
+    -fx-font-size: 65;
+    -fx-alignment: center;
+}
+

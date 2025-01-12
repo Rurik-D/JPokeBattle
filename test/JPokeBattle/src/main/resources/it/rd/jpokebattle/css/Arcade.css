@@ -1,0 +1,154 @@
+#narratorLbl {
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 17px;
+}
+
+#narratorScrlPane {
+    -fx-control-inner-background: transparent;
+    -fx-background-color: rgba(215, 215, 187, 0.7);
+
+    -fx-border-color: #916161;
+    -fx-border-width: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 6px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.0, 0, 0);
+}
+
+#narratorScrlPane .viewport {
+    -fx-background-color: transparent;
+}
+
+#narratorScrlPane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10px;
+}
+
+#narratorScrlPane .scroll-bar:vertical .increment-arrow,
+#narratorScrlPane .scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: transparent;
+}
+
+#narratorScrlPane .scroll-bar:vertical .thumb {
+    -fx-background-color: #A18181;
+    -fx-background-radius: 10px;
+}
+
+#background {
+    -fx-opacity: 0.8; /* Il valore va da 0 (completamente trasparente) a 1 (completamente opaco) */
+}
+
+#mainPane .button{
+    -fx-font-size: 16;
+    -fx-font-family: "Lucida Console";
+
+    -fx-control-inner-background: transparent;
+    -fx-background-color: rgba(215, 215, 187, 0.7);
+
+    -fx-border-color: #916161;
+    -fx-border-width: 3px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 6px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.0, 0, 0);
+}
+
+#gameSettingsPane .button,
+#teamPane .button,
+#invenctoryPane .button,
+#starterSelectionPane .button,
+#pokeMartPane .button{
+   -fx-font-size: 18;
+   -fx-font-family: "OCR A Extended";
+   -fx-background-color: transparent;
+   -fx-text-fill: #D1D1D1;
+
+   -fx-border-color: transparent;
+   -fx-border-width: 1px;
+}
+
+#titleLbl{
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C62828;
+    -fx-font-size: 65;
+    -fx-alignment: center;
+
+}
+
+
+#profileCardBox .label ,
+#timeAndLocationBox .label {
+    -fx-font-size: 25;
+    -fx-font-family: "Lucida Console";
+    -fx-text-fill: #C1C1C1;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.5, 1, 1);
+}
+
+#profileCardBox .image-view {
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.0, 0, 0);
+}
+
+
+#teamCardsPane {
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+
+    -fx-border-color: #969696;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+}
+
+#teamCardsPane .label{
+    -fx-font-size: 16;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C1C1C1;
+    -fx-font-weight: bold
+}
+
+
+#pokemonInfoPane .label,
+#moveInfoPane  .label {
+    -fx-font-size: 25;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C1C191;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.75), 5, 0.0, 0, 0);
+}
+
+
+#teamCardsPane,
+#pokemonInfoPane,
+#moveInfoPane {
+    -fx-background-color: #111111F0;
+
+    -fx-border-color: #916161;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
+}
+
+
+#moveInfoPane #moveDescriptionLbl,
+#moveInfoPane #moveInfoDataPane .label{
+   -fx-font-size: 20;
+   -fx-text-fill: #C1C1C1;
+
+}
+
+
+#pokemonInfoVBox {
+    -fx-background-color: #1E1E1E;
+    -fx-background-radius: 18px 0px 18px 0px;
+    -fx-border-color: #55550A;
+    -fx-border-width: 3px;
+    -fx-border-radius: 15px 0px 15px 0px;
+}
+
+#pokemonInfoVBox .label{
+    -fx-font-size: 20;
+    -fx-font-family: "OCR A Extended";
+    -fx-text-fill: #C1C1C1;
+    -fx-font-weight: bold
+}
+
