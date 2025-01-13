@@ -438,7 +438,8 @@
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
       {"name":  "goldenrod_sud", "type": "default", "btnText": "Prosegui verso Goldenrod Sud"},
-      {"name":  "route3_end", "type": "default", "btnText": "Torna sulla Route 3"}
+      {"name":  "route3_end", "type": "default", "btnText": "Torna sulla Route 3"},
+      {"name":  "goldenrod_pokecenter", "type": "default", "btnText": "Vai al centro pokémon"}
     ],
     "specialArea": ""
   },
@@ -451,7 +452,8 @@
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
       {"name":  "route4_start", "type": "default", "btnText": "Prosegui verso la Route 3"},
-      {"name":  "goldenrod_est", "type": "default", "btnText": "Torna a Goldenrod Est"}
+      {"name":  "goldenrod_est", "type": "default", "btnText": "Torna a Goldenrod Est"},
+      {"name":  "goldenrod_pokemart", "type": "default", "btnText": "Vai al Poké-Mart"}
     ],
     "specialArea": ""
   },
@@ -544,7 +546,8 @@
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
       {"name":  "cianwood_sud", "type": "default", "btnText": "Prosegui verso Cianwood Sud"},
-      {"name":  "route4_end", "type": "default", "btnText": "Torna sulla Route 4"}
+      {"name":  "route4_end", "type": "default", "btnText": "Torna sulla Route 4"},
+      {"name":  "cianwood_pokemart", "type": "default", "btnText": "Vai al Poké-Mart"}
     ],
     "specialArea": ""
   },
@@ -557,7 +560,8 @@
     "bgImageSrcName": "img.barkTown",
     "nextAreas": [
       {"name":  "route5_start", "type": "default", "btnText": "Prosegui verso la Route 5"},
-      {"name":  "cianwood_est", "type": "default", "btnText": "Torna a Cianwood Est"}
+      {"name":  "cianwood_est", "type": "default", "btnText": "Torna a Cianwood Est"},
+      {"name":  "cianwood_pokemart", "type": "default", "btnText": "Vai al Poké-Mart"}
     ],
     "specialArea": ""
   },
